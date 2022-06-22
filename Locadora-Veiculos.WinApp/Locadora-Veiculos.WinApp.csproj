@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>Locadora_Veiculos.WinApp</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ModuloCliente\" />
+    <Folder Include="ModuloFuncionario\" />
+    <Folder Include="ModuloGrupoVeiculos\" />
+    <Folder Include="ModuloTaxas\" />
+    <Folder Include="Compartilhado\" />
+  </ItemGroup>
+
+</Project>
