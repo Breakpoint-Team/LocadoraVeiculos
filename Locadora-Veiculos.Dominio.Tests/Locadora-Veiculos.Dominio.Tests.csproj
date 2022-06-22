@@ -18,7 +18,7 @@
     <Folder Include="ModuloCliente\" />
     <Folder Include="ModuloFuncionario\" />
     <Folder Include="ModuloGrupoVeiculos\" />
-    <Folder Include="ModuloTaxas\" />
+    <Folder Include="ModuloTaxa\" />
   </ItemGroup>
 
 </Project>

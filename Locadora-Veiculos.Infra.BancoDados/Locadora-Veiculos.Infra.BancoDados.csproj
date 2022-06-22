@@ -6,11 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Compartilhado\" />
     <Folder Include="ModuloCliente\" />
     <Folder Include="ModuloFuncionario\" />
     <Folder Include="ModuloGrupoVeiculos\" />
-    <Folder Include="ModuloTaxas\" />
+    <Folder Include="ModuloTaxa\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
 </Project>
