@@ -106,7 +106,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
               {
                   if (string.IsNullOrEmpty(telefone) == false)
                   {
-                      if ((Regex.IsMatch(telefone, @"^\([1-9]{2}\) (?:[2-8]|9 [1-9])[0-9]{3}\-?[0-9]{4}$")) == false)
+                      if ((Regex.IsMatch(telefone, @"^\([0-9]{2}\) [0-9]{5}\-[0-9]{4}$")) == false)
                           context.AddFailure("O campo 'Telefone' deve ser válido!");
                   }
               });

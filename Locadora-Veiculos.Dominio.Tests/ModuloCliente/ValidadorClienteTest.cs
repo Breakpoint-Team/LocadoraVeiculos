@@ -65,6 +65,26 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             Assert.AreEqual("O campo 'Telefone' é obrigatório!", resultado1.Errors[0].ErrorMessage);
             Assert.AreEqual("O campo 'Telefone' é obrigatório!", resultado2.Errors[0].ErrorMessage);
         }
+         
+        [TestMethod]
+        public void Telefone_Do_Cliente_Deve_ser_Valido()
+        {
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
+                TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
+                "Rua das laranjeiras", "centro", "São Paulo", "SP");
+
+            Cliente c2 = new Cliente("João da Silva", null, "joao@gmail.com",
+                TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
+                "Rua das laranjeiras", "centro", "São Paulo", "SP");
+
+            var validador = new ValidadorCliente();
+
+            var resultado1 = validador.Validate(c1);
+            var resultado2 = validador.Validate(c2);
+
+            Assert.AreEqual(0, resultado1.Errors.Count);
+            //Assert.AreEqual("O campo 'Telefone' é obrigatório!", resultado2.Errors[0].ErrorMessage);
+        }
 
         [TestMethod]
         public void Email_Do_Cliente_Deve_ser_Obrigatorio()

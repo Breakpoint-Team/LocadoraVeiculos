@@ -16,6 +16,20 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.repositorioCliente = repositorioCliente;
         }
 
+        public override void Inserir()
+        {
+            TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
+
+            tela.Cliente = new Cliente();
+
+            tela.GravarRegistro = repositorioCliente.Inserir;
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+                CarregarClientes();
+        }
+        
         public override void Editar()
         {
             throw new NotImplementedException();
@@ -26,10 +40,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             throw new NotImplementedException();
         }
 
-        public override void Inserir()
-        {
-            throw new NotImplementedException();
-        }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
