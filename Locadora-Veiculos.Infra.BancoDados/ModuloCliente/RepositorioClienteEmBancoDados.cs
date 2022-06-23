@@ -1,35 +1,23 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloCliente;
+using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 {
-    public class RepositorioClienteEmBancoDados : IRepositioCliente
+    public class RepositorioClienteEmBancoDados : RepositorioBase<Cliente, ValidadorCliente, MapeadorCliente>, IRepositorioCliente
     {
-        public ValidationResult Editar(Cliente registro)
-        {
-            throw new NotImplementedException();
-        }
+        protected override string sqlInserir => throw new NotImplementedException();
 
-        public ValidationResult Excluir(Cliente registro)
-        {
-            throw new NotImplementedException();
-        }
+        protected override string sqlEditar => throw new NotImplementedException();
 
-        public ValidationResult Inserir(Cliente novoRegistro)
-        {
-            throw new NotImplementedException();
-        }
+        protected override string sqlExcluir => throw new NotImplementedException();
 
-        public Cliente SelecionarPorId(int id)
-        {
-            throw new NotImplementedException();
-        }
+        protected override string sqlSelecionarPorId => throw new NotImplementedException();
 
-        public List<Cliente> SelecionarTodos()
-        {
-            return new List<Cliente>();
-        }
+        protected override string sqlSelecionarTodos => throw new NotImplementedException();
+
+
     }
 }

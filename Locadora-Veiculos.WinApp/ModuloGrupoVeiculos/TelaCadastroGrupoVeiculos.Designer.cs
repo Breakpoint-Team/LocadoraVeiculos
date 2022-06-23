@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxNome = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -43,12 +43,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome: ";
             // 
-            // textBoxNome
+            // txtNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(105, 34);
-            this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(184, 23);
-            this.textBoxNome.TabIndex = 1;
+            this.txtNome.Location = new System.Drawing.Point(105, 34);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(184, 23);
+            this.txtNome.TabIndex = 1;
             // 
             // btnGravar
             // 
@@ -60,6 +60,7 @@
             this.btnGravar.TabIndex = 2;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // btnCancelar
             // 
@@ -79,7 +80,7 @@
             this.ClientSize = new System.Drawing.Size(356, 128);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGravar);
-            this.Controls.Add(this.textBoxNome);
+            this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -95,7 +96,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxNome;
+        private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnCancelar;
     }

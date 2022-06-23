@@ -8,10 +8,10 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 {
     public class ControladorCliente : ControladorBase
     {
-        private readonly IRepositioCliente repositorioCliente;
+        private readonly IRepositorioCliente repositorioCliente;
         private ListagemClientesControl listagemClientes;
 
-        public ControladorCliente(IRepositioCliente repositorioCliente)
+        public ControladorCliente(IRepositorioCliente repositorioCliente)
         {
             this.repositorioCliente = repositorioCliente;
         }
