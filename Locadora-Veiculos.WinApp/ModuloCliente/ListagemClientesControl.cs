@@ -36,7 +36,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
         public int ObtemNumeroClienteSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId<int>();
         }
 
         public void AtualizarRegistros(List<Cliente> Clientes)
