@@ -1,8 +1,10 @@
 ﻿using Locadora_Veiculos.Infra.BancoDados.ModuloCliente;
+using Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Infra.BancoDados.ModuloTaxa;
 using Locadora_Veiculos.WinApp.Compartilhado;
 using Locadora_Veiculos.WinApp.ModuloCliente;
+using Locadora_Veiculos.WinApp.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.ModuloGrupoVeiculos;
 using Locadora_Veiculos.WinApp.ModuloTaxas;
 using System;
@@ -134,16 +136,14 @@ namespace Locadora_Veiculos.WinApp
             var repositorioCliente = new RepositorioClienteEmBancoDados();
             var repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
             var repositorioTaxa = new RepositorioTaxaEmBancoDados();
-            //var repositorioFuncionario = new RepositorioTesteFuncionarioEmBancoDados();
+            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
 
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Clientes", new ControladorCliente(repositorioCliente));
             controladores.Add("Grupos de veículos", new ControladorGrupoVeiculos(repositorioGrupoVeiculos));
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
-            //controladores.Add("Funcionários", new ControladorTeste(repositorioQuestao, repositorioDisciplina,
-
-
+            controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario));
         }
     }
 }

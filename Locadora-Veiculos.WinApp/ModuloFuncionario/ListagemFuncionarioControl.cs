@@ -1,13 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.Compartilhado;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloFuncionario
@@ -17,15 +10,43 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
         public ListagemFuncionarioControl()
         {
             InitializeComponent();
+            grid.ConfigurarGridZebrado();
+            grid.ConfigurarGridSomenteLeitura();
+            grid.Columns.AddRange(ObterColunas());
         }
 
-        internal void AtualizarRegistros(List<Funcionario> funcionarios)
+        public DataGridViewColumn[] ObterColunas()
         {
-            throw new NotImplementedException();
+            var colunas = new DataGridViewColumn[]
+            {
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Login", HeaderText = "Login"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "DataAdmissao", HeaderText = "Data de admissão"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Salario", HeaderText = "Salário"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ehAdmin", HeaderText = "Admin"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "estaAtivo", HeaderText = "Está ativo"}
+            };
+
+            return colunas;
         }
+
         public int ObtemIdFuncionarioSelecionado()
         {
             return grid.SelecionarId<int>();
+        }
+
+        public void AtualizarRegistros(List<Funcionario> funcionarios)
+        {
+            grid.Rows.Clear();
+            foreach (Funcionario funcionario in funcionarios)
+            {
+                var ehAdmin = funcionario.EhAdmin == true ? "Sim" : "Não";
+                var estaAtivo = funcionario.EstaAtivo == true ? "Sim" : "Não";
+
+                grid.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Login,
+                    funcionario.DataAdmissao.ToShortDateString(), funcionario.Salario, ehAdmin, estaAtivo);
+            }
         }
     }
 }

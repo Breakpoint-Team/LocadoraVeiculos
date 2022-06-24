@@ -7,10 +7,11 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
     {
         public Funcionario()
         {
-
+            this.EstaAtivo = true;
         }
 
-        public Funcionario(string nome, string login, string senha, DateTime dataAdmissao, decimal salario, bool ehAdmin, bool estaAtivo)
+        public Funcionario(string nome, string login, string senha,
+            DateTime dataAdmissao, decimal salario, bool ehAdmin, bool estaAtivo)
         {
             Nome = nome;
             Login = login;
