@@ -6,6 +6,7 @@
     [Data_entrada] DATE          NOT NULL,
     [Salario]      DECIMAL (18)  NOT NULL,
     [Is_Admin]     BIT           NOT NULL,
+    [Esta_Ativo] BIT NOT NULL, 
     CONSTRAINT [PK_TBFuncionario] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
