@@ -96,7 +96,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
         {
             List<Taxa> taxas = repositorioTaxa.SelecionarTodos();
             listagemTaxa.AtualizarRegistros(taxas);
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {taxas.Count} taxas");
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {taxas.Count} taxa(s)");
         }
     }
 }

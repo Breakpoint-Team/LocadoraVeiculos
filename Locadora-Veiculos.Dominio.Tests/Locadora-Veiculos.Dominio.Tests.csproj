@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloFuncionario\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Locadora-Veiculos.Dominio\Locadora-Veiculos.Dominio.csproj" />
   </ItemGroup>
 
