@@ -7,69 +7,92 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
     {
         public ValidadorCliente()
         {
-            RuleFor(cliente => cliente.Nome)
+            RuleFor(x => x.Nome)
                 .NotNull().WithMessage("O campo 'Nome' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'Nome' é obrigatório!");
 
-            When(cliente => string.IsNullOrEmpty(cliente.Nome) == false, () =>
+            When(x => string.IsNullOrEmpty(x.Nome) == false, () =>
             {
-                RuleFor(cliente => cliente.Nome.Length)
+                RuleFor(x => x.Nome.Length)
                 .GreaterThan(2)
                 .WithMessage("O campo 'Nome' deve ter no mínimo 3 caracteres!");
+
+                RuleFor(x => x.Nome)
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
+                .WithMessage("Caracteres especiais não são permitidos!");
             });
 
-            RuleFor(cliente => cliente.Rua)
+            RuleFor(x => x.Rua)
                 .NotNull().WithMessage("O campo 'Rua' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'Rua' é obrigatório!");
 
-            When(cliente => string.IsNullOrEmpty(cliente.Rua) == false, () =>
+            When(x => string.IsNullOrEmpty(x.Rua) == false, () =>
             {
-                RuleFor(cliente => cliente.Rua.Length)
+                RuleFor(x => x.Rua.Length)
                 .GreaterThan(4)
                 .WithMessage("O campo 'Rua' deve ter no mínimo 5 caracteres!");
+
+                RuleFor(x => x.Rua)
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
+                .WithMessage("Caracteres especiais não são permitidos!");
+
             });
 
-            RuleFor(cliente => cliente.Bairro)
+            RuleFor(x => x.Bairro)
                .NotNull().WithMessage("O campo 'Bairro' é obrigatório!")
                .NotEmpty().WithMessage("O campo 'Bairro' é obrigatório!");
 
-            When(cliente => string.IsNullOrEmpty(cliente.Bairro) == false, () =>
+            When(x => string.IsNullOrEmpty(x.Bairro) == false, () =>
             {
-                RuleFor(cliente => cliente.Bairro.Length)
+                RuleFor(x => x.Bairro.Length)
                 .GreaterThan(4)
                 .WithMessage("O campo 'Bairro' deve ter no mínimo 5 caracteres!");
+
+                RuleFor(x => x.Bairro)
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
+                .WithMessage("Caracteres especiais não são permitidos!");
             });
 
-            RuleFor(cliente => cliente.Cidade)
+            RuleFor(x => x.Cidade)
                 .NotNull().WithMessage("O campo 'Cidade' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'Cidade' é obrigatório!");
 
-            When(cliente => string.IsNullOrEmpty(cliente.Cidade) == false, () =>
+            When(x => string.IsNullOrEmpty(x.Cidade) == false, () =>
             {
-                RuleFor(cliente => cliente.Cidade.Length)
+                RuleFor(x => x.Cidade.Length)
                 .GreaterThan(4)
                 .WithMessage("O campo 'Cidade' deve ter no mínimo 5 caracteres!");
+
+                RuleFor(x => x.Cidade)
+               .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
+               .WithMessage("Caracteres especiais não são permitidos!");
+
             });
 
-            RuleFor(cliente => cliente.Estado)
+            RuleFor(x => x.Estado)
                 .NotNull().WithMessage("O campo 'Estado' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'Estado' é obrigatório!");
 
-            When(cliente => string.IsNullOrEmpty(cliente.Estado) == false, () =>
+            When(x => string.IsNullOrEmpty(x.Estado) == false, () =>
             {
-                RuleFor(cliente => cliente.Estado.Length)
+                RuleFor(x => x.Estado.Length)
                     .Equal(2)
                     .WithMessage("O campo 'Estado' deve ter somente 2 caracteres!");
+
+                RuleFor(x => x.Estado)
+               .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
+               .WithMessage("Caracteres especiais não são permitidos!");
+
             });
 
 
-            When(cliente => cliente.TipoCliente == TipoCliente.PessoaJuridica, () =>
+            When(x => x.TipoCliente == TipoCliente.PessoaJuridica, () =>
             {
-                RuleFor(cliente => cliente.Cnpj)
+                RuleFor(x => x.Cnpj)
                 .NotNull().WithMessage("O campo 'CNPJ' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'CNPJ' é obrigatório!");
 
-                RuleFor(cliente => cliente.Cnpj)
+                RuleFor(x => x.Cnpj)
                 .Custom((cnpj, context) =>
                 {
                     if (string.IsNullOrEmpty(cnpj) == false)
@@ -80,13 +103,13 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                 });
             });
 
-            When(cliente => cliente.TipoCliente == TipoCliente.PessoaFisica, () =>
+            When(x => x.TipoCliente == TipoCliente.PessoaFisica, () =>
             {
-                RuleFor(cliente => cliente.Cpf)
+                RuleFor(x => x.Cpf)
                 .NotNull().WithMessage("O campo 'CPF' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'CPF' é obrigatório!");
 
-                RuleFor(cliente => cliente.Cpf)
+                RuleFor(x => x.Cpf)
                 .Custom((cpf, context) =>
                 {
                     if (string.IsNullOrEmpty(cpf) == false)
@@ -97,7 +120,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                 });
             });
 
-            RuleFor(cliente => cliente.Telefone)
+            RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("O campo 'Telefone' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'Telefone' é obrigatório!");
 
@@ -111,7 +134,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                   }
               });
 
-            RuleFor(cliente => cliente.Email)
+            RuleFor(x => x.Email)
                 .NotNull().WithMessage("O campo 'Email' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'Email' é obrigatório!");
 
@@ -125,7 +148,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                   }
               });
 
-            RuleFor(cliente => cliente.Cnh)
+            RuleFor(x => x.Cnh)
               .NotNull().WithMessage("O campo 'CNH' é obrigatório!")
               .NotEmpty().WithMessage("O campo 'CNH' é obrigatório!");
 
