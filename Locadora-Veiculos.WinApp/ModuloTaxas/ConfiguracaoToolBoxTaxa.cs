@@ -4,12 +4,12 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
 {
     public class ConfiguracaoToolBoxTaxa : ConfiguracaoToolboxBase
     {
-        public override string TipoCadastro => "Cadastro de taxa";
+        public override string TipoCadastro => "Cadastro de Taxas";
 
-        public override string TooltipInserir => "Inserir uma nova taxa";
+        public override string TooltipInserir => "Inserir uma nova Taxa";
 
-        public override string TooltipEditar => "Editar uma taxa existente";
+        public override string TooltipEditar => "Editar uma Taxa existente";
 
-        public override string TooltipExcluir => "Excluir uma taxa existente";
+        public override string TooltipExcluir => "Excluir uma Taxa existente";
     }
 }

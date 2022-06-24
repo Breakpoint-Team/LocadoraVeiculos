@@ -29,7 +29,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Nome_Do_Cliente_Deve_ter_no_minimo_cinco_caracteres()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
@@ -65,7 +65,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             Assert.AreEqual("O campo 'Telefone' é obrigatório!", resultado1.Errors[0].ErrorMessage);
             Assert.AreEqual("O campo 'Telefone' é obrigatório!", resultado2.Errors[0].ErrorMessage);
         }
-         
+
         [TestMethod]
         public void Telefone_Do_Cliente_Deve_ser_Valido()
         {
@@ -89,11 +89,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Email_Do_Cliente_Deve_ser_Obrigatorio()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", null,
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", null,
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
@@ -109,11 +109,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Cnh_Do_Cliente_Deve_ser_Obrigatorio()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, null, 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
@@ -129,11 +129,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Cnh_Do_Cliente_Deve_ter_nove_digitos()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "12345", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
@@ -149,11 +149,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Rua_Do_Cliente_Deve_ser_obrigatorio()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 null, "centro", "São Paulo", "SP");
 
@@ -169,11 +169,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Rua_Do_Cliente_Deve_ter_no_minimo_cinco_caracteres()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "R", "centro", "São Paulo", "SP");
 
@@ -189,11 +189,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Bairro_Do_Cliente_Deve_ser_obrigatorio()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", null, "São Paulo", "SP");
 
@@ -209,11 +209,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Bairro_Do_Cliente_Deve_ter_no_minimo_cinco_caracteres()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "ce", "São Paulo", "SP");
 
@@ -229,11 +229,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Cidade_Do_Cliente_Deve_ser_obrigatorio()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", null, "SP");
 
@@ -249,11 +249,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Cidade_Do_Cliente_Deve_ter_no_minimo_cinco_caracteres()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São", "SP");
 
@@ -269,11 +269,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Estado_Do_Cliente_Deve_ser_obrigatorio()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", null);
 
@@ -289,15 +289,15 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Estado_Do_Cliente_Deve_ter_somente_dois_caracteres()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SPC");
 
-            Cliente c3 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c3 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SPC");
 
@@ -315,11 +315,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Cpf_Do_Cliente_Pessoa_Fisica_Deve_ser_Obrigatorio()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, null, null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
@@ -335,11 +335,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Cpf_Do_Cliente_Pessoa_Fisica_Deve_ser_Valido()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "0987", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "gdfgsdf", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
@@ -355,15 +355,15 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Cnpj_Do_Cliente_Pessoa_Juridica_Deve_ser_Obrigatorio()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaJuridica, null, "", "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaJuridica, null, null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
-            
-            Cliente c3 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+
+            Cliente c3 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaJuridica, null, "99.789.457/0001-88", "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
@@ -381,15 +381,15 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void Cnpj_Do_Cliente_Pessoa_junridica_Deve_ser_Valido()
         {
-            Cliente c1 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                TipoCliente.PessoaJuridica, null, "cc.jjj.nnn/oooi-pp", "123456789", 2,
                "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c2 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaJuridica, null, "09.345", "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
-            Cliente c3 = new Cliente("João da Silva", "(49) 9 8888-9999", "joao@gmail.com",
+            Cliente c3 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaJuridica, null, "99.789.457/0001-88", "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
@@ -403,8 +403,5 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             Assert.AreEqual("O campo 'CNPJ' deve ser válido!", resultado2.Errors[0].ErrorMessage);
             Assert.AreEqual(0, resultado3.Errors.Count);
         }
-
-
-
     }
 }
