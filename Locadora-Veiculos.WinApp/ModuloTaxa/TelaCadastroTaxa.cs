@@ -1,13 +1,6 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloTaxas
@@ -15,6 +8,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
     public partial class TelaCadastroTaxa : Form
     {
         private Taxa taxa;
+ 
         public TelaCadastroTaxa()
         {
             InitializeComponent();
@@ -26,7 +20,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
         {
             get
             {
-               return taxa;
+                return taxa;
             }
 
             set
@@ -58,6 +52,5 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
                 DialogResult = DialogResult.None;
             }
         }
-
     }
 }

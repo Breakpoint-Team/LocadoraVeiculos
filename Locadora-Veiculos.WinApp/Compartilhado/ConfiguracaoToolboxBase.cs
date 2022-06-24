@@ -10,7 +10,6 @@
 
         public abstract string TooltipExcluir { get; }
 
-
         public virtual bool InserirHabilitado { get { return true; } }
 
         public virtual bool EditarHabilitado { get { return true; } }

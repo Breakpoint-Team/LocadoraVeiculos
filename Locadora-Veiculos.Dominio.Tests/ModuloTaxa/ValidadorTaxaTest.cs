@@ -1,10 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora_Veiculos.Dominio.Tests.ModuloTaxa
 {
@@ -25,12 +20,9 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloTaxa
 
             //assert
             Assert.AreEqual("O campo 'Descrição' é obrigatório!", resultado.Errors[0].ErrorMessage);
-
         }
 
-
         [TestMethod]
-
         public void Descricao_nao_deve_ter_caracteres_especiais()
         {
             //arrange
@@ -82,7 +74,5 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloTaxa
         //    Assert.AreEqual("O campo 'Tipo de Cálculo' é obrigatório!", resultado.Errors[0].ErrorMessage);
 
         //}
-
-
     }
 }

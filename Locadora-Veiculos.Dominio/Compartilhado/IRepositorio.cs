@@ -1,7 +1,6 @@
 ﻿using FluentValidation.Results;
 using System.Collections.Generic;
 
-
 namespace Locadora_Veiculos.Dominio.Compartilhado
 {
     public interface IRepositorio<T> where T : EntidadeBase<T>

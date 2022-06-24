@@ -149,6 +149,7 @@
             this.MinimizeBox = false;
             this.Name = "TelaCadastroTaxa";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Taxa";
             ((System.ComponentModel.ISupportInitialize)(this.numericValor)).EndInit();

@@ -33,6 +33,8 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
         public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
 
+        #region EVENTOS
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             ObterDadosTela();
@@ -67,6 +69,10 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             HabilitarPessoaJuridica();
             DesabilitarPessoaFisica();
         }
+
+        #endregion
+
+        #region MÉTODOS PRIVADOS
 
         private void ObterDadosTela()
         {
@@ -169,5 +175,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             return retorno;
         }
+
+        #endregion
     }
 }

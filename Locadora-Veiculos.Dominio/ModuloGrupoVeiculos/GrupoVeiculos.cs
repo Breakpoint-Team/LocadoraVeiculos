@@ -1,11 +1,11 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
 
-
 namespace Locadora_Veiculos.Dominio.ModuloGrupoVeiculos
 {
     public class GrupoVeiculos : EntidadeBase<GrupoVeiculos>
     {
-        public string Nome {get; set;}
+        #region CONSTRUTORES
+
         public GrupoVeiculos()
         {
 
@@ -15,6 +15,14 @@ namespace Locadora_Veiculos.Dominio.ModuloGrupoVeiculos
         {
             Nome = nome;
         }
+
+        #endregion
+
+        #region PROPS
+
+        public string Nome {get; set;}
+
+        #endregion
 
         public override string ToString()
         {

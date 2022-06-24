@@ -4,7 +4,6 @@ using Locadora_Veiculos.Dominio.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
 {

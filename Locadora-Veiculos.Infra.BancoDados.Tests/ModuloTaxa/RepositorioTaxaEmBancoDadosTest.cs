@@ -15,15 +15,16 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
         public RepositorioTaxaEmBancoDadosTest()
         {
             Db.ExecutarSql("DELETE FROM TBTAXA; DBCC CHECKIDENT (TBTAXA, RESEED, 0)");
-            repositorioTaxa = new RepositorioTaxaEmBancoDados();    
+            repositorioTaxa = new RepositorioTaxaEmBancoDados();
         }
 
         [TestMethod]
         public void Deve_inserir_registro()
         {
-            //action
+            //arrange
             var taxa = NovaTaxa();
 
+            //action
             repositorioTaxa.Inserir(taxa);
 
             //assert
@@ -36,13 +37,14 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
         [TestMethod]
         public void Deve_editar_registro()
         {
-            //action
+            //arrange
             var taxa = NovaTaxa();
 
             repositorioTaxa.Inserir(taxa);
 
             taxa.Descricao = "Gasolina";
 
+            //action
             repositorioTaxa.Editar(taxa);
 
             //assert
@@ -66,9 +68,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
 
             //assert
             Assert.IsNull(registroEncontrado);
-
         }
-
 
         [TestMethod]
         public void Deve_selecionar_um_registro()
@@ -108,11 +108,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
                 Assert.AreEqual(registrosEncontrados[posicao].Id, t.Id);
                 posicao++;
             }
-
         }
 
+        #region MÉTODOS PRIVADOS
 
-        #region Metodos Privados
         private Taxa NovaTaxa()
         {
             var t = new Taxa();
@@ -126,7 +125,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
         private List<Taxa> NovasTaxas()
         {
             var t1 = new Taxa("Lavação do Veículo", 100, TipoCalculo.Fixo);
-            var t2 = new Taxa("Cadeira de Bebê", 90, TipoCalculo.Diario );
+            var t2 = new Taxa("Cadeira de Bebê", 90, TipoCalculo.Diario);
             var t3 = new Taxa("Frigobar", 50, TipoCalculo.Diario);
 
             var lista = new List<Taxa>();
@@ -136,7 +135,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
 
             return lista;
         }
+
         #endregion
     }
-
 }

@@ -38,7 +38,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             return colunas;
         }
 
-        public int ObtemNumeroClienteSelecionado()
+        public int ObtemIdClienteSelecionado()
         {
             return grid.SelecionarId<int>();
         }
@@ -54,7 +54,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
                               tipo, cliente.Cpf, cliente.Cnpj, cliente.Cnh,
                               cliente.Estado, cliente.Cidade, cliente.Bairro, cliente.Rua, cliente.Numero);
             }
-
         }
     }
 }

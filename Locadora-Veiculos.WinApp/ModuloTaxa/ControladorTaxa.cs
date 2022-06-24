@@ -1,10 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.WinApp.Compartilhado;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloTaxas
@@ -13,10 +9,12 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
     {
         private IRepositorioTaxa repositorioTaxa;
         private ListagemTaxaControl listagemTaxa;
+
         public ControladorTaxa(IRepositorioTaxa repositorioTaxa)
         {
             this.repositorioTaxa = repositorioTaxa;
         }
+
         public override void Inserir()
         {
             var tela = new TelaCadastroTaxa();
@@ -34,7 +32,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
 
             if (taxaSelecionada == null)
             {
-                MessageBox.Show("Selecione uma primeiro",
+                MessageBox.Show("Selecione uma taxa primeiro",
                 "Edição de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -57,8 +55,8 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
 
             if (taxaSelecionada == null)
             {
-                MessageBox.Show("Selecione uma primeiro",
-                "Edição de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione uma taxa primeiro",
+                "Exclusão de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -99,7 +97,6 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             List<Taxa> taxas = repositorioTaxa.SelecionarTodos();
             listagemTaxa.AtualizarRegistros(taxas);
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {taxas.Count} taxas");
-
         }
     }
 }

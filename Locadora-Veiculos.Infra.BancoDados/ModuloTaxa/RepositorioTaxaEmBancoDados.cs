@@ -1,6 +1,4 @@
-﻿
-
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using System.Linq;
@@ -10,7 +8,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
     public class RepositorioTaxaEmBancoDados : RepositorioBase<Taxa, ValidadorTaxa, MapeadorTaxa>, IRepositorioTaxa
     {
         protected override string sqlInserir =>
-          @"INSERT INTO [TBTAXA]
+            @"INSERT INTO [TBTAXA]
                 (
                     [DESCRICAO],
                     [VALOR],
@@ -24,7 +22,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
                 ); SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>
-             @" UPDATE [TBTAXA]
+            @" UPDATE [TBTAXA]
                     SET 
                         [DESCRICAO] = @DESCRICAO,
                         [VALOR] = @VALOR,
@@ -36,7 +34,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
                 WHERE [ID] = @ID";
 
         protected override string sqlSelecionarPorId =>
-         @"SELECT 
+            @"SELECT 
                 [ID],       
                 [DESCRICAO],
                 [VALOR],
@@ -47,7 +45,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
              [ID] = @ID";
 
         protected override string sqlSelecionarTodos =>
-        @"SELECT 
+            @"SELECT 
                 [ID],       
                 [DESCRICAO],
                 [VALOR],
@@ -68,7 +66,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
                .Select(x => x.Descricao.ToLower())
                .Contains(registro.Descricao.ToLower());
 
-
             if (nomeEncontrado)
             {
                 if (registro.Id == 0)
@@ -76,11 +73,9 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
 
                 else if (registro.Id != 0)
                     resultadoValidacao.Errors.Add(new ValidationFailure("", "Descrição já está cadastrada"));
-
             }
 
             return resultadoValidacao;
         }
-
     }
 }

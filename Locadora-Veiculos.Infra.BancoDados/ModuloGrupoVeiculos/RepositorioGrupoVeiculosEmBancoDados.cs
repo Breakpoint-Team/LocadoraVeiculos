@@ -1,9 +1,7 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using System;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
@@ -21,17 +19,17 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
                 ); SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>
-                @" UPDATE [TBGRUPOVEICULOS]
+            @" UPDATE [TBGRUPOVEICULOS]
                     SET 
                         [NOME] = @NOME
                     WHERE [ID] = @ID";
 
         protected override string sqlExcluir =>
-           @"DELETE FROM [TBGRUPOVEICULOS]
+            @"DELETE FROM [TBGRUPOVEICULOS]
                 WHERE [ID] = @ID";
 
         protected override string sqlSelecionarPorId =>
-        @"SELECT 
+            @"SELECT 
                 [ID],       
                 [NOME]
             FROM
@@ -40,7 +38,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
              [ID] = @ID";
 
         protected override string sqlSelecionarTodos =>
-        @"SELECT 
+            @"SELECT 
                 [ID],       
                 [NOME]
             FROM
@@ -72,6 +70,5 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
 
             return resultadoValidacao;
         }
-
     }
 }

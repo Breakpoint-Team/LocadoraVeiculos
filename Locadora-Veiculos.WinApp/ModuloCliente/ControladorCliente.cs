@@ -36,7 +36,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             if (clienteSelecionado == null)
             {
                 MessageBox.Show("Selecione um cliente primeiro",
-                "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -59,12 +59,12 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             if (clienteSelecionado == null)
             {
                 MessageBox.Show("Selecione um cliente primeiro",
-                "Exclusão de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             DialogResult resultado = MessageBox.Show("Deseja realmente excluir o cliente?",
-                "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                "Exclusão de Cliente", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
                 repositorioCliente.Excluir(clienteSelecionado);
@@ -98,7 +98,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
         private Cliente ObtemClienteSelecionado()
         {
-            var id = listagemClientes.ObtemNumeroClienteSelecionado();
+            var id = listagemClientes.ObtemIdClienteSelecionado();
 
             return repositorioCliente.SelecionarPorId(id);
         }

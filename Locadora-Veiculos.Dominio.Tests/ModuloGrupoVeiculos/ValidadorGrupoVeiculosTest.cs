@@ -1,7 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-
 namespace Locadora_Veiculos.Dominio.Tests.ModuloGrupoVeiculos
 {
     [TestClass]
@@ -22,8 +21,8 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloGrupoVeiculos
             //assert
             Assert.AreEqual("O campo 'Nome' é obrigatório!", resultado.Errors[0].ErrorMessage);
         }
+        
         [TestMethod]
-
         public void Nome_nao_deve_ter_caracteres_especiais()
         {
             //arrange
@@ -38,7 +37,5 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloGrupoVeiculos
             //assert
             Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
         }
-
-
     }
 }

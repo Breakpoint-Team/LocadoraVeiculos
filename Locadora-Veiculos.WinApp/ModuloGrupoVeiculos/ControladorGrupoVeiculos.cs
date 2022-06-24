@@ -1,6 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.WinApp.Compartilhado;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -10,11 +9,12 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
     {
         private readonly IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
         private ListagemGrupoVeiculosControl listagemGrupoVeiculos;
+        
         public ControladorGrupoVeiculos(IRepositorioGrupoVeiculos repositorioGrupoVeiculos)
         {
             this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
-
         }
+
         public override void Inserir()
         {
             var tela = new TelaCadastroGrupoVeiculos();
@@ -51,13 +51,12 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
 
         public override void Excluir()
         {
-
             GrupoVeiculos grupoVeiculosSelecionado = ObtemGrupoVeiculosSelecionado();
 
             if (grupoVeiculosSelecionado == null)
             {
                 MessageBox.Show("Selecione um grupo de veículos primeiro",
-                "Edição de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -86,7 +85,8 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
             return listagemGrupoVeiculos;
         }
 
-        #region Metodos Privados
+        #region MÉTODOS PRIVADOS
+        
         private void CarregarGrupos()
         {
             List<GrupoVeiculos> grupos = repositorioGrupoVeiculos.SelecionarTodos();

@@ -86,6 +86,7 @@
             this.MinimizeBox = false;
             this.Name = "TelaCadastroGrupoVeiculos";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Grupo de Veiculos";
             this.ResumeLayout(false);

@@ -1,6 +1,4 @@
-﻿using FluentValidation.Results;
-using Locadora_Veiculos.Dominio.Compartilhado;
-using Locadora_Veiculos.Dominio.ModuloCliente;
+﻿using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
@@ -94,6 +92,5 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                 [NUMERO]
             FROM
                 [TBCLIENTE]";
-
     }
 }

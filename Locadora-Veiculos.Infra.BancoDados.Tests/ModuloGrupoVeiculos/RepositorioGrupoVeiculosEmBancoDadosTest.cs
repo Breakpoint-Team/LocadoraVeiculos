@@ -10,6 +10,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
     public class RepositorioGrupoVeiculosEmBancoDadosTest
     {
         private RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos;
+        
         public RepositorioGrupoVeiculosEmBancoDadosTest()
         {
             Db.ExecutarSql("DELETE FROM TBGRUPOVEICULOS; DBCC CHECKIDENT (TBGRUPOVEICULOS, RESEED, 0)");
@@ -19,14 +20,14 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
         [TestMethod]
         public void Deve_inserir_registro()
         {
-            //action
+            //ararnge
             var grupoVeiculos = NovoGrupoVeiculos();
 
+            //action
             repositorioGrupoVeiculos.Inserir(grupoVeiculos);
 
             //assert
             var registroEncontrado = repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
-
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(grupoVeiculos, registroEncontrado);
         }
@@ -34,18 +35,19 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
         [TestMethod]
         public void Deve_editar_registro()
         {
-            //action
+            //arrange
             var grupoVeiculos = NovoGrupoVeiculos();
 
             repositorioGrupoVeiculos.Inserir(grupoVeiculos);
 
             grupoVeiculos.Nome = "Uber";
 
+            //action
             repositorioGrupoVeiculos.Editar(grupoVeiculos);
 
             //assert
             var registroEncontrado = repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
-
+            
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(grupoVeiculos, registroEncontrado);
         }
@@ -60,11 +62,9 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             //action
             repositorioGrupoVeiculos.Excluir(grupoVeiculos);
 
-            var registroEncontrado = repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
-
             //assert
+            var registroEncontrado = repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
             Assert.IsNull(registroEncontrado);
-
         }
 
         [TestMethod]
@@ -105,10 +105,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
                 Assert.AreEqual(registrosEncontrados[posicao].Id, g.Id);
                 posicao++;
             }
-
         }
 
-        #region Metodos Privados
+        #region MÉTODOS PRIVADOS
+        
         private GrupoVeiculos NovoGrupoVeiculos()
         {
             var g = new GrupoVeiculos();
@@ -130,6 +130,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
 
             return lista;
         }
+        
         #endregion
     }
 }

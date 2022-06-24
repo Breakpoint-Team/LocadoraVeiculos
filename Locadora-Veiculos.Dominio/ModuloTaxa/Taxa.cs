@@ -5,9 +5,15 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
 {
     public class Taxa : EntidadeBase<Taxa>
     {
+        #region PROPS
+
         public string Descricao { get; set; }
         public Decimal Valor { get; set; }
         public TipoCalculo TipoCalculo { get; set; }
+
+        #endregion
+
+        #region CONSTRUTORES
 
         public Taxa()
         {
@@ -21,6 +27,8 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
             TipoCalculo = tipoCalculo;
         }
 
+        #endregion
+
         public override string ToString()
         {
             return string.Format("{0}, {1}, {2}", Descricao, Valor, TipoCalculo.GetDescription());
@@ -29,7 +37,6 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
         public override bool Equals(object obj)
         {
             Taxa t = obj as Taxa;
-
 
             if (t == null)
                 return false;
