@@ -1,7 +1,13 @@
-﻿namespace Locadora_Veiculos.Dominio.ModuloCliente
+﻿using System.ComponentModel;
+
+namespace Locadora_Veiculos.Dominio.ModuloCliente
 {
     public enum TipoCliente
     {
-        PessoaFisica, PessoaJuridica
+        [Description("Pessoa física")]
+        PessoaFisica,
+        
+        [Description("Pessoa jurídica")]
+        PessoaJuridica,
     }
 }
