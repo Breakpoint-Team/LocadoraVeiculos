@@ -1,6 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.WinApp.Compartilhado;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -8,10 +7,10 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 {
     public class ControladorCliente : ControladorBase
     {
-        private readonly IRepositioCliente repositorioCliente;
+        private readonly IRepositorioCliente repositorioCliente;
         private ListagemClientesControl listagemClientes;
 
-        public ControladorCliente(IRepositioCliente repositorioCliente)
+        public ControladorCliente(IRepositorioCliente repositorioCliente)
         {
             this.repositorioCliente = repositorioCliente;
         }
@@ -29,17 +28,49 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             if (resultado == DialogResult.OK)
                 CarregarClientes();
         }
-        
+
         public override void Editar()
         {
-            throw new NotImplementedException();
+            Cliente clienteSelecionado = ObtemClienteSelecionado();
+
+            if (clienteSelecionado == null)
+            {
+                MessageBox.Show("Selecione um cliente primeiro",
+                "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
+
+            tela.Cliente = clienteSelecionado.Clone();
+
+            tela.GravarRegistro = repositorioCliente.Editar;
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+                CarregarClientes();
         }
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
-        }
+            Cliente clienteSelecionado = ObtemClienteSelecionado();
 
+            if (clienteSelecionado == null)
+            {
+                MessageBox.Show("Selecione um cliente primeiro",
+                "Exclusão de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o cliente?",
+                "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.OK)
+                repositorioCliente.Excluir(clienteSelecionado);
+
+            CarregarClientes();
+        }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
@@ -63,6 +94,13 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             listagemClientes.AtualizarRegistros(clientes);
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
+        }
+
+        private Cliente ObtemClienteSelecionado()
+        {
+            var id = listagemClientes.ObtemNumeroClienteSelecionado();
+
+            return repositorioCliente.SelecionarPorId(id);
         }
     }
 }

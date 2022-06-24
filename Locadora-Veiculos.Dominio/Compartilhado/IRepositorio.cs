@@ -10,7 +10,7 @@ namespace Locadora_Veiculos.Dominio.Compartilhado
 
         ValidationResult Editar(T registro);
 
-        ValidationResult Excluir(T registro);
+        void Excluir(T registro);
 
         List<T> SelecionarTodos();
 

@@ -11,7 +11,7 @@ namespace Locadora_Veiculos.WinApp
     {
         private ControladorBase controlador;
         private Dictionary<string, ControladorBase> controladores;
-
+        
         public TelaPrincipalForm()
         {
             InitializeComponent();
@@ -22,7 +22,6 @@ namespace Locadora_Veiculos.WinApp
 
             labelTipoCadastro.Text = string.Empty;
 
-
             InicializarControladores();
         }
 
@@ -32,22 +31,22 @@ namespace Locadora_Veiculos.WinApp
             private set;
         }
 
-        private void disciplinasMenuItem_Click(object sender, EventArgs e)
+        private void clientesMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
-        private void materiasMenuItem_Click(object sender, EventArgs e)
+        private void funcionariosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
-        private void questoesMenuItem_Click(object sender, EventArgs e)
+        private void grupoVeiculosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
-        private void testesEscolaresMenuItem_Click(object sender, EventArgs e)
+        private void taxasMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }

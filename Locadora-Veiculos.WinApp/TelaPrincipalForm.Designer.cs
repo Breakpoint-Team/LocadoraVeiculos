@@ -74,8 +74,8 @@
             this.clientesMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.clientesMenuItem.Size = new System.Drawing.Size(193, 22);
             this.clientesMenuItem.Text = "Clientes";
-            this.clientesMenuItem.ToolTipText = "Disciplinas";
-            this.clientesMenuItem.Click += new System.EventHandler(this.disciplinasMenuItem_Click);
+            this.clientesMenuItem.ToolTipText = "Clientes";
+            this.clientesMenuItem.Click += new System.EventHandler(this.clientesMenuItem_Click);
             // 
             // funcionariosMenuItem
             // 
@@ -83,8 +83,8 @@
             this.funcionariosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.funcionariosMenuItem.Size = new System.Drawing.Size(193, 22);
             this.funcionariosMenuItem.Text = "Funcionários";
-            this.funcionariosMenuItem.ToolTipText = "Matérias";
-            this.funcionariosMenuItem.Click += new System.EventHandler(this.materiasMenuItem_Click);
+            this.funcionariosMenuItem.ToolTipText = "Funcionários";
+            this.funcionariosMenuItem.Click += new System.EventHandler(this.funcionariosMenuItem_Click);
             // 
             // grupoVeiculosMenuItem
             // 
@@ -92,8 +92,8 @@
             this.grupoVeiculosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
             this.grupoVeiculosMenuItem.Size = new System.Drawing.Size(193, 22);
             this.grupoVeiculosMenuItem.Text = "Grupos de veículos";
-            this.grupoVeiculosMenuItem.ToolTipText = "Questões";
-            this.grupoVeiculosMenuItem.Click += new System.EventHandler(this.questoesMenuItem_Click);
+            this.grupoVeiculosMenuItem.ToolTipText = "Grupo de veículos";
+            this.grupoVeiculosMenuItem.Click += new System.EventHandler(this.grupoVeiculosMenuItem_Click);
             // 
             // taxasMenuItem
             // 
@@ -101,8 +101,8 @@
             this.taxasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
             this.taxasMenuItem.Size = new System.Drawing.Size(193, 22);
             this.taxasMenuItem.Text = "Taxas";
-            this.taxasMenuItem.ToolTipText = "Testes escolares";
-            this.taxasMenuItem.Click += new System.EventHandler(this.testesEscolaresMenuItem_Click);
+            this.taxasMenuItem.ToolTipText = "Taxas";
+            this.taxasMenuItem.Click += new System.EventHandler(this.taxasMenuItem_Click);
             // 
             // toolbox
             // 

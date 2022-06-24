@@ -193,7 +193,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             // txtCpf
             // 
             this.txtCpf.Location = new System.Drawing.Point(133, 131);
-            this.txtCpf.Mask = "000.000.000-00";
+            this.txtCpf.Mask = "000,000,000-00";
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(121, 23);
             this.txtCpf.TabIndex = 5;
@@ -201,7 +201,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             // txtCnpj
             // 
             this.txtCnpj.Location = new System.Drawing.Point(303, 131);
-            this.txtCnpj.Mask = "00.000.000/0000-00";
+            this.txtCnpj.Mask = "00,000,000/0000-00";
             this.txtCnpj.Name = "txtCnpj";
             this.txtCnpj.Size = new System.Drawing.Size(121, 23);
             this.txtCnpj.TabIndex = 6;
@@ -245,6 +245,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.radioButtonPessoaFisica.TabStop = true;
             this.radioButtonPessoaFisica.Text = "Pessoa física";
             this.radioButtonPessoaFisica.UseVisualStyleBackColor = true;
+            this.radioButtonPessoaFisica.CheckedChanged += new System.EventHandler(this.radioButtonPessoaFisica_CheckedChanged);
             // 
             // radioButtonPessoaJuridica
             // 
@@ -256,6 +257,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.radioButtonPessoaJuridica.TabStop = true;
             this.radioButtonPessoaJuridica.Text = "Pessoa jurídica";
             this.radioButtonPessoaJuridica.UseVisualStyleBackColor = true;
+            this.radioButtonPessoaJuridica.CheckedChanged += new System.EventHandler(this.radioButtonPessoaJuridica_CheckedChanged);
             // 
             // comboBoxEstado
             // 
@@ -312,6 +314,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.btnGravar.TabIndex = 13;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // btnLimpar
             // 
@@ -321,6 +324,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.btnLimpar.TabIndex = 14;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnCancelar
             // 

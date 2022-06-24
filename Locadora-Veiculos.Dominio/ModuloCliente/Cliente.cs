@@ -47,6 +47,11 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
         #endregion
 
+        public Cliente Clone()
+        {
+            return MemberwiseClone() as Cliente;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Cliente cliente &&
