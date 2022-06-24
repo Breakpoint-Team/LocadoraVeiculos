@@ -1,5 +1,7 @@
-﻿using Locadora_Veiculos.Dominio.ModuloCliente;
+﻿using FluentValidation.Results;
+using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 {
@@ -92,5 +94,51 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                 [NUMERO]
             FROM
                 [TBCLIENTE]";
+
+        public override ValidationResult Validar(Cliente registro)
+        {
+            var validator = new ValidadorCliente();
+
+            var resultadoValidacao = validator.Validate(registro);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
+
+            bool documentoEncontrado;
+        
+            string tipoDocumento;
+            
+            VerificarDuplicidadeDeDocumento(registro,
+                out documentoEncontrado, out tipoDocumento);
+
+            if (documentoEncontrado)
+            {
+                if (registro.Id == 0)
+                    resultadoValidacao.Errors.Add(new ValidationFailure("", $"{tipoDocumento} já está cadastrado"));
+            }
+
+            return resultadoValidacao;
+        }
+
+        private void VerificarDuplicidadeDeDocumento(Cliente registro, out bool documentoEncontrado, out string tipoDocumento)
+        {
+            documentoEncontrado = false;
+            tipoDocumento = "";
+            if (registro.TipoCliente == TipoCliente.PessoaFisica)
+            {
+                documentoEncontrado = SelecionarTodos()
+                   .Select(x => x.Cpf)
+                   .Contains(registro.Cpf);
+                tipoDocumento = "CPF";
+            }
+
+            else if (registro.TipoCliente == TipoCliente.PessoaJuridica)
+            {
+                documentoEncontrado = SelecionarTodos()
+                   .Select(x => x.Cnpj)
+                   .Contains(registro.Cnpj);
+                tipoDocumento = "CNPJ";
+            }
+        }
     }
 }

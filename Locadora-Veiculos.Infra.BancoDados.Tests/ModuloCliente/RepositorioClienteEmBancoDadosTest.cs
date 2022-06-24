@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
 {
-
     [TestClass]
     public class RepositorioClienteEmBancoDadosTest
     {
@@ -90,7 +89,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         public void Deve_selecionar_todos_os_registros()
         {
             //arrange
-            var clientes = NovosClientes();
+            var clientes = NovosClientesFisicos();
             foreach (var cliente in clientes)
                 repositorioCliente.Inserir(cliente);
 
@@ -109,8 +108,46 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
 
         }
 
+        [TestMethod]
+        public void Nao_Deve_inserir_Pessoa_Fisica_Com_CPF_Ja_Cadastrado()
+        {
+            //Arrange
+            var cliente1 = NovoCliente();
+            repositorioCliente.Inserir(cliente1);
+
+            var cliente2 = new Cliente("Sérgio Ramos", "(49) 99943-9554", "sergio@gmail.com",
+                TipoCliente.PessoaFisica, "013.987.765-09", null, "789456123", 507,
+                "Rua do abacaxi", "centro", "Lages", "SC");
+
+            //action
+            var resultado = repositorioCliente.Inserir(cliente2);
+
+            //assert
+            Assert.AreEqual("CPF já está cadastrado", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void Nao_Deve_inserir_Pessoa_Juridica_Com_CNPJ_Ja_Cadastrado()
+        {
+            //Arrange
+            var cliente1 = new Cliente("Coca cola", "(49) 99943-9554", "cocacola@gmail.com",
+                TipoCliente.PessoaJuridica, null, "01.987.765/0001-09", "789456123", 507,
+                "Rua do abacaxi", "centro", "Lages", "SC");
+            repositorioCliente.Inserir(cliente1);
+
+            var cliente2 = new Cliente("Itaú", "(49) 99943-9554", "itau@gmail.com",
+                TipoCliente.PessoaJuridica, null, "01.987.765/0001-09", "789456123", 507,
+                "Rua do abacaxi", "centro", "Lages", "SC");
+
+            //action
+            var resultado = repositorioCliente.Inserir(cliente2);
+
+            //assert
+            Assert.AreEqual("CNPJ já está cadastrado", resultado.Errors[0].ErrorMessage);
+        }
+
         #region MÉTODOS PRIVADOS
-        
+
         private Cliente NovoCliente()
         {
             Cliente c = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
@@ -120,18 +157,18 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
             return c;
         }
 
-        private List<Cliente> NovosClientes()
+        private List<Cliente> NovosClientesFisicos()
         {
             Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
-                TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
+                TipoCliente.PessoaFisica, "063.987.765-09", null, "123456789", 2,
                 "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
             Cliente c2 = new Cliente("Alexandre Rech", "(49) 98888-9555", "alexandre@gmail.com",
-                TipoCliente.PessoaFisica, "017.967.765-09", null, "523454345", 2,
+                TipoCliente.PessoaFisica, "047.967.762-08", null, "523454345", 2,
                 "Rua das bananeirass", "centro", "São Paulo", "SP");
 
             Cliente c3 = new Cliente("Tiago Santini", "(49) 98655-9002", "tiago@gmail.com",
-                TipoCliente.PessoaFisica, "013.987.765-09", null, "987654321", 2,
+                TipoCliente.PessoaFisica, "013.987.763-07", null, "987654321", 2,
                 "Rua das macieiras", "centro", "São Paulo", "SP");
 
             var lista = new List<Cliente>();
@@ -141,7 +178,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
 
             return lista;
         }
-        
+
         #endregion
     }
 }
