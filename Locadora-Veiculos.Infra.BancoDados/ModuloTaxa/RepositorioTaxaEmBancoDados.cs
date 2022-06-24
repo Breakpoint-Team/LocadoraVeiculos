@@ -1,7 +1,9 @@
 ﻿
 
+using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
 {
@@ -52,5 +54,33 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
                 [TIPOCALCULO]
             FROM
                 [TBTAXA]";
+
+        public override ValidationResult Validar(Taxa registro)
+        {
+            var validator = new ValidadorTaxa();
+
+            var resultadoValidacao = validator.Validate(registro);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
+
+            var nomeEncontrado = SelecionarTodos()
+               .Select(x => x.Descricao.ToLower())
+               .Contains(registro.Descricao.ToLower());
+
+
+            if (nomeEncontrado)
+            {
+                if (registro.Id == 0)
+                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Descrição já está cadastrada"));
+
+                else if (registro.Id != 0)
+                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Descrição já está cadastrada"));
+
+            }
+
+            return resultadoValidacao;
+        }
+
     }
 }

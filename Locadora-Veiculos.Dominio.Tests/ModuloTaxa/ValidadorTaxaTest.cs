@@ -28,6 +28,24 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloTaxa
 
         }
 
+
+        [TestMethod]
+
+        public void Descricao_nao_deve_ter_caracteres_especiais()
+        {
+            //arrange
+            var taxa = new Taxa();
+            taxa.Descricao = "C@D&IRA DE BEBE";
+
+            ValidadorTaxa validador = new();
+
+            //action
+            var resultado = validador.Validate(taxa);
+
+            //assert
+            Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
+        }
+
         [TestMethod]
         public void Valor_deve_ser_obrigatorio()
         {
