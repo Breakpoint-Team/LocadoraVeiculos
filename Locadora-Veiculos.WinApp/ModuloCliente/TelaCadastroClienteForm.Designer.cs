@@ -388,7 +388,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Cientes";
+            this.Text = "Cadastro de Clientes";
             this.ResumeLayout(false);
             this.PerformLayout();
 

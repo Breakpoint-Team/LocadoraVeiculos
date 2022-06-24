@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloFuncionario\" />
+    <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados\Locadora-Veiculos.Infra.BancoDados.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados\Locadora-Veiculos.Infra.BancoDados.csproj" />
+    <Folder Include="ModuloFuncionario\" />
   </ItemGroup>
 
 </Project>

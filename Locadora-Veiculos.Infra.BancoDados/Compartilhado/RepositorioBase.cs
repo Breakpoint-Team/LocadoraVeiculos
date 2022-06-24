@@ -55,7 +55,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
 
         public ValidationResult Editar(T registro)
         {
-
             var resultadoValidacao = Validar(registro);
 
             if (resultadoValidacao.IsValid == false)
