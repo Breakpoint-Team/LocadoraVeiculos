@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using Locadora_Veiculos.Dominio.ModuloFuncionario;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,9 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 {
     public partial class TelaCadastroFuncionarioForm : Form
     {
+        public Funcionario Funcionario { get; internal set; }
+        public Func<Funcionario, ValidationResult> GravarRegistro { get; internal set; }
+
         public TelaCadastroFuncionarioForm()
         {
             InitializeComponent();
