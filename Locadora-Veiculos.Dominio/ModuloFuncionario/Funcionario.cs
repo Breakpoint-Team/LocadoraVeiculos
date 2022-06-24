@@ -51,5 +51,9 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
              f.EstaAtivo.Equals(EstaAtivo);
 
         }
+        public Funcionario Clone()
+        {
+            return MemberwiseClone() as Funcionario;
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
             comando.Parameters.AddWithValue("DATA_ENTRADA", registro.DataAdmissao);
             comando.Parameters.AddWithValue("SALARIO", registro.Salario);
             comando.Parameters.AddWithValue("IS_ADMIN", registro.EhAdmin);
-            comando.Parameters.AddWithValue("ESTA_ATIVO", registro.EhAdmin);
+            comando.Parameters.AddWithValue("ESTA_ATIVO", registro.EstaAtivo);
 
         }
 
