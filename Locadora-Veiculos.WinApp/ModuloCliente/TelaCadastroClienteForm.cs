@@ -177,5 +177,15 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
         }
 
         #endregion
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCnh_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
     }
 }

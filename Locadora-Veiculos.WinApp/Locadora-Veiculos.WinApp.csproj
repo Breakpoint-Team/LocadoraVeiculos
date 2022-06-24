@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloFuncionario\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados\Locadora-Veiculos.Infra.BancoDados.csproj" />
   </ItemGroup>
 
