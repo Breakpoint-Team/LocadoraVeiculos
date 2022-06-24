@@ -4,13 +4,15 @@ using Locadora_Veiculos.Dominio.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
 {
-    public abstract class RepositorioBase<T, TValidador, TMapeador>
+    public abstract class RepositorioBase<T, TValidador, TMapeador > : IRepositorio<T>
         where T : EntidadeBase<T>
         where TValidador : AbstractValidator<T>, new()
         where TMapeador : MapeadorBase<T>, new()
+        
     {
         protected string enderecoBanco =
             @"Data Source=(LOCALDB)\MSSQLLOCALDB;
@@ -27,11 +29,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
 
         protected abstract string sqlSelecionarTodos { get; }
 
-        public ValidationResult Inserir(T registro)
+        public  ValidationResult Inserir(T registro)
         {
-            var validador = new TValidador();
 
-            var resultadoValidacao = validador.Validate(registro);
+            var resultadoValidacao = Validar(registro);
 
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
@@ -55,9 +56,8 @@ namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
 
         public ValidationResult Editar(T registro)
         {
-            var validador = new TValidador();
 
-            var resultadoValidacao = validador.Validate(registro);
+            var resultadoValidacao = Validar(registro);
 
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
@@ -130,6 +130,18 @@ namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
             conexaoComBanco.Close();
 
             return registros;
+        }
+
+        public virtual ValidationResult Validar(T registro)
+        {
+            var validator = new TValidador();
+
+            var resultadoValidacao = validator.Validate(registro);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
+
+            return resultadoValidacao;
         }
     }
 }

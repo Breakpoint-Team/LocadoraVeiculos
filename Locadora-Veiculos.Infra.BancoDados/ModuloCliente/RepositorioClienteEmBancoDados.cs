@@ -1,99 +1,32 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloCliente;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System;
+using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 {
-    public class RepositorioClienteEmBancoDados : RepositorioBase<Cliente,
-        ValidadorCliente, MapeadorCliente>, IRepositorioCliente
+    public class RepositorioClienteEmBancoDados : IRepositioCliente
     {
-        protected override string sqlInserir =>
-            @"INSERT INTO [TBCLIENTE]
-                 (
-		            [NOME],
-                    [DOCUMENTO],
-                    [EMAIL],
-                    [TELEFONE],
-                    [TIPO_CLIENTE],
-                    [CNH],
-                    [ESTADO],
-                    [CIDADE],
-                    [BAIRRO],
-                    [RUA],
-                    [NUMERO]
-		         )
-            VALUES
-                (
-		            @NOME, 
-                    @DOCUMENTO, 
-                    @EMAIL,
-                    @TELEFONE,
-                    @TIPO_CLIENTE,
-                    @CNH,
-                    @ESTADO,
-                    @CIDADE,
-                    @BAIRRO,
-                    @RUA,
-                    @NUMERO
-			);SELECT SCOPE_IDENTITY();";
+        public ValidationResult Editar(Cliente registro)
+        {
+            throw new NotImplementedException();
+        }
 
-        protected override string sqlEditar =>
-            @"UPDATE [TBCLIENTE]
-                SET
-		            [NOME] = @NOME,
-                    [DOCUMENTO] = @DOCUMENTO,
-                    [EMAIL] = @EMAIL,
-                    [TELEFONE] = @TELEFONE,
-                    [TIPO_CLIENTE] = @TIPO_CLIENTE,
-                    [CNH] = @CNH,
-                    [ESTADO] = @ESTADO,
-                    [CIDADE] = @CIDADE,
-                    [BAIRRO] = @BAIRRO,
-                    [RUA] = @RUA,
-                    [NUMERO] = @NUMERO
-                WHERE
-                    [ID] = @ID";
+        public ValidationResult Excluir(Cliente registro)
+        {
+            throw new NotImplementedException();
+        }
 
-        protected override string sqlExcluir =>
-            @"DELETE FROM [TBCLIENTE]
-                WHERE [ID] = @ID";
+        public ValidationResult Inserir(Cliente novoRegistro)
+        {
+            throw new NotImplementedException();
+        }
 
-        protected override string sqlSelecionarPorId =>
-            @"SELECT 
-	            [ID],
-                [NOME],
-                [DOCUMENTO],
-                [EMAIL],
-                [TELEFONE],
-                [TIPO_CLIENTE],
-                [CNH],
-                [ESTADO],
-                [CIDADE],
-                [BAIRRO],
-                [RUA],
-                [NUMERO]
-            FROM
-                [TBCLIENTE]
-            WHERE
-                [ID] = @ID";
-
-        protected override string sqlSelecionarTodos =>
-            @"SELECT 
-	            [ID],
-                [NOME],
-                [DOCUMENTO],
-                [EMAIL],
-                [TELEFONE],
-                [TIPO_CLIENTE],
-                [CNH],
-                [ESTADO],
-                [CIDADE],
-                [BAIRRO],
-                [RUA],
-                [NUMERO]
-            FROM
-                [TBCLIENTE]";
+        public Cliente SelecionarPorId(int id)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }
