@@ -62,18 +62,16 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
 
-            var nomeEncontrado = SelecionarTodos()
-               .Select(x => x.Descricao.ToLower())
-               .Contains(registro.Descricao.ToLower());
-
-            if (nomeEncontrado)
+            bool descricaoEncontrada = false;
+            var taxas = SelecionarTodos();
+            foreach (var t in taxas)
             {
-                if (registro.Id == 0)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Descrição já está cadastrada"));
-
-                else if (registro.Id != 0)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Descrição já está cadastrada"));
+                if (t.Descricao.ToLower() == registro.Descricao.ToLower() && t.Id != registro.Id)
+                    descricaoEncontrada = true;
             }
+
+            if (descricaoEncontrada)
+                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Descrição já está cadastrada"));
 
             return resultadoValidacao;
         }

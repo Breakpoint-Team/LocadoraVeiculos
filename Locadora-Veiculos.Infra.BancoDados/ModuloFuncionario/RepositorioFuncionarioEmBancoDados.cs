@@ -84,18 +84,18 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
 
-            var loginEncontrado = SelecionarTodos()
-               .Select(x => x.Login.ToLower())
-               .Contains(registro.Login.ToLower());
+            bool loginEncontrado = false;
+            var funcionarios = SelecionarTodos();
+            foreach(var f in funcionarios)
+            {
+                if (f.Login.ToLower() == registro.Login.ToLower() && f.Id != registro.Id)
+                    loginEncontrado = true;
+            }
 
             if (loginEncontrado)
-            {
-                if (registro.Id == 0)
                     resultadoValidacao.Errors.Add(new ValidationFailure("", "Login já está cadastrado"));
 
-                else if (registro.Id != 0)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Login já está cadastrado"));
-            }
+                 
 
             return resultadoValidacao;
         }

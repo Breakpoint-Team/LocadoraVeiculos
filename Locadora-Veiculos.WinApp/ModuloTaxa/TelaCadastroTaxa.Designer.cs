@@ -98,6 +98,7 @@
             // 
             // numericValor
             // 
+            this.numericValor.DecimalPlaces = 2;
             this.numericValor.Location = new System.Drawing.Point(117, 74);
             this.numericValor.Maximum = new decimal(new int[] {
             10000,
@@ -145,6 +146,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroTaxa";

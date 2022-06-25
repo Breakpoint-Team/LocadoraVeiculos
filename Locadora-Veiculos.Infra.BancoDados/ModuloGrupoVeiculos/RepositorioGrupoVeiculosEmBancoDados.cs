@@ -53,21 +53,18 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
 
-            var nomeEncontrado = SelecionarTodos()
-               .Select(x => x.Nome.ToLower())
-               .Contains(registro.Nome.ToLower());
+            bool nomeEncontrado = false;
+            var grupos = SelecionarTodos();
+            foreach (var g in grupos)
+            {
+                if (g.Nome.ToLower() == registro.Nome.ToLower() && g.Id != registro.Id)
+                    nomeEncontrado = true;
+            }
 
 
             if (nomeEncontrado)
-            {
-                if(registro.Id == 0)
                 resultadoValidacao.Errors.Add(new ValidationFailure("", "Nome já está cadastrado"));
                 
-                else if(registro.Id != 0 )
-                resultadoValidacao.Errors.Add(new ValidationFailure("", "Nome já está cadastrado"));
-
-            }
-
             return resultadoValidacao;
         }
     }
