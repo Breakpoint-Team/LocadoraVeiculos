@@ -11,12 +11,12 @@ namespace Locadora_Veiculos.WinApp.Compartilhado
             Font font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
 
             DataGridViewCellStyle linhaEscura = new DataGridViewCellStyle
-            {
+            {               
                 BackColor = Color.LightGray,
                 Font = font,
                 ForeColor = Color.Black,
-                SelectionBackColor = Color.LightYellow,
-                SelectionForeColor = Color.Black
+                SelectionBackColor = Color.LightSeaGreen,
+                SelectionForeColor = Color.White
             };
 
             grid.AlternatingRowsDefaultCellStyle = linhaEscura;
@@ -25,8 +25,8 @@ namespace Locadora_Veiculos.WinApp.Compartilhado
             {
                 BackColor = Color.White,
                 Font = font,
-                SelectionBackColor = Color.LightYellow,
-                SelectionForeColor = Color.Black
+                SelectionBackColor = Color.LightSeaGreen,
+                SelectionForeColor = Color.White
             };
 
             grid.RowsDefaultCellStyle = linhaClara;

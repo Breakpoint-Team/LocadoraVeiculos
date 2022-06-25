@@ -114,53 +114,60 @@
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 24);
             this.toolbox.Name = "toolbox";
-            this.toolbox.Size = new System.Drawing.Size(800, 32);
+            this.toolbox.Size = new System.Drawing.Size(800, 41);
             this.toolbox.TabIndex = 1;
             this.toolbox.Text = "toolStrip1";
             // 
             // btnInserir
             // 
-            this.btnInserir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnInserir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnInserir.DoubleClickEnabled = true;
+            this.btnInserir.Image = global::Locadora_Veiculos.WinApp.Properties.Resources.add_box_FILL0_wght200_GRAD0_opsz24;
             this.btnInserir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnInserir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Padding = new System.Windows.Forms.Padding(5);
-            this.btnInserir.Size = new System.Drawing.Size(53, 29);
+            this.btnInserir.Size = new System.Drawing.Size(38, 38);
             this.btnInserir.Text = "Inserir";
+            this.btnInserir.Visible = false;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // btnEditar
             // 
-            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnEditar.DoubleClickEnabled = true;
+            this.btnEditar.Image = global::Locadora_Veiculos.WinApp.Properties.Resources.edit_note_FILL0_wght200_GRAD0_opsz24;
             this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Padding = new System.Windows.Forms.Padding(5);
-            this.btnEditar.Size = new System.Drawing.Size(51, 29);
+            this.btnEditar.Size = new System.Drawing.Size(38, 38);
             this.btnEditar.Text = "Editar";
+            this.btnEditar.Visible = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnExcluir
             // 
-            this.btnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnExcluir.DoubleClickEnabled = true;
+            this.btnExcluir.Image = global::Locadora_Veiculos.WinApp.Properties.Resources.delete_FILL0_wght200_GRAD0_opsz24;
             this.btnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Padding = new System.Windows.Forms.Padding(5);
-            this.btnExcluir.Size = new System.Drawing.Size(56, 29);
+            this.btnExcluir.Size = new System.Drawing.Size(38, 38);
             this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.Visible = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // labelTipoCadastro
             // 
             this.labelTipoCadastro.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.labelTipoCadastro.ForeColor = System.Drawing.Color.DarkBlue;
+            this.labelTipoCadastro.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.labelTipoCadastro.LinkColor = System.Drawing.Color.LightSeaGreen;
             this.labelTipoCadastro.Name = "labelTipoCadastro";
-            this.labelTipoCadastro.Size = new System.Drawing.Size(94, 29);
+            this.labelTipoCadastro.Size = new System.Drawing.Size(94, 38);
             this.labelTipoCadastro.Text = "toolStripLabel1";
             // 
             // statusStripRodape
@@ -182,9 +189,9 @@
             // panelRegistros
             // 
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRegistros.Location = new System.Drawing.Point(0, 56);
+            this.panelRegistros.Location = new System.Drawing.Point(0, 65);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(800, 372);
+            this.panelRegistros.Size = new System.Drawing.Size(800, 363);
             this.panelRegistros.TabIndex = 3;
             // 
             // TelaPrincipalForm

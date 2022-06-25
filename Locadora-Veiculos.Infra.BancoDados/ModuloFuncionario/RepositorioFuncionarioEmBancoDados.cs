@@ -1,6 +1,8 @@
-﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
+﻿using FluentValidation.Results;
+using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using System;
+using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
 {
@@ -72,5 +74,30 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
                    [ESTA_ATIVO]
             FROM
                 [TBFUNCIONARIO]";
+
+        public override ValidationResult Validar(Funcionario registro)
+        {
+            var validator = new ValidadorFuncionario();
+
+            var resultadoValidacao = validator.Validate(registro);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
+
+            var loginEncontrado = SelecionarTodos()
+               .Select(x => x.Login.ToLower())
+               .Contains(registro.Login.ToLower());
+
+            if (loginEncontrado)
+            {
+                if (registro.Id == 0)
+                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Login já está cadastrado"));
+
+                else if (registro.Id != 0)
+                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Login já está cadastrado"));
+            }
+
+            return resultadoValidacao;
+        }
     }
 }

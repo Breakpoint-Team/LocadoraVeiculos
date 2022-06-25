@@ -74,9 +74,9 @@ namespace Locadora_Veiculos.WinApp
 
         private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
         {
-            btnInserir.Enabled = configuracao.InserirHabilitado;
+            btnInserir.Visible = configuracao.InserirHabilitado;
             btnEditar.Visible = configuracao.EditarHabilitado;
-            btnExcluir.Enabled = configuracao.ExcluirHabilitado;
+            btnExcluir.Visible = configuracao.ExcluirHabilitado;
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)

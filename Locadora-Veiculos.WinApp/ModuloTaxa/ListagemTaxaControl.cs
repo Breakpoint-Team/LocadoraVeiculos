@@ -1,4 +1,5 @@
-﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
+﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.WinApp.Compartilhado;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -37,7 +38,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             grid.Rows.Clear();
             foreach (var t in taxas)
             {
-                grid.Rows.Add(t.Id, t.Descricao, t.Valor, t.TipoCalculo);
+                grid.Rows.Add(t.Id, t.Descricao, t.Valor, t.TipoCalculo.GetDescription());
             }
         }
 

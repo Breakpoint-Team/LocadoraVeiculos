@@ -42,8 +42,8 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 
             if (funcionarioSelecionado == null)
             {
-                MessageBox.Show("Selecione um cliente primeiro",
-                "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um funcionário primeiro",
+                "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
