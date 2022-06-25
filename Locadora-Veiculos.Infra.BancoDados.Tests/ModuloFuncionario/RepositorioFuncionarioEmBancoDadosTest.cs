@@ -44,7 +44,8 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloFuncionario
             repositorioFuncionario.Inserir(funcionario);
 
             funcionario.Nome = "Tiago Santini";
-
+            funcionario.Login = "santini";
+            funcionario.Senha = "8563Y87484";
             //action
             repositorioFuncionario.Editar(funcionario);
 
