@@ -23,11 +23,8 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
                 funcionario = value;
                 if (funcionario.Id != 0)
                     PreencherDadosNaTela();
-
             }
         }
-
-        
 
         public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
 
@@ -51,7 +48,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
                 DialogResult = DialogResult.None;
             }
         }
-       
+
         #region MÉTODOS PRIVADOS
 
         private void LimparCampos()
@@ -71,7 +68,16 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 
         private void PreencherDadosNaTela()
         {
-            
+            txtNome.Text = funcionario.Nome;
+            txtLogin.Text = funcionario.Login;
+            txtSenha.Text = funcionario.Senha;
+            txtSalario.Text = funcionario.Salario.ToString();
+            dateTimePickerDataAdmissao.Value = funcionario.DataAdmissao;
+
+            if (funcionario.EhAdmin == true)
+                checkBoxIsAdmin.Checked = true;
+            else
+                checkBoxIsAdmin.Checked = false;
         }
 
         private void ObterDadosTela()
@@ -79,14 +85,22 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             funcionario.Nome = txtNome.Text;
             funcionario.Login = txtLogin.Text;
             funcionario.Senha = txtSenha.Text;
-            funcionario.Salario = Convert.ToDecimal(txtSalario.Text);
+
+            if (string.IsNullOrEmpty(txtSalario.Text) == false)
+            {
+                var valorFormatado = txtSalario.Text.Replace(".", ",");
+
+                var conversaoRealizada = decimal.TryParse(valorFormatado, out decimal resultado);
+                if (conversaoRealizada)
+                    funcionario.Salario = resultado;
+            }
+
             funcionario.DataAdmissao = dateTimePickerDataAdmissao.Value;
 
             if (checkBoxIsAdmin.Checked == true)
                 funcionario.EhAdmin = true;
             else
                 funcionario.EhAdmin = false;
-
         }
 
         #endregion

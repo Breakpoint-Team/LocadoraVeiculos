@@ -28,8 +28,9 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
               .NotEmpty().WithMessage("O campo 'Salário' é obrigatório!")
               .NotNull().WithMessage("O campo 'Salário' é obrigatório!");
 
-            //RuleFor(x => x.EhAdmin)
-            //  .NotEmpty().WithMessage("O campo 'É Admin?' é obrigatório!");
+            RuleFor(x => x.Salario)
+                .GreaterThan(0)
+                .WithMessage("O campo 'Salário' deve ser maior que 0 (zero)!");
         }
     }
 }
