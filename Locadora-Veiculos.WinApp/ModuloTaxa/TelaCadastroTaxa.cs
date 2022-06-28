@@ -52,5 +52,11 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
                 DialogResult = DialogResult.None;
             }
         }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtDescricao.Clear();
+            numericValor.Value = 0;
+        }
     }
 }

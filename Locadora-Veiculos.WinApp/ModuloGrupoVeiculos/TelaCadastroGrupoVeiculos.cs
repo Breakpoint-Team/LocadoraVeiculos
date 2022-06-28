@@ -43,5 +43,11 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
                 DialogResult = DialogResult.None;
             }
         }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtNome.Clear();
+        }
+
     }
 }
