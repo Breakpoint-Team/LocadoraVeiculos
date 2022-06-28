@@ -18,7 +18,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
         private DataGridViewColumn[] ObterColunas()
         {
             var colunas = new DataGridViewColumn[] {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"}
             };

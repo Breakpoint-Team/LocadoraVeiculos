@@ -37,5 +37,21 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloGrupoVeiculos
             //assert
             Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
         }
+
+        [TestMethod]
+        public void Nome_de_ter_no_minimo_dois_caracteres()
+        {
+            //arrange
+            var grupoVeiculos = new GrupoVeiculos();
+            grupoVeiculos.Nome = "A";
+
+            ValidadorGrupoVeiculos validador = new();
+
+            //action
+            var resultado = validador.Validate(grupoVeiculos);
+
+            //assert
+            Assert.AreEqual("O campo 'Nome' deve ter no mínimo 2 caracteres!", resultado.Errors[0].ErrorMessage);
+        }
     }
 }

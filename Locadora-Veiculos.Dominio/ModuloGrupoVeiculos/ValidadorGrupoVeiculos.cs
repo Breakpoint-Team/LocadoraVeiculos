@@ -10,7 +10,8 @@ namespace Locadora_Veiculos.Dominio.ModuloGrupoVeiculos
                 .NotEmpty().WithMessage("O campo 'Nome' é obrigatório!")
                 .NotNull().WithMessage("O campo 'Nome' é obrigatório!")
                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-                .WithMessage("Caracteres especiais não são permitidos!");
+                .WithMessage("Caracteres especiais não são permitidos!")
+                .MinimumLength(2).WithMessage("O campo 'Nome' deve ter no mínimo 2 caracteres!");
         }
     }
 }
