@@ -14,8 +14,8 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
             When(x => string.IsNullOrEmpty(x.Nome) == false, () =>
             {
                 RuleFor(x => x.Nome.Length)
-                .GreaterThan(2)
-                .WithMessage("O campo 'Nome' deve ter no mínimo 3 caracteres!");
+                .GreaterThan(1)
+                .WithMessage("O campo 'Nome' deve ter no mínimo 2 caracteres!");
 
                 RuleFor(x => x.Nome)
                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")

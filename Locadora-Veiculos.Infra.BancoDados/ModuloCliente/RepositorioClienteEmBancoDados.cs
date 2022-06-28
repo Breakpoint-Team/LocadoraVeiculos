@@ -120,10 +120,13 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
             return resultadoValidacao;
         }
 
-        private void VerificarDuplicidadeDeDocumento(Cliente registro, out bool documentoEncontrado, out string tipoDocumento)
+        private void VerificarDuplicidadeDeDocumento(Cliente registro,
+            out bool documentoEncontrado, out string tipoDocumento)
         {
             documentoEncontrado = false;
             tipoDocumento = "";
+
+            //declarar lista
             if (registro.TipoCliente == TipoCliente.PessoaFisica)
             {
                 documentoEncontrado = SelecionarTodos()
