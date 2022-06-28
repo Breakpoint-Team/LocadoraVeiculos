@@ -8,7 +8,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
     public partial class TelaCadastroTaxa : Form
     {
         private Taxa taxa;
- 
+
         public TelaCadastroTaxa()
         {
             InitializeComponent();
