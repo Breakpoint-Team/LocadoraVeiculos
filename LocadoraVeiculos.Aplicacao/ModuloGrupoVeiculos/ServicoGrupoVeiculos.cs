@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
+using System;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
 {
@@ -46,12 +47,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
 
         private bool NomeDuplicado(GrupoVeiculos grupoVeiculos)
         {
-            //     var grupoVeiculosEncontrado = repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome(grupoVeiculos.Nome);
-            //
-            //     return grupoVeiculosEncontrado != null &&
-            //            grupoVeiculosEncontrado.Nome == grpoVeiculos.Nome &&
-            //            grupoVeiculosEncontrado.Id != grupoVeiculos.Id;
-            return true;
+            var grupoVeiculosEncontrado = repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome(grupoVeiculos.Nome);
+
+            return grupoVeiculosEncontrado != null &&
+                   grupoVeiculosEncontrado.Nome.Equals(grupoVeiculos.Nome, StringComparison.OrdinalIgnoreCase) &&
+                   grupoVeiculosEncontrado.Id != grupoVeiculos.Id;
+
         }
     }
 }

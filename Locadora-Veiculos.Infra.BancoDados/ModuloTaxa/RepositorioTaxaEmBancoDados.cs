@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
 {
@@ -53,9 +54,21 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
             FROM
                 [TBTAXA]";
 
+        protected string sqlSelecionarTaxaPorDescricao =>
+            @"SELECT 
+                [ID],       
+                [DESCRICAO],
+                [VALOR],
+                [TIPOCALCULO]
+            FROM
+                [TBTAXA]
+            WHERE 
+             [DESCRICAO] = @DESCRICAO";
+
+
         public Taxa SelecionarTaxaPorDescricao(string descricao)
         {
-            throw new System.NotImplementedException();
+            return SelecionarPorParametro(sqlSelecionarTaxaPorDescricao, new SqlParameter("DESCRICAO", descricao));
         }
     }
 }

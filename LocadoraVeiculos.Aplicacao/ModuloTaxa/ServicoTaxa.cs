@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
+using System;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
 {
@@ -46,12 +47,11 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
 
         private bool DescricaoDuplicada(Taxa taxa)
         {
-            //var taxaEncontrada = repositorioTaxa.SelecionarTaxaPorDescricao(taxa.Descricao);
+            var taxaEncontrada = repositorioTaxa.SelecionarTaxaPorDescricao(taxa.Descricao);
 
-            //return taxaEncontrada != null &&
-            //       taxaEncontrada.Descricao == taxa.Descricao &&
-            //       taxaEncontrada.Id != taxa.Id;
-            return true;
+            return taxaEncontrada != null &&
+                   taxaEncontrada.Descricao.Equals(taxa.Descricao, StringComparison.OrdinalIgnoreCase) &&
+                   taxaEncontrada.Id != taxa.Id;
         }
     }
 }

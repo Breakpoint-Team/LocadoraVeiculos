@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloFuncionario;
+using System;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
 {
@@ -51,7 +52,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             var funcionarioEncontrado = repositorioFuncionario.SelecionarFuncionarioPorLogin(funcionario.Login);
 
             return funcionarioEncontrado != null &&
-                   funcionarioEncontrado.Login == funcionario.Login &&
+                   funcionarioEncontrado.Login.Equals(funcionario.Login, StringComparison.OrdinalIgnoreCase) &&
                    funcionarioEncontrado.Id != funcionario.Id;
         }
         
