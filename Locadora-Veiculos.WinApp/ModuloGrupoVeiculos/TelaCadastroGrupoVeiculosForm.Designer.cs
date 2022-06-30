@@ -38,7 +38,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 35);
+            this.label1.Location = new System.Drawing.Point(12, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 15);
             this.label1.TabIndex = 0;
@@ -46,15 +46,16 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(64, 31);
+            this.txtNome.Location = new System.Drawing.Point(61, 24);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(0);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(263, 23);
+            this.txtNome.Size = new System.Drawing.Size(217, 23);
             this.txtNome.TabIndex = 1;
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(252, 66);
+            this.btnCancelar.Location = new System.Drawing.Point(203, 66);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 18;
@@ -63,7 +64,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(171, 66);
+            this.btnLimpar.Location = new System.Drawing.Point(122, 66);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 17;
@@ -74,7 +75,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(90, 66);
+            this.btnGravar.Location = new System.Drawing.Point(41, 66);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
             this.btnGravar.TabIndex = 16;
@@ -82,11 +83,11 @@
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
-            // TelaCadastroGrupoVeiculos
+            // TelaCadastroGrupoVeiculosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 101);
+            this.ClientSize = new System.Drawing.Size(290, 108);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnGravar);
@@ -95,7 +96,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TelaCadastroGrupoVeiculos";
+            this.Name = "TelaCadastroGrupoVeiculosForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

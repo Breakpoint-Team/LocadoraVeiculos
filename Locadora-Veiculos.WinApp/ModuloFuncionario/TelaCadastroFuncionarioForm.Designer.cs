@@ -48,7 +48,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(127, 19);
+            this.txtNome.Location = new System.Drawing.Point(121, 24);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(300, 23);
             this.txtNome.TabIndex = 0;
@@ -56,7 +56,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 23);
+            this.label1.Location = new System.Drawing.Point(72, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 15);
             this.label1.TabIndex = 2;
@@ -73,7 +73,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(81, 52);
+            this.label3.Location = new System.Drawing.Point(75, 54);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 15);
             this.label3.TabIndex = 4;
@@ -82,7 +82,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(256, 52);
+            this.label4.Location = new System.Drawing.Point(250, 54);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 15);
             this.label4.TabIndex = 5;
@@ -90,7 +90,7 @@
             // 
             // dateTimePickerDataAdmissao
             // 
-            this.dateTimePickerDataAdmissao.Location = new System.Drawing.Point(127, 75);
+            this.dateTimePickerDataAdmissao.Location = new System.Drawing.Point(121, 76);
             this.dateTimePickerDataAdmissao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerDataAdmissao.Name = "dateTimePickerDataAdmissao";
             this.dateTimePickerDataAdmissao.Size = new System.Drawing.Size(300, 23);
@@ -99,7 +99,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 79);
+            this.label5.Location = new System.Drawing.Point(12, 80);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 15);
             this.label5.TabIndex = 7;
@@ -108,7 +108,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(75, 108);
+            this.label6.Location = new System.Drawing.Point(70, 106);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 15);
             this.label6.TabIndex = 8;
@@ -116,14 +116,14 @@
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(127, 48);
+            this.txtLogin.Location = new System.Drawing.Point(121, 50);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(123, 23);
             this.txtLogin.TabIndex = 1;
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(304, 48);
+            this.txtSenha.Location = new System.Drawing.Point(298, 50);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(123, 23);
@@ -132,7 +132,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(191, 142);
+            this.btnGravar.Location = new System.Drawing.Point(185, 138);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
             this.btnGravar.TabIndex = 6;
@@ -142,7 +142,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(272, 142);
+            this.btnLimpar.Location = new System.Drawing.Point(266, 138);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 7;
@@ -153,7 +153,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(352, 142);
+            this.btnCancelar.Location = new System.Drawing.Point(346, 138);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 8;
@@ -163,7 +163,7 @@
             // checkBoxIsAdmin
             // 
             this.checkBoxIsAdmin.AutoSize = true;
-            this.checkBoxIsAdmin.Location = new System.Drawing.Point(285, 108);
+            this.checkBoxIsAdmin.Location = new System.Drawing.Point(279, 104);
             this.checkBoxIsAdmin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxIsAdmin.Name = "checkBoxIsAdmin";
             this.checkBoxIsAdmin.Size = new System.Drawing.Size(62, 19);
@@ -174,7 +174,7 @@
             // numericSalario
             // 
             this.numericSalario.DecimalPlaces = 2;
-            this.numericSalario.Location = new System.Drawing.Point(126, 103);
+            this.numericSalario.Location = new System.Drawing.Point(120, 102);
             this.numericSalario.Maximum = new decimal(new int[] {
             50000,
             0,
@@ -188,7 +188,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 178);
+            this.ClientSize = new System.Drawing.Size(436, 181);
             this.Controls.Add(this.numericSalario);
             this.Controls.Add(this.checkBoxIsAdmin);
             this.Controls.Add(this.btnCancelar);
