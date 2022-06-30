@@ -9,11 +9,13 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
             RuleFor(x => x.Nome)
                 .NotEmpty().WithMessage("O campo 'Nome' é obrigatório!")
                 .NotNull().WithMessage("O campo 'Nome' é obrigatório!")
-                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("Caracteres especiais não são permitidos!");
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("Caracteres especiais não são permitidos!")
+                .MinimumLength(2).WithMessage("O campo 'Nome' deve ter no mínimo 2 caracteres!");
 
             RuleFor(x => x.Login)
                 .NotEmpty().WithMessage("O campo 'Login' é obrigatório!")
-                .NotNull().WithMessage("O campo 'Login' é obrigatório!");
+                .NotNull().WithMessage("O campo 'Login' é obrigatório!")
+                .MinimumLength(4).WithMessage("O campo 'Login' deve ter no mínimo 4 caracteres!");
 
             RuleFor(x => x.Senha)
               .NotEmpty().WithMessage("O campo 'Senha' é obrigatório!")

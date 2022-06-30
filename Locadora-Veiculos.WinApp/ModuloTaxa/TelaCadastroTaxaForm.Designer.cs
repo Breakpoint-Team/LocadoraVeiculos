@@ -1,6 +1,6 @@
 ﻿namespace Locadora_Veiculos.WinApp.ModuloTaxas
 {
-    partial class TelaCadastroTaxa
+    partial class TelaCadastroTaxaForm
     {
         /// <summary>
         /// Required designer variable.

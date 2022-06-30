@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
 {
-    public partial class TelaCadastroGrupoVeiculos : Form
+    public partial class TelaCadastroGrupoVeiculosForm : Form
     {
         private GrupoVeiculos grupoVeiculos;
 
-        public TelaCadastroGrupoVeiculos()
+        public TelaCadastroGrupoVeiculosForm()
         {
             InitializeComponent();
         }

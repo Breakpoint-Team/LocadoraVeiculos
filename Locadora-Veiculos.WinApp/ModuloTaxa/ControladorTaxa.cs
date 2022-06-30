@@ -20,7 +20,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
 
         public override void Inserir()
         {
-            var tela = new TelaCadastroTaxa();
+            var tela = new TelaCadastroTaxaForm();
             tela.Taxa = new Taxa();
             tela.GravarRegistro = servicoTaxa.Inserir;
 
@@ -40,7 +40,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
                 return;
             }
 
-            var tela = new TelaCadastroTaxa();
+            var tela = new TelaCadastroTaxaForm();
 
             tela.Taxa = taxaSelecionada;
 

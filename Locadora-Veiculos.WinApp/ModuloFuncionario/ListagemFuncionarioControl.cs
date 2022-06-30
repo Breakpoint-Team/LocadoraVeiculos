@@ -45,7 +45,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
                 var estaAtivo = funcionario.EstaAtivo == true ? "Sim" : "Não";
 
                 grid.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Login,
-                    funcionario.DataAdmissao.ToShortDateString(), funcionario.Salario, ehAdmin, estaAtivo);
+                    funcionario.DataAdmissao.ToShortDateString(), "R$ "+funcionario.Salario, ehAdmin, estaAtivo);
             }
         }
     }

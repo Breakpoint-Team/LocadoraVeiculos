@@ -21,7 +21,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
 
         public override void Inserir()
         {
-            var tela = new TelaCadastroGrupoVeiculos();
+            var tela = new TelaCadastroGrupoVeiculosForm();
             tela.Grupo = new GrupoVeiculos();
             tela.GravarRegistro = servicoGrupoVeiculos.Inserir;
 
@@ -41,7 +41,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
                 return;
             }
 
-            var tela = new TelaCadastroGrupoVeiculos();
+            var tela = new TelaCadastroGrupoVeiculosForm();
 
             tela.Grupo = grupoVeiculosSelecionado;
 

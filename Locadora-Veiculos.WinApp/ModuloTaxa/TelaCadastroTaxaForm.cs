@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloTaxas
 {
-    public partial class TelaCadastroTaxa : Form
+    public partial class TelaCadastroTaxaForm : Form
     {
         private Taxa taxa;
 
-        public TelaCadastroTaxa()
+        public TelaCadastroTaxaForm()
         {
             InitializeComponent();
         }

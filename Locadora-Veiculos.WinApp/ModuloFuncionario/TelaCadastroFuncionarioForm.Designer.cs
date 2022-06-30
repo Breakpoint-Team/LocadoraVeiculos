@@ -41,8 +41,9 @@
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtSalario = new System.Windows.Forms.TextBox();
             this.checkBoxIsAdmin = new System.Windows.Forms.CheckBox();
+            this.numericSalario = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericSalario)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNome
@@ -124,6 +125,7 @@
             // 
             this.txtSenha.Location = new System.Drawing.Point(304, 48);
             this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(123, 23);
             this.txtSenha.TabIndex = 2;
             // 
@@ -158,13 +160,6 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // txtSalario
-            // 
-            this.txtSalario.Location = new System.Drawing.Point(127, 104);
-            this.txtSalario.Name = "txtSalario";
-            this.txtSalario.Size = new System.Drawing.Size(130, 23);
-            this.txtSalario.TabIndex = 4;
-            // 
             // checkBoxIsAdmin
             // 
             this.checkBoxIsAdmin.AutoSize = true;
@@ -176,13 +171,26 @@
             this.checkBoxIsAdmin.Text = "Admin";
             this.checkBoxIsAdmin.UseVisualStyleBackColor = true;
             // 
+            // numericSalario
+            // 
+            this.numericSalario.DecimalPlaces = 2;
+            this.numericSalario.Location = new System.Drawing.Point(126, 103);
+            this.numericSalario.Maximum = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
+            this.numericSalario.Name = "numericSalario";
+            this.numericSalario.Size = new System.Drawing.Size(120, 23);
+            this.numericSalario.TabIndex = 9;
+            // 
             // TelaCadastroFuncionarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 178);
+            this.Controls.Add(this.numericSalario);
             this.Controls.Add(this.checkBoxIsAdmin);
-            this.Controls.Add(this.txtSalario);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnGravar);
@@ -205,6 +213,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Funcionários ";
+            ((System.ComponentModel.ISupportInitialize)(this.numericSalario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,7 +234,7 @@
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox txtSalario;
         private System.Windows.Forms.CheckBox checkBoxIsAdmin;
+        private System.Windows.Forms.NumericUpDown numericSalario;
     }
 }

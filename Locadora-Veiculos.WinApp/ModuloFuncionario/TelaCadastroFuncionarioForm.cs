@@ -56,7 +56,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             txtNome.Clear();
             txtLogin.Clear();
             txtSenha.Clear();
-            txtSalario.Clear();
+            numericSalario.Value = 0;
             checkBoxIsAdmin.Checked = false;
             dateTimePickerDataAdmissao.Value = DateTime.Today;
         }
@@ -71,7 +71,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             txtNome.Text = funcionario.Nome;
             txtLogin.Text = funcionario.Login;
             txtSenha.Text = funcionario.Senha;
-            txtSalario.Text = funcionario.Salario.ToString();
+            numericSalario.Value = funcionario.Salario;
             dateTimePickerDataAdmissao.Value = funcionario.DataAdmissao;
 
             if (funcionario.EhAdmin == true)
@@ -85,15 +85,8 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             funcionario.Nome = txtNome.Text;
             funcionario.Login = txtLogin.Text;
             funcionario.Senha = txtSenha.Text;
-
-            if (string.IsNullOrEmpty(txtSalario.Text) == false)
-            {
-                var valorFormatado = txtSalario.Text.Replace(".", ",");
-
-                var conversaoRealizada = decimal.TryParse(valorFormatado, out decimal resultado);
-                if (conversaoRealizada)
-                    funcionario.Salario = resultado;
-            }
+            funcionario.Salario = numericSalario.Value;
+            
 
             funcionario.DataAdmissao = dateTimePickerDataAdmissao.Value;
 
