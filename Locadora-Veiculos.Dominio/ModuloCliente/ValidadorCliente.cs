@@ -148,19 +148,20 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                   }
               });
 
-            RuleFor(x => x.Cnh)
-              .NotNull().WithMessage("O campo 'CNH' é obrigatório!")
-              .NotEmpty().WithMessage("O campo 'CNH' é obrigatório!");
+            //Transferir para o validador de condutor
+            //RuleFor(x => x.Cnh)
+            //  .NotNull().WithMessage("O campo 'CNH' é obrigatório!")
+            //  .NotEmpty().WithMessage("O campo 'CNH' é obrigatório!");
 
-            RuleFor(x => x.Cnh)
-              .Custom((cnh, context) =>
-              {
-                  if (string.IsNullOrEmpty(cnh) == false)
-                  {
-                      if ((Regex.IsMatch(cnh, @"^[0-9]{9}")) == false)
-                          context.AddFailure("O campo 'CNH' deve ser válido!");
-                  }
-              });
+            //RuleFor(x => x.Cnh)
+            //  .Custom((cnh, context) =>
+            //  {
+            //      if (string.IsNullOrEmpty(cnh) == false)
+            //      {
+            //          if ((Regex.IsMatch(cnh, @"^[0-9]{9}")) == false)
+            //              context.AddFailure("O campo 'CNH' deve ser válido!");
+            //      }
+            //  });
         }
     }
 }
