@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 
         public ValidationResult Inserir(Cliente cliente)
         {
-            var resultadoValidacao = ValidarCliente(cliente);
+            var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
                 repositorioCliente.Inserir(cliente);
@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 
         public ValidationResult Editar(Cliente cliente)
         {
-            var resultadoValidacao = ValidarCliente(cliente);
+            var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
                 repositorioCliente.Editar(cliente);
@@ -32,13 +32,26 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             return resultadoValidacao;
         }
 
-        private ValidationResult ValidarCliente(Cliente cliente)
+        private ValidationResult Validar(Cliente cliente)
         {
             ValidadorCliente validador = new ValidadorCliente();
 
             var resultadoValidacao = validador.Validate(cliente);
 
+            if (DocumentoDuplicado(cliente))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Documento", "Documento já está cadastrado!"));
+
             return resultadoValidacao;
+        }
+
+        private bool DocumentoDuplicado(Cliente cliente)
+        {
+            //var clienteEncontrado = repositorioCliente.SelecionarClientePorDocumento(cliente.Cpf);
+            //
+            //return clienteEncontrado != null &&
+            //       clienteEncontrado.Usuario == cliente.Cpf &&
+            //       clienteEncontrado.Id != cliente.Id;
+            return true;
         }
     }
 }

@@ -6,7 +6,9 @@ using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
 {
-    public class RepositorioFuncionarioEmBancoDados : RepositorioBase<Funcionario, ValidadorFuncionario, MapeadorFuncionario>, IRepositorioFuncionario
+    public class RepositorioFuncionarioEmBancoDados :
+        RepositorioBase<Funcionario, ValidadorFuncionario, MapeadorFuncionario>,
+        IRepositorioFuncionario
     {
         protected override string sqlInserir =>
             @"INSERT INTO [TBFUNCIONARIO]
@@ -74,6 +76,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
                    [ESTA_ATIVO]
             FROM
                 [TBFUNCIONARIO]";
+
+        public Funcionario SelecionarFuncionarioPorLogin(string login)
+        {
+            throw new NotImplementedException();
+        }
 
         public override ValidationResult Validar(Funcionario registro)
         {

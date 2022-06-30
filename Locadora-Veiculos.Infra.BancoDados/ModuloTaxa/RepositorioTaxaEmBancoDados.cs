@@ -5,7 +5,9 @@ using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
 {
-    public class RepositorioTaxaEmBancoDados : RepositorioBase<Taxa, ValidadorTaxa, MapeadorTaxa>, IRepositorioTaxa
+    public class RepositorioTaxaEmBancoDados :
+        RepositorioBase<Taxa, ValidadorTaxa, MapeadorTaxa>,
+        IRepositorioTaxa
     {
         protected override string sqlInserir =>
             @"INSERT INTO [TBTAXA]
@@ -52,6 +54,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
                 [TIPOCALCULO]
             FROM
                 [TBTAXA]";
+
+        public Taxa SelecionarTaxaPorDescricao(string descricao)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public override ValidationResult Validar(Taxa registro)
         {

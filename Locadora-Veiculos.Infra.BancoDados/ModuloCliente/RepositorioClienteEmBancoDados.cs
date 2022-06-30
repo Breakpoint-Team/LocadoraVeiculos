@@ -95,6 +95,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
             FROM
                 [TBCLIENTE]";
 
+        public Cliente SelecionarClientePorDocumento(string documento)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override ValidationResult Validar(Cliente registro)
         {
             var validator = new ValidadorCliente();

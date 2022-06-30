@@ -6,7 +6,9 @@ using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
 {
-    public class RepositorioGrupoVeiculosEmBancoDados : RepositorioBase<GrupoVeiculos, ValidadorGrupoVeiculos, MapeadorGrupoVeiculos> , IRepositorioGrupoVeiculos
+    public class RepositorioGrupoVeiculosEmBancoDados : 
+        RepositorioBase<GrupoVeiculos, ValidadorGrupoVeiculos, MapeadorGrupoVeiculos> ,
+        IRepositorioGrupoVeiculos
     {
         protected override string sqlInserir =>
             @"INSERT INTO [TBGRUPOVEICULOS]
@@ -43,6 +45,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
                 [NOME]
             FROM
                 [TBGRUPOVEICULOS]";
+
+        public GrupoVeiculos SelecionarGrupoVeiculosPorNome(string nome)
+        {
+            throw new NotImplementedException();
+        }
 
         public override ValidationResult Validar(GrupoVeiculos registro)
         {
