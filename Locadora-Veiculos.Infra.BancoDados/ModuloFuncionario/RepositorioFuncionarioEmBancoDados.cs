@@ -1,13 +1,11 @@
-﻿using FluentValidation.Results;
-using Locadora_Veiculos.Dominio.ModuloFuncionario;
+﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using System;
-using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
 {
     public class RepositorioFuncionarioEmBancoDados :
-        RepositorioBase<Funcionario, ValidadorFuncionario, MapeadorFuncionario>,
+        RepositorioBase<Funcionario, MapeadorFuncionario>,
         IRepositorioFuncionario
     {
         protected override string sqlInserir =>
@@ -80,31 +78,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
         public Funcionario SelecionarFuncionarioPorLogin(string login)
         {
             throw new NotImplementedException();
-        }
-
-        public override ValidationResult Validar(Funcionario registro)
-        {
-            var validator = new ValidadorFuncionario();
-
-            var resultadoValidacao = validator.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
-            bool loginEncontrado = false;
-            var funcionarios = SelecionarTodos();
-            foreach(var f in funcionarios)
-            {
-                if (f.Login.ToLower() == registro.Login.ToLower() && f.Id != registro.Id)
-                    loginEncontrado = true;
-            }
-
-            if (loginEncontrado)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Login já está cadastrado"));
-
-                 
-
-            return resultadoValidacao;
         }
     }
 }

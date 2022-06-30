@@ -1,12 +1,10 @@
-﻿using FluentValidation.Results;
-using Locadora_Veiculos.Dominio.ModuloTaxa;
+﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
 {
     public class RepositorioTaxaEmBancoDados :
-        RepositorioBase<Taxa, ValidadorTaxa, MapeadorTaxa>,
+        RepositorioBase<Taxa, MapeadorTaxa>,
         IRepositorioTaxa
     {
         protected override string sqlInserir =>
@@ -58,29 +56,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
         public Taxa SelecionarTaxaPorDescricao(string descricao)
         {
             throw new System.NotImplementedException();
-        }
-
-        public override ValidationResult Validar(Taxa registro)
-        {
-            var validator = new ValidadorTaxa();
-
-            var resultadoValidacao = validator.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
-            bool descricaoEncontrada = false;
-            var taxas = SelecionarTodos();
-            foreach (var t in taxas)
-            {
-                if (t.Descricao.ToLower() == registro.Descricao.ToLower() && t.Id != registro.Id)
-                    descricaoEncontrada = true;
-            }
-
-            if (descricaoEncontrada)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Descrição já está cadastrada"));
-
-            return resultadoValidacao;
         }
     }
 }

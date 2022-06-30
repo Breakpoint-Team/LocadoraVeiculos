@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -9,27 +10,24 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
     {
         private readonly IRepositorioFuncionario repositorioFuncionario;
         private ListagemFuncionarioControl listagemFuncionarios;
-        public ControladorFuncionario(IRepositorioFuncionario repositorioFuncionario)
+        private readonly ServicoFuncionario servicoFuncionario;
+
+        public ControladorFuncionario(IRepositorioFuncionario repositorioFuncionario, ServicoFuncionario servicoFuncionario)
         {
             this.repositorioFuncionario = repositorioFuncionario;
+            this.servicoFuncionario = servicoFuncionario;
         }
+
         public override void Inserir()
         {
             var tela = new TelaCadastroFuncionarioForm();
             tela.Funcionario = new Funcionario();
-            tela.GravarRegistro = repositorioFuncionario.Inserir;
+            tela.GravarRegistro = servicoFuncionario.Inserir;
             DialogResult resultado = tela.ShowDialog();
             if (resultado == DialogResult.OK)
             {
                 CarregarFuncionarios();
             }
-        }
-
-        private void CarregarFuncionarios()
-        {
-            List<Funcionario> funcionarios = repositorioFuncionario.SelecionarTodos();
-            listagemFuncionarios.AtualizarRegistros(funcionarios);
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionário(s)");
         }
 
         public override void Editar()
@@ -47,7 +45,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 
             tela.Funcionario = funcionarioSelecionado.Clone();
 
-            tela.GravarRegistro = repositorioFuncionario.Editar;
+            tela.GravarRegistro = servicoFuncionario.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -75,8 +73,6 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             CarregarFuncionarios();
         }
 
-
-
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolboxFuncionario();
@@ -91,11 +87,19 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 
             return listagemFuncionarios;
         }
+
         private Funcionario ObtemFuncionarioSelecionado()
         {
             var id = listagemFuncionarios.ObtemIdFuncionarioSelecionado();
 
             return repositorioFuncionario.SelecionarPorId(id);
+        }
+
+        private void CarregarFuncionarios()
+        {
+            List<Funcionario> funcionarios = repositorioFuncionario.SelecionarTodos();
+            listagemFuncionarios.AtualizarRegistros(funcionarios);
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionário(s)");
         }
     }
 }

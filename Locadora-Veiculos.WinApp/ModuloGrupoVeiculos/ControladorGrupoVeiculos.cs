@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -9,17 +10,20 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
     {
         private readonly IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
         private ListagemGrupoVeiculosControl listagemGrupoVeiculos;
+        private readonly ServicoGrupoVeiculos servicoGrupoVeiculos;
 
-        public ControladorGrupoVeiculos(IRepositorioGrupoVeiculos repositorioGrupoVeiculos)
+        public ControladorGrupoVeiculos(IRepositorioGrupoVeiculos repositorioGrupoVeiculos,
+            ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
             this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
+            this.servicoGrupoVeiculos = servicoGrupoVeiculos;
         }
 
         public override void Inserir()
         {
             var tela = new TelaCadastroGrupoVeiculos();
             tela.Grupo = new GrupoVeiculos();
-            tela.GravarRegistro = repositorioGrupoVeiculos.Inserir;
+            tela.GravarRegistro = servicoGrupoVeiculos.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
             if (resultado == DialogResult.OK)
@@ -41,7 +45,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
 
             tela.Grupo = grupoVeiculosSelecionado;
 
-            tela.GravarRegistro = repositorioGrupoVeiculos.Editar;
+            tela.GravarRegistro = servicoGrupoVeiculos.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 

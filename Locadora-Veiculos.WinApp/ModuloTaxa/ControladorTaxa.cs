@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -9,17 +10,19 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
     {
         private IRepositorioTaxa repositorioTaxa;
         private ListagemTaxaControl listagemTaxa;
+        private ServicoTaxa servicoTaxa;
 
-        public ControladorTaxa(IRepositorioTaxa repositorioTaxa)
+        public ControladorTaxa(IRepositorioTaxa repositorioTaxa, ServicoTaxa servicoTaxa)
         {
             this.repositorioTaxa = repositorioTaxa;
+            this.servicoTaxa = servicoTaxa;
         }
 
         public override void Inserir()
         {
             var tela = new TelaCadastroTaxa();
             tela.Taxa = new Taxa();
-            tela.GravarRegistro = repositorioTaxa.Inserir;
+            tela.GravarRegistro = servicoTaxa.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
             if (resultado == DialogResult.OK)
@@ -41,7 +44,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
 
             tela.Taxa = taxaSelecionada;
 
-            tela.GravarRegistro = repositorioTaxa.Editar;
+            tela.GravarRegistro = servicoTaxa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -70,13 +73,6 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             }
         }
 
-        private Taxa ObtemTaxaSelecionada()
-        {
-            var id = listagemTaxa.ObtemIdTaxaSelecionada();
-
-            return repositorioTaxa.SelecionarPorId(id);
-        }
-
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolBoxTaxa();
@@ -90,6 +86,13 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             CarregarTaxas();
 
             return listagemTaxa;
+        }
+
+        private Taxa ObtemTaxaSelecionada()
+        {
+            var id = listagemTaxa.ObtemIdTaxaSelecionada();
+
+            return repositorioTaxa.SelecionarPorId(id);
         }
 
         private void CarregarTaxas()

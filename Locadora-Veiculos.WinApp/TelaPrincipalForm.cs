@@ -7,6 +7,10 @@ using Locadora_Veiculos.WinApp.ModuloCliente;
 using Locadora_Veiculos.WinApp.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.ModuloGrupoVeiculos;
 using Locadora_Veiculos.WinApp.ModuloTaxas;
+using LocadoraVeiculos.Aplicacao.ModuloCliente;
+using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
+using LocadoraVeiculos.Aplicacao.ModuloTaxa;
+using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -138,12 +142,17 @@ namespace Locadora_Veiculos.WinApp
             var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
 
+            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
+            var servicoCliente = new ServicoCliente(repositorioCliente);
+            var servicoGrupoVeiculos = new ServicoGrupoVeiculos(repositorioGrupoVeiculos);
+            var servicoTaxa = new ServicoTaxa(repositorioTaxa);
+
             controladores = new Dictionary<string, ControladorBase>();
 
-            controladores.Add("Clientes", new ControladorCliente(repositorioCliente));
-            controladores.Add("Grupos de veículos", new ControladorGrupoVeiculos(repositorioGrupoVeiculos));
-            controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
-            controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario));
+            controladores.Add("Clientes", new ControladorCliente(repositorioCliente, servicoCliente));
+            controladores.Add("Grupos de veículos", new ControladorGrupoVeiculos(repositorioGrupoVeiculos, servicoGrupoVeiculos));
+            controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
+            controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
         }
     }
 }

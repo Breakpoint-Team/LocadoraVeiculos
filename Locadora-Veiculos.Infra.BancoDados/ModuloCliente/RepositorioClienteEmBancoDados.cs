@@ -5,8 +5,8 @@ using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 {
-    public class RepositorioClienteEmBancoDados : RepositorioBase<Cliente,
-        ValidadorCliente, MapeadorCliente>, IRepositorioCliente
+    public class RepositorioClienteEmBancoDados : RepositorioBase<Cliente, MapeadorCliente>,
+        IRepositorioCliente
     {
         protected override string sqlInserir =>
             @"INSERT INTO [TBCLIENTE]
@@ -99,32 +99,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
         {
             throw new System.NotImplementedException();
         }
-
-        public override ValidationResult Validar(Cliente registro)
-        {
-            var validator = new ValidadorCliente();
-
-            var resultadoValidacao = validator.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
-            bool documentoEncontrado;
         
-            string tipoDocumento;
-            
-            VerificarDuplicidadeDeDocumento(registro,
-                out documentoEncontrado, out tipoDocumento);
-
-            if (documentoEncontrado)
-            {
-                if (registro.Id == 0)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", $"{tipoDocumento} já está cadastrado"));
-            }
-
-            return resultadoValidacao;
-        }
-
         private void VerificarDuplicidadeDeDocumento(Cliente registro,
             out bool documentoEncontrado, out string tipoDocumento)
         {
