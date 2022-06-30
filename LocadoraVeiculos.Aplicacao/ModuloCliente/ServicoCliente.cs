@@ -1,14 +1,13 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloCliente;
-using Locadora_Veiculos.Infra.BancoDados.ModuloCliente;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 {
     public class ServicoCliente
     {
-        private RepositorioClienteEmBancoDados repositorioCliente;
+        private IRepositorioCliente repositorioCliente;
 
-        public ServicoCliente(RepositorioClienteEmBancoDados repositorioCliente)
+        public ServicoCliente(IRepositorioCliente repositorioCliente)
         {
             this.repositorioCliente = repositorioCliente;
         }
@@ -36,9 +35,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
         private ValidationResult ValidarCliente(Cliente cliente)
         {
             ValidadorCliente validador = new ValidadorCliente();
-        
+
             var resultadoValidacao = validador.Validate(cliente);
-            
+
             return resultadoValidacao;
         }
     }
