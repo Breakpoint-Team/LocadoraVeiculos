@@ -12,7 +12,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
             @"INSERT INTO [TBFUNCIONARIO]
                    (
                    [NOME],
-                   [USUARIO],
+                   [LOGIN],
                    [SENHA],
                    [DATA_ENTRADA],
                    [SALARIO],
@@ -22,7 +22,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
              VALUES
                (
                    @NOME,
-                   @USUARIO,
+                   @LOGIN,
                    @SENHA,
                    @DATA_ENTRADA,
                    @SALARIO,
@@ -31,10 +31,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
                 );  SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>
-             @" UPDATE [TBFUNCIONARIO]
+            @" UPDATE [TBFUNCIONARIO]
                     SET 
                    [NOME] = @NOME,
-                   [USUARIO] = @USUARIO,
+                   [LOGIN] = @LOGIN,
                    [SENHA] = @SENHA,
                    [DATA_ENTRADA] = @DATA_ENTRADA,
                    [SALARIO] = @SALARIO,
@@ -44,14 +44,14 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
                     WHERE [ID] = @ID";
 
         protected override string sqlExcluir =>
-          @"DELETE FROM [TBFUNCIONARIO]
+            @"DELETE FROM [TBFUNCIONARIO]
                 WHERE [ID] = @ID";
 
         protected override string sqlSelecionarPorId =>
-          @"SELECT 
+            @"SELECT 
                    [ID],       
                    [NOME],
-                   [USUARIO],
+                   [LOGIN],
                    [SENHA],
                    [DATA_ENTRADA],
                    [SALARIO],
@@ -66,7 +66,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
             @"SELECT 
                    [ID],       
                    [NOME],
-                   [USUARIO],
+                   [LOGIN],
                    [SENHA],
                    [DATA_ENTRADA],
                    [SALARIO],
@@ -79,7 +79,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
             @"SELECT 
                    [ID],       
                    [NOME],
-                   [USUARIO],
+                   [LOGIN],
                    [SENHA],
                    [DATA_ENTRADA],
                    [SALARIO],
@@ -88,11 +88,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
             FROM
                 [TBFUNCIONARIO]
             WHERE 
-                [USUARIO] = @USUARIO";
+                [LOGIN] = @LOGIN";
 
         public Funcionario SelecionarFuncionarioPorLogin(string login)
         {
-            return SelecionarPorParametro(sqlSelecionarPorLogin, new SqlParameter("USUARIO", login));
+            return SelecionarPorParametro(sqlSelecionarPorLogin, new SqlParameter("LOGIN", login));
         }
     }
 }
