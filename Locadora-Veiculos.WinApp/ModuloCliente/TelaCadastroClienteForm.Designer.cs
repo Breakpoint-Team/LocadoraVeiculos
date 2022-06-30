@@ -174,7 +174,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(291, 23);
             this.txtNome.TabIndex = 0;
-            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
             // 
             // txtEmail
             // 
@@ -214,7 +213,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtCnh.Name = "txtCnh";
             this.txtCnh.Size = new System.Drawing.Size(121, 23);
             this.txtCnh.TabIndex = 7;
-            this.txtCnh.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtCnh_MaskInputRejected);
             // 
             // txtCidade
             // 

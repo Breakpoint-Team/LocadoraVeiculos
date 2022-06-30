@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             //return clienteEncontrado != null &&
             //       clienteEncontrado.Usuario == cliente.Cpf &&
             //       clienteEncontrado.Id != cliente.Id;
-            return true;
+            return false;
         }
     }
 }

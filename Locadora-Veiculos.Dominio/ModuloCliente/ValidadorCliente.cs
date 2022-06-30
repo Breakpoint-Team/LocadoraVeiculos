@@ -14,8 +14,8 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
             When(x => string.IsNullOrEmpty(x.Nome) == false, () =>
             {
                 RuleFor(x => x.Nome.Length)
-                .GreaterThan(1)
-                .WithMessage("O campo 'Nome' deve ter no mínimo 2 caracteres!");
+                .GreaterThan(2)
+                .WithMessage("O campo 'Nome' deve ter no mínimo 3 caracteres!");
 
                 RuleFor(x => x.Nome)
                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
@@ -88,16 +88,16 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
             When(x => x.TipoCliente == TipoCliente.PessoaJuridica, () =>
             {
-                RuleFor(x => x.Cnpj)
+                RuleFor(x => x.Documento)
                 .NotNull().WithMessage("O campo 'CNPJ' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'CNPJ' é obrigatório!");
 
-                RuleFor(x => x.Cnpj)
-                .Custom((cnpj, context) =>
+                RuleFor(x => x.Documento)
+                .Custom((documento, context) =>
                 {
-                    if (string.IsNullOrEmpty(cnpj) == false)
+                    if (string.IsNullOrEmpty(documento) == false)
                     {
-                        if (Regex.IsMatch(cnpj, @"^[0-9]{2}[\.][0-9]{3}[\.][0-9]{3}[\/][0-9]{4}[-][0-9]{2}", RegexOptions.IgnoreCase) == false)
+                        if (Regex.IsMatch(documento, @"^[0-9]{2}[\.][0-9]{3}[\.][0-9]{3}[\/][0-9]{4}[-][0-9]{2}", RegexOptions.IgnoreCase) == false)
                             context.AddFailure("O campo 'CNPJ' deve ser válido!");
                     }
                 });
@@ -105,16 +105,16 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
             When(x => x.TipoCliente == TipoCliente.PessoaFisica, () =>
             {
-                RuleFor(x => x.Cpf)
+                RuleFor(x => x.Documento)
                 .NotNull().WithMessage("O campo 'CPF' é obrigatório!")
                 .NotEmpty().WithMessage("O campo 'CPF' é obrigatório!");
 
-                RuleFor(x => x.Cpf)
-                .Custom((cpf, context) =>
+                RuleFor(x => x.Documento)
+                .Custom((documehto, context) =>
                 {
-                    if (string.IsNullOrEmpty(cpf) == false)
+                    if (string.IsNullOrEmpty(documehto) == false)
                     {
-                        if (Regex.IsMatch(cpf, @"^[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}[\-][0-9]{2}", RegexOptions.IgnoreCase) == false)
+                        if (Regex.IsMatch(documehto, @"^[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}[\-][0-9]{2}", RegexOptions.IgnoreCase) == false)
                             context.AddFailure("O campo 'CPF' deve ser válido!");
                     }
                 });
