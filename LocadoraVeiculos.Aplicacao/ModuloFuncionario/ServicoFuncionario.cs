@@ -1,5 +1,4 @@
-﻿
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloFuncionario;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
@@ -33,6 +32,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             return resultadoValidacao;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private ValidationResult Validar(Funcionario funcionario)
         {
             var validador = new ValidadorFuncionario();
@@ -47,13 +48,13 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
 
         private bool LoginDuplicado(Funcionario funcionario)
         {
-            //     var funcionarioEncontrado = repositorioFuncionario.SelecionarFuncionarioPorLogin(funcionario.Login);
-            //
-            //     return funcionarioEncontrado != null &&
-            //            funcionarioEncontrado.Usuario == funcionario.Login &&
-            //            funcionarioEncontrado.Id != funcionario.Id;
-            return true;
-        }
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarFuncionarioPorLogin(funcionario.Login);
 
+            return funcionarioEncontrado != null &&
+                   funcionarioEncontrado.Login == funcionario.Login &&
+                   funcionarioEncontrado.Id != funcionario.Id;
+        }
+        
+        #endregion
     }
 }

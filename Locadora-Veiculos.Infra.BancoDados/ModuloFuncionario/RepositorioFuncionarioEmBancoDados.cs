@@ -1,6 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using System;
+using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
 {
@@ -75,9 +75,24 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario
             FROM
                 [TBFUNCIONARIO]";
 
+        private string sqlSelecionarPorLogin =>
+            @"SELECT 
+                   [ID],       
+                   [NOME],
+                   [USUARIO],
+                   [SENHA],
+                   [DATA_ENTRADA],
+                   [SALARIO],
+                   [IS_ADMIN],
+                   [ESTA_ATIVO]
+            FROM
+                [TBFUNCIONARIO]
+            WHERE 
+                [USUARIO] = @USUARIO";
+
         public Funcionario SelecionarFuncionarioPorLogin(string login)
         {
-            throw new NotImplementedException();
+            return SelecionarPorParametro(sqlSelecionarPorLogin, new SqlParameter("USUARIO", login));
         }
     }
 }
