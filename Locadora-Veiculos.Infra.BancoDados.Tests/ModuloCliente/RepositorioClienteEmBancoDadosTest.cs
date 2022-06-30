@@ -116,7 +116,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         //    repositorioCliente.Inserir(cliente1);
 
         //    var cliente2 = new Cliente("Sérgio Ramos", "(49) 99943-9554", "sergio@gmail.com",
-        //        TipoCliente.PessoaFisica, "013.987.765-09", null, "789456123", 507,
+        //        TipoCliente.PessoaFisica, "013.987.765-09", 507,
         //        "Rua do abacaxi", "centro", "Lages", "SC");
 
         //    //action
@@ -131,12 +131,12 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         //{
         //    //Arrange
         //    var cliente1 = new Cliente("Coca cola", "(49) 99943-9554", "cocacola@gmail.com",
-        //        TipoCliente.PessoaJuridica, null, "01.987.765/0001-09", "789456123", 507,
+        //        TipoCliente.PessoaJuridica, "01.987.765/0001-09", 507,
         //        "Rua do abacaxi", "centro", "Lages", "SC");
         //    repositorioCliente.Inserir(cliente1);
 
         //    var cliente2 = new Cliente("Itaú", "(49) 99943-9554", "itau@gmail.com",
-        //        TipoCliente.PessoaJuridica, null, "01.987.765/0001-09", "789456123", 507,
+        //        TipoCliente.PessoaJuridica, "01.987.765/0001-09", 507,
         //        "Rua do abacaxi", "centro", "Lages", "SC");
 
         //    //action
@@ -151,7 +151,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         //private Cliente NovoCliente()
         //{
         //    Cliente c = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
-        //        TipoCliente.PessoaFisica, "013.987.765-09", null, "123456789", 2,
+        //        TipoCliente.PessoaFisica, "013.987.765-09", 2,
         //        "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
         //    return c;
@@ -160,15 +160,15 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         //private List<Cliente> NovosClientesFisicos()
         //{
         //    Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
-        //        TipoCliente.PessoaFisica, "063.987.765-09", null, "123456789", 2,
+        //        TipoCliente.PessoaFisica, "063.987.765-09", 2,
         //        "Rua das laranjeiras", "centro", "São Paulo", "SP");
 
         //    Cliente c2 = new Cliente("Alexandre Rech", "(49) 98888-9555", "alexandre@gmail.com",
-        //        TipoCliente.PessoaFisica, "047.967.762-08", null, "523454345", 2,
+        //        TipoCliente.PessoaFisica, "047.967.762-08",  2,
         //        "Rua das bananeirass", "centro", "São Paulo", "SP");
 
         //    Cliente c3 = new Cliente("Tiago Santini", "(49) 98655-9002", "tiago@gmail.com",
-        //        TipoCliente.PessoaFisica, "013.987.763-07", null, "987654321", 2,
+        //        TipoCliente.PessoaFisica, "013.987.763-07", 2,
         //        "Rua das macieiras", "centro", "São Paulo", "SP");
 
         //    var lista = new List<Cliente>();

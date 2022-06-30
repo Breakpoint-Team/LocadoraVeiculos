@@ -12,7 +12,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
         }
 
         public Cliente(string nome, string telefone, string email,
-            TipoCliente tipoCliente, string documento, string cnh,
+            TipoCliente tipoCliente, string documento,
             int numero, string rua, string bairro, string cidade, string estado)
         {
             Nome = nome;
@@ -20,7 +20,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
             Email = email;
             TipoCliente = tipoCliente;
             Documento = documento;
-            Cnh = cnh;
             Numero = numero;
             Rua = rua;
             Bairro = bairro;
@@ -36,9 +35,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
         public string Email { get; set; }
         public TipoCliente TipoCliente { get; set; }
         public string Documento { get; set; }
-        public string Cpf { get; set; }
-        public string Cnpj { get; set; }
-        public string Cnh { get; set; }
         public int Numero { get; set; }
         public string Rua { get; set; }
         public string Bairro { get; set; }
@@ -61,9 +57,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                    Email == cliente.Email &&
                    TipoCliente == cliente.TipoCliente &&
                    Documento == cliente.Documento &&
-                   Cpf == cliente.Cpf &&
-                   Cnpj == cliente.Cnpj &&
-                   Cnh == cliente.Cnh &&
                    Numero == cliente.Numero &&
                    Rua == cliente.Rua &&
                    Bairro == cliente.Bairro &&
@@ -80,9 +73,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
             hash.Add(Email);
             hash.Add(TipoCliente);
             hash.Add(Documento);
-            hash.Add(Cpf);
-            hash.Add(Cnpj);
-            hash.Add(Cnh);
             hash.Add(Numero);
             hash.Add(Rua);
             hash.Add(Bairro);
@@ -95,7 +85,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
         {
             return $"Nome: {Nome} Telefone: {Telefone} Email: {Email}" +
                 $" Tipo: {TipoCliente} Tipo de cliente: {TipoCliente.GetDescription()} Documento: {Documento}" +
-                $" CPF: {Cpf} CNPJ: {Cnpj} CNH: {Cnh}" +
                 $" Número: {Numero} Rua: {Rua} Bairro: {Bairro}" +
                 $" Cidade: {Cidade} Estado: {Estado}";
         }

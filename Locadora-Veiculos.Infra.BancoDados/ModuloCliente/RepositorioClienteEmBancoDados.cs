@@ -1,7 +1,5 @@
-﻿using FluentValidation.Results;
-using Locadora_Veiculos.Dominio.ModuloCliente;
+﻿using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 {
@@ -16,7 +14,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                     [EMAIL],
                     [TELEFONE],
                     [TIPO_CLIENTE],
-                    [CNH],
                     [ESTADO],
                     [CIDADE],
                     [BAIRRO],
@@ -30,7 +27,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                     @EMAIL,
                     @TELEFONE,
                     @TIPO_CLIENTE,
-                    @CNH,
                     @ESTADO,
                     @CIDADE,
                     @BAIRRO,
@@ -46,7 +42,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                     [EMAIL] = @EMAIL,
                     [TELEFONE] = @TELEFONE,
                     [TIPO_CLIENTE] = @TIPO_CLIENTE,
-                    [CNH] = @CNH,
                     [ESTADO] = @ESTADO,
                     [CIDADE] = @CIDADE,
                     [BAIRRO] = @BAIRRO,
@@ -67,7 +62,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                 [EMAIL],
                 [TELEFONE],
                 [TIPO_CLIENTE],
-                [CNH],
                 [ESTADO],
                 [CIDADE],
                 [BAIRRO],
@@ -86,7 +80,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                 [EMAIL],
                 [TELEFONE],
                 [TIPO_CLIENTE],
-                [CNH],
                 [ESTADO],
                 [CIDADE],
                 [BAIRRO],
@@ -98,30 +91,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
         public Cliente SelecionarClientePorDocumento(string documento)
         {
             throw new System.NotImplementedException();
-        }
-        
-        private void VerificarDuplicidadeDeDocumento(Cliente registro,
-            out bool documentoEncontrado, out string tipoDocumento)
-        {
-            documentoEncontrado = false;
-            tipoDocumento = "";
-
-            //declarar lista
-            if (registro.TipoCliente == TipoCliente.PessoaFisica)
-            {
-                documentoEncontrado = SelecionarTodos()
-                   .Select(x => x.Cpf)
-                   .Contains(registro.Cpf);
-                tipoDocumento = "CPF";
-            }
-
-            else if (registro.TipoCliente == TipoCliente.PessoaJuridica)
-            {
-                documentoEncontrado = SelecionarTodos()
-                   .Select(x => x.Cnpj)
-                   .Contains(registro.Cnpj);
-                tipoDocumento = "CNPJ";
-            }
         }
     }
 }

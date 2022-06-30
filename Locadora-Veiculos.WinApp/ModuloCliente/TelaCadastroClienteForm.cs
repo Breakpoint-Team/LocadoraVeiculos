@@ -79,8 +79,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             cliente.Telefone = txtTelefone.Text;
             
             //remover
-            cliente.Cnh = txtCnh.Text;
-
             cliente.Rua = txtRua.Text;
             cliente.Bairro = txtBairro.Text;
             cliente.Cidade = txtCidade.Text;
@@ -102,7 +100,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             txtNome.Text = cliente.Nome;
             txtEmail.Text = cliente.Email;
             txtTelefone.Text = cliente.Telefone;
-            txtCnh.Text = cliente.Cnh;
             txtNumero.Text = Convert.ToString(cliente.Numero);
             txtRua.Text = cliente.Rua;
             txtBairro.Text = cliente.Bairro;
@@ -136,7 +133,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             txtTelefone.Clear();
             txtCpf.Clear();
             txtCnpj.Clear();
-            txtCnh.Clear();
             txtNumero.Clear();
             txtRua.Clear();
             txtBairro.Clear();
@@ -180,5 +176,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
         }
 
         #endregion
+
     }
 }
