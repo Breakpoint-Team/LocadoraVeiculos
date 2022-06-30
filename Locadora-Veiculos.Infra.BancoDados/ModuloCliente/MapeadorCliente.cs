@@ -20,11 +20,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
             comando.Parameters.AddWithValue("RUA", registro.Rua);
             comando.Parameters.AddWithValue("NUMERO", registro.Numero);
             comando.Parameters.AddWithValue("TIPO_CLIENTE", registro.TipoCliente);
-
-            if (registro.TipoCliente == TipoCliente.PessoaJuridica)
-                comando.Parameters.AddWithValue("DOCUMENTO", registro.Cnpj);
-            else
-                comando.Parameters.AddWithValue("DOCUMENTO", registro.Cpf);
+            comando.Parameters.AddWithValue("DOCUMENTO", registro.Documento);
         }
 
         public override Cliente ConverterRegistro(SqlDataReader leitorRegistro)
@@ -53,26 +49,25 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                 Cidade = cidade,
                 Rua = rua,
                 Bairro = bairro,
-                Numero = numero
+                Numero = numero,
+                Documento = documento
             };
 
-            ConfigurarTipoCliente(tipo, documento, cliente);
+            cliente.TipoCliente = ConfigurarTipoCliente(tipo);
 
             return cliente;
         }
 
-        private void ConfigurarTipoCliente(int tipo, string documento, Cliente cliente)
+        private TipoCliente ConfigurarTipoCliente(int tipo)
         {
+            TipoCliente retorno = TipoCliente.PessoaFisica;
+
             if (tipo == 0)
-            {
-                cliente.TipoCliente = TipoCliente.PessoaFisica;
-                cliente.Cpf = documento;
-            }
+                retorno = TipoCliente.PessoaFisica;
             else if (tipo == 1)
-            {
-                cliente.TipoCliente = TipoCliente.PessoaJuridica;
-                cliente.Cnpj = documento;
-            }
+                retorno = TipoCliente.PessoaJuridica;
+
+            return retorno;
         }
     }
 }

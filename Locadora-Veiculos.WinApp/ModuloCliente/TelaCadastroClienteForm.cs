@@ -60,8 +60,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
         {
             HabilitarPessoaFisica();
             DesabilitarPessoaJuridica();
-
-
         }
 
         private void radioButtonPessoaJuridica_CheckedChanged(object sender, EventArgs e)
@@ -79,13 +77,20 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             cliente.Nome = txtNome.Text;
             cliente.Email = txtEmail.Text;
             cliente.Telefone = txtTelefone.Text;
-            cliente.Cpf = txtCpf.Text;
-            cliente.Cnpj = txtCnpj.Text;
+            
+            //remover
             cliente.Cnh = txtCnh.Text;
+
             cliente.Rua = txtRua.Text;
             cliente.Bairro = txtBairro.Text;
             cliente.Cidade = txtCidade.Text;
-            cliente.TipoCliente = ObterTipoCliente();
+            cliente.TipoCliente = ObterTipoClienteDaTela();
+
+            if (cliente.TipoCliente == TipoCliente.PessoaFisica)
+                cliente.Documento = txtCpf.Text;
+            else if(cliente.TipoCliente == TipoCliente.PessoaJuridica)
+                cliente.Documento = txtCnpj.Text;
+
             if (string.IsNullOrEmpty(txtNumero.Text) == false)
                 cliente.Numero = int.Parse(txtNumero.Text);
             if (comboBoxEstado.SelectedIndex != -1)
@@ -97,8 +102,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             txtNome.Text = cliente.Nome;
             txtEmail.Text = cliente.Email;
             txtTelefone.Text = cliente.Telefone;
-            txtCpf.Text = cliente.Cpf;
-            txtCnpj.Text = cliente.Cnpj;
             txtCnh.Text = cliente.Cnh;
             txtNumero.Text = Convert.ToString(cliente.Numero);
             txtRua.Text = cliente.Rua;
@@ -115,14 +118,14 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
                 radioButtonPessoaFisica.Checked = true;
                 DesabilitarPessoaJuridica();
                 HabilitarPessoaFisica();
-                txtCpf.Text = cliente.Cpf;
+                txtCpf.Text = cliente.Documento;
             }
             else if (cliente.TipoCliente == TipoCliente.PessoaJuridica)
             {
                 radioButtonPessoaJuridica.Checked = true;
                 DesabilitarPessoaFisica();
                 HabilitarPessoaJuridica();
-                txtCnpj.Text = cliente.Cnpj;
+                txtCnpj.Text = cliente.Documento;
             }
         }
 
@@ -164,7 +167,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             txtCnpj.Enabled = false;
         }
 
-        private TipoCliente ObterTipoCliente()
+        private TipoCliente ObterTipoClienteDaTela()
         {
             TipoCliente retorno = TipoCliente.PessoaFisica;
 
@@ -177,15 +180,5 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
         }
 
         #endregion
-
-        private void txtNome_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCnh_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
     }
 }
