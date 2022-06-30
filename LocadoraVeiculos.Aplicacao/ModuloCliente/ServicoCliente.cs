@@ -46,12 +46,11 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 
         private bool DocumentoDuplicado(Cliente cliente)
         {
-            //var clienteEncontrado = repositorioCliente.SelecionarClientePorDocumento(cliente.Cpf);
-            //
-            //return clienteEncontrado != null &&
-            //       clienteEncontrado.Usuario == cliente.Cpf &&
-            //       clienteEncontrado.Id != cliente.Id;
-            return false;
+            var clienteEncontrado = repositorioCliente.SelecionarClientePorDocumento(cliente.Documento);
+
+            return clienteEncontrado != null &&
+                   clienteEncontrado.Documento == cliente.Documento &&
+                   clienteEncontrado.Id != cliente.Id;
         }
     }
 }

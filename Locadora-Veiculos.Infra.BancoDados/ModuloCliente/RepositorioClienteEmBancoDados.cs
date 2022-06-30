@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 {
@@ -88,9 +89,27 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
             FROM
                 [TBCLIENTE]";
 
+        private string sqlSelecionarClientePorDocumento =>
+            @"SELECT 
+	            [ID],
+                [NOME],
+                [DOCUMENTO],
+                [EMAIL],
+                [TELEFONE],
+                [TIPO_CLIENTE],
+                [ESTADO],
+                [CIDADE],
+                [BAIRRO],
+                [RUA],
+                [NUMERO]
+            FROM
+                [TBCLIENTE]
+            WHERE
+                [DOCUMENTO] = @DOCUMENTO";
+
         public Cliente SelecionarClientePorDocumento(string documento)
         {
-            throw new System.NotImplementedException();
+            return SelecionarPorParametro(sqlSelecionarClientePorDocumento, new SqlParameter("DOCUMENTO", documento));
         }
     }
 }
