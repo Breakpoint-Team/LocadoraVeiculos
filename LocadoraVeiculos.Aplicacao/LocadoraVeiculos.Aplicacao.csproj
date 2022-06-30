@@ -5,10 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloCliente\" />
     <Folder Include="ModuloFuncionario\" />
     <Folder Include="ModuloTaxa\" />
     <Folder Include="ModuloGrupoVeiculos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Locadora-Veiculos.Dominio\Locadora-Veiculos.Dominio.csproj" />
+    <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados\Locadora-Veiculos.Infra.BancoDados.csproj" />
   </ItemGroup>
 
 </Project>

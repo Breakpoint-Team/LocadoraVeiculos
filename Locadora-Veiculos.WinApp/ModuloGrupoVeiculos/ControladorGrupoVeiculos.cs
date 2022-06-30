@@ -9,7 +9,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
     {
         private readonly IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
         private ListagemGrupoVeiculosControl listagemGrupoVeiculos;
-        
+
         public ControladorGrupoVeiculos(IRepositorioGrupoVeiculos repositorioGrupoVeiculos)
         {
             this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
@@ -86,7 +86,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
         }
 
         #region MÉTODOS PRIVADOS
-        
+
         private void CarregarGrupos()
         {
             List<GrupoVeiculos> grupos = repositorioGrupoVeiculos.SelecionarTodos();

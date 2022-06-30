@@ -1,10 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.Compartilhado;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloFuncionario
@@ -23,7 +19,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             tela.Funcionario = new Funcionario();
             tela.GravarRegistro = repositorioFuncionario.Inserir;
             DialogResult resultado = tela.ShowDialog();
-            if(resultado == DialogResult.OK)
+            if (resultado == DialogResult.OK)
             {
                 CarregarFuncionarios();
             }
@@ -33,7 +29,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
         {
             List<Funcionario> funcionarios = repositorioFuncionario.SelecionarTodos();
             listagemFuncionarios.AtualizarRegistros(funcionarios);
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionário(s)" );
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionário(s)");
         }
 
         public override void Editar()
@@ -79,7 +75,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             CarregarFuncionarios();
         }
 
-        
+
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
