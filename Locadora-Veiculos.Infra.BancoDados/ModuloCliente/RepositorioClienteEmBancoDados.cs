@@ -57,17 +57,17 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 
         protected override string sqlSelecionarPorId =>
             @"SELECT 
-	            [ID],
-                [NOME],
-                [DOCUMENTO],
-                [EMAIL],
-                [TELEFONE],
-                [TIPO_CLIENTE],
-                [ESTADO],
-                [CIDADE],
-                [BAIRRO],
-                [RUA],
-                [NUMERO]
+	            [ID] CLIENTE_ID,
+                [NOME] CLIENTE_NOME,
+                [DOCUMENTO] CLIENTE_DOCUMENTO,
+                [EMAIL] CLIENTE_EMAIL,
+                [TELEFONE] CLIENTE_TELEFONE,
+                [TIPO_CLIENTE] CLIENTE_TIPO_CLIENTE,
+                [ESTADO] CLIENTE_ESTADO,
+                [CIDADE] CLIENTE_CIDADE,
+                [BAIRRO] CLIENTE_BAIRRO,
+                [RUA] CLIENTE_RUA,
+                [NUMERO] CLIENTE_NUMERO
             FROM
                 [TBCLIENTE]
             WHERE
@@ -75,33 +75,33 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 
         protected override string sqlSelecionarTodos =>
             @"SELECT 
-	            [ID],
-                [NOME],
-                [DOCUMENTO],
-                [EMAIL],
-                [TELEFONE],
-                [TIPO_CLIENTE],
-                [ESTADO],
-                [CIDADE],
-                [BAIRRO],
-                [RUA],
-                [NUMERO]
+	            [ID] CLIENTE_ID,
+                [NOME] CLIENTE_NOME,
+                [DOCUMENTO] CLIENTE_DOCUMENTO,
+                [EMAIL] CLIENTE_EMAIL,
+                [TELEFONE] CLIENTE_TELEFONE,
+                [TIPO_CLIENTE] CLIENTE_TIPO_CLIENTE,
+                [ESTADO] CLIENTE_ESTADO,
+                [CIDADE] CLIENTE_CIDADE,
+                [BAIRRO] CLIENTE_BAIRRO,
+                [RUA] CLIENTE_RUA,
+                [NUMERO] CLIENTE_NUMERO
             FROM
                 [TBCLIENTE]";
 
         private string sqlSelecionarClientePorDocumento =>
             @"SELECT 
-	            [ID],
-                [NOME],
-                [DOCUMENTO],
-                [EMAIL],
-                [TELEFONE],
-                [TIPO_CLIENTE],
-                [ESTADO],
-                [CIDADE],
-                [BAIRRO],
-                [RUA],
-                [NUMERO]
+	            [ID] CLIENTE_ID,
+                [NOME] CLIENTE_NOME,
+                [DOCUMENTO] CLIENTE_DOCUMENTO,
+                [EMAIL] CLIENTE_EMAIL,
+                [TELEFONE] CLIENTE_TELEFONE,
+                [TIPO_CLIENTE] CLIENTE_TIPO_CLIENTE,
+                [ESTADO] CLIENTE_ESTADO,
+                [CIDADE] CLIENTE_CIDADE,
+                [BAIRRO] CLIENTE_BAIRRO,
+                [RUA] CLIENTE_RUA,
+                [NUMERO] CLIENTE_NUMERO
             FROM
                 [TBCLIENTE]
             WHERE
