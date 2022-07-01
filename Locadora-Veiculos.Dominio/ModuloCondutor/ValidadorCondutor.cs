@@ -149,6 +149,9 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
                         context.AddFailure("O campo 'Data de validade da CNH' deve ser maior que a data atual!");
 
                 });
+
+            RuleFor(x => x.Cliente)
+                .NotNull().WithMessage("O campo 'Cliente' é obrigatório!");
         }
     }
 }

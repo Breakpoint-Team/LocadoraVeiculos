@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados\Locadora-Veiculos.Infra.BancoDados.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ModuloCondutor\" />
+  </ItemGroup>
+
 </Project>
