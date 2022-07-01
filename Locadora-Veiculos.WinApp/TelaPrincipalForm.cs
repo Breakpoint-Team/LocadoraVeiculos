@@ -14,6 +14,9 @@ using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Locadora_Veiculos.Infra.BancoDados.ModuloCondutor;
+using LocadoraVeiculos.Aplicacao.ModuloCondutor;
+using Locadora_Veiculos.WinApp.ModuloCondutor;
 
 namespace Locadora_Veiculos.WinApp
 {
@@ -57,6 +60,11 @@ namespace Locadora_Veiculos.WinApp
         }
 
         private void taxasMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
+       
+        private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
@@ -141,11 +149,13 @@ namespace Locadora_Veiculos.WinApp
             var repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
             var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
+            var repositorioCondutor = new RepositorioCondutorEmBancoDados();
 
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoCliente = new ServicoCliente(repositorioCliente);
             var servicoGrupoVeiculos = new ServicoGrupoVeiculos(repositorioGrupoVeiculos);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa);
+            var servicoCondutor = new ServicoCondutor(repositorioCondutor);
 
             controladores = new Dictionary<string, ControladorBase>();
 
@@ -153,6 +163,8 @@ namespace Locadora_Veiculos.WinApp
             controladores.Add("Grupos de veículos", new ControladorGrupoVeiculos(repositorioGrupoVeiculos, servicoGrupoVeiculos));
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
             controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
+            controladores.Add("Condutores", new ControladorCondutor(repositorioCondutor, servicoCondutor));
         }
+
     }
 }

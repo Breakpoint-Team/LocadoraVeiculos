@@ -83,10 +83,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
         public override string ToString()
         {
-            return $"Nome: {Nome} Telefone: {Telefone} Email: {Email}" +
-                $" Tipo: {TipoCliente} Tipo de cliente: {TipoCliente.GetDescription()} Documento: {Documento}" +
-                $" Número: {Numero} Rua: {Rua} Bairro: {Bairro}" +
-                $" Cidade: {Cidade} Estado: {Estado}";
+            return $"{Nome} - {Documento} - {TipoCliente.GetDescription()}";
         }
     }
 }

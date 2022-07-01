@@ -42,6 +42,7 @@
             this.statusStripRodape = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.condutoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStripRodape.SuspendLayout();
@@ -63,7 +64,8 @@
             this.clientesMenuItem,
             this.funcionariosMenuItem,
             this.grupoVeiculosMenuItem,
-            this.taxasMenuItem});
+            this.taxasMenuItem,
+            this.condutoresToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -114,7 +116,7 @@
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 24);
             this.toolbox.Name = "toolbox";
-            this.toolbox.Size = new System.Drawing.Size(800, 41);
+            this.toolbox.Size = new System.Drawing.Size(800, 25);
             this.toolbox.TabIndex = 1;
             this.toolbox.Text = "toolStrip1";
             // 
@@ -167,7 +169,7 @@
             this.labelTipoCadastro.ForeColor = System.Drawing.Color.LightSeaGreen;
             this.labelTipoCadastro.LinkColor = System.Drawing.Color.LightSeaGreen;
             this.labelTipoCadastro.Name = "labelTipoCadastro";
-            this.labelTipoCadastro.Size = new System.Drawing.Size(94, 38);
+            this.labelTipoCadastro.Size = new System.Drawing.Size(94, 22);
             this.labelTipoCadastro.Text = "toolStripLabel1";
             // 
             // statusStripRodape
@@ -189,10 +191,18 @@
             // panelRegistros
             // 
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRegistros.Location = new System.Drawing.Point(0, 65);
+            this.panelRegistros.Location = new System.Drawing.Point(0, 49);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(800, 363);
+            this.panelRegistros.Size = new System.Drawing.Size(800, 379);
             this.panelRegistros.TabIndex = 3;
+            // 
+            // condutoresToolStripMenuItem
+            // 
+            this.condutoresToolStripMenuItem.Name = "condutoresToolStripMenuItem";
+            this.condutoresToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.condutoresToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.condutoresToolStripMenuItem.Text = "Condutores";
+            this.condutoresToolStripMenuItem.Click += new System.EventHandler(this.condutoresToolStripMenuItem_Click);
             // 
             // TelaPrincipalForm
             // 
@@ -236,5 +246,6 @@
         private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
+        private System.Windows.Forms.ToolStripMenuItem condutoresToolStripMenuItem;
     }
 }
