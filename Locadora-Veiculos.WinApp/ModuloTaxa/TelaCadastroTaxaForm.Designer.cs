@@ -44,7 +44,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 30);
+            this.label1.Location = new System.Drawing.Point(43, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 15);
             this.label1.TabIndex = 0;
@@ -53,7 +53,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 78);
+            this.label2.Location = new System.Drawing.Point(71, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 15);
             this.label2.TabIndex = 1;
@@ -62,7 +62,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 126);
+            this.label3.Location = new System.Drawing.Point(12, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 15);
             this.label3.TabIndex = 2;
@@ -71,7 +71,7 @@
             // radioButtonDiario
             // 
             this.radioButtonDiario.AutoSize = true;
-            this.radioButtonDiario.Location = new System.Drawing.Point(114, 124);
+            this.radioButtonDiario.Location = new System.Drawing.Point(113, 83);
             this.radioButtonDiario.Name = "radioButtonDiario";
             this.radioButtonDiario.Size = new System.Drawing.Size(56, 19);
             this.radioButtonDiario.TabIndex = 3;
@@ -82,7 +82,7 @@
             // radioButtonFixo
             // 
             this.radioButtonFixo.AutoSize = true;
-            this.radioButtonFixo.Location = new System.Drawing.Point(187, 124);
+            this.radioButtonFixo.Location = new System.Drawing.Point(175, 83);
             this.radioButtonFixo.Name = "radioButtonFixo";
             this.radioButtonFixo.Size = new System.Drawing.Size(47, 19);
             this.radioButtonFixo.TabIndex = 4;
@@ -92,28 +92,28 @@
             // 
             // txtDescricao
             // 
-            this.txtDescricao.Location = new System.Drawing.Point(114, 26);
+            this.txtDescricao.Location = new System.Drawing.Point(113, 24);
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(258, 23);
+            this.txtDescricao.Size = new System.Drawing.Size(209, 23);
             this.txtDescricao.TabIndex = 5;
             // 
             // numericValor
             // 
             this.numericValor.DecimalPlaces = 2;
-            this.numericValor.Location = new System.Drawing.Point(114, 74);
+            this.numericValor.Location = new System.Drawing.Point(113, 50);
             this.numericValor.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.numericValor.Name = "numericValor";
-            this.numericValor.Size = new System.Drawing.Size(120, 23);
+            this.numericValor.Size = new System.Drawing.Size(109, 23);
             this.numericValor.TabIndex = 6;
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(297, 169);
+            this.btnCancelar.Location = new System.Drawing.Point(247, 128);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 21;
@@ -122,7 +122,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(216, 169);
+            this.btnLimpar.Location = new System.Drawing.Point(166, 128);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 20;
@@ -133,7 +133,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(135, 169);
+            this.btnGravar.Location = new System.Drawing.Point(85, 128);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
             this.btnGravar.TabIndex = 19;
@@ -141,11 +141,11 @@
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
-            // TelaCadastroTaxa
+            // TelaCadastroTaxaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 204);
+            this.ClientSize = new System.Drawing.Size(334, 171);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnGravar);
@@ -159,7 +159,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TelaCadastroTaxa";
+            this.Name = "TelaCadastroTaxaForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
