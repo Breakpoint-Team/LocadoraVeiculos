@@ -34,6 +34,7 @@
             this.funcionariosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grupoVeiculosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taxasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.veiculosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox = new System.Windows.Forms.ToolStrip();
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
@@ -64,6 +65,8 @@
             this.clientesMenuItem,
             this.funcionariosMenuItem,
             this.grupoVeiculosMenuItem,
+            this.taxasMenuItem,
+            this.veiculosMenuItem});
             this.taxasMenuItem,
             this.condutoresToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
@@ -105,6 +108,13 @@
             this.taxasMenuItem.Text = "Taxas";
             this.taxasMenuItem.ToolTipText = "Taxas";
             this.taxasMenuItem.Click += new System.EventHandler(this.taxasMenuItem_Click);
+            // 
+            // veiculosMenuItem
+            // 
+            this.veiculosMenuItem.Name = "veiculosMenuItem";
+            this.veiculosMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.veiculosMenuItem.Text = "Veículos";
+            this.veiculosMenuItem.Click += new System.EventHandler(this.veiculosMenuItem_Click);
             // 
             // toolbox
             // 
@@ -247,5 +257,6 @@
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
         private System.Windows.Forms.ToolStripMenuItem condutoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem veiculosMenuItem;
     }
 }
