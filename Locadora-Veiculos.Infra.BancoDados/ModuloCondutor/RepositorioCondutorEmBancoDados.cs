@@ -53,7 +53,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCondutor
                         [CPF] = @CPF,
                         [CNH] = @CNH,
                         [DATA_VALIDADE_CNH] = @DATA_VALIDADE_CNH,
-                        [ID_CLIENTE] = @ID_CLIENTE,
+                        [ID_CLIENTE] = @ID_CLIENTE
                 WHERE
                     [ID] = @ID";
 

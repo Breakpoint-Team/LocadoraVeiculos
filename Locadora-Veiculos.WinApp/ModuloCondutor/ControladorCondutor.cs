@@ -1,4 +1,5 @@
-﻿using Locadora_Veiculos.Dominio.ModuloCondutor;
+﻿using Locadora_Veiculos.Dominio.ModuloCliente;
+using Locadora_Veiculos.Dominio.ModuloCondutor;
 using Locadora_Veiculos.WinApp.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloCondutor;
 using System.Collections.Generic;
@@ -11,17 +12,20 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
         private readonly IRepositorioCondutor repositorioCondutor;
         private ListagemCondutoresControl listagemCondutores;
         private readonly ServicoCondutor servicoCondutor;
+        private readonly IRepositorioCliente repositorioCliente;
 
         public ControladorCondutor(IRepositorioCondutor repositorioCondutor,
+            Infra.BancoDados.ModuloCliente.RepositorioClienteEmBancoDados repositorioCliente,
             ServicoCondutor servicoCondutor)
         {
             this.repositorioCondutor = repositorioCondutor;
             this.servicoCondutor = servicoCondutor;
+            this.repositorioCliente = repositorioCliente;
         }
 
         public override void Inserir()
         {
-            TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm();
+            TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm(ObterClientes());
 
             tela.Condutor = new Condutor();
 
@@ -44,7 +48,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
                 return;
             }
 
-            TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm();
+            TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm(ObterClientes());
 
             tela.Condutor = condutorSelecionado.Clone();
 
@@ -105,6 +109,11 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             var id = listagemCondutores.ObtemIdCondutorSelecionado();
 
             return repositorioCondutor.SelecionarPorId(id);
+        }
+
+        private List<Cliente> ObterClientes()
+        {
+            return repositorioCliente.SelecionarTodos();
         }
     }
 }
