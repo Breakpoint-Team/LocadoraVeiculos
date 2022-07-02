@@ -274,7 +274,25 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             Assert.AreEqual("O campo 'Placa' não aceita caracteres especiais!", resultado.Errors[0].ErrorMessage);
         }
 
+        [TestMethod]
+        public void Placa_deve_ser_valida()
+        {
+            //arrange
+            var veiculo = new Veiculo();
+            veiculo.Modelo = "Tracker 2022";
+            veiculo.Marca = "Chevrolet";
+            veiculo.Ano = 2022;
+            veiculo.Cor = "Cinza";
+            veiculo.Placa = "1234567";
 
+            ValidadorVeiculo validador = new();
+
+            //action
+            var resultado = validador.Validate(veiculo);
+
+            //assert
+            Assert.AreEqual("Placa inválida!", resultado.Errors[0].ErrorMessage);
+        }
         #endregion
 
         #region TIPO_COMBUSTIVEL
@@ -287,7 +305,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.Marca = "Chevrolet";
             veiculo.Ano = 2022;
             veiculo.Cor = "Cinza";
-            veiculo.Placa = "ABD1234";
+            veiculo.Placa = "ABC9132";
             veiculo.QuilometragemPercorrida = 9000;
             veiculo.TipoCombustivel = null;
 
@@ -312,7 +330,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.Marca = "Chevrolet";
             veiculo.Ano = 2022;
             veiculo.Cor = "Cinza";
-            veiculo.Placa = "ABCD597";
+            veiculo.Placa = "ABD5597";
             veiculo.QuilometragemPercorrida = 200;
             veiculo.CapacidadeTanque = 0;
             veiculo.CapacidadeTanque = 0;
@@ -336,7 +354,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.Marca = "Chevrolet";
             veiculo.Ano = 2022;
             veiculo.Cor = "Cinza";
-            veiculo.Placa = "ABCD597";
+            veiculo.Placa = "ABC9597";
             veiculo.QuilometragemPercorrida = 200;
             veiculo.TipoCombustivel = "Gasolina";
             veiculo.CapacidadeTanque = 9;
@@ -362,7 +380,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.Marca = "Chevrolet";
             veiculo.Ano = 2022;
             veiculo.Cor = "Cinza";
-            veiculo.Placa = "ABCD597";
+            veiculo.Placa = "ABC7D12";
             veiculo.QuilometragemPercorrida = 200;
             veiculo.CapacidadeTanque = 13;
             veiculo.GrupoVeiculos = null;
@@ -388,7 +406,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.Marca = "Chevrolet";
             veiculo.Ano = 2022;
             veiculo.Cor = "Cinza";
-            veiculo.Placa = "ABCD597";
+            veiculo.Placa = "ABC0J97";
             veiculo.QuilometragemPercorrida = 200;
             veiculo.CapacidadeTanque = 13;
 

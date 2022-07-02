@@ -133,6 +133,7 @@
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(217, 23);
             this.txtPlaca.TabIndex = 8;
+            this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             // 
             // numericQuilometragemPercorrida
             // 

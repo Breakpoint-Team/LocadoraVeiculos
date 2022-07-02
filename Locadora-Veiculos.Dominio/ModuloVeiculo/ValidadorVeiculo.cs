@@ -35,7 +35,9 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
                 .NotNull().WithMessage("O campo 'Placa' é obrigatório!")
                 .Matches(@"^[A-Za-z0-9-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("O campo 'Placa' não aceita caracteres especiais!")
                 .MinimumLength(7).WithMessage("O campo 'Placa' deve ter 7 (sete) caracteres!")
-                .MaximumLength(7).WithMessage("O campo 'Placa' deve ter 7 (sete) caracteres!");
+                .MaximumLength(7).WithMessage("O campo 'Placa' deve ter 7 (sete) caracteres!")
+                .Matches(@"[A-Z]{3}[0-9][0-9A-Z][0-9]{2}").WithMessage("Placa inválida!");
+                
 
            
                 RuleFor(x => x.QuilometragemPercorrida)
