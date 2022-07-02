@@ -14,6 +14,9 @@ using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo;
+using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
+using Locadora_Veiculos.WinApp.ModuloVeiculo;
 
 namespace Locadora_Veiculos.WinApp
 {
@@ -57,6 +60,11 @@ namespace Locadora_Veiculos.WinApp
         }
 
         private void taxasMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
+
+        private void veiculosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
@@ -141,11 +149,13 @@ namespace Locadora_Veiculos.WinApp
             var repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
             var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
+            var repositorioVeiculo = new RepositorioVeiculoEmBancoDados();
 
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoCliente = new ServicoCliente(repositorioCliente);
             var servicoGrupoVeiculos = new ServicoGrupoVeiculos(repositorioGrupoVeiculos);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa);
+            var servicoVeiculo = new ServicoVeiculo(repositorioVeiculo);
 
             controladores = new Dictionary<string, ControladorBase>();
 
@@ -153,6 +163,10 @@ namespace Locadora_Veiculos.WinApp
             controladores.Add("Grupos de veículos", new ControladorGrupoVeiculos(repositorioGrupoVeiculos, servicoGrupoVeiculos));
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
             controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
+            controladores.Add("Veículos", new ControladorVeiculo(repositorioVeiculo, servicoVeiculo));
+
         }
+
+
     }
 }

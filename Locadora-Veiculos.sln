@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Banco de Dados", "Banco de 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Aplicação", "2 - Aplicação", "{82DF94D1-3628-4AC2-92F2-2F56699A016B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Aplicacao", "LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj", "{1F9BF070-E9E6-4A8F-8B1F-76084ECADF4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Aplicacao", "LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj", "{1F9BF070-E9E6-4A8F-8B1F-76084ECADF4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
