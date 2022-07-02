@@ -41,6 +41,11 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
                 .NotEmpty().WithMessage("O campo 'Quilometragem Percorrida' é obrigatório!")
                 .NotNull().WithMessage("O campo 'Quilometragem Percorrida' é obrigatório!");
 
+            RuleFor(x => x.TipoCombustivel)
+                .NotEmpty().WithMessage("O campo 'Tipo de combustível' é obrigatório!")
+                .NotNull().WithMessage("O campo 'Tipo de combustível' é obrigatório!");
+
+
             RuleFor(x => x.CapacidadeTanque)
                 .NotEmpty().WithMessage("O campo 'Capacidade do Tanque' é obrigatório!")
                 .NotNull().WithMessage("O campo 'Capacidade do Tanque' é obrigatório!")
@@ -49,6 +54,11 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
             RuleFor(x => x.GrupoVeiculos)
                 .NotEmpty().WithMessage("O campo 'Grupo de Veículos' é obrigatório!")
                 .NotNull().WithMessage("O campo 'Grupo de Veículos' é obrigatório!");
+
+            RuleFor(x => x.Imagem)
+            .NotEmpty().WithMessage("Por favor, selecione uma 'Imagem' do veículo!")
+            .NotNull().WithMessage("Por favor, selecione uma 'Imagem' do veículo!");
+
 
 
         }

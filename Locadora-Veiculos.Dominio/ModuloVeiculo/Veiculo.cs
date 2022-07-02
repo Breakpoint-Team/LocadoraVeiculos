@@ -10,7 +10,7 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
 
         }
 
-        public Veiculo(string modelo, string marca, int ano, string cor, string placa, TipoCombustivel tipoCombustivel, int quilometragemPercorrida, int capacidadeTanque, GrupoVeiculos grupoVeiculos)
+        public Veiculo(string modelo, string marca, int ano, string cor, string placa, string tipoCombustivel, int quilometragemPercorrida, int capacidadeTanque, GrupoVeiculos grupoVeiculos)
         {
             Modelo = modelo;
             Marca = marca;
@@ -28,16 +28,16 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
         public int Ano { get; set; }
         public string Cor { get; set; }
         public string Placa { get; set; }
-        public TipoCombustivel TipoCombustivel { get; set; }
+        public string TipoCombustivel { get; set; }
         public int QuilometragemPercorrida { get; set; }
         public decimal CapacidadeTanque { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
 
-        //public byte[] Imagem { get; set; }
-
+        public byte[] Imagem { get; set; }
+       
         public override string ToString()
         {
-            return string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", Modelo, Marca, Ano, Cor, Placa, TipoCombustivel.GetDescription(), QuilometragemPercorrida, CapacidadeTanque, GrupoVeiculos);
+            return string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", Modelo, Marca, Ano, Cor, Placa, TipoCombustivel, QuilometragemPercorrida, CapacidadeTanque, GrupoVeiculos);
         }
 
 
