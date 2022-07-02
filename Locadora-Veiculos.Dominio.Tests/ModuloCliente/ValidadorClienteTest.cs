@@ -43,7 +43,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             var resultado2 = validador.Validate(c2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Nome' deve ter no mínimo 3 caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Nome' deve ter no mínimo 3 (três) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -143,7 +143,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             var resultado2 = validador.Validate(c2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Rua' deve ter no mínimo 5 caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Rua' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -183,7 +183,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             var resultado2 = validador.Validate(c2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Bairro' deve ter no mínimo 5 caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Bairro' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -223,7 +223,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             var resultado2 = validador.Validate(c2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Cidade' deve ter no mínimo 5 caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Cidade' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
