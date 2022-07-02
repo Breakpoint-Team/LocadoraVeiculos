@@ -23,7 +23,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloTaxa
         }
 
         [TestMethod]
-        public void Descricao_nao_deve_ter_caracteres_especiais()
+        public void Descricao_nao_deve_ter_caracteres_especiais_e_numeros()
         {
             //arrange
             var taxa = new Taxa();
@@ -35,7 +35,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloTaxa
             var resultado = validador.Validate(taxa);
 
             //assert
-            Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Descrição' não aceita caracteres especiais e números!", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
