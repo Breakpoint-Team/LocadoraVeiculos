@@ -4,13 +4,8 @@ using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloVeiculo
@@ -50,6 +45,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
                     numericCapacidadeTanque.Value = veiculo.CapacidadeTanque;
                     comboBoxTipoCombustivel.Text = veiculo.TipoCombustivel;
                     comboBoxGrupoVeiculos.Text = veiculo.GrupoVeiculos.Nome;
+                    ExibirImagem();
                 }
             }
         }
@@ -83,7 +79,6 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             pictureBoxImagem.Image = null;
         }
 
-
         private void ObterDadosTela()
         {
             veiculo.Modelo = txtModelo.Text;
@@ -109,10 +104,11 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             return repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome(nome);
         }
 
+        #region IMAGEM DO VEÍCULO
         private void btnSelecionarImagem_Click(object sender, EventArgs e)
         {
             var openFile = new OpenFileDialog();
-            openFile.Filter = "|*.jpg; *png";
+            openFile.Filter = "|*.jpg; *.jpeg; *.png; *.jfif;";
             openFile.Multiselect = false;
 
             if (openFile.ShowDialog() == DialogResult.OK)
@@ -140,6 +136,17 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             return imagem;
         }
 
+        private void ExibirImagem()
+        {
+            using(var img = new MemoryStream(veiculo.Imagem))
+            {
+                pictureBoxImagem.Image = Image.FromStream(img);
+            }
+        }
+
+        #endregion
+
+        #region CARREGAR COMBOBOX
         private void CarregarTipoCombustivel()
         {
             comboBoxTipoCombustivel.Items.Clear();
@@ -162,6 +169,6 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
         }
 
-
+        #endregion
     }
 }

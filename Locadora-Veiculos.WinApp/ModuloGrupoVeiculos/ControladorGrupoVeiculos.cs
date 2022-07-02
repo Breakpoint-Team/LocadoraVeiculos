@@ -64,6 +64,16 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
                 return;
             }
 
+
+            int qtdVeiculosRelacionados = repositorioGrupoVeiculos.QuantidadeVeiculosRelacionadosAoGrupo(grupoVeiculosSelecionado.Id);
+            if (qtdVeiculosRelacionados > 0)
+            {
+                MessageBox.Show("Não é possível excluir um Grupo de Veículos que possui Veículos relacionados",
+                "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+
             DialogResult resultado = MessageBox.Show("Deseja realmente excluir o grupo de veículos?",
             "Exclusão de Grupo de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 

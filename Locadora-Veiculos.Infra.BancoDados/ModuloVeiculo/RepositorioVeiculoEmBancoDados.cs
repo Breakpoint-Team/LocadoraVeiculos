@@ -1,6 +1,7 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using System;
+using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
 {
@@ -101,9 +102,34 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
             INNER JOIN [TBGRUPOVEICULOS] AS GRUPOVEICULOS
                 ON GRUPOVEICULOS.ID = VEICULO.ID_GRUPO_VEICULOS";
 
+        protected string sqlSelecionarVeiculoPorPlaca =>
+            @"SELECT
+               VEICULO.[ID],
+               VEICULO.[MODELO],
+               VEICULO.[MARCA],
+               VEICULO.[ANO],
+               VEICULO.[COR],
+               VEICULO.[PLACA],
+               VEICULO.[TIPO_COMBUSTIVEL],
+               VEICULO.[QUILOMETRAGEM_PERCORRIDA],
+               VEICULO.[CAPACIDADE_TANQUE],
+               VEICULO.[ID_GRUPO_VEICULOS],
+               VEICULO.[IMAGEM],
+
+               GRUPOVEICULOS.[ID] GRUPOVEICULOS_ID,
+               GRUPOVEICULOS.[NOME] GRUPOVEICULOS_NOME
+
+            FROM [TBVEICULO] AS VEICULO
+
+            INNER JOIN [TBGRUPOVEICULOS] AS GRUPOVEICULOS
+                ON GRUPOVEICULOS.ID = VEICULO.ID_GRUPO_VEICULOS
+
+            WHERE VEICULO.PLACA = @PLACA
+            ";
+
         public Veiculo SelecionarVeiculoPorPlaca(string placa)
         {
-            throw new NotImplementedException();
+            return SelecionarPorParametro(sqlSelecionarVeiculoPorPlaca, new SqlParameter("PLACA", placa));
         }
     }
 }

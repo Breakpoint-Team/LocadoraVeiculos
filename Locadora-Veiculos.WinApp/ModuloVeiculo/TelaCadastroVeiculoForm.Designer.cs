@@ -61,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(108, 23);
+            this.label1.Location = new System.Drawing.Point(115, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 15);
             this.label1.TabIndex = 0;
@@ -70,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(121, 110);
+            this.label2.Location = new System.Drawing.Point(128, 114);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 15);
             this.label2.TabIndex = 1;
@@ -79,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(130, 81);
+            this.label3.Location = new System.Drawing.Point(137, 85);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 15);
             this.label3.TabIndex = 2;
@@ -88,7 +88,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(39, 197);
+            this.label4.Location = new System.Drawing.Point(46, 201);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(120, 15);
             this.label4.TabIndex = 3;
@@ -97,7 +97,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 226);
+            this.label5.Location = new System.Drawing.Point(34, 230);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(132, 15);
             this.label5.TabIndex = 4;
@@ -106,7 +106,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(413, 23);
+            this.label6.Location = new System.Drawing.Point(426, 27);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 15);
             this.label6.TabIndex = 5;
@@ -114,21 +114,21 @@
             // 
             // txtModelo
             // 
-            this.txtModelo.Location = new System.Drawing.Point(165, 23);
+            this.txtModelo.Location = new System.Drawing.Point(172, 24);
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(217, 23);
             this.txtModelo.TabIndex = 6;
             // 
             // txtCor
             // 
-            this.txtCor.Location = new System.Drawing.Point(165, 81);
+            this.txtCor.Location = new System.Drawing.Point(172, 81);
             this.txtCor.Name = "txtCor";
             this.txtCor.Size = new System.Drawing.Size(217, 23);
             this.txtCor.TabIndex = 7;
             // 
             // txtPlaca
             // 
-            this.txtPlaca.Location = new System.Drawing.Point(165, 110);
+            this.txtPlaca.Location = new System.Drawing.Point(172, 110);
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(217, 23);
@@ -136,7 +136,7 @@
             // 
             // numericQuilometragemPercorrida
             // 
-            this.numericQuilometragemPercorrida.Location = new System.Drawing.Point(165, 168);
+            this.numericQuilometragemPercorrida.Location = new System.Drawing.Point(172, 168);
             this.numericQuilometragemPercorrida.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -150,7 +150,7 @@
             // 
             this.comboBoxGrupoVeiculos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGrupoVeiculos.FormattingEnabled = true;
-            this.comboBoxGrupoVeiculos.Location = new System.Drawing.Point(165, 257);
+            this.comboBoxGrupoVeiculos.Location = new System.Drawing.Point(172, 255);
             this.comboBoxGrupoVeiculos.Name = "comboBoxGrupoVeiculos";
             this.comboBoxGrupoVeiculos.Size = new System.Drawing.Size(217, 23);
             this.comboBoxGrupoVeiculos.TabIndex = 11;
@@ -158,7 +158,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(116, 52);
+            this.label7.Location = new System.Drawing.Point(123, 56);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 15);
             this.label7.TabIndex = 12;
@@ -167,7 +167,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(127, 139);
+            this.label8.Location = new System.Drawing.Point(134, 143);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(32, 15);
             this.label8.TabIndex = 13;
@@ -176,7 +176,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 171);
+            this.label9.Location = new System.Drawing.Point(12, 172);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(154, 15);
             this.label9.TabIndex = 14;
@@ -185,7 +185,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(54, 257);
+            this.label10.Location = new System.Drawing.Point(61, 259);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(105, 15);
             this.label10.TabIndex = 15;
@@ -193,16 +193,16 @@
             // 
             // txtMarca
             // 
-            this.txtMarca.Location = new System.Drawing.Point(165, 52);
+            this.txtMarca.Location = new System.Drawing.Point(172, 52);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(217, 23);
             this.txtMarca.TabIndex = 16;
             // 
             // numericAno
             // 
-            this.numericAno.Location = new System.Drawing.Point(165, 139);
+            this.numericAno.Location = new System.Drawing.Point(172, 139);
             this.numericAno.Maximum = new decimal(new int[] {
-            2022,
+            3000,
             0,
             0,
             0});
@@ -223,7 +223,7 @@
             // numericCapacidadeTanque
             // 
             this.numericCapacidadeTanque.DecimalPlaces = 2;
-            this.numericCapacidadeTanque.Location = new System.Drawing.Point(165, 226);
+            this.numericCapacidadeTanque.Location = new System.Drawing.Point(172, 226);
             this.numericCapacidadeTanque.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -246,9 +246,9 @@
             // pictureBoxImagem
             // 
             this.pictureBoxImagem.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pictureBoxImagem.Location = new System.Drawing.Point(413, 44);
+            this.pictureBoxImagem.Location = new System.Drawing.Point(426, 52);
             this.pictureBoxImagem.Name = "pictureBoxImagem";
-            this.pictureBoxImagem.Size = new System.Drawing.Size(250, 200);
+            this.pictureBoxImagem.Size = new System.Drawing.Size(237, 184);
             this.pictureBoxImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxImagem.TabIndex = 20;
             this.pictureBoxImagem.TabStop = false;
@@ -256,7 +256,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(587, 307);
+            this.btnCancelar.Location = new System.Drawing.Point(588, 293);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 24;
@@ -265,7 +265,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(506, 307);
+            this.btnLimpar.Location = new System.Drawing.Point(507, 293);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 23;
@@ -276,7 +276,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(425, 307);
+            this.btnGravar.Location = new System.Drawing.Point(426, 293);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
             this.btnGravar.TabIndex = 22;
@@ -286,9 +286,9 @@
             // 
             // btnSelecionarImagem
             // 
-            this.btnSelecionarImagem.Location = new System.Drawing.Point(465, 250);
+            this.btnSelecionarImagem.Location = new System.Drawing.Point(469, 242);
             this.btnSelecionarImagem.Name = "btnSelecionarImagem";
-            this.btnSelecionarImagem.Size = new System.Drawing.Size(147, 23);
+            this.btnSelecionarImagem.Size = new System.Drawing.Size(150, 23);
             this.btnSelecionarImagem.TabIndex = 25;
             this.btnSelecionarImagem.Text = "selecionar imagem";
             this.btnSelecionarImagem.UseVisualStyleBackColor = true;
@@ -298,7 +298,7 @@
             // 
             this.comboBoxTipoCombustivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoCombustivel.FormattingEnabled = true;
-            this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(165, 197);
+            this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(172, 197);
             this.comboBoxTipoCombustivel.Name = "comboBoxTipoCombustivel";
             this.comboBoxTipoCombustivel.Size = new System.Drawing.Size(217, 23);
             this.comboBoxTipoCombustivel.TabIndex = 19;
@@ -307,7 +307,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 342);
+            this.ClientSize = new System.Drawing.Size(676, 335);
             this.Controls.Add(this.btnSelecionarImagem);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpar);

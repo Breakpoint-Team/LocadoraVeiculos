@@ -10,14 +10,14 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
             RuleFor(x => x.Modelo)
                 .NotEmpty().WithMessage("O campo 'Modelo' é obrigatório!")
                 .NotNull().WithMessage("O campo 'Modelo' é obrigatório!")
-                .Matches(@"^[A-Za-z0-9-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("Caracteres especiais não são permitidos!")
-                .MinimumLength(3).WithMessage("O campo 'Modelo' deve ter no mínimo 3 (três) caracteres!");
+                .Matches(@"^[A-Za-z0-9-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("O campo 'Modelo' não aceita caracteres especiais!")
+                .MinimumLength(2).WithMessage("O campo 'Modelo' deve ter no mínimo 2 (dois) caracteres!");
 
             RuleFor(x => x.Marca)
                 .NotEmpty().WithMessage("O campo 'Marca' é obrigatório!")
                 .NotNull().WithMessage("O campo 'Marca' é obrigatório!")
-                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("Caracteres especiais não são permitidos!")
-                .MinimumLength(3).WithMessage("O campo 'Marca' deve ter no mínimo 3 (três) caracteres!");
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("O campo 'Modelo' não aceita caracteres especiais e números!")
+                .MinimumLength(2).WithMessage("O campo 'Marca' deve ter no mínimo 2 (dois) caracteres!");
 
             RuleFor(x => x.Ano)
                 .NotEmpty().WithMessage("O campo 'Ano' é obrigatório!")
@@ -37,9 +37,9 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
                 .MinimumLength(7).WithMessage("O campo 'Placa' deve ter 7 (sete) caracteres!")
                 .MaximumLength(7).WithMessage("O campo 'Placa' deve ter 7 (sete) caracteres!");
 
-            RuleFor(x => x.QuilometragemPercorrida)
-                .NotEmpty().WithMessage("O campo 'Quilometragem Percorrida' é obrigatório!")
-                .NotNull().WithMessage("O campo 'Quilometragem Percorrida' é obrigatório!");
+           
+                RuleFor(x => x.QuilometragemPercorrida)
+                .GreaterThan(-1).WithMessage("O campo 'Quilometragem Percorrida' é obrigatório!");
 
             RuleFor(x => x.TipoCombustivel)
                 .NotEmpty().WithMessage("O campo 'Tipo de combustível' é obrigatório!")
@@ -60,7 +60,10 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
             .NotNull().WithMessage("Por favor, selecione uma 'Imagem' do veículo!");
 
 
-
         }
+
+
+
+        
     }
 }
