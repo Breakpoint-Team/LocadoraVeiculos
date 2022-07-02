@@ -314,6 +314,8 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.Placa = "ABCD597";
             veiculo.QuilometragemPercorrida = 200;
             veiculo.CapacidadeTanque = 0;
+            veiculo.CapacidadeTanque = 0;
+            veiculo.TipoCombustivel = "Gasolina";
 
             ValidadorVeiculo validador = new();
 
@@ -335,6 +337,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.Cor = "Cinza";
             veiculo.Placa = "ABCD597";
             veiculo.QuilometragemPercorrida = 200;
+            veiculo.TipoCombustivel = "Gasolina";
             veiculo.CapacidadeTanque = 9;
 
             ValidadorVeiculo validador = new();
@@ -362,6 +365,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.QuilometragemPercorrida = 200;
             veiculo.CapacidadeTanque = 13;
             veiculo.GrupoVeiculos = null;
+            veiculo.TipoCombustivel = "Gasolina";
 
             ValidadorVeiculo validador = new();
 
