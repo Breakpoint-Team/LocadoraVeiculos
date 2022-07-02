@@ -23,11 +23,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloGrupoVeiculos
         }
         
         [TestMethod]
-        public void Nome_nao_deve_ter_caracteres_especiais()
+        public void Nome_nao_deve_ter_caracteres_especiais_e_numeros()
         {
             //arrange
             var grupoVeiculos = new GrupoVeiculos();
-            grupoVeiculos.Nome = "Uber#@";
+            grupoVeiculos.Nome = "Ub3r#@";
 
             ValidadorGrupoVeiculos validador = new();
 
@@ -35,7 +35,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloGrupoVeiculos
             var resultado = validador.Validate(grupoVeiculos);
 
             //assert
-            Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Nome' não aceita caracteres especiais e números!", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
