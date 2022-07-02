@@ -56,7 +56,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             grid.Rows.Clear();
             foreach (var v in veiculos)
             {
-                grid.Rows.Add(v.Id, v.Modelo, v.Marca, v.Ano, v.Cor, v.Placa, v.TipoCombustivel, v.QuilometragemPercorrida, v.CapacidadeTanque, v.GrupoVeiculos.Nome);
+                grid.Rows.Add(v.Id, v.Modelo, v.Marca, v.Ano, v.Cor, v.Placa, v.TipoCombustivel, v.QuilometragemPercorrida + " Km", v.CapacidadeTanque + " Litros", v.GrupoVeiculos.Nome);
             }
         }
 

@@ -1,12 +1,9 @@
-﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
+﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
+using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.WinApp.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloVeiculo
@@ -16,15 +13,25 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
         private IRepositorioVeiculo repositorioVeiculo;
         private ListagemVeiculoControl listagemVeiculo;
         private ServicoVeiculo servicoVeiculo;
+        private IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
 
-        public ControladorVeiculo(IRepositorioVeiculo repositorioVeiculo, ServicoVeiculo servicoVeiculo)
+        public ControladorVeiculo(IRepositorioVeiculo repositorioVeiculo, ServicoVeiculo servicoVeiculo, IRepositorioGrupoVeiculos repositorioGrupoVeiculos)
         {
             this.repositorioVeiculo = repositorioVeiculo;
             this.servicoVeiculo = servicoVeiculo;
+            this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
         }
 
         public override void Inserir()
         {
+            int qtd = repositorioGrupoVeiculos.QuantidadeGrupoVeiculosCadastrados();
+            if (qtd == 0)
+            {
+                MessageBox.Show("Para cadastrar um Veículo, é necessário que haja um Grupo de Veículos cadastrado!",
+                "Inserção de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             var tela = new TelaCadastroVeiculoForm();
             tela.Veiculo = new Veiculo();
             tela.GravarRegistro = servicoVeiculo.Inserir;
@@ -77,7 +84,6 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
                 CarregarVeiculos();
             }
         }
-
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {

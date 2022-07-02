@@ -15,11 +15,11 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
             {
                 RuleFor(x => x.Nome.Length)
                 .GreaterThan(2)
-                .WithMessage("O campo 'Nome' deve ter no mínimo 3 caracteres!");
+                .WithMessage("O campo 'Nome' deve ter no mínimo 3 (três) caracteres!");
 
                 RuleFor(x => x.Nome)
                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-                .WithMessage("Caracteres especiais não são permitidos!");
+                .WithMessage("O campo 'Nome' não aceita caracteres especiais!");
             });
 
             RuleFor(x => x.Rua)
@@ -30,11 +30,11 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
             {
                 RuleFor(x => x.Rua.Length)
                 .GreaterThan(4)
-                .WithMessage("O campo 'Rua' deve ter no mínimo 5 caracteres!");
+                .WithMessage("O campo 'Rua' deve ter no mínimo 5 (cinco) caracteres!");
 
                 RuleFor(x => x.Rua)
                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-                .WithMessage("Caracteres especiais não são permitidos!");
+                .WithMessage("O campo 'Rua' não aceita caracteres especiais!");
 
             });
 
@@ -46,11 +46,11 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
             {
                 RuleFor(x => x.Bairro.Length)
                 .GreaterThan(4)
-                .WithMessage("O campo 'Bairro' deve ter no mínimo 5 caracteres!");
+                .WithMessage("O campo 'Bairro' deve ter no mínimo 5 (cinco) caracteres!");
 
                 RuleFor(x => x.Bairro)
                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-                .WithMessage("Caracteres especiais não são permitidos!");
+                .WithMessage("O campo 'Bairro' não aceita caracteres especiais e números!");
             });
 
             RuleFor(x => x.Cidade)
@@ -61,11 +61,11 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
             {
                 RuleFor(x => x.Cidade.Length)
                 .GreaterThan(4)
-                .WithMessage("O campo 'Cidade' deve ter no mínimo 5 caracteres!");
+                .WithMessage("O campo 'Cidade' deve ter no mínimo 5 (cinco) caracteres!");
 
                 RuleFor(x => x.Cidade)
                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-               .WithMessage("Caracteres especiais não são permitidos!");
+               .WithMessage("O campo 'Cidade' não aceita caracteres especiais e números!");
 
             });
 
@@ -81,7 +81,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
                 RuleFor(x => x.Estado)
                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-               .WithMessage("Caracteres especiais não são permitidos!");
+               .WithMessage("O campo 'Estado' não aceita caracteres especiais e números");
 
             });
 

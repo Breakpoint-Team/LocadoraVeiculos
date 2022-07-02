@@ -39,9 +39,9 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
             var tipoCombustivel = Convert.ToString(leitorRegistro["TIPO_COMBUSTIVEL"]);
             var quilometragemPercorrida = Convert.ToInt32(leitorRegistro["QUILOMETRAGEM_PERCORRIDA"]);
             var capacidadeTanque = Convert.ToDecimal(leitorRegistro["CAPACIDADE_TANQUE"]);
-            var imagem = Convert.ToString(leitorRegistro["IMAGEM"]);
+            var imagem = (byte[])(leitorRegistro["IMAGEM"]);
 
-            byte[] bytes = Encoding.ASCII.GetBytes(imagem);
+           // byte[] bytes = Encoding.ASCII.GetBytes(imagem);
 
 
 
@@ -58,7 +58,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
                 QuilometragemPercorrida = quilometragemPercorrida,
                 CapacidadeTanque = capacidadeTanque,
                 GrupoVeiculos = new MapeadorGrupoVeiculos().ConverterRegistro(leitorRegistro),
-                Imagem = bytes
+                Imagem = imagem
             };
 
         }

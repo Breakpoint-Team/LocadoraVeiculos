@@ -43,8 +43,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
 
             var resultadoValidacao = validador.Validate(veiculo);
 
-            //if (PlacaDuplicada(veiculo))
-            //    resultadoValidacao.Errors.Add(new ValidationFailure("Placa", "Placa já está cadastrada!"));
+            if (PlacaDuplicada(veiculo))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Placa", "Placa já está cadastrada!"));
 
             return resultadoValidacao;
         }
