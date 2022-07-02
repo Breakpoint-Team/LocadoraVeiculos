@@ -1,4 +1,5 @@
-﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
+﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
+using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -25,11 +26,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
         }
 
         [TestMethod]
-        public void Modelo_deve_ter_no_minimo_tres_caracteres()
+        public void Modelo_deve_ter_no_minimo_dois_caracteres()
         {
             //arrange
             var veiculo = new Veiculo();
-            veiculo.Modelo = "AA";
+            veiculo.Modelo = "A";
 
             ValidadorVeiculo validador = new();
 
@@ -37,7 +38,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             var resultado = validador.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("O campo 'Modelo' deve ter no mínimo 3 (três) caracteres!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Modelo' deve ter no mínimo 2 (dois) caracteres!", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -53,7 +54,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             var resultado = validador.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Modelo' não aceita caracteres especiais!", resultado.Errors[0].ErrorMessage);
         }
 
         #endregion
@@ -77,12 +78,12 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
         }
 
         [TestMethod]
-        public void Marca_deve_ter_no_minimo_tres_caracteres()
+        public void Marca_deve_ter_no_minimo_dois_caracteres()
         {
             //arrange
             var veiculo = new Veiculo();
             veiculo.Modelo = "Tracker 2023";
-            veiculo.Marca = "AA";
+            veiculo.Marca = "A";
 
             ValidadorVeiculo validador = new();
 
@@ -90,11 +91,11 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             var resultado = validador.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("O campo 'Marca' deve ter no mínimo 3 (três) caracteres!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Marca' deve ter no mínimo 2 (dois) caracteres!", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
-        public void Marca_nao_deve_ter_caracteres_especiais()
+        public void Marca_nao_deve_ter_caracteres_especiais_e_numeros()
         {
             //arrange
             var veiculo = new Veiculo();
@@ -107,7 +108,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             var resultado = validador.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Marca' não aceita caracteres especiais e números!", resultado.Errors[0].ErrorMessage);
         }
 
         #endregion
@@ -180,7 +181,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.Modelo = "Tracker 2022";
             veiculo.Marca = "Chevrolet";
             veiculo.Ano = 2022;
-            veiculo.Cor = "aa";
+            veiculo.Cor = "a";
 
             ValidadorVeiculo validador = new();
 
@@ -192,14 +193,14 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
         }
 
         [TestMethod]
-        public void Cor_nao_deve_ter_caracteres_especiais()
+        public void Cor_nao_deve_ter_caracteres_especiais_e_numeros()
         {
             //arrange
             var veiculo = new Veiculo();
             veiculo.Modelo = "Tracker 2022";
             veiculo.Marca = "Chevrolet";
             veiculo.Ano = 2022;
-            veiculo.Cor = "aa%$1";
+            veiculo.Cor = "R0S@";
 
             ValidadorVeiculo validador = new();
 
@@ -207,7 +208,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             var resultado = validador.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Cor' não aceita caracteres especiais e números!", resultado.Errors[0].ErrorMessage);
         }
 
         #endregion
@@ -270,16 +271,15 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             var resultado = validador.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Placa' não aceita caracteres especiais!", resultado.Errors[0].ErrorMessage);
         }
 
 
         #endregion
 
-        #region QUILOMETRAGEM_PERCORRIDA
-
+        #region TIPO_COMBUSTIVEL
         [TestMethod]
-        public void Quilometragem_percorrida__deve_ser_obrigatorio()
+        public void Tipo_de_combustivel_deve_ser_obrigatorio()
         {
             //arrange
             var veiculo = new Veiculo();
@@ -287,8 +287,9 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             veiculo.Marca = "Chevrolet";
             veiculo.Ano = 2022;
             veiculo.Cor = "Cinza";
-            veiculo.Placa = "ABCD597";
-            veiculo.QuilometragemPercorrida = 0;
+            veiculo.Placa = "ABD1234";
+            veiculo.QuilometragemPercorrida = 9000;
+            veiculo.TipoCombustivel = null;
 
             ValidadorVeiculo validador = new();
 
@@ -296,7 +297,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             var resultado = validador.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("O campo 'Quilometragem Percorrida' é obrigatório!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Tipo de combustível' é obrigatório!", resultado.Errors[0].ErrorMessage);
         }
 
         #endregion
@@ -375,6 +376,39 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
             //assert
             Assert.AreEqual("O campo 'Grupo de Veículos' é obrigatório!", resultado.Errors[0].ErrorMessage);
         }
+        #endregion
+
+        #region IMAGEM
+        [TestMethod]
+        public void Imagem_deve_ser_obrigatorio()
+        {
+            //arrange
+            var veiculo = new Veiculo();
+            veiculo.Modelo = "Tracker 2022";
+            veiculo.Marca = "Chevrolet";
+            veiculo.Ano = 2022;
+            veiculo.Cor = "Cinza";
+            veiculo.Placa = "ABCD597";
+            veiculo.QuilometragemPercorrida = 200;
+            veiculo.CapacidadeTanque = 13;
+
+            var gv = new GrupoVeiculos();
+            veiculo.GrupoVeiculos = gv;
+
+            veiculo.TipoCombustivel = "Gasolina";
+
+            veiculo.Imagem = null;
+
+            ValidadorVeiculo validador = new();
+
+            //action
+            var resultado = validador.Validate(veiculo);
+
+            //assert
+            Assert.AreEqual("Por favor, selecione uma 'Imagem' do veículo!", resultado.Errors[0].ErrorMessage);
+
+        }
+
         #endregion
     }
 }
