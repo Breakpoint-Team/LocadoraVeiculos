@@ -28,7 +28,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloFuncionario
         }
 
         [TestMethod]
-        public void Nome_nao_deve_ter_caracteres_especiais_e_numeros()
+        public void Nome_nao_deve_ter_caracteres_especiais()
         {
             //arrange
             var funcionario = new Funcionario();
@@ -40,7 +40,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloFuncionario
             var resultado = validador.Validate(funcionario);
 
             //assert
-            Assert.AreEqual("O campo 'Nome' não aceita caracteres especiais e números!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("Caracteres especiais não são permitidos!", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloFuncionario
             var resultado = validador.Validate(funcionario);
 
             //assert
-            Assert.AreEqual("O campo 'Nome' deve ter no mínimo 2 (dois) caracteres!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Nome' deve ter no mínimo 2 caracteres!", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -90,7 +90,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloFuncionario
             var resultado = validador.Validate(funcionario);
 
             //assert
-            Assert.AreEqual("O campo 'Login' deve ter no mínimo 4 (quatro) caracteres!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Login' deve ter no mínimo 4 caracteres!", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]

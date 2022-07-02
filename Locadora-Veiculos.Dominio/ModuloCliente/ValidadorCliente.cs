@@ -19,7 +19,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
                 RuleFor(x => x.Nome)
                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-                .WithMessage("O campo 'Nome' não aceita caracteres especiais e números!");
+                .WithMessage("Caracteres especiais não são permitidos!");
             });
 
             RuleFor(x => x.Rua)
@@ -33,8 +33,8 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                 .WithMessage("O campo 'Rua' deve ter no mínimo 5 caracteres!");
 
                 RuleFor(x => x.Rua)
-                 .Matches(@"^[A-Za-z0-9-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-                .WithMessage("O campo 'Rua' não aceita caracteres especiais!");
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
+                .WithMessage("Caracteres especiais não são permitidos!");
 
             });
 
@@ -50,7 +50,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
                 RuleFor(x => x.Bairro)
                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-                .WithMessage("O campo 'Bairro' não aceita caracteres especiais e números!");
+                .WithMessage("Caracteres especiais não são permitidos!");
             });
 
             RuleFor(x => x.Cidade)
@@ -65,7 +65,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
                 RuleFor(x => x.Cidade)
                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-               .WithMessage("O campo 'Cidade' não aceita caracteres especiais e números!");
+               .WithMessage("Caracteres especiais não são permitidos!");
 
             });
 
@@ -81,7 +81,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
                 RuleFor(x => x.Estado)
                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-               .WithMessage("O campo 'Estado' não aceita caracteres especiais e números!");
+               .WithMessage("Caracteres especiais não são permitidos!");
 
             });
 

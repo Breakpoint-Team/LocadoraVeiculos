@@ -9,7 +9,7 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
             RuleFor(x => x.Descricao)
                 .NotEmpty().WithMessage("O campo 'Descrição' é obrigatório!")
                 .NotNull().WithMessage("O campo 'Descrição' é obrigatório!")
-                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("O campo 'Descrição' não aceita caracteres especiais e números!")
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("Caracteres especiais não são permitidos!")
                 .MinimumLength(2).WithMessage("O campo 'Descrição' deve ter no mínimo 2 caracteres!");
 
             RuleFor(x => x.Valor)
