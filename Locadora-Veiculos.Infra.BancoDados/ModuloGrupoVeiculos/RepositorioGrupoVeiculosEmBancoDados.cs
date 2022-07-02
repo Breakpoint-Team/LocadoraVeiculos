@@ -12,7 +12,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
         protected override string sqlInserir =>
             @"INSERT INTO [TBGRUPOVEICULOS]
                 (
-                    [NOME]     
+                    [NOME]    
                 )
             VALUES
                 (
@@ -31,8 +31,8 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
 
         protected override string sqlSelecionarPorId =>
             @"SELECT 
-                [ID],       
-                [NOME]
+                GRUPOVEICULOS.[ID] GRUPOVEICULOS_ID,       
+                GRUPOVEICULOS.[NOME] GRUPOVEICULOS_NOME
             FROM
                 [TBGRUPOVEICULOS]
             WHERE 
@@ -41,14 +41,14 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
         protected override string sqlSelecionarTodos =>
             @"SELECT 
                 [ID],       
-                [NOME]
+                [NOME] GRUPOVEICULOS_NOME
             FROM
                 [TBGRUPOVEICULOS]";
 
         protected string sqlSelecionarGrupoVeiculosPorNome =>
             @"SELECT 
                 [ID],       
-                [NOME]
+                [NOME] GRUPOVEICULOS_NOME
             FROM
                 [TBGRUPOVEICULOS]
             WHERE 
