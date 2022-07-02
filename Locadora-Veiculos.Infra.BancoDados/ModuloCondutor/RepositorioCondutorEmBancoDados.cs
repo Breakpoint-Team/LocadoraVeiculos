@@ -49,7 +49,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCondutor
                         [RUA] = @RUA,
                         [BAIRRO] = @BAIRRO,
                         [CIDADE] = @CIDADE,
-                        [ESTADO] = @ESTADO],
+                        [ESTADO] = @ESTADO,
                         [CPF] = @CPF,
                         [CNH] = @CNH,
                         [DATA_VALIDADE_CNH] = @DATA_VALIDADE_CNH,

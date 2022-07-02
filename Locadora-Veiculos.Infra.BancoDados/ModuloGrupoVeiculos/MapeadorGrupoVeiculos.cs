@@ -10,12 +10,12 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
         public override void ConfigurarParametros(GrupoVeiculos registro, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("ID", registro.Id);
-            comando.Parameters.AddWithValue("GRUPOVEICULOS_NOME", registro.Nome);
+            comando.Parameters.AddWithValue("NOME", registro.Nome);
         }
 
         public override GrupoVeiculos ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            var id = Convert.ToInt32(leitorRegistro["ID"]);
+            var id = Convert.ToInt32(leitorRegistro["GRUPOVEICULOS_ID"]);
             var nome = Convert.ToString(leitorRegistro["GRUPOVEICULOS_NOME"]);
 
             var g = new GrupoVeiculos();
