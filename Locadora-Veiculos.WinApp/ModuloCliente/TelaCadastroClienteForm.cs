@@ -78,7 +78,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             cliente.Email = txtEmail.Text;
             cliente.Telefone = txtTelefone.Text;
             
-            //remover
             cliente.Rua = txtRua.Text;
             cliente.Bairro = txtBairro.Text;
             cliente.Cidade = txtCidade.Text;
@@ -176,6 +175,5 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
         }
 
         #endregion
-
     }
 }

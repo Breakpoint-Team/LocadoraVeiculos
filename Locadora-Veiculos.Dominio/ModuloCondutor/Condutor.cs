@@ -47,6 +47,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public Cliente Cliente { get; set; }
+        public bool ClienteCondutor => Cpf == Cliente.Documento ? true : false;
 
         #endregion
 
