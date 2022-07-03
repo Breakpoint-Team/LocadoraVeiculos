@@ -25,6 +25,15 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
 
         public override void Inserir()
         {
+            int qtd = repositorioCliente.QuantidadeClientesCadastrados();
+
+            if (qtd == 0)
+            {
+                MessageBox.Show("Para cadastrar um Condutor, é necessário que haja um Cliente cadastrado!",
+                "Inserção de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm(ObterClientes());
 
             tela.Condutor = new Condutor();
@@ -43,7 +52,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
 
             if (condutorSelecionado == null)
             {
-                MessageBox.Show("Selecione um condutor primeiro",
+                MessageBox.Show("Selecione um condutor primeiro!",
                 "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -66,7 +75,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
 
             if (condutorSelecionado == null)
             {
-                MessageBox.Show("Selecione um condutor primeiro",
+                MessageBox.Show("Selecione um condutor primeiro!",
                 "Exclusão de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -95,6 +104,8 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             return listagemCondutores;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private void CarregarCondutores()
         {
             List<Condutor> condutores = repositorioCondutor.SelecionarTodos();
@@ -115,5 +126,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
         {
             return repositorioCliente.SelecionarTodos();
         }
+
+        #endregion
     }
 }

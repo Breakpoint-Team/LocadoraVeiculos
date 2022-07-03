@@ -74,7 +74,7 @@
             this.radioButtonDiario.Location = new System.Drawing.Point(113, 83);
             this.radioButtonDiario.Name = "radioButtonDiario";
             this.radioButtonDiario.Size = new System.Drawing.Size(56, 19);
-            this.radioButtonDiario.TabIndex = 3;
+            this.radioButtonDiario.TabIndex = 2;
             this.radioButtonDiario.TabStop = true;
             this.radioButtonDiario.Text = "Diário";
             this.radioButtonDiario.UseVisualStyleBackColor = true;
@@ -85,7 +85,7 @@
             this.radioButtonFixo.Location = new System.Drawing.Point(175, 83);
             this.radioButtonFixo.Name = "radioButtonFixo";
             this.radioButtonFixo.Size = new System.Drawing.Size(47, 19);
-            this.radioButtonFixo.TabIndex = 4;
+            this.radioButtonFixo.TabIndex = 3;
             this.radioButtonFixo.TabStop = true;
             this.radioButtonFixo.Text = "Fixo";
             this.radioButtonFixo.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@
             this.txtDescricao.Location = new System.Drawing.Point(113, 24);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(209, 23);
-            this.txtDescricao.TabIndex = 5;
+            this.txtDescricao.TabIndex = 0;
             // 
             // numericValor
             // 
@@ -108,7 +108,7 @@
             0});
             this.numericValor.Name = "numericValor";
             this.numericValor.Size = new System.Drawing.Size(109, 23);
-            this.numericValor.TabIndex = 6;
+            this.numericValor.TabIndex = 1;
             // 
             // btnCancelar
             // 
@@ -116,7 +116,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(247, 128);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 21;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -125,7 +125,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(166, 128);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpar.TabIndex = 20;
+            this.btnLimpar.TabIndex = 5;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -136,7 +136,7 @@
             this.btnGravar.Location = new System.Drawing.Point(85, 128);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
-            this.btnGravar.TabIndex = 19;
+            this.btnGravar.TabIndex = 4;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);

@@ -33,7 +33,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                 .WithMessage("O campo 'Rua' deve ter no mínimo 5 (cinco) caracteres!");
 
                 RuleFor(x => x.Rua)
-                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0123456789 ]*$")
                 .WithMessage("O campo 'Rua' não aceita caracteres especiais!");
 
             });
@@ -148,20 +148,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                   }
               });
 
-            //Transferir para o validador de condutor
-            //RuleFor(x => x.Cnh)
-            //  .NotNull().WithMessage("O campo 'CNH' é obrigatório!")
-            //  .NotEmpty().WithMessage("O campo 'CNH' é obrigatório!");
-
-            //RuleFor(x => x.Cnh)
-            //  .Custom((cnh, context) =>
-            //  {
-            //      if (string.IsNullOrEmpty(cnh) == false)
-            //      {
-            //          if ((Regex.IsMatch(cnh, @"^[0-9]{9}")) == false)
-            //              context.AddFailure("O campo 'CNH' deve ser válido!");
-            //      }
-            //  });
         }
     }
 }

@@ -35,6 +35,8 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             }
         }
 
+        #region EVENTOS
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             taxa.Descricao = txtDescricao.Text;
@@ -58,5 +60,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             txtDescricao.Clear();
             numericValor.Value = 0;
         }
+
+        #endregion
     }
 }

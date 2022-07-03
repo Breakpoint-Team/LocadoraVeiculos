@@ -5,12 +5,17 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
 {
     public class Veiculo : EntidadeBase<Veiculo>
     {
+
+        #region CONSTRUTORES
+
         public Veiculo()
         {
 
         }
 
-        public Veiculo(string modelo, string marca, int ano, string cor, string placa, string tipoCombustivel, int quilometragemPercorrida, int capacidadeTanque, GrupoVeiculos grupoVeiculos)
+        public Veiculo(string modelo, string marca, int ano, string cor, string placa,
+            string tipoCombustivel, int quilometragemPercorrida,
+            int capacidadeTanque, GrupoVeiculos grupoVeiculos)
         {
             Modelo = modelo;
             Marca = marca;
@@ -23,6 +28,10 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
             GrupoVeiculos = grupoVeiculos;
         }
 
+        #endregion
+
+        #region PROPS
+
         public string Modelo { get; set; }
         public string Marca { get; set; }
         public int Ano { get; set; }
@@ -32,15 +41,13 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
         public int QuilometragemPercorrida { get; set; }
         public decimal CapacidadeTanque { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
-
         public byte[] Imagem { get; set; }
+        
+        #endregion
        
         public override string ToString()
         {
             return string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", Modelo, Marca, Ano, Cor, Placa, TipoCombustivel, QuilometragemPercorrida, CapacidadeTanque, GrupoVeiculos);
         }
-
-
-
     }
 }

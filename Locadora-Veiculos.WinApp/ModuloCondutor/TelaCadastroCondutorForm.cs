@@ -17,7 +17,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             InitializeComponent();
 
             this.clientes = clientes;
-            
+
             CarregarClientes();
 
             dateTimePickerDataValidadeCnh.MinDate = DateTime.Today;
@@ -74,7 +74,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             else
                 DesabilitarClienteCondutor();
         }
-        
+
         private void checkBoxClienteCondutor_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxClienteCondutor.Checked && ObterClienteSelecionado() != null)
@@ -142,7 +142,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             if (comboBoxClientes.SelectedIndex != -1)
                 condutor.Cliente = (Cliente)comboBoxClientes.SelectedItem;
         }
-        
+
         private void CarregarClientes()
         {
             if (clientes.Count > 0)
@@ -230,7 +230,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             txtCnh.Clear();
             dateTimePickerDataValidadeCnh.Value = DateTime.Today;
         }
-        
+
         #endregion
     }
 }

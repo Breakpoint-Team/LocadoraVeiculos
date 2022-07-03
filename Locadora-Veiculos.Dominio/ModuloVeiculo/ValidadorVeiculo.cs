@@ -61,11 +61,6 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
             .NotEmpty().WithMessage("Por favor, selecione uma 'Imagem' do veículo!")
             .NotNull().WithMessage("Por favor, selecione uma 'Imagem' do veículo!");
 
-
         }
-
-
-
-        
     }
 }

@@ -35,7 +35,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
 
             if (taxaSelecionada == null)
             {
-                MessageBox.Show("Selecione uma taxa primeiro",
+                MessageBox.Show("Selecione uma taxa primeiro!",
                 "Edição de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -58,7 +58,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
 
             if (taxaSelecionada == null)
             {
-                MessageBox.Show("Selecione uma taxa primeiro",
+                MessageBox.Show("Selecione uma taxa primeiro!",
                 "Exclusão de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -88,6 +88,8 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             return listagemTaxa;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private Taxa ObtemTaxaSelecionada()
         {
             var id = listagemTaxa.ObtemIdTaxaSelecionada();
@@ -101,5 +103,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             listagemTaxa.AtualizarRegistros(taxas);
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {taxas.Count} taxa(s)");
         }
+
+        #endregion
     }
 }

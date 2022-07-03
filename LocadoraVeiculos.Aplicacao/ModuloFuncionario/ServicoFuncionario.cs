@@ -55,7 +55,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
                    funcionarioEncontrado.Login.Equals(funcionario.Login, StringComparison.OrdinalIgnoreCase) &&
                    funcionarioEncontrado.Id != funcionario.Id;
         }
-        
+
         #endregion
     }
 }

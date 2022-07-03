@@ -2,7 +2,6 @@
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.WinApp.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -47,7 +46,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
             if (veiculoSelecionado == null)
             {
-                MessageBox.Show("Selecione um veículo primeiro",
+                MessageBox.Show("Selecione um veículo primeiro!",
                 "Edição de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -70,7 +69,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
             if (veiculoSelecionado == null)
             {
-                MessageBox.Show("Selecione um veículo primeiro",
+                MessageBox.Show("Selecione um veículo primeiro!",
                 "Exclusão de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -100,6 +99,8 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             return listagemVeiculo;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private Veiculo ObtemVeiculoSelecionado()
         {
             var id = listagemVeiculo.ObtemIdVeiculoSelecionado();
@@ -113,5 +114,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             listagemVeiculo.AtualizarRegistros(veiculos);
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} veículo(s)");
         }
+
+        #endregion
     }
 }

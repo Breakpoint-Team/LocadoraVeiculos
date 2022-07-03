@@ -1,6 +1,5 @@
 ﻿using Locadora_Veiculos.WinApp.Compartilhado;
 
-
 namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 {
     public class ConfiguracaoToolboxFuncionario : ConfiguracaoToolboxBase

@@ -32,6 +32,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             return resultadoValidacao;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private ValidationResult Validar(Cliente cliente)
         {
             ValidadorCliente validador = new ValidadorCliente();
@@ -52,5 +54,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
                    clienteEncontrado.Documento == cliente.Documento &&
                    clienteEncontrado.Id != cliente.Id;
         }
+
+        #endregion
     }
 }

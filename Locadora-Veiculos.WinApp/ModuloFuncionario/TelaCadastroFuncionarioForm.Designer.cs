@@ -182,7 +182,7 @@
             0});
             this.numericSalario.Name = "numericSalario";
             this.numericSalario.Size = new System.Drawing.Size(120, 23);
-            this.numericSalario.TabIndex = 9;
+            this.numericSalario.TabIndex = 4;
             // 
             // TelaCadastroFuncionarioForm
             // 

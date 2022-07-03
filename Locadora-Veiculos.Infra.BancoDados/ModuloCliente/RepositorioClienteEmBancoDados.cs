@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System;
 using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
@@ -106,6 +107,45 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                 [TBCLIENTE]
             WHERE
                 [DOCUMENTO] = @DOCUMENTO";
+        
+        private string sqlCountClientes =>
+            @"SELECT COUNT(*) 
+                FROM TBCLIENTE;";
+
+        private string sqlCountCondutoresRelacionados =>
+            @"SELECT COUNT(*)
+                FROM
+                    TBCLIENTE AS CLIENTE INNER JOIN TBCONDUTOR AS CONDUTOR
+                ON 
+                    CONDUTOR.[ID_CLIENTE] = @ID";
+
+        public int QuantidadeClientesCadastrados()
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comando = new SqlCommand(sqlCountClientes, conexaoComBanco);
+
+            conexaoComBanco.Open();
+
+            var count = Convert.ToInt32(comando.ExecuteScalar());
+
+            return count;
+        }
+
+        public int QuantidadeCondutoresRelacionadosAoCliente(int id)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comando = new SqlCommand(sqlCountCondutoresRelacionados, conexaoComBanco);
+
+            comando.Parameters.AddWithValue("ID", id);
+
+            conexaoComBanco.Open();
+
+            var count = Convert.ToInt32(comando.ExecuteScalar());
+
+            return count;
+        }
 
         public Cliente SelecionarClientePorDocumento(string documento)
         {

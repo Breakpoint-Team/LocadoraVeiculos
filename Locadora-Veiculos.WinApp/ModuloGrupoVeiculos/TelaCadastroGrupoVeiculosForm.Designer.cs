@@ -50,7 +50,7 @@
             this.txtNome.Margin = new System.Windows.Forms.Padding(0);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(217, 23);
-            this.txtNome.TabIndex = 1;
+            this.txtNome.TabIndex = 0;
             // 
             // btnCancelar
             // 
@@ -58,7 +58,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(203, 66);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 18;
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -67,7 +67,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(122, 66);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpar.TabIndex = 17;
+            this.btnLimpar.TabIndex = 2;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -78,7 +78,7 @@
             this.btnGravar.Location = new System.Drawing.Point(41, 66);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
-            this.btnGravar.TabIndex = 16;
+            this.btnGravar.TabIndex = 1;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);

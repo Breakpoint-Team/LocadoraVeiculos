@@ -36,7 +36,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 
             if (funcionarioSelecionado == null)
             {
-                MessageBox.Show("Selecione um funcionário primeiro",
+                MessageBox.Show("Selecione um funcionário primeiro!",
                 "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -59,7 +59,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 
             if (funcionarioSelecionado == null)
             {
-                MessageBox.Show("Selecione um funcionário primeiro",
+                MessageBox.Show("Selecione um funcionário primeiro!",
                 "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -88,6 +88,8 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             return listagemFuncionarios;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private Funcionario ObtemFuncionarioSelecionado()
         {
             var id = listagemFuncionarios.ObtemIdFuncionarioSelecionado();
@@ -101,5 +103,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             listagemFuncionarios.AtualizarRegistros(funcionarios);
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionário(s)");
         }
+
+        #endregion
     }
 }

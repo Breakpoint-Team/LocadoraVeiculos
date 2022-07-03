@@ -117,23 +117,23 @@
             this.txtModelo.Location = new System.Drawing.Point(172, 24);
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(217, 23);
-            this.txtModelo.TabIndex = 6;
+            this.txtModelo.TabIndex = 0;
             // 
             // txtCor
             // 
             this.txtCor.Location = new System.Drawing.Point(172, 81);
             this.txtCor.Name = "txtCor";
             this.txtCor.Size = new System.Drawing.Size(217, 23);
-            this.txtCor.TabIndex = 7;
+            this.txtCor.TabIndex = 2;
             // 
             // txtPlaca
             // 
+            this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPlaca.Location = new System.Drawing.Point(172, 110);
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(217, 23);
-            this.txtPlaca.TabIndex = 8;
-            this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPlaca.TabIndex = 3;
             // 
             // numericQuilometragemPercorrida
             // 
@@ -145,7 +145,7 @@
             0});
             this.numericQuilometragemPercorrida.Name = "numericQuilometragemPercorrida";
             this.numericQuilometragemPercorrida.Size = new System.Drawing.Size(217, 23);
-            this.numericQuilometragemPercorrida.TabIndex = 10;
+            this.numericQuilometragemPercorrida.TabIndex = 5;
             // 
             // comboBoxGrupoVeiculos
             // 
@@ -154,7 +154,7 @@
             this.comboBoxGrupoVeiculos.Location = new System.Drawing.Point(172, 255);
             this.comboBoxGrupoVeiculos.Name = "comboBoxGrupoVeiculos";
             this.comboBoxGrupoVeiculos.Size = new System.Drawing.Size(217, 23);
-            this.comboBoxGrupoVeiculos.TabIndex = 11;
+            this.comboBoxGrupoVeiculos.TabIndex = 8;
             // 
             // label7
             // 
@@ -197,7 +197,7 @@
             this.txtMarca.Location = new System.Drawing.Point(172, 52);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(217, 23);
-            this.txtMarca.TabIndex = 16;
+            this.txtMarca.TabIndex = 1;
             // 
             // numericAno
             // 
@@ -214,7 +214,7 @@
             0});
             this.numericAno.Name = "numericAno";
             this.numericAno.Size = new System.Drawing.Size(217, 23);
-            this.numericAno.TabIndex = 17;
+            this.numericAno.TabIndex = 4;
             this.numericAno.Value = new decimal(new int[] {
             1920,
             0,
@@ -237,7 +237,7 @@
             0});
             this.numericCapacidadeTanque.Name = "numericCapacidadeTanque";
             this.numericCapacidadeTanque.Size = new System.Drawing.Size(217, 23);
-            this.numericCapacidadeTanque.TabIndex = 18;
+            this.numericCapacidadeTanque.TabIndex = 7;
             this.numericCapacidadeTanque.Value = new decimal(new int[] {
             10,
             0,
@@ -260,7 +260,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(588, 293);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 24;
+            this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -269,7 +269,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(507, 293);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpar.TabIndex = 23;
+            this.btnLimpar.TabIndex = 11;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -280,7 +280,7 @@
             this.btnGravar.Location = new System.Drawing.Point(426, 293);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
-            this.btnGravar.TabIndex = 22;
+            this.btnGravar.TabIndex = 10;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -290,7 +290,7 @@
             this.btnSelecionarImagem.Location = new System.Drawing.Point(469, 242);
             this.btnSelecionarImagem.Name = "btnSelecionarImagem";
             this.btnSelecionarImagem.Size = new System.Drawing.Size(150, 23);
-            this.btnSelecionarImagem.TabIndex = 25;
+            this.btnSelecionarImagem.TabIndex = 9;
             this.btnSelecionarImagem.Text = "selecionar imagem";
             this.btnSelecionarImagem.UseVisualStyleBackColor = true;
             this.btnSelecionarImagem.Click += new System.EventHandler(this.btnSelecionarImagem_Click);
@@ -302,7 +302,7 @@
             this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(172, 197);
             this.comboBoxTipoCombustivel.Name = "comboBoxTipoCombustivel";
             this.comboBoxTipoCombustivel.Size = new System.Drawing.Size(217, 23);
-            this.comboBoxTipoCombustivel.TabIndex = 19;
+            this.comboBoxTipoCombustivel.TabIndex = 6;
             // 
             // TelaCadastroVeiculoForm
             // 

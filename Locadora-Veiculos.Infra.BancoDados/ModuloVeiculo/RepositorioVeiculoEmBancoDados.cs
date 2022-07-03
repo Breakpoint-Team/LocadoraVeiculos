@@ -1,6 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using System;
 using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
@@ -81,7 +80,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
             WHERE VEICULO.ID = @ID";
 
         protected override string sqlSelecionarTodos =>
-           @"SELECT 
+            @"SELECT 
                VEICULO.[ID],
                VEICULO.[MODELO],
                VEICULO.[MARCA],

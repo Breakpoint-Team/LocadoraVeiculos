@@ -29,6 +29,8 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
             }
         }
 
+        #region EVENTOS
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             grupoVeiculos.Nome = txtNome.Text;
@@ -49,5 +51,6 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
             txtNome.Clear();
         }
 
+        #endregion
     }
 }

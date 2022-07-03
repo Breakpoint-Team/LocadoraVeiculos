@@ -1,16 +1,12 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
 {
     public class ServicoVeiculo
     {
-        IRepositorioVeiculo repositorioVeiculo;
+        private IRepositorioVeiculo repositorioVeiculo;
 
         public ServicoVeiculo(IRepositorioVeiculo repositorioVeiculo)
         {
@@ -37,6 +33,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             return resultadoValidacao;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private ValidationResult Validar(Veiculo veiculo)
         {
             var validador = new ValidadorVeiculo();
@@ -57,5 +55,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
                    placaEncontrada.Placa.Equals(veiculo.Placa, StringComparison.OrdinalIgnoreCase) &&
                    placaEncontrada.Id != veiculo.Id;
         }
+
+        #endregion
     }
 }

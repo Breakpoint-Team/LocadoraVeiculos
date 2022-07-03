@@ -38,7 +38,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             if (clienteSelecionado == null)
             {
-                MessageBox.Show("Selecione um cliente primeiro",
+                MessageBox.Show("Selecione um cliente primeiro!",
                 "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -61,7 +61,16 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             if (clienteSelecionado == null)
             {
-                MessageBox.Show("Selecione um cliente primeiro",
+                MessageBox.Show("Selecione um cliente primeiro!",
+                "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            int qtdCondutoresRelacionados = repositorioCliente.QuantidadeCondutoresRelacionadosAoCliente(clienteSelecionado.Id);
+
+            if (qtdCondutoresRelacionados > 0)
+            {
+                MessageBox.Show("Não é possível excluir um Cliente que possui Condutores relacionados!",
                 "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -90,6 +99,8 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             return listagemClientes;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private void CarregarClientes()
         {
             List<Cliente> clientes = repositorioCliente.SelecionarTodos();
@@ -105,5 +116,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             return repositorioCliente.SelecionarPorId(id);
         }
+
+        #endregion
     }
 }

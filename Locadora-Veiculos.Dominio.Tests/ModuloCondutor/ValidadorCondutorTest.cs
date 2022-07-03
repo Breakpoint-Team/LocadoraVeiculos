@@ -59,8 +59,8 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
             var resultado2 = validador.Validate(cond2);
             var resultado3 = validador.Validate(cond3);
 
-            Assert.AreEqual("O campo 'Nome' deve ter no mínimo 3 caracteres!", resultado1.Errors[0].ErrorMessage);
-            Assert.AreEqual("O campo 'Nome' deve ter no mínimo 3 caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Nome' deve ter no mínimo 3 (três) caracteres!", resultado1.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Nome' deve ter no mínimo 3 (três) caracteres!", resultado2.Errors[0].ErrorMessage);
             Assert.AreEqual(0, resultado3.Errors.Count);
         }
 
@@ -165,7 +165,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
             var resultado2 = validador.Validate(cond2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Rua' deve ter no mínimo 5 caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Rua' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -209,7 +209,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
             var resultado2 = validador.Validate(cond2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Bairro' deve ter no mínimo 5 caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Bairro' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -253,7 +253,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
             var resultado2 = validador.Validate(cond2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Cidade' deve ter no mínimo 5 caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Cidade' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -302,8 +302,8 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
             var resultado3 = validador.Validate(cond3);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Estado' deve ter somente 2 caracteres!", resultado2.Errors[0].ErrorMessage);
-            Assert.AreEqual("O campo 'Estado' deve ter somente 2 caracteres!", resultado3.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Estado' deve ter somente 2 (dois) caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Estado' deve ter somente 2 (dois) caracteres!", resultado3.Errors[0].ErrorMessage);
         }
 
         [TestMethod]

@@ -15,6 +15,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
         private Veiculo veiculo;
         private IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
         public string caminhoImagem = "";
+
         public TelaCadastroVeiculoForm()
         {
             InitializeComponent();
@@ -138,7 +139,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
         private void ExibirImagem()
         {
-            using(var img = new MemoryStream(veiculo.Imagem))
+            using (var img = new MemoryStream(veiculo.Imagem))
             {
                 pictureBoxImagem.Image = Image.FromStream(img);
             }

@@ -1,14 +1,6 @@
-﻿using Locadora_Veiculos.Dominio.Compartilhado;
-using Locadora_Veiculos.Dominio.ModuloVeiculo;
+﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.WinApp.Compartilhado;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloVeiculo

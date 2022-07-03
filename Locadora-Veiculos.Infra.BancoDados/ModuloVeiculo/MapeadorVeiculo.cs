@@ -1,10 +1,8 @@
-﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
-using Locadora_Veiculos.Dominio.ModuloVeiculo;
+﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos;
 using System;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
 {
@@ -23,9 +21,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
             comando.Parameters.AddWithValue("CAPACIDADE_TANQUE", registro.CapacidadeTanque);
             comando.Parameters.AddWithValue("ID_GRUPO_VEICULOS", registro.GrupoVeiculos.Id);
             comando.Parameters.AddWithValue("IMAGEM", registro.Imagem);
-
-
-
         }
 
         public override Veiculo ConverterRegistro(SqlDataReader leitorRegistro)
@@ -41,11 +36,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
             var capacidadeTanque = Convert.ToDecimal(leitorRegistro["CAPACIDADE_TANQUE"]);
             var imagem = (byte[])(leitorRegistro["IMAGEM"]);
 
-           // byte[] bytes = Encoding.ASCII.GetBytes(imagem);
-
-
-
-
             return new Veiculo()
             {
                 Id = id,
@@ -60,7 +50,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
                 GrupoVeiculos = new MapeadorGrupoVeiculos().ConverterRegistro(leitorRegistro),
                 Imagem = imagem
             };
-
         }
     }
 }

@@ -77,7 +77,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             cliente.Nome = txtNome.Text;
             cliente.Email = txtEmail.Text;
             cliente.Telefone = txtTelefone.Text;
-            
+
             cliente.Rua = txtRua.Text;
             cliente.Bairro = txtBairro.Text;
             cliente.Cidade = txtCidade.Text;
@@ -85,7 +85,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             if (cliente.TipoCliente == TipoCliente.PessoaFisica)
                 cliente.Documento = txtCpf.Text;
-            else if(cliente.TipoCliente == TipoCliente.PessoaJuridica)
+            else if (cliente.TipoCliente == TipoCliente.PessoaJuridica)
                 cliente.Documento = txtCnpj.Text;
 
             if (string.IsNullOrEmpty(txtNumero.Text) == false)

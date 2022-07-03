@@ -41,10 +41,10 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCondutor
             var resultadoValidacao = validador.Validate(condutor);
 
             if (CpfDuplicado(condutor))
-                resultadoValidacao.Errors.Add(new ValidationFailure("CPF", "CPF já está cadastrado!"));
-            
+                resultadoValidacao.Errors.Add(new ValidationFailure("CPF", "CPF já está cadastrado como condutor!"));
+
             if (CnhDuplicada(condutor))
-                resultadoValidacao.Errors.Add(new ValidationFailure("CNH", "CNH já está cadastrada!"));
+                resultadoValidacao.Errors.Add(new ValidationFailure("CNH", "CNH já está cadastrada como condutor!"));
 
             return resultadoValidacao;
         }
@@ -66,7 +66,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCondutor
                    condutorEncontrado.Cpf == condutor.Cpf &&
                    condutorEncontrado.Id != condutor.Id;
         }
-        
+
         #endregion
     }
 }

@@ -28,6 +28,8 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 
         public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
 
+        #region EVENTOS
+
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             LimparCampos();
@@ -48,6 +50,8 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
                 DialogResult = DialogResult.None;
             }
         }
+
+        #endregion
 
         #region MÉTODOS PRIVADOS
 
@@ -86,7 +90,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             funcionario.Login = txtLogin.Text;
             funcionario.Senha = txtSenha.Text;
             funcionario.Salario = numericSalario.Value;
-            
+
 
             funcionario.DataAdmissao = dateTimePickerDataAdmissao.Value;
 
@@ -97,6 +101,5 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
         }
 
         #endregion
-
     }
 }

@@ -65,7 +65,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
             WHERE 
              [DESCRICAO] = @DESCRICAO";
 
-
         public Taxa SelecionarTaxaPorDescricao(string descricao)
         {
             return SelecionarPorParametro(sqlSelecionarTaxaPorDescricao, new SqlParameter("DESCRICAO", descricao));

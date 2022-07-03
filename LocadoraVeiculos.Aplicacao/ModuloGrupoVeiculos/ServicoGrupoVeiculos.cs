@@ -33,6 +33,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             return resultadoValidacao;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private ValidationResult Validar(GrupoVeiculos grupoVeiculos)
         {
             var validador = new ValidadorGrupoVeiculos();
@@ -54,5 +56,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
                    grupoVeiculosEncontrado.Id != grupoVeiculos.Id;
 
         }
+
+        #endregion
     }
 }

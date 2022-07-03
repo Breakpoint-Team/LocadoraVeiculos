@@ -1,25 +1,25 @@
 ﻿using Locadora_Veiculos.Infra.BancoDados.ModuloCliente;
+using Locadora_Veiculos.Infra.BancoDados.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Infra.BancoDados.ModuloTaxa;
+using Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo;
 using Locadora_Veiculos.WinApp.Compartilhado;
 using Locadora_Veiculos.WinApp.ModuloCliente;
+using Locadora_Veiculos.WinApp.ModuloCondutor;
 using Locadora_Veiculos.WinApp.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.ModuloGrupoVeiculos;
 using Locadora_Veiculos.WinApp.ModuloTaxas;
+using Locadora_Veiculos.WinApp.ModuloVeiculo;
 using LocadoraVeiculos.Aplicacao.ModuloCliente;
+using LocadoraVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
-using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Aplicacao.ModuloTaxa;
+using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Locadora_Veiculos.Infra.BancoDados.ModuloCondutor;
-using LocadoraVeiculos.Aplicacao.ModuloCondutor;
-using Locadora_Veiculos.WinApp.ModuloCondutor;
-using Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo;
-using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
-using Locadora_Veiculos.WinApp.ModuloVeiculo;
 
 namespace Locadora_Veiculos.WinApp
 {
@@ -47,6 +47,13 @@ namespace Locadora_Veiculos.WinApp
             private set;
         }
 
+        public void AtualizarRodape(string mensagem)
+        {
+            labelRodape.Text = mensagem;
+        }
+
+        #region EVENTOS
+
         private void clientesMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
@@ -66,12 +73,11 @@ namespace Locadora_Veiculos.WinApp
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
-       
+
         private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
-
 
         private void veiculosMenuItem_Click(object sender, EventArgs e)
         {
@@ -92,6 +98,10 @@ namespace Locadora_Veiculos.WinApp
         {
             controlador.Excluir();
         }
+
+        #endregion
+
+        #region MÉTODOS PRIVADOS
 
         private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
         {
@@ -116,11 +126,6 @@ namespace Locadora_Veiculos.WinApp
             ConfigurarToolbox();
 
             ConfigurarListagem();
-        }
-
-        public void AtualizarRodape(string mensagem)
-        {
-            labelRodape.Text = mensagem;
         }
 
         private void ConfigurarToolbox()
@@ -174,8 +179,10 @@ namespace Locadora_Veiculos.WinApp
             controladores.Add("Grupos de veículos", new ControladorGrupoVeiculos(repositorioGrupoVeiculos, servicoGrupoVeiculos));
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
             controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
-            controladores.Add("Condutores", new ControladorCondutor(repositorioCondutor,repositorioCliente, servicoCondutor));
+            controladores.Add("Condutores", new ControladorCondutor(repositorioCondutor, repositorioCliente, servicoCondutor));
             controladores.Add("Veículos", new ControladorVeiculo(repositorioVeiculo, servicoVeiculo, repositorioGrupoVeiculos));
         }
+
+        #endregion
     }
 }

@@ -33,6 +33,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
             return resultadoValidacao;
         }
 
+        #region MÉTODOS PRIVADOS
+
         private ValidationResult Validar(Taxa taxa)
         {
             var validador = new ValidadorTaxa();
@@ -53,5 +55,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
                    taxaEncontrada.Descricao.Equals(taxa.Descricao, StringComparison.OrdinalIgnoreCase) &&
                    taxaEncontrada.Id != taxa.Id;
         }
+
+        #endregion
     }
 }

@@ -5,6 +5,8 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
 {
     public class Funcionario : EntidadeBase<Funcionario>
     {
+        #region CONSTRUTORES
+
         public Funcionario()
         {
             this.EstaAtivo = true;
@@ -22,6 +24,10 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
             EstaAtivo = estaAtivo;
         }
 
+        #endregion
+
+        #region PROPS
+
         public string Nome { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
@@ -29,6 +35,8 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
         public Decimal Salario { get; set; }
         public bool EhAdmin { get; set; }
         public bool EstaAtivo { get; set; }
+
+        #endregion
 
         public override string ToString()
         {
@@ -52,6 +60,7 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
              f.EstaAtivo.Equals(EstaAtivo);
 
         }
+        
         public Funcionario Clone()
         {
             return MemberwiseClone() as Funcionario;
