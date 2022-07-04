@@ -101,5 +101,17 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
         }
 
         #endregion
+
+        #region RODAPE
+        private void TelaCadastroFuncionarioForm_Load(object sender, EventArgs e)
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+        private void TelaCadastroFuncionarioForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+        #endregion
     }
 }

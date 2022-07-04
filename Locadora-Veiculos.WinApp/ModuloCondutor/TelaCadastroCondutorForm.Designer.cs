@@ -379,6 +379,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Condutores";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroCondutorForm_FormClosing);
+            this.Load += new System.EventHandler(this.TelaCadastroCondutorForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
