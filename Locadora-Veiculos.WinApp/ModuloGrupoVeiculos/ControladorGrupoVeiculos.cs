@@ -26,8 +26,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
             tela.GravarRegistro = servicoGrupoVeiculos.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
-            if (resultado == DialogResult.OK)
-                CarregarGrupos();
+            CarregarGrupos();
         }
 
         public override void Editar()
@@ -49,8 +48,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarGrupos();
+            CarregarGrupos();
         }
 
         public override void Excluir()

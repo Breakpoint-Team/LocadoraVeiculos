@@ -28,8 +28,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarClientes();
+            CarregarClientes();
         }
 
         public override void Editar()
@@ -51,8 +50,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarClientes();
+            CarregarClientes();
         }
 
         public override void Excluir()

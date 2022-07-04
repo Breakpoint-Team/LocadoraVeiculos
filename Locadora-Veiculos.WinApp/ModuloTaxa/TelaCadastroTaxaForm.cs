@@ -61,19 +61,14 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             numericValor.Value = 0;
         }
 
-        #endregion
-
-        #region RODAPE
         private void TelaCadastroTaxaForm_Load(object sender, EventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
         }
 
-        private void TelaCadastroTaxaForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            TelaPrincipalForm.Instancia.AtualizarRodape("");
-        }
-
         #endregion
+
+
+
     }
 }

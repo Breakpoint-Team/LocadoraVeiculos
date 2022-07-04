@@ -68,6 +68,10 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             DesabilitarPessoaFisica();
         }
 
+        private void TelaCadastroClienteForm_Load(object sender, EventArgs e)
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
         #endregion
 
         #region MÉTODOS PRIVADOS
@@ -176,16 +180,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
         #endregion
 
-        #region RODAPE
-        private void TelaCadastroClienteForm_Load(object sender, EventArgs e)
-        {
-            TelaPrincipalForm.Instancia.AtualizarRodape("");
-        }
 
-        private void TelaCadastroClienteForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            TelaPrincipalForm.Instancia.AtualizarRodape("");
-        }
-        #endregion
     }
 }

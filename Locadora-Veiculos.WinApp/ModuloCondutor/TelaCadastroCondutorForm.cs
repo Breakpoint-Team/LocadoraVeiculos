@@ -89,6 +89,12 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             }
         }
 
+        private void TelaCadastroCondutorForm_Load(object sender, EventArgs e)
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+
         #endregion
 
         #region MÉTODOS PRIVADOS
@@ -233,17 +239,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
 
         #endregion
 
-        #region RODAPE
-        private void TelaCadastroCondutorForm_Load(object sender, EventArgs e)
-        {
-            TelaPrincipalForm.Instancia.AtualizarRodape("");
-        }
 
-        private void TelaCadastroCondutorForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            TelaPrincipalForm.Instancia.AtualizarRodape("");
-        }
-
-        #endregion
     }
 }

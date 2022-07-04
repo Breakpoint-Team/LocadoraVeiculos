@@ -24,10 +24,8 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             tela.Funcionario = new Funcionario();
             tela.GravarRegistro = servicoFuncionario.Inserir;
             DialogResult resultado = tela.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                CarregarFuncionarios();
-            }
+           
+            CarregarFuncionarios();
         }
 
         public override void Editar()
@@ -49,8 +47,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarFuncionarios();
+            CarregarFuncionarios();
         }
 
         public override void Excluir()

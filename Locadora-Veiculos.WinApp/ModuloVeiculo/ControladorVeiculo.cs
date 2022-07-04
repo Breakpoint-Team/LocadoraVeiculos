@@ -36,8 +36,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             tela.GravarRegistro = servicoVeiculo.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
-            if (resultado == DialogResult.OK)
-                CarregarVeiculos();
+            CarregarVeiculos();
         }
 
         public override void Editar()
@@ -59,8 +58,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarVeiculos();
+            CarregarVeiculos();
         }
 
         public override void Excluir()
@@ -80,8 +78,8 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             if (resultado == DialogResult.OK)
             {
                 repositorioVeiculo.Excluir(veiculoSelecionado);
-                CarregarVeiculos();
             }
+            CarregarVeiculos();
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

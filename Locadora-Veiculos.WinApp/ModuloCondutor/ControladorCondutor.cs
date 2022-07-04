@@ -42,8 +42,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarCondutores();
+            CarregarCondutores();
         }
 
         public override void Editar()
@@ -65,7 +64,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
                 CarregarCondutores();
         }
 

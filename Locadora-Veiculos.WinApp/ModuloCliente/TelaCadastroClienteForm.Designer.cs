@@ -371,7 +371,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Clientes";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroClienteForm_FormClosing);
             this.Load += new System.EventHandler(this.TelaCadastroClienteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
