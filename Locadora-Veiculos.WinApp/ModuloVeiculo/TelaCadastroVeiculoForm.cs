@@ -72,9 +72,9 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             txtMarca.Clear();
             txtCor.Clear();
             txtPlaca.Clear();
-            numericAno.ResetText();
-            numericQuilometragemPercorrida.ResetText();
-            numericCapacidadeTanque.ResetText();
+            numericAno.Value = numericAno.Minimum;
+            numericQuilometragemPercorrida.Value = numericQuilometragemPercorrida.Minimum;
+            numericCapacidadeTanque.Value = numericCapacidadeTanque.Minimum;
             comboBoxTipoCombustivel.SelectedItem = null;
             comboBoxGrupoVeiculos.SelectedItem = null;
             pictureBoxImagem.Image = null;
