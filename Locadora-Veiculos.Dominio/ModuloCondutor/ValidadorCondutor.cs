@@ -92,8 +92,8 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
             When(x => string.IsNullOrEmpty(x.Cidade) == false, () =>
                 {
                     RuleFor(x => x.Cidade.Length)
-                .GreaterThan(4)
-                .WithMessage("O campo 'Cidade' deve ter no mínimo 5 (cinco) caracteres!");
+                .GreaterThan(2)
+                .WithMessage("O campo 'Cidade' deve ter no mínimo 3 (três) caracteres!");
 
                     RuleFor(x => x.Cidade)
                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
@@ -108,8 +108,8 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
             When(x => string.IsNullOrEmpty(x.Bairro) == false, () =>
                 {
                     RuleFor(x => x.Bairro.Length)
-                .GreaterThan(4)
-                .WithMessage("O campo 'Bairro' deve ter no mínimo 5 (cinco) caracteres!");
+                .GreaterThan(3)
+                .WithMessage("O campo 'Bairro' deve ter no mínimo 3 (três) caracteres!");
 
                     RuleFor(x => x.Bairro)
                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
@@ -153,6 +153,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
                           context.AddFailure("O campo 'CNH' deve ser válido!");
                   }
               });
+
         }
     }
 }

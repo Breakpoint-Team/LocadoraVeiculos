@@ -167,7 +167,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
         }
 
         [TestMethod]
-        public void Bairro_Do_Cliente_Deve_ter_no_minimo_cinco_caracteres()
+        public void Bairro_Do_Cliente_Deve_ter_no_minimo_tres_caracteres()
         {
             Cliente c1 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09",  2,
@@ -183,7 +183,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             var resultado2 = validador.Validate(c2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Bairro' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Bairro' deve ter no mínimo 3 (três) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -215,7 +215,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
 
             Cliente c2 = new Cliente("João da Silva", "(49) 98888-9999", "joao@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09",  2,
-                "Rua das laranjeiras", "centro", "São", "SP");
+                "Rua das laranjeiras", "centro", "Sã", "SP");
 
             var validador = new ValidadorCliente();
 
@@ -223,7 +223,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             var resultado2 = validador.Validate(c2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Cidade' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Cidade' deve ter no mínimo 3 (três) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -268,8 +268,8 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCliente
             var resultado3 = validador.Validate(c3);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Estado' deve ter somente 2 caracteres!", resultado2.Errors[0].ErrorMessage);
-            Assert.AreEqual("O campo 'Estado' deve ter somente 2 caracteres!", resultado3.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Estado' deve ter somente 2 (dois) caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Estado' deve ter somente 2 (dois) caracteres!", resultado3.Errors[0].ErrorMessage);
         }
 
         [TestMethod]

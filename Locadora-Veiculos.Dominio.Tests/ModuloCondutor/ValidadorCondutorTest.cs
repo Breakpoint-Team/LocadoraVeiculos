@@ -191,7 +191,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
         }
 
         [TestMethod]
-        public void Bairro_Do_Condutor_Deve_ter_no_minimo_cinco_caracteres()
+        public void Bairro_Do_Condutor_Deve_ter_no_minimo_tres_caracteres()
         {
             Cliente cliente = GetClienteFisico();
 
@@ -209,7 +209,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
             var resultado2 = validador.Validate(cond2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Bairro' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Bairro' deve ter no mínimo 3 (três) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -235,7 +235,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
         }
 
         [TestMethod]
-        public void Cidade_Do_Condutor_Deve_ter_no_minimo_cinco_caracteres()
+        public void Cidade_Do_Condutor_Deve_ter_no_minimo_tres_caracteres()
         {
             Cliente cliente = GetClienteFisico();
 
@@ -253,7 +253,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
             var resultado2 = validador.Validate(cond2);
 
             Assert.AreEqual(0, resultado1.Errors.Count);
-            Assert.AreEqual("O campo 'Cidade' deve ter no mínimo 5 (cinco) caracteres!", resultado2.Errors[0].ErrorMessage);
+            Assert.AreEqual("O campo 'Cidade' deve ter no mínimo 3 (três) caracteres!", resultado2.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
