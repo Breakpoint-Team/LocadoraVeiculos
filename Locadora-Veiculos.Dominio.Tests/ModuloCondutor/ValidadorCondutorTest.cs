@@ -440,16 +440,20 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloCondutor
 
         private Cliente GetClienteFisico()
         {
-            return new Cliente("Paulo Roberto Pereira", "(49) 98855-0076", "paulo@gmail.com",
-                TipoCliente.PessoaFisica, "015.932.598-04", 2,
-                "Rua do abacaxi", "centro", "São Paulo", "SP");
+            return new Cliente();
+
+            //return new Cliente("Paulo Roberto Pereira", "(49) 98855-0076", "paulo@gmail.com",
+            //    TipoCliente.PessoaFisica, "015.932.598-04", 2,
+            //    "Rua do abacaxi", "centro", "São Paulo", "SP");
         }
         
         private Cliente GetClienteJuridico()
         {
-            return new Cliente("Paulo Roberto Pereira", "(49) 98855-0076", "paulo@gmail.com",
-                TipoCliente.PessoaJuridica, "99.789.457/0001-88", 2,
-                "Rua do abacaxi", "centro", "São Paulo", "SP");
+            return new Cliente();
+
+            //return new Cliente("Paulo Roberto Pereira", "(49) 98855-0076", "paulo@gmail.com",
+            //    TipoCliente.PessoaJuridica, "99.789.457/0001-88", 2,
+            //    "Rua do abacaxi", "centro", "São Paulo", "SP");
         }
     }
 }

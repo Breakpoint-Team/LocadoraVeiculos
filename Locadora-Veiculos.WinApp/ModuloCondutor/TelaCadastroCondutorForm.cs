@@ -160,15 +160,15 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
         {
             var cliente = ObterClienteSelecionado();
 
-            txtNome.Text = cliente.Nome;
-            txtEmail.Text = cliente.Email;
-            txtTelefone.Text = cliente.Telefone;
-            txtCpf.Text = cliente.Documento;
-            txtRua.Text = cliente.Rua;
-            txtBairro.Text = cliente.Bairro;
-            txtCidade.Text = cliente.Cidade;
-            comboBoxEstado.SelectedItem = cliente.Estado;
-            txtNumero.Text = cliente.Numero.ToString();
+            //txtNome.Text = cliente.Nome;
+            //txtEmail.Text = cliente.Email;
+            //txtTelefone.Text = cliente.Telefone;
+            //txtCpf.Text = cliente.Documento;
+            //txtRua.Text = cliente.Rua;
+            //txtBairro.Text = cliente.Bairro;
+            //txtCidade.Text = cliente.Cidade;
+            //comboBoxEstado.SelectedItem = cliente.Estado;
+            //txtNumero.Text = cliente.Numero.ToString();
         }
 
         private Cliente ObterClienteSelecionado()

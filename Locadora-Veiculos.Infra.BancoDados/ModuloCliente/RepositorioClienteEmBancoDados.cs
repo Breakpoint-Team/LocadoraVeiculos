@@ -107,7 +107,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                 [TBCLIENTE]
             WHERE
                 [DOCUMENTO] = @DOCUMENTO";
-        
+
         private string sqlCountClientes =>
             @"SELECT COUNT(*) 
                 FROM TBCLIENTE;";

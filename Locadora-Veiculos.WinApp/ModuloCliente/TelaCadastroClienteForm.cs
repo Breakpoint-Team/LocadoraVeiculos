@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloCliente;
+using Locadora_Veiculos.Dominio.ModuloEndereco;
 using System;
 using System.Windows.Forms;
 
@@ -82,9 +83,10 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             cliente.Email = txtEmail.Text;
             cliente.Telefone = txtTelefone.Text;
 
-            cliente.Rua = txtRua.Text;
-            cliente.Bairro = txtBairro.Text;
-            cliente.Cidade = txtCidade.Text;
+            cliente.Endereco = new Endereco();
+            cliente.Endereco.Logradouro = txtRua.Text;
+            cliente.Endereco.Bairro = txtBairro.Text;
+            cliente.Endereco.Cidade = txtCidade.Text;
             cliente.TipoCliente = ObterTipoClienteDaTela();
 
             if (cliente.TipoCliente == TipoCliente.PessoaFisica)
@@ -93,9 +95,9 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
                 cliente.Documento = txtCnpj.Text;
 
             if (string.IsNullOrEmpty(txtNumero.Text) == false)
-                cliente.Numero = int.Parse(txtNumero.Text);
+                cliente.Endereco.Numero = int.Parse(txtNumero.Text);
             if (comboBoxEstado.SelectedIndex != -1)
-                cliente.Estado = comboBoxEstado.SelectedItem.ToString();
+                cliente.Endereco.Estado = comboBoxEstado.SelectedItem.ToString();
         }
 
         private void PreencherDadosNaTela()
@@ -103,11 +105,11 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             txtNome.Text = cliente.Nome;
             txtEmail.Text = cliente.Email;
             txtTelefone.Text = cliente.Telefone;
-            txtNumero.Text = Convert.ToString(cliente.Numero);
-            txtRua.Text = cliente.Rua;
-            txtBairro.Text = cliente.Bairro;
-            txtCidade.Text = cliente.Cidade;
-            comboBoxEstado.SelectedItem = cliente.Estado;
+            txtNumero.Text = Convert.ToString(cliente.Endereco.Numero);
+            txtRua.Text = cliente.Endereco.Logradouro;
+            txtBairro.Text = cliente.Endereco.Bairro;
+            txtCidade.Text = cliente.Endereco.Cidade;
+            comboBoxEstado.SelectedItem = cliente.Endereco.Estado;
             PreencherTipoCliente();
         }
 
