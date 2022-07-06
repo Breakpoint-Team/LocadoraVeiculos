@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
+using Serilog;
 using System;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
@@ -15,20 +16,45 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
 
         public ValidationResult Inserir(Taxa taxa)
         {
+            Log.Logger.Debug("Tentando inserir Taxa... {@Taxa}", taxa);
+
             ValidationResult resultadoValidacao = Validar(taxa);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioTaxa.Inserir(taxa);
+                Log.Logger.Debug("Taxa '{TaxaDescricao}' inserido com sucesso", taxa.Descricao);
+
+            } else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir uma Taxa '{TaxaDescricao}' - {Motivo}",
+                        taxa.Descricao, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(Taxa taxa)
         {
+            Log.Logger.Debug("Tentando editar Taxa... {@Taxa}", taxa);
             ValidationResult resultadoValidacao = Validar(taxa);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioTaxa.Editar(taxa);
+                Log.Logger.Debug("Taxa com Id = '{TaxaId}' editada com sucesso", taxa.Id);
+
+            } else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar a Taxa com Id = '{TaxaId}' - {Motivo}",
+                        taxa.Id, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }

@@ -33,6 +33,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Aplicação", "2 - Apli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Aplicacao", "LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj", "{1F9BF070-E9E6-4A8F-8B1F-76084ECADF4B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{F9EA0411-59F6-43D9-B5FE-2EF1BB316C8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locadora-Veiculos.Infra.Logging", "Locadora-Veiculos.Infra.Logging\Locadora-Veiculos.Infra.Logging.csproj", "{176D6479-179E-4FCC-9ABB-2181A6B7D1B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,10 @@ Global
 		{1F9BF070-E9E6-4A8F-8B1F-76084ECADF4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F9BF070-E9E6-4A8F-8B1F-76084ECADF4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F9BF070-E9E6-4A8F-8B1F-76084ECADF4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{176D6479-179E-4FCC-9ABB-2181A6B7D1B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{176D6479-179E-4FCC-9ABB-2181A6B7D1B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{176D6479-179E-4FCC-9ABB-2181A6B7D1B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{176D6479-179E-4FCC-9ABB-2181A6B7D1B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +92,8 @@ Global
 		{2C11D50F-BC35-4614-8A62-47D0EA4A6571} = {57EC8DFD-AD50-473C-BB2C-8F6AF3943A8C}
 		{57EC8DFD-AD50-473C-BB2C-8F6AF3943A8C} = {5C8E2975-0B97-42BB-A322-6A5ABA6E5483}
 		{1F9BF070-E9E6-4A8F-8B1F-76084ECADF4B} = {82DF94D1-3628-4AC2-92F2-2F56699A016B}
+		{F9EA0411-59F6-43D9-B5FE-2EF1BB316C8B} = {5C8E2975-0B97-42BB-A322-6A5ABA6E5483}
+		{176D6479-179E-4FCC-9ABB-2181A6B7D1B2} = {F9EA0411-59F6-43D9-B5FE-2EF1BB316C8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {069C4CEF-16E6-4D3B-B047-A33BAE665801}

@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloCliente;
+using Serilog;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 {
@@ -14,30 +15,66 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 
         public ValidationResult Inserir(Cliente cliente)
         {
+            Log.Logger.Debug("Tentando inserir Cliente... {@Cliente}", cliente);
+
             var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCliente.Inserir(cliente);
+                Log.Logger.Debug("Cliente '{ClienteNome}' inserido com sucesso", cliente.Nome);
+            } else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir um Cliente '{ClienteNome}' - {Motivo}",
+                        cliente.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(Cliente cliente)
         {
+            Log.Logger.Debug("Tentando editar Cliente... {@Cliente}", cliente);
+
             var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCliente.Editar(cliente);
+                Log.Logger.Debug("Cliente com Id = '{ClienteId}' editado com sucesso", cliente.Id);
+            } else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar o Cliente com Id = '{ClienteId}' - {Motivo}",
+                        cliente.Id, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
         
         public ValidationResult Excluir(Cliente cliente)
         {
+            Log.Logger.Debug("Tentando excluir Cliente... {@Cliente}", cliente);
+
             var resultadoValidacao = ExclusaoValida(cliente);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCliente.Excluir(cliente);
+                Log.Logger.Debug("Cliente com Id = '{ClienteId}' excluído com sucesso", cliente.Id);
+            } else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar excluir o Cliente com Id = '{ClienteId}' - {Motivo}",
+                        cliente.Id, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
