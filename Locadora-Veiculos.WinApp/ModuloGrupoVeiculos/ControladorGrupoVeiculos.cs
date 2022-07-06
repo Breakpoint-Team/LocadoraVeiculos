@@ -26,8 +26,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
             tela.GravarRegistro = servicoGrupoVeiculos.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
-            if (resultado == DialogResult.OK)
-                CarregarGrupos();
+            CarregarGrupos();
         }
 
         public override void Editar()
@@ -49,8 +48,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarGrupos();
+            CarregarGrupos();
         }
 
         public override void Excluir()
@@ -64,24 +62,21 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
                 return;
             }
 
-
-            int qtdVeiculosRelacionados = repositorioGrupoVeiculos.QuantidadeVeiculosRelacionadosAoGrupo(grupoVeiculosSelecionado.Id);
-            if (qtdVeiculosRelacionados > 0)
-            {
-                MessageBox.Show("Não é possível excluir um Grupo de Veículos que possui Veículos relacionados",
-                "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-
             DialogResult resultado = MessageBox.Show("Deseja realmente excluir o grupo de veículos?",
             "Exclusão de Grupo de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
             {
-                repositorioGrupoVeiculos.Excluir(grupoVeiculosSelecionado);
-                CarregarGrupos();
+                var resultadoExclusao = servicoGrupoVeiculos.Excluir(grupoVeiculosSelecionado);
+
+                if (resultadoExclusao.IsValid == false)
+                {
+                    MessageBox.Show(resultadoExclusao.Errors[0].ErrorMessage,
+                                    "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
+
+            CarregarGrupos();
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

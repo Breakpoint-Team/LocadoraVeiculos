@@ -341,6 +341,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Veículos";
+            this.Load += new System.EventHandler(this.TelaCadastroVeiculoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericQuilometragemPercorrida)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericAno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericCapacidadeTanque)).EndInit();

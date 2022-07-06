@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Locadora_Veiculos.Dominio.ModuloEndereco;
 using System;
 using System.Text.RegularExpressions;
 
@@ -69,68 +70,18 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
                 }
             });
 
-            RuleFor(x => x.Estado)
-                .NotNull().WithMessage("O campo 'Estado' é obrigatório!")
-                .NotEmpty().WithMessage("O campo 'Estado' é obrigatório!");
+            RuleFor(x => x.Endereco)
+                 .Custom((endereco, context) =>
+                 {
+                     if (endereco != null)
+                     {
+                         var resultadoValidacaoEndereco = new ValidadorEndereco().Validate(endereco);
 
-            When(x => string.IsNullOrEmpty(x.Estado) == false, () =>
-                {
-                    RuleFor(x => x.Estado.Length)
-                    .Equal(2)
-                    .WithMessage("O campo 'Estado' deve ter somente 2 (dois) caracteres!");
-
-                    RuleFor(x => x.Estado)
-               .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-               .WithMessage("O campo 'Estado' não aceita caracteres especiais!");
-
-                });
-
-            RuleFor(x => x.Cidade)
-                .NotNull().WithMessage("O campo 'Cidade' é obrigatório!")
-                .NotEmpty().WithMessage("O campo 'Cidade' é obrigatório!");
-
-            When(x => string.IsNullOrEmpty(x.Cidade) == false, () =>
-                {
-                    RuleFor(x => x.Cidade.Length)
-                .GreaterThan(4)
-                .WithMessage("O campo 'Cidade' deve ter no mínimo 5 (cinco) caracteres!");
-
-                    RuleFor(x => x.Cidade)
-               .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-               .WithMessage("O campo 'Cidade' não aceita caracteres especiais!");
-
-                });
-
-            RuleFor(x => x.Bairro)
-               .NotNull().WithMessage("O campo 'Bairro' é obrigatório!")
-               .NotEmpty().WithMessage("O campo 'Bairro' é obrigatório!");
-
-            When(x => string.IsNullOrEmpty(x.Bairro) == false, () =>
-                {
-                    RuleFor(x => x.Bairro.Length)
-                .GreaterThan(4)
-                .WithMessage("O campo 'Bairro' deve ter no mínimo 5 (cinco) caracteres!");
-
-                    RuleFor(x => x.Bairro)
-                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
-                .WithMessage("O campo 'Bairro' não aceita caracteres especiais!");
-                });
-
-            RuleFor(x => x.Rua)
-                .NotNull().WithMessage("O campo 'Rua' é obrigatório!")
-                .NotEmpty().WithMessage("O campo 'Rua' é obrigatório!");
-
-            When(x => string.IsNullOrEmpty(x.Rua) == false, () =>
-                {
-                    RuleFor(x => x.Rua.Length)
-                .GreaterThan(4)
-                .WithMessage("O campo 'Rua' deve ter no mínimo 5 (cinco) caracteres!");
-
-                    RuleFor(x => x.Rua)
-                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0123456789 ]*$")
-                .WithMessage("O campo 'Rua' não aceita caracteres especiais!");
-
-                });
+                         if (resultadoValidacaoEndereco.IsValid == false)
+                             foreach (var item in resultadoValidacaoEndereco.Errors)
+                                 context.AddFailure(item.ErrorMessage);
+                     }
+                 });
 
             RuleFor(x => x.DataValidadeCnh)
                 .Custom((dataValidade, context) =>
@@ -153,6 +104,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
                           context.AddFailure("O campo 'CNH' deve ser válido!");
                   }
               });
+
         }
     }
 }

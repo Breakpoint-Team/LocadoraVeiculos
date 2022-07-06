@@ -53,7 +53,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
                 [TBGRUPOVEICULOS]
             WHERE 
              [NOME] = @NOME";
-        
+
         private string sqlCountGrupoVeiculos =>
             @"SELECT COUNT(*) FROM TBGRUPOVEICULOS;";
 
@@ -61,7 +61,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
             @"SELECT COUNT(*) FROM TBGRUPOVEICULOS 
                 AS GV INNER JOIN TBVEICULO AS V
                 ON V.[ID_GRUPO_VEICULOS] = @ID";
-        
+
         public GrupoVeiculos SelecionarGrupoVeiculosPorNome(string nome)
         {
             return SelecionarPorParametro(sqlSelecionarGrupoVeiculosPorNome, new SqlParameter("NOME", nome));

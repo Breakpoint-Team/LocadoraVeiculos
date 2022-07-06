@@ -51,6 +51,8 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             }
         }
 
+        #region EVENTOS
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             ObterDadosTela();
@@ -72,9 +74,9 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             txtMarca.Clear();
             txtCor.Clear();
             txtPlaca.Clear();
-            numericAno.ResetText();
-            numericQuilometragemPercorrida.ResetText();
-            numericCapacidadeTanque.ResetText();
+            numericAno.Value = numericAno.Minimum;
+            numericQuilometragemPercorrida.Value = numericQuilometragemPercorrida.Minimum;
+            numericCapacidadeTanque.Value = numericCapacidadeTanque.Minimum;
             comboBoxTipoCombustivel.SelectedItem = null;
             comboBoxGrupoVeiculos.SelectedItem = null;
             pictureBoxImagem.Image = null;
@@ -105,6 +107,12 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             return repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome(nome);
         }
 
+        private void TelaCadastroVeiculoForm_Load(object sender, EventArgs e)
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+        #endregion
+     
         #region IMAGEM DO VEÍCULO
         private void btnSelecionarImagem_Click(object sender, EventArgs e)
         {
@@ -171,5 +179,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
         }
 
         #endregion
+
+
     }
 }

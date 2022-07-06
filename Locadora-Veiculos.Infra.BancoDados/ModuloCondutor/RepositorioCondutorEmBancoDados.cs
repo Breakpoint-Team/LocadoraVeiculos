@@ -93,7 +93,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCondutor
                 CONDUTOR.[ID_CLIENTE] = CLIENTE.[ID]
             WHERE
                 CONDUTOR.[ID] = @ID";
-        
+
         protected override string sqlSelecionarTodos =>
             @"SELECT
                 CONDUTOR.ID AS CONDUTOR_ID,

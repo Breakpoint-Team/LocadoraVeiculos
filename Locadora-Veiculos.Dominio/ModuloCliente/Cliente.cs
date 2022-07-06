@@ -1,5 +1,7 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using Locadora_Veiculos.Dominio.ModuloEndereco;
 using System;
+using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Dominio.ModuloCliente
 {
@@ -13,18 +15,14 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
         public Cliente(string nome, string telefone, string email,
             TipoCliente tipoCliente, string documento,
-            int numero, string rua, string bairro, string cidade, string estado)
+            Endereco endereco)
         {
             Nome = nome;
             Telefone = telefone;
             Email = email;
             TipoCliente = tipoCliente;
             Documento = documento;
-            Numero = numero;
-            Rua = rua;
-            Bairro = bairro;
-            Cidade = cidade;
-            Estado = estado;
+            Endereco = endereco;
         }
 
         #endregion
@@ -35,11 +33,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
         public string Email { get; set; }
         public TipoCliente TipoCliente { get; set; }
         public string Documento { get; set; }
-        public int Numero { get; set; }
-        public string Rua { get; set; }
-        public string Bairro { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
+        public Endereco Endereco { get; set; }
 
         #endregion
 
@@ -57,28 +51,12 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
                    Email == cliente.Email &&
                    TipoCliente == cliente.TipoCliente &&
                    Documento == cliente.Documento &&
-                   Numero == cliente.Numero &&
-                   Rua == cliente.Rua &&
-                   Bairro == cliente.Bairro &&
-                   Cidade == cliente.Cidade &&
-                   Estado == cliente.Estado;
+                   EqualityComparer<Endereco>.Default.Equals(Endereco, cliente.Endereco);
         }
 
         public override int GetHashCode()
         {
-            HashCode hash = new HashCode();
-            hash.Add(Id);
-            hash.Add(Nome);
-            hash.Add(Telefone);
-            hash.Add(Email);
-            hash.Add(TipoCliente);
-            hash.Add(Documento);
-            hash.Add(Numero);
-            hash.Add(Rua);
-            hash.Add(Bairro);
-            hash.Add(Cidade);
-            hash.Add(Estado);
-            return hash.ToHashCode();
+            return HashCode.Combine(Id, Nome, Telefone, Email, TipoCliente, Documento, Endereco);
         }
 
         public override string ToString()

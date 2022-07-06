@@ -164,6 +164,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Taxa";
+            this.Load += new System.EventHandler(this.TelaCadastroTaxaForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericValor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

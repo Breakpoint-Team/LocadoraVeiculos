@@ -213,6 +213,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Funcionários ";
+            this.Load += new System.EventHandler(this.TelaCadastroFuncionarioForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericSalario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

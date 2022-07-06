@@ -29,7 +29,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
                 new DataGridViewTextBoxColumn { DataPropertyName = "Estado", HeaderText = "Estado"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Cidade", HeaderText = "Cidade"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Bairro", HeaderText = "Bairro"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Rua", HeaderText = "Rua"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Logradouro", HeaderText = "Logradouro"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Numero", HeaderText = "Número"},
             };
 
@@ -49,8 +49,9 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
                 var tipo = cliente.TipoCliente.GetDescription();
 
                 grid.Rows.Add(cliente.Id, cliente.Nome, cliente.Telefone, cliente.Email,
-                              tipo, cliente.Documento, cliente.Estado,
-                              cliente.Cidade, cliente.Bairro, cliente.Rua, cliente.Numero);
+                              tipo, cliente.Documento, cliente.Endereco.Estado,
+                              cliente.Endereco.Cidade, cliente.Endereco.Bairro,
+                              cliente.Endereco.Logradouro, cliente.Endereco.Numero);
             }
         }
     }

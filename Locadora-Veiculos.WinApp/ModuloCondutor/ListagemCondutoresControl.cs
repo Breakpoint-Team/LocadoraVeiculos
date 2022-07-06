@@ -30,7 +30,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
                 new DataGridViewTextBoxColumn { DataPropertyName = "Estado", HeaderText = "Estado"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Cidade", HeaderText = "Cidade"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Bairro", HeaderText = "Bairro"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Rua", HeaderText = "Rua"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Logradouro", HeaderText = "Logradouro"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Numero", HeaderText = "Número"},
         };
             return colunas;
@@ -48,7 +48,8 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             {
                 grid.Rows.Add(condutor.Id, condutor.Nome, condutor.Telefone, condutor.Email,
                                condutor.Cpf, condutor.Cnh, condutor.DataValidadeCnh.ToShortDateString(),
-                              condutor.Cliente, condutor.Estado, condutor.Cidade, condutor.Bairro, condutor.Rua, condutor.Numero);
+                              condutor.Cliente, condutor.Endereco.Estado, condutor.Endereco.Cidade,
+                              condutor.Endereco.Bairro, condutor.Endereco.Logradouro, condutor.Endereco.Numero);
             }
         }
     }

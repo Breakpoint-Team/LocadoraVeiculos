@@ -51,6 +51,12 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
             txtNome.Clear();
         }
 
+        private void TelaCadastroGrupoVeiculosForm_Load(object sender, EventArgs e)
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
         #endregion
+
     }
 }

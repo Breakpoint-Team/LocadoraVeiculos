@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloCliente;
+using Locadora_Veiculos.Dominio.ModuloEndereco;
 using System;
 using System.Collections.Generic;
 
@@ -7,7 +8,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
 {
     public class Condutor : EntidadeBase<Condutor>
     {
-
         #region CONTRUTORES
 
         public Condutor()
@@ -16,7 +16,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
 
         public Condutor(string nome, string telefone, string email,
             string cpf, string cnh, DateTime dataValidadeCnh,
-            int numero, string rua, string bairro, string cidade, string estado, Cliente cliente)
+           Endereco endereco, Cliente cliente)
         {
             Nome = nome;
             Telefone = telefone;
@@ -24,11 +24,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
             Cpf = cpf;
             Cnh = cnh;
             DataValidadeCnh = dataValidadeCnh;
-            Numero = numero;
-            Rua = rua;
-            Bairro = bairro;
-            Cidade = cidade;
-            Estado = estado;
+            Endereco = endereco;
             Cliente = cliente;
         }
 
@@ -41,13 +37,23 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
         public string Cpf { get; set; }
         public string Cnh { get; set; }
         public DateTime DataValidadeCnh { get; set; }
-        public int Numero { get; set; }
-        public string Rua { get; set; }
-        public string Bairro { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
+        public Endereco Endereco { get; set; }
         public Cliente Cliente { get; set; }
-        public bool ClienteCondutor => Cpf == Cliente.Documento ? true : false;
+        public bool ClienteCondutor
+        {
+            get
+            {
+                bool retorno = false;
+
+                if (Cliente != null)
+                    if (Cpf == Cliente.Documento)
+                        retorno = true;
+                    else
+                        retorno = false;
+
+                return retorno;
+            }
+        }
 
         #endregion
 
@@ -66,12 +72,9 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
                    Cpf == condutor.Cpf &&
                    Cnh == condutor.Cnh &&
                    DataValidadeCnh == condutor.DataValidadeCnh &&
-                   Numero == condutor.Numero &&
-                   Rua == condutor.Rua &&
-                   Bairro == condutor.Bairro &&
-                   Cidade == condutor.Cidade &&
-                   Estado == condutor.Estado &&
-                   EqualityComparer<Cliente>.Default.Equals(Cliente, condutor.Cliente);
+                   EqualityComparer<Endereco>.Default.Equals(Endereco, condutor.Endereco) &&
+                   EqualityComparer<Cliente>.Default.Equals(Cliente, condutor.Cliente) &&
+                   ClienteCondutor == condutor.ClienteCondutor;
         }
 
         public override int GetHashCode()
@@ -84,12 +87,9 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
             hash.Add(Cpf);
             hash.Add(Cnh);
             hash.Add(DataValidadeCnh);
-            hash.Add(Numero);
-            hash.Add(Rua);
-            hash.Add(Bairro);
-            hash.Add(Cidade);
-            hash.Add(Estado);
+            hash.Add(Endereco);
             hash.Add(Cliente);
+            hash.Add(ClienteCondutor);
             return hash.ToHashCode();
         }
 
@@ -97,8 +97,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
         {
             return $"Nome: {Nome} Telefone: {Telefone} Email: {Email}" +
                 $" CPF: {Cpf} CNH: {Cnh} Data de validade CNH: {DataValidadeCnh}" +
-                $" Número: {Numero} Rua: {Rua} Bairro: {Bairro}" +
-                $" Cidade: {Cidade} Estado: {Estado} Cliente: {Cliente.Nome} - {Cliente.Documento}";
+                $" Cliente: {Cliente.Nome} - {Cliente.Documento}";
         }
     }
 }

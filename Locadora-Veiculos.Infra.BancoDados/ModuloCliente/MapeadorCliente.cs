@@ -1,4 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloCliente;
+using Locadora_Veiculos.Dominio.ModuloEndereco;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using System;
 using System.Data.SqlClient;
@@ -13,11 +14,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
             comando.Parameters.AddWithValue("NOME", registro.Nome);
             comando.Parameters.AddWithValue("EMAIL", registro.Email);
             comando.Parameters.AddWithValue("TELEFONE", registro.Telefone);
-            comando.Parameters.AddWithValue("ESTADO", registro.Estado);
-            comando.Parameters.AddWithValue("CIDADE", registro.Cidade);
-            comando.Parameters.AddWithValue("BAIRRO", registro.Bairro);
-            comando.Parameters.AddWithValue("RUA", registro.Rua);
-            comando.Parameters.AddWithValue("NUMERO", registro.Numero);
+            comando.Parameters.AddWithValue("ESTADO", registro.Endereco.Estado);
+            comando.Parameters.AddWithValue("CIDADE", registro.Endereco.Cidade);
+            comando.Parameters.AddWithValue("BAIRRO", registro.Endereco.Bairro);
+            comando.Parameters.AddWithValue("RUA", registro.Endereco.Logradouro);
+            comando.Parameters.AddWithValue("NUMERO", registro.Endereco.Numero);
             comando.Parameters.AddWithValue("TIPO_CLIENTE", registro.TipoCliente);
             comando.Parameters.AddWithValue("DOCUMENTO", registro.Documento);
         }
@@ -28,13 +29,16 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
             var nome = Convert.ToString(leitorRegistro["CLIENTE_NOME"]);
             var email = Convert.ToString(leitorRegistro["CLIENTE_EMAIL"]);
             var telefone = Convert.ToString(leitorRegistro["CLIENTE_TELEFONE"]);
-            var estado = Convert.ToString(leitorRegistro["CLIENTE_ESTADO"]);
-            var cidade = Convert.ToString(leitorRegistro["CLIENTE_CIDADE"]);
-            var bairro = Convert.ToString(leitorRegistro["CLIENTE_BAIRRO"]);
-            var rua = Convert.ToString(leitorRegistro["CLIENTE_RUA"]);
-            var numero = Convert.ToInt32(leitorRegistro["CLIENTE_NUMERO"]);
             var tipo = Convert.ToInt32(leitorRegistro["CLIENTE_TIPO_CLIENTE"]);
             var documento = Convert.ToString(leitorRegistro["CLIENTE_DOCUMENTO"]);
+
+            var endereco = new Endereco();
+            endereco.Estado = Convert.ToString(leitorRegistro["CLIENTE_ESTADO"]);
+            endereco.Cidade = Convert.ToString(leitorRegistro["CLIENTE_CIDADE"]);
+            endereco.Bairro = Convert.ToString(leitorRegistro["CLIENTE_BAIRRO"]);
+            endereco.Logradouro = Convert.ToString(leitorRegistro["CLIENTE_RUA"]);
+            endereco.Numero = Convert.ToInt32(leitorRegistro["CLIENTE_NUMERO"]);
+
 
             Cliente cliente = new Cliente()
             {
@@ -42,12 +46,8 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                 Nome = nome,
                 Email = email,
                 Telefone = telefone,
-                Estado = estado,
-                Cidade = cidade,
-                Rua = rua,
-                Bairro = bairro,
-                Numero = numero,
-                Documento = documento
+                Documento = documento,
+                Endereco = endereco
             };
 
             cliente.TipoCliente = ConfigurarTipoCliente(tipo);

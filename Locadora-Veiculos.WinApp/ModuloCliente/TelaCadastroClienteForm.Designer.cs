@@ -55,7 +55,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -143,11 +142,11 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(70, 227);
+            this.label11.Location = new System.Drawing.Point(27, 226);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(30, 15);
+            this.label11.Size = new System.Drawing.Size(72, 15);
             this.label11.TabIndex = 10;
-            this.label11.Text = "Rua:";
+            this.label11.Text = "Logradouro:";
             // 
             // label12
             // 
@@ -282,7 +281,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             // txtNumero
             // 
             this.txtNumero.Location = new System.Drawing.Point(106, 252);
-            this.txtNumero.Mask = "00000";
+            this.txtNumero.Mask = "000000000000";
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(46, 23);
             this.txtNumero.TabIndex = 12;
@@ -320,23 +319,11 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Enabled = false;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(275, 86);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(119, 15);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "Ex: (49) 98888-7777";
-            // 
             // TelaCadastroClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(411, 326);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnGravar);
@@ -371,6 +358,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Clientes";
+            this.Load += new System.EventHandler(this.TelaCadastroClienteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,6 +392,5 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Label label13;
     }
 }

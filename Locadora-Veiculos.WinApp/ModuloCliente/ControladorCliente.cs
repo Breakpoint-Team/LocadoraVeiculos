@@ -28,8 +28,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarClientes();
+            CarregarClientes();
         }
 
         public override void Editar()
@@ -51,8 +50,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarClientes();
+            CarregarClientes();
         }
 
         public override void Excluir()
@@ -66,20 +64,19 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
                 return;
             }
 
-            int qtdCondutoresRelacionados = repositorioCliente.QuantidadeCondutoresRelacionadosAoCliente(clienteSelecionado.Id);
-
-            if (qtdCondutoresRelacionados > 0)
-            {
-                MessageBox.Show("Não é possível excluir um Cliente que possui Condutores relacionados!",
-                "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
             DialogResult resultado = MessageBox.Show("Deseja realmente excluir o cliente?",
                 "Exclusão de Cliente", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
-                repositorioCliente.Excluir(clienteSelecionado);
+            {
+                var resultadoExclusao = servicoCliente.Excluir(clienteSelecionado);
+                
+                if (resultadoExclusao.IsValid == false)
+                {
+                    MessageBox.Show(resultadoExclusao.Errors[0].ErrorMessage,
+                                    "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
 
             CarregarClientes();
         }

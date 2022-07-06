@@ -50,6 +50,10 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
                 DialogResult = DialogResult.None;
             }
         }
+        private void TelaCadastroFuncionarioForm_Load(object sender, EventArgs e)
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
 
         #endregion
 
@@ -101,5 +105,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
         }
 
         #endregion
+
+
     }
 }

@@ -31,8 +31,38 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 
             return resultadoValidacao;
         }
+        
+        public ValidationResult Excluir(Cliente cliente)
+        {
+            var resultadoValidacao = ExclusaoValida(cliente);
 
+            if (resultadoValidacao.IsValid)
+                repositorioCliente.Excluir(cliente);
+
+            return resultadoValidacao;
+        }
+        
         #region MÉTODOS PRIVADOS
+
+        private ValidationResult ExclusaoValida(Cliente cliente)
+        {
+            ValidationResult resultadoValidacao = new ValidationResult();
+
+            if (TemCondutoresRelacionados(cliente))
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não é possível excluir um Cliente que possui Condutores relacionados"));
+
+            return resultadoValidacao;
+        }
+
+        private bool TemCondutoresRelacionados(Cliente cliente)
+        {
+            int qtdCondutoresRelacionados = repositorioCliente.QuantidadeCondutoresRelacionadosAoCliente(cliente.Id);
+            
+            if (qtdCondutoresRelacionados > 0)
+                return true;
+
+            return false;
+        }
 
         private ValidationResult Validar(Cliente cliente)
         {

@@ -33,7 +33,37 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             return resultadoValidacao;
         }
 
+        public ValidationResult Excluir(GrupoVeiculos grupoVeiculos)
+        {
+            var resultadoValidacao = ExclusaoValida(grupoVeiculos);
+
+            if (resultadoValidacao.IsValid)
+                repositorioGrupoVeiculos.Excluir(grupoVeiculos);
+
+            return resultadoValidacao;
+        }
+
         #region MÉTODOS PRIVADOS
+
+        private ValidationResult ExclusaoValida(GrupoVeiculos grupoVeiculos)
+        {
+            ValidationResult resultadoValidacao = new ValidationResult();
+
+            if (TemVeiculosRelacionados(grupoVeiculos))
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não é possível excluir um Grupo de veículos que possui Veículos relacionados"));
+
+            return resultadoValidacao;
+        }
+
+        private bool TemVeiculosRelacionados(GrupoVeiculos grupoVeiculos)
+        {
+            int qtdCondutoresRelacionados = repositorioGrupoVeiculos.QuantidadeVeiculosRelacionadosAoGrupo(grupoVeiculos.Id);
+
+            if (qtdCondutoresRelacionados > 0)
+                return true;
+
+            return false;
+        }
 
         private ValidationResult Validar(GrupoVeiculos grupoVeiculos)
         {

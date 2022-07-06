@@ -25,8 +25,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             tela.GravarRegistro = servicoTaxa.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
-            if (resultado == DialogResult.OK)
-                CarregarTaxas();
+            CarregarTaxas();
         }
 
         public override void Editar()
@@ -47,9 +46,8 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             tela.GravarRegistro = servicoTaxa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-                CarregarTaxas();
+            
+            CarregarTaxas();
         }
 
         public override void Excluir()
@@ -69,8 +67,8 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             if (resultado == DialogResult.OK)
             {
                 repositorioTaxa.Excluir(taxaSelecionada);
-                CarregarTaxas();
             }
+            CarregarTaxas();
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
