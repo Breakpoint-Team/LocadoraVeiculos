@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.Dominio.ModuloCondutor;
+using Locadora_Veiculos.Dominio.ModuloEndereco;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -114,11 +115,11 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
                 txtEmail.Text = condutor.Email;
                 txtTelefone.Text = condutor.Telefone;
                 txtCpf.Text = condutor.Cpf;
-                txtNumero.Text = Convert.ToString(condutor.Numero);
-                txtRua.Text = condutor.Rua;
-                txtBairro.Text = condutor.Bairro;
-                txtCidade.Text = condutor.Cidade;
-                comboBoxEstado.SelectedItem = condutor.Estado;
+                txtNumero.Text = Convert.ToString(condutor.Endereco.Numero);
+                txtRua.Text = condutor.Endereco.Logradouro;
+                txtBairro.Text = condutor.Endereco.Bairro;
+                txtCidade.Text = condutor.Endereco.Cidade;
+                comboBoxEstado.SelectedItem = condutor.Endereco.Estado;
             }
 
             txtCnh.Text = condutor.Cnh;
@@ -131,15 +132,16 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             condutor.Email = txtEmail.Text;
             condutor.Telefone = txtTelefone.Text;
 
+            condutor.Endereco = new Endereco();
             if (string.IsNullOrEmpty(txtNumero.Text) == false)
-                condutor.Numero = int.Parse(txtNumero.Text);
+                condutor.Endereco.Numero = int.Parse(txtNumero.Text);
 
             if (comboBoxEstado.SelectedIndex != -1)
-                condutor.Estado = comboBoxEstado.SelectedItem.ToString();
+                condutor.Endereco.Estado = comboBoxEstado.SelectedItem.ToString();
 
-            condutor.Rua = txtRua.Text;
-            condutor.Bairro = txtBairro.Text;
-            condutor.Cidade = txtCidade.Text;
+            condutor.Endereco.Logradouro = txtRua.Text;
+            condutor.Endereco.Bairro = txtBairro.Text;
+            condutor.Endereco.Cidade = txtCidade.Text;
 
             condutor.Cpf = txtCpf.Text;
             condutor.Cnh = txtCnh.Text;
@@ -160,15 +162,15 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
         {
             var cliente = ObterClienteSelecionado();
 
-            //txtNome.Text = cliente.Nome;
-            //txtEmail.Text = cliente.Email;
-            //txtTelefone.Text = cliente.Telefone;
-            //txtCpf.Text = cliente.Documento;
-            //txtRua.Text = cliente.Rua;
-            //txtBairro.Text = cliente.Bairro;
-            //txtCidade.Text = cliente.Cidade;
-            //comboBoxEstado.SelectedItem = cliente.Estado;
-            //txtNumero.Text = cliente.Numero.ToString();
+            txtNome.Text = cliente.Nome;
+            txtEmail.Text = cliente.Email;
+            txtTelefone.Text = cliente.Telefone;
+            txtCpf.Text = cliente.Documento;
+            txtRua.Text = cliente.Endereco.Logradouro;
+            txtBairro.Text = cliente.Endereco.Bairro;
+            txtCidade.Text = cliente.Endereco.Cidade;
+            comboBoxEstado.SelectedItem = cliente.Endereco.Estado;
+            txtNumero.Text = cliente.Endereco.Numero.ToString();
         }
 
         private Cliente ObterClienteSelecionado()
@@ -238,7 +240,5 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
         }
 
         #endregion
-
-
     }
 }
