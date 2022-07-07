@@ -58,6 +58,17 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             return resultadoValidacao;
         }
 
+        public ValidationResult Excluir(PlanoCobranca planoCobranca)
+        {
+            Log.Logger.Debug("Tentando excluir Plano de Cobrança... {@PlanoCobranca}", planoCobranca);
+
+            repositorioPlanoCobranca.Excluir(planoCobranca);
+
+            Log.Logger.Debug("Plano de Cobrança com Id = '{PlanoCobrancaId}' excluído com sucesso", planoCobranca.Id);
+
+            return new ValidationResult();
+        }
+
         #region MÉTODOS PRIVADOS
 
         private ValidationResult Validar(PlanoCobranca planoCobranca)

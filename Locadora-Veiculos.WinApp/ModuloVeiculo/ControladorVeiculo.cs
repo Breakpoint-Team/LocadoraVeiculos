@@ -77,7 +77,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
             if (resultado == DialogResult.OK)
             {
-                repositorioVeiculo.Excluir(veiculoSelecionado);
+                servicoVeiculo.Excluir(veiculoSelecionado);
             }
             CarregarVeiculos();
         }

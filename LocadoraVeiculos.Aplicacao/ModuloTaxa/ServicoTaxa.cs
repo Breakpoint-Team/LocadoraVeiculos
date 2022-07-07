@@ -61,6 +61,18 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
             return resultadoValidacao;
         }
 
+        public ValidationResult Excluir(Taxa taxa)
+        {
+            Log.Logger.Debug("Tentando excluir Taxa... {@Taxa}", taxa);
+         
+            repositorioTaxa.Excluir(taxa);
+
+            Log.Logger.Debug("Taxa com Id = '{TaxaId}' excluído com sucesso", taxa.Id);
+
+            return new ValidationResult();
+        }
+
+
         #region MÉTODOS PRIVADOS
 
         private ValidationResult Validar(Taxa taxa)

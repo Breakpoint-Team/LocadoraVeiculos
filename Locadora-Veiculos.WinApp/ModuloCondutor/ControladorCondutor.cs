@@ -82,7 +82,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
                 "Exclusão de Condutor", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
-                repositorioCondutor.Excluir(condutorSelecionado);
+                servicoCondutor.Excluir(condutorSelecionado);
 
             CarregarCondutores();
         }

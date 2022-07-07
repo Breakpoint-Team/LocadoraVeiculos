@@ -61,6 +61,17 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             return resultadoValidacao;
         }
 
+        public ValidationResult Excluir(Funcionario funcionario)
+        {
+            Log.Logger.Debug("Tentando excluir Funcionário... {@Funcionario}", funcionario);
+
+            repositorioFuncionario.Excluir(funcionario);
+
+            Log.Logger.Debug("Funcionário com Id = '{FuncionarioId}' excluído com sucesso", funcionario.Id);
+
+            return new ValidationResult();
+        }
+
         #region MÉTODOS PRIVADOS
 
         private ValidationResult Validar(Funcionario funcionario)

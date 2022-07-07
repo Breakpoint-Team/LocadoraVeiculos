@@ -60,6 +60,17 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCondutor
             return resultadoValidacao;
         }
 
+        public ValidationResult Excluir(Condutor condutor)
+        {
+            Log.Logger.Debug("Tentando excluir Condutor... {@Condutor}", condutor);
+
+            repositorioCondutor.Excluir(condutor);
+
+            Log.Logger.Debug("Condutor com Id = '{CondutorId}' excluído com sucesso", condutor.Id);
+
+            return new ValidationResult();
+        }
+
         #region MÉTODOS PRIVADOS
 
         private ValidationResult Validar(Condutor condutor)

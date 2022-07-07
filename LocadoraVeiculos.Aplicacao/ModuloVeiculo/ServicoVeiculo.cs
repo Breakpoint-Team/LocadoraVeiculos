@@ -60,6 +60,17 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             return resultadoValidacao;
         }
 
+        public ValidationResult Excluir(Veiculo veiculo)
+        {
+            Log.Logger.Debug("Tentando excluir Veículo... {@Veiculo}", veiculo);
+
+            repositorioVeiculo.Excluir(veiculo);
+
+            Log.Logger.Debug("Veículo com Id = '{VeiculoId}' excluído com sucesso", veiculo.Id);
+
+            return new ValidationResult();
+        }
+
         #region MÉTODOS PRIVADOS
 
         private ValidationResult Validar(Veiculo veiculo)

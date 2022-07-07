@@ -82,9 +82,9 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
             if (resultado == DialogResult.OK)
             {
-                repositorioPlanoCobranca.Excluir(planoCobrancaSelecionado);
-                CarregarPlanos();
+                servicoPlanoCobranca.Excluir(planoCobrancaSelecionado);
             }
+            CarregarPlanos();
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
