@@ -24,7 +24,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             {
                 repositorioFuncionario.Inserir(funcionario);
                 Log.Logger.Debug("Funcionário '{FuncionarioNome}' inserido com sucesso", funcionario.Nome);
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
@@ -47,7 +48,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
                 repositorioFuncionario.Editar(funcionario);
                 Log.Logger.Debug("Funcionário com Id = '{FuncionarioId}' editado com sucesso", funcionario.Id);
 
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {

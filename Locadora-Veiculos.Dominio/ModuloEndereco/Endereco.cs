@@ -31,7 +31,7 @@ namespace Locadora_Veiculos.Dominio.ModuloEndereco
         public int Numero { get; set; }
 
         #endregion
-        
+
         public override bool Equals(object obj)
         {
             return obj is Endereco endereco &&

@@ -52,6 +52,7 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(300, 23);
             this.txtNome.TabIndex = 0;
+            this.txtNome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
@@ -120,6 +121,7 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(123, 23);
             this.txtLogin.TabIndex = 1;
+            this.txtLogin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtSenha
             // 
@@ -128,6 +130,7 @@
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(123, 23);
             this.txtSenha.TabIndex = 2;
+            this.txtSenha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnGravar
             // 
@@ -174,6 +177,11 @@
             // numericSalario
             // 
             this.numericSalario.DecimalPlaces = 2;
+            this.numericSalario.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numericSalario.Location = new System.Drawing.Point(120, 102);
             this.numericSalario.Maximum = new decimal(new int[] {
             50000,
@@ -183,6 +191,7 @@
             this.numericSalario.Name = "numericSalario";
             this.numericSalario.Size = new System.Drawing.Size(120, 23);
             this.numericSalario.TabIndex = 4;
+            this.numericSalario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TelaCadastroFuncionarioForm
             // 
@@ -212,7 +221,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Funcionários ";
+            this.Text = "Cadastro de Funcionário";
             this.Load += new System.EventHandler(this.TelaCadastroFuncionarioForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericSalario)).EndInit();
             this.ResumeLayout(false);

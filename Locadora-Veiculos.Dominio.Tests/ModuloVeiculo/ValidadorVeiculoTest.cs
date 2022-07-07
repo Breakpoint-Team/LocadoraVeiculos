@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Locadora_Veiculos.Dominio.Tests.ModuloVeiculo
 {
     [TestClass]
-    public class ValidadorVeiculoTest 
+    public class ValidadorVeiculoTest
     {
         #region MODELO
         [TestMethod]

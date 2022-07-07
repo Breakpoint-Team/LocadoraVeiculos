@@ -1,8 +1,6 @@
-﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+﻿using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ModuloTaxa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
 {

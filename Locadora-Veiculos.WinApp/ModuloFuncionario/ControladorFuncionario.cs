@@ -24,7 +24,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             tela.Funcionario = new Funcionario();
             tela.GravarRegistro = servicoFuncionario.Inserir;
             DialogResult resultado = tela.ShowDialog();
-           
+
             CarregarFuncionarios();
         }
 

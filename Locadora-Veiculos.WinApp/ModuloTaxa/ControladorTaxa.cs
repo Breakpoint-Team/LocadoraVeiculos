@@ -46,7 +46,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             tela.GravarRegistro = servicoTaxa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
-            
+
             CarregarTaxas();
         }
 
@@ -73,7 +73,7 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            return new ConfiguracaoToolBoxTaxa();
+            return new ConfiguracaoToolboxTaxa();
         }
 
         public override UserControl ObtemListagem()

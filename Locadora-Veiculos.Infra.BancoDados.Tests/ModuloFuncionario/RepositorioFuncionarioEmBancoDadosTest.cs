@@ -1,9 +1,6 @@
-﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+﻿using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloFuncionario
 {

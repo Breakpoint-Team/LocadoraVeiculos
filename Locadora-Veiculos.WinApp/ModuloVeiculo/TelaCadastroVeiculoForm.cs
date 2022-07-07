@@ -112,7 +112,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             TelaPrincipalForm.Instancia.AtualizarRodape("");
         }
         #endregion
-     
+
         #region IMAGEM DO VEÍCULO
         private void btnSelecionarImagem_Click(object sender, EventArgs e)
         {
@@ -179,7 +179,5 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
         }
 
         #endregion
-
-
     }
 }

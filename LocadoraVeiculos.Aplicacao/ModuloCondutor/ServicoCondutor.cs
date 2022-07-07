@@ -23,7 +23,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCondutor
             {
                 repositorioCondutor.Inserir(condutor);
                 Log.Logger.Debug("Condutor '{CondutorNome}' inserido com sucesso", condutor.Nome);
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {

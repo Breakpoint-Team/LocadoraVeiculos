@@ -35,7 +35,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCondutor
             var cpf = Convert.ToString(leitorRegistro["CONDUTOR_CPF"]);
             var cnh = Convert.ToString(leitorRegistro["CONDUTOR_CNH"]);
             var dataValidadeCnh = Convert.ToDateTime(leitorRegistro["CONDUTOR_DATA_VALIDADE_CNH"]);
-            
+
             var endereco = new Endereco();
             endereco.Estado = Convert.ToString(leitorRegistro["CONDUTOR_ESTADO"]);
             endereco.Cidade = Convert.ToString(leitorRegistro["CONDUTOR_CIDADE"]);

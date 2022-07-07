@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Dominio.Compartilhado
 {

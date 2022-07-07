@@ -6,7 +6,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
     {
         [Description("Pessoa física")]
         PessoaFisica,
-        
+
         [Description("Pessoa jurídica")]
         PessoaJuridica,
     }

@@ -64,7 +64,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
 
             DialogResult resultado = tela.ShowDialog();
 
-                CarregarCondutores();
+            CarregarCondutores();
         }
 
         public override void Excluir()

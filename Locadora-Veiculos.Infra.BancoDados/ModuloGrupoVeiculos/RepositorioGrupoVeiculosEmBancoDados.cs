@@ -62,6 +62,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
                 AS GV INNER JOIN TBVEICULO AS V
                 ON V.[ID_GRUPO_VEICULOS] = @ID";
 
+        private string sqlCountPlanosDeCobrancaRelacionados =>
+            @"SELECT COUNT(*) FROM TBGRUPOVEICULOS 
+                AS GV INNER JOIN TBPLANOCOBRANCA AS PC
+                ON PC.[ID_GRUPO_VEICULOS] = @ID";
+
         public GrupoVeiculos SelecionarGrupoVeiculosPorNome(string nome)
         {
             return SelecionarPorParametro(sqlSelecionarGrupoVeiculosPorNome, new SqlParameter("NOME", nome));
@@ -85,6 +90,21 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlCountVeiculosRelacionados, conexaoComBanco);
+
+            comandoSelecao.Parameters.AddWithValue("ID", id);
+
+            conexaoComBanco.Open();
+
+            Int32 count = (Int32)comandoSelecao.ExecuteScalar();
+
+            return count;
+        }
+
+        public int QuantidadePlanosDeCobrancaRelacionadosAoGrupo(int id)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlCountPlanosDeCobrancaRelacionados, conexaoComBanco);
 
             comandoSelecao.Parameters.AddWithValue("ID", id);
 

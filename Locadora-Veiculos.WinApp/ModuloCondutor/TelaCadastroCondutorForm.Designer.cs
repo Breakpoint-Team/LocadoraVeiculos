@@ -133,6 +133,7 @@
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(291, 23);
             this.txtRua.TabIndex = 9;
+            this.txtRua.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtBairro
             // 
@@ -140,6 +141,7 @@
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(291, 23);
             this.txtBairro.TabIndex = 8;
+            this.txtBairro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCidade
             // 
@@ -147,6 +149,7 @@
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(164, 23);
             this.txtCidade.TabIndex = 7;
+            this.txtCidade.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCpf
             // 
@@ -155,6 +158,7 @@
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(121, 23);
             this.txtCpf.TabIndex = 5;
+            this.txtCpf.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtTelefone
             // 
@@ -163,6 +167,7 @@
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(121, 23);
             this.txtTelefone.TabIndex = 4;
+            this.txtTelefone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtEmail
             // 
@@ -170,6 +175,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(291, 23);
             this.txtEmail.TabIndex = 3;
+            this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtNome
             // 
@@ -178,6 +184,7 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(291, 23);
             this.txtNome.TabIndex = 2;
+            this.txtNome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
             // 
@@ -301,6 +308,7 @@
             this.txtCnh.Name = "txtCnh";
             this.txtCnh.Size = new System.Drawing.Size(121, 23);
             this.txtCnh.TabIndex = 12;
+            this.txtCnh.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -317,6 +325,7 @@
             this.dateTimePickerDataValidadeCnh.Location = new System.Drawing.Point(233, 249);
             this.dateTimePickerDataValidadeCnh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerDataValidadeCnh.Name = "dateTimePickerDataValidadeCnh";
+            this.dateTimePickerDataValidadeCnh.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dateTimePickerDataValidadeCnh.Size = new System.Drawing.Size(148, 23);
             this.dateTimePickerDataValidadeCnh.TabIndex = 11;
             // 
@@ -336,6 +345,7 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(46, 23);
             this.txtNumero.TabIndex = 10;
+            this.txtNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TelaCadastroCondutorForm
             // 
@@ -377,7 +387,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Condutores";
+            this.Text = "Cadastro de Condutor";
             this.Load += new System.EventHandler(this.TelaCadastroCondutorForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -96,10 +96,16 @@
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(209, 23);
             this.txtDescricao.TabIndex = 0;
+            this.txtDescricao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numericValor
             // 
             this.numericValor.DecimalPlaces = 2;
+            this.numericValor.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numericValor.Location = new System.Drawing.Point(113, 50);
             this.numericValor.Maximum = new decimal(new int[] {
             10000,
@@ -109,6 +115,7 @@
             this.numericValor.Name = "numericValor";
             this.numericValor.Size = new System.Drawing.Size(109, 23);
             this.numericValor.TabIndex = 1;
+            this.numericValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCancelar
             // 

@@ -20,7 +20,7 @@ namespace Locadora_Veiculos.Dominio.ModuloGrupoVeiculos
 
         #region PROPS
 
-        public string Nome {get; set;}
+        public string Nome { get; set; }
 
         #endregion
 

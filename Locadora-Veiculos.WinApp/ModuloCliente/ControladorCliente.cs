@@ -70,7 +70,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             if (resultado == DialogResult.OK)
             {
                 var resultadoExclusao = servicoCliente.Excluir(clienteSelecionado);
-                
+
                 if (resultadoExclusao.IsValid == false)
                 {
                     MessageBox.Show(resultadoExclusao.Errors[0].ErrorMessage,
@@ -83,7 +83,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            return new ConfiguracaoToolBoxCliente();
+            return new ConfiguracaoToolboxCliente();
         }
 
         public override UserControl ObtemListagem()

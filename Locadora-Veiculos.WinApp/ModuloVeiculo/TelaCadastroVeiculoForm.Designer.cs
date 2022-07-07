@@ -118,6 +118,7 @@
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(217, 23);
             this.txtModelo.TabIndex = 0;
+            this.txtModelo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCor
             // 
@@ -125,6 +126,7 @@
             this.txtCor.Name = "txtCor";
             this.txtCor.Size = new System.Drawing.Size(217, 23);
             this.txtCor.TabIndex = 2;
+            this.txtCor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPlaca
             // 
@@ -134,6 +136,7 @@
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(217, 23);
             this.txtPlaca.TabIndex = 3;
+            this.txtPlaca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numericQuilometragemPercorrida
             // 
@@ -146,6 +149,7 @@
             this.numericQuilometragemPercorrida.Name = "numericQuilometragemPercorrida";
             this.numericQuilometragemPercorrida.Size = new System.Drawing.Size(217, 23);
             this.numericQuilometragemPercorrida.TabIndex = 5;
+            this.numericQuilometragemPercorrida.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // comboBoxGrupoVeiculos
             // 
@@ -198,6 +202,7 @@
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(217, 23);
             this.txtMarca.TabIndex = 1;
+            this.txtMarca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numericAno
             // 
@@ -215,6 +220,7 @@
             this.numericAno.Name = "numericAno";
             this.numericAno.Size = new System.Drawing.Size(217, 23);
             this.numericAno.TabIndex = 4;
+            this.numericAno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericAno.Value = new decimal(new int[] {
             1920,
             0,
@@ -224,6 +230,11 @@
             // numericCapacidadeTanque
             // 
             this.numericCapacidadeTanque.DecimalPlaces = 2;
+            this.numericCapacidadeTanque.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numericCapacidadeTanque.Location = new System.Drawing.Point(172, 226);
             this.numericCapacidadeTanque.Maximum = new decimal(new int[] {
             1000,
@@ -238,6 +249,7 @@
             this.numericCapacidadeTanque.Name = "numericCapacidadeTanque";
             this.numericCapacidadeTanque.Size = new System.Drawing.Size(217, 23);
             this.numericCapacidadeTanque.TabIndex = 7;
+            this.numericCapacidadeTanque.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericCapacidadeTanque.Value = new decimal(new int[] {
             10,
             0,
@@ -291,7 +303,7 @@
             this.btnSelecionarImagem.Name = "btnSelecionarImagem";
             this.btnSelecionarImagem.Size = new System.Drawing.Size(150, 23);
             this.btnSelecionarImagem.TabIndex = 9;
-            this.btnSelecionarImagem.Text = "selecionar imagem";
+            this.btnSelecionarImagem.Text = "Selecionar imagem";
             this.btnSelecionarImagem.UseVisualStyleBackColor = true;
             this.btnSelecionarImagem.Click += new System.EventHandler(this.btnSelecionarImagem_Click);
             // 
@@ -340,7 +352,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Veículos";
+            this.Text = "Cadastro de Veículo";
             this.Load += new System.EventHandler(this.TelaCadastroVeiculoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericQuilometragemPercorrida)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericAno)).EndInit();

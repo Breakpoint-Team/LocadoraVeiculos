@@ -21,7 +21,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloGrupoVeiculos
             //assert
             Assert.AreEqual("O campo 'Nome' é obrigatório!", resultado.Errors[0].ErrorMessage);
         }
-        
+
         [TestMethod]
         public void Nome_nao_deve_ter_caracteres_especiais_e_numeros()
         {

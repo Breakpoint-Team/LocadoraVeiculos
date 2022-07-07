@@ -1,20 +1,39 @@
-﻿using Locadora_Veiculos.Dominio.ModuloCliente;
-using Locadora_Veiculos.Dominio.ModuloCondutor;
+﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
+using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Locadora_Veiculos.WinApp.Compartilhado;
-using LocadoraVeiculos.Aplicacao.ModuloCondutor;
+using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 {
-    public class ControladorPlanoCobranca
+    public class ControladorPlanoCobranca : ControladorBase
     {
         private readonly IRepositorioPlanoCobranca repositorioPlanoCobranca;
-        private ListagemPlanoCobrancaControl listagemPlanoCobranca;
+        private readonly IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
         private readonly ServicoPlanoCobranca servicoPlanoCobranca;
+        private ListagemPlanoCobrancaControl listagemPlanoCobranca;
+
+        public ControladorPlanoCobranca(IRepositorioPlanoCobranca repositorioPlanoCobranca,
+            ServicoPlanoCobranca servicoPlanoCobranca, IRepositorioGrupoVeiculos repositorioGrupoVeiculos)
+        {
+            this.repositorioPlanoCobranca = repositorioPlanoCobranca;
+            this.servicoPlanoCobranca = servicoPlanoCobranca;
+            this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
+        }
+
         public override void Inserir()
         {
-            var tela = new TelaCadastroPlanoCobrancaForm();
+            int qtd = repositorioGrupoVeiculos.QuantidadeGrupoVeiculosCadastrados();
+
+            if (qtd == 0)
+            {
+                MessageBox.Show("Para cadastrar um Plano de Cobrança, é necessário que haja um Grupo de Veículos cadastrado!",
+                "Inserção de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var tela = new TelaCadastroPlanoCobrancaForm(ObterGrupos());
 
             tela.PlanoCobranca = new PlanoCobranca();
 
@@ -22,21 +41,21 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarPlanoCobranca();
+            CarregarPlanos();
         }
+
         public override void Editar()
         {
             PlanoCobranca planoCobrancaSelecionado = ObtemPlanoCobrancaSelecionado();
 
             if (planoCobrancaSelecionado == null)
             {
-                MessageBox.Show("Selecione um grupo de veículos primeiro!",
-                "Edição de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um plano de cobrança primeiro!",
+                "Edição de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            var tela = new TelaCadastroPlanoCobrancaForm();
+            var tela = new TelaCadastroPlanoCobrancaForm(ObterGrupos());
 
             tela.PlanoCobranca = planoCobrancaSelecionado;
 
@@ -44,8 +63,7 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
             DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarPlanos();
+            CarregarPlanos();
         }
 
         public override void Excluir()
@@ -54,23 +72,13 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
             if (planoCobrancaSelecionado == null)
             {
-                MessageBox.Show("Selecione um grupo de veículos primeiro!",
-                "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um plano de cobrança primeiro!",
+                "Exclusão de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-
-            int qtdPlanosRelacionados = repositorioPlanoCobranca.QuantidadePlanosRelacionadosAoGrupo(planoCobrancaSelecionado.Id);
-            if (qtdPlanosRelacionados > 0)
-            {
-                MessageBox.Show("Não é possível excluir um Grupo de Veículos que possui Veículos relacionados",
-                "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o grupo de veículos?",
-            "Exclusão de Grupo de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o plano de cobrança?",
+            "Exclusão de Plano de Cobrança", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
             {
@@ -81,7 +89,7 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            return new ConfiguracaoToolBoxPlanoCobranca();
+            return new ConfiguracaoToolboxPlanoCobranca();
         }
 
         public override UserControl ObtemListagem()
@@ -91,7 +99,32 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
             CarregarPlanos();
 
-            return listagemPlanoCobrancas;
+            return listagemPlanoCobranca;
         }
+
+        #region MÉTODOS PRIVADOS
+
+        private void CarregarPlanos()
+        {
+            List<PlanoCobranca> planos = repositorioPlanoCobranca.SelecionarTodos();
+
+            listagemPlanoCobranca.AtualizarRegistros(planos);
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {planos.Count} plano(s) de cobrança");
+        }
+
+        private PlanoCobranca ObtemPlanoCobrancaSelecionado()
+        {
+            var id = listagemPlanoCobranca.ObtemIdPlanoCobrancaSelecionado();
+
+            return repositorioPlanoCobranca.SelecionarPorId(id);
+        }
+
+        private List<GrupoVeiculos> ObterGrupos()
+        {
+            return repositorioGrupoVeiculos.SelecionarTodos();
+        }
+
+        #endregion
     }
 }

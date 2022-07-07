@@ -23,7 +23,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             {
                 repositorioCliente.Inserir(cliente);
                 Log.Logger.Debug("Cliente '{ClienteNome}' inserido com sucesso", cliente.Nome);
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
@@ -45,7 +46,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             {
                 repositorioCliente.Editar(cliente);
                 Log.Logger.Debug("Cliente com Id = '{ClienteId}' editado com sucesso", cliente.Id);
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
@@ -56,7 +58,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 
             return resultadoValidacao;
         }
-        
+
         public ValidationResult Excluir(Cliente cliente)
         {
             Log.Logger.Debug("Tentando excluir Cliente... {@Cliente}", cliente);
@@ -67,7 +69,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             {
                 repositorioCliente.Excluir(cliente);
                 Log.Logger.Debug("Cliente com Id = '{ClienteId}' excluído com sucesso", cliente.Id);
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
@@ -78,7 +81,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 
             return resultadoValidacao;
         }
-        
+
         #region MÉTODOS PRIVADOS
 
         private ValidationResult ExclusaoValida(Cliente cliente)
@@ -86,7 +89,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             ValidationResult resultadoValidacao = new ValidationResult();
 
             if (TemCondutoresRelacionados(cliente))
-                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não é possível excluir um Cliente que possui Condutores relacionados"));
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não é possível excluir um Cliente que possui Condutores relacionados!"));
 
             return resultadoValidacao;
         }
@@ -94,7 +97,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
         private bool TemCondutoresRelacionados(Cliente cliente)
         {
             int qtdCondutoresRelacionados = repositorioCliente.QuantidadeCondutoresRelacionadosAoCliente(cliente.Id);
-            
+
             if (qtdCondutoresRelacionados > 0)
                 return true;
 

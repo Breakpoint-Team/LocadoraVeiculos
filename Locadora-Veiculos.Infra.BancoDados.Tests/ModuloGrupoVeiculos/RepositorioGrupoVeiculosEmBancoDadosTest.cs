@@ -1,8 +1,6 @@
-﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+﻿using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
 {
@@ -10,7 +8,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
     public class RepositorioGrupoVeiculosEmBancoDadosTest
     {
         private RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos;
-        
+
         public RepositorioGrupoVeiculosEmBancoDadosTest()
         {
             Db.ExecutarSql("DELETE FROM TBGRUPOVEICULOS; DBCC CHECKIDENT (TBGRUPOVEICULOS, RESEED, 0)");
@@ -47,7 +45,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
 
         //    //assert
         //    var registroEncontrado = repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
-            
+
         //    Assert.IsNotNull(registroEncontrado);
         //    Assert.AreEqual(grupoVeiculos, registroEncontrado);
         //}
@@ -108,7 +106,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
         //}
 
         //#region MÉTODOS PRIVADOS
-        
+
         //private GrupoVeiculos NovoGrupoVeiculos()
         //{
         //    var g = new GrupoVeiculos();
@@ -130,7 +128,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
 
         //    return lista;
         //}
-        
+
         //#endregion
     }
 }

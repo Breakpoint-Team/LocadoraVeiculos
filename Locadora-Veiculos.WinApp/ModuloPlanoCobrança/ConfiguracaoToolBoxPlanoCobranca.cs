@@ -4,7 +4,7 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 {
     public class ConfiguracaoToolboxPlanoCobranca : ConfiguracaoToolboxBase
     {
-        public override string TipoCadastro => "Cadastro de Plano de Cobrança";
+        public override string TipoCadastro => "Cadastro de Planos de Cobrança";
 
         public override string TooltipInserir => "Inserir um novo Plano de Cobrança";
 

@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Aplicacao"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{F9EA0411-59F6-43D9-B5FE-2EF1BB316C8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locadora-Veiculos.Infra.Logging", "Locadora-Veiculos.Infra.Logging\Locadora-Veiculos.Infra.Logging.csproj", "{176D6479-179E-4FCC-9ABB-2181A6B7D1B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locadora-Veiculos.Infra.Logging", "Locadora-Veiculos.Infra.Logging\Locadora-Veiculos.Infra.Logging.csproj", "{176D6479-179E-4FCC-9ABB-2181A6B7D1B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@
 
 namespace Locadora_Veiculos.WinApp.ModuloTaxas
 {
-    public class ConfiguracaoToolBoxTaxa : ConfiguracaoToolboxBase
+    public class ConfiguracaoToolboxTaxa : ConfiguracaoToolboxBase
     {
         public override string TipoCadastro => "Cadastro de Taxas";
 

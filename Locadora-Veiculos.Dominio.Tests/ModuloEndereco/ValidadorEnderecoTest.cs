@@ -8,8 +8,8 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloEndereco
         [TestMethod]
         public void Estado_Deve_ser_obrigatorio()
         {
-            Endereco e1 = new Endereco("", "São Paulo","centro","Rua das laranjeiras",2);
-            Endereco e2 = new Endereco(null, "São Paulo","centro","Rua das laranjeiras",2);
+            Endereco e1 = new Endereco("", "São Paulo", "centro", "Rua das laranjeiras", 2);
+            Endereco e2 = new Endereco(null, "São Paulo", "centro", "Rua das laranjeiras", 2);
 
             var validador = new ValidadorEndereco();
 

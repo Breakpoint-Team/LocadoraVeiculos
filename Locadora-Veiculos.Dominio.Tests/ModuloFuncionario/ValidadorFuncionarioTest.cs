@@ -1,10 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora_Veiculos.Dominio.Tests.ModuloFuncionario
 {
@@ -156,7 +152,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloFuncionario
             funcionario.Nome = "Alexandre Rech";
             funcionario.Login = "rech";
             funcionario.Senha = "i?4I{'EY";
-            funcionario.DataAdmissao = new DateTime(2019,2,5);
+            funcionario.DataAdmissao = new DateTime(2019, 2, 5);
             funcionario.Salario = 0;
 
             ValidadorFuncionario validador = new();

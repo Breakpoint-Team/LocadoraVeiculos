@@ -25,7 +25,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
                 repositorioTaxa.Inserir(taxa);
                 Log.Logger.Debug("Taxa '{TaxaDescricao}' inserido com sucesso", taxa.Descricao);
 
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
@@ -47,7 +48,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
                 repositorioTaxa.Editar(taxa);
                 Log.Logger.Debug("Taxa com Id = '{TaxaId}' editada com sucesso", taxa.Id);
 
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {

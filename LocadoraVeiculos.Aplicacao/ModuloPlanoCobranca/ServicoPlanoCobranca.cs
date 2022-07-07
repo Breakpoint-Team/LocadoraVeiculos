@@ -1,6 +1,5 @@
 ﻿using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
-using System;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
 {
@@ -41,20 +40,19 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
 
             var resultadoValidacao = validador.Validate(planoCobranca);
 
-            if (NomeDuplicado(planoCobranca))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "Nome já está cadastrado!"));
+            if (GrupoVeiculoJaTemPlanoRelacionado(planoCobranca))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Grupo de Veículos", "O Grupo de Veículos selecionado já possui um plano de cobrança relacionado!"));
 
             return resultadoValidacao;
         }
 
-        private bool NomeDuplicado(PlanoCobranca planoCobranca)
+        private bool GrupoVeiculoJaTemPlanoRelacionado(PlanoCobranca plano)
         {
-            var grupoVeiculosEncontrado = repositorioPlanoCobranca.SelecionarPlanoCobrancaPorNome(planoCobranca.Nome);
+            var planoEncontrado = repositorioPlanoCobranca.SelecionarPlanoPorIdDoGrupoVeiculos(plano.GrupoVeiculos.Id);
 
-            return grupoVeiculosEncontrado != null &&
-                   grupoVeiculosEncontrado.Nome.Equals(planoCobranca.Nome, StringComparison.OrdinalIgnoreCase) &&
-                   grupoVeiculosEncontrado.Id != planoCobranca.Id;
-
+            return planoEncontrado != null &&
+                   planoEncontrado.GrupoVeiculos.Id == plano.GrupoVeiculos.Id &&
+                   planoEncontrado.Id != plano.Id;
         }
 
         #endregion

@@ -2,7 +2,7 @@
 
 namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 {
-    public class ConfiguracaoToolBoxVeiculo : ConfiguracaoToolboxBase
+    public class ConfiguracaoToolboxVeiculo : ConfiguracaoToolboxBase
     {
         public override string TipoCadastro => "Cadastro de Veículos";
 

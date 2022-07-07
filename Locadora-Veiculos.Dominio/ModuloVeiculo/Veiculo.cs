@@ -42,9 +42,9 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
         public decimal CapacidadeTanque { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public byte[] Imagem { get; set; }
-        
+
         #endregion
-       
+
         public override string ToString()
         {
             return string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", Modelo, Marca, Ano, Cor, Placa, TipoCombustivel, QuilometragemPercorrida, CapacidadeTanque, GrupoVeiculos);

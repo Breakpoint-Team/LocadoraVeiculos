@@ -24,7 +24,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             {
                 repositorioVeiculo.Inserir(veiculo);
                 Log.Logger.Debug("Veículo '{VeiculoModelo}' inserido com sucesso", veiculo.Modelo);
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
@@ -46,7 +47,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             {
                 repositorioVeiculo.Editar(veiculo);
                 Log.Logger.Debug("Veículo com Id = '{VeiculoId}' editado com sucesso", veiculo.Id);
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {

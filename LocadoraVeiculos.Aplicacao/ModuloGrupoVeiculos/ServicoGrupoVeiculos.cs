@@ -23,7 +23,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             {
                 repositorioGrupoVeiculos.Inserir(grupoVeiculos);
                 Log.Logger.Debug("Grupo de Veículos '{GrupoVeiculosNome}' inserido com sucesso", grupoVeiculos.Nome);
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
@@ -66,7 +67,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             {
                 repositorioGrupoVeiculos.Excluir(grupoVeiculos);
                 Log.Logger.Debug("Grupo de Veículos com Id = '{GrupoVeiculosId}' excluído com sucesso", grupoVeiculos.Id);
-            } 
+            }
             else
             {
                 foreach (var erro in resultadoValidacao.Errors)
@@ -85,16 +86,29 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             ValidationResult resultadoValidacao = new ValidationResult();
 
             if (TemVeiculosRelacionados(grupoVeiculos))
-                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não é possível excluir um Grupo de veículos que possui Veículos relacionados"));
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não é possível excluir um Grupo de veículos que possui Veículos relacionados!"));
+
+            if (TemPlanosDeCobrancaRelacionados(grupoVeiculos))
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não é possível excluir um Grupo de veículos que possui Planos de Cobrança relacionados!"));
 
             return resultadoValidacao;
         }
 
         private bool TemVeiculosRelacionados(GrupoVeiculos grupoVeiculos)
         {
-            int qtdCondutoresRelacionados = repositorioGrupoVeiculos.QuantidadeVeiculosRelacionadosAoGrupo(grupoVeiculos.Id);
+            int qtdVeiculosRelacionados = repositorioGrupoVeiculos.QuantidadeVeiculosRelacionadosAoGrupo(grupoVeiculos.Id);
 
-            if (qtdCondutoresRelacionados > 0)
+            if (qtdVeiculosRelacionados > 0)
+                return true;
+
+            return false;
+        }
+
+        private bool TemPlanosDeCobrancaRelacionados(GrupoVeiculos grupoVeiculos)
+        {
+            int qtdPlanosRelacionados = repositorioGrupoVeiculos.QuantidadePlanosDeCobrancaRelacionadosAoGrupo(grupoVeiculos.Id);
+
+            if (qtdPlanosRelacionados > 0)
                 return true;
 
             return false;

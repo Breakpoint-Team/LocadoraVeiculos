@@ -81,7 +81,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            return new ConfiguracaoToolBoxGrupoVeiculos();
+            return new ConfiguracaoToolboxGrupoVeiculos();
         }
 
         public override UserControl ObtemListagem()
