@@ -7,7 +7,6 @@ namespace Locadora_Veiculos.Dominio.ModuloPlanoCobranca
         public ValidadorPlanoCobranca()
         {
             RuleFor(x => x.GrupoVeiculos)
-                .NotEmpty().WithMessage("O campo 'Grupo de Veículos' é obrigatório!")
                 .NotNull().WithMessage("O campo 'Grupo de Veículos' é obrigatório!");
 
             RuleFor(x => x.DiarioValorDia)

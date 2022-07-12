@@ -24,12 +24,16 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
                 repositorioPlanoCobranca.Inserir(planoCobranca);
                 Log.Logger.Debug("Plano de Cobrança do Grupo de Veículos = '{GrupoVeiculosNome}' inserido com sucesso", planoCobranca.GrupoVeiculos.Nome);
 
-            } else
+            }
+            else
             {
-                foreach (var erro in resultadoValidacao.Errors)
+                if (planoCobranca.GrupoVeiculos != null)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir um Plano de Cobrança do Grupo de Veículos = '{GrupoVeiculosNome}' - {Motivo}",
-                        planoCobranca.GrupoVeiculos.Nome, erro.ErrorMessage);
+                    foreach (var erro in resultadoValidacao.Errors)
+                    {
+                        Log.Logger.Warning("Falha ao tentar inserir um Plano de Cobrança do Grupo de Veículos = '{GrupoVeiculosNome}' - {Motivo}",
+                            planoCobranca.GrupoVeiculos.Nome, erro.ErrorMessage);
+                    }
                 }
             }
 
@@ -46,7 +50,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             {
                 repositorioPlanoCobranca.Editar(planoCobranca);
                 Log.Logger.Debug("Plano de Cobrança com Id = '{PlanoCobrancaId}' editado com sucesso", planoCobranca.Id);
-            } else
+            }
+            else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
@@ -76,6 +81,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             var validador = new ValidadorPlanoCobranca();
 
             var resultadoValidacao = validador.Validate(planoCobranca);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
 
             if (GrupoVeiculoJaTemPlanoRelacionado(planoCobranca))
                 resultadoValidacao.Errors.Add(new ValidationFailure("Grupo de Veículos", "O Grupo de Veículos selecionado já possui um plano de cobrança relacionado!"));
