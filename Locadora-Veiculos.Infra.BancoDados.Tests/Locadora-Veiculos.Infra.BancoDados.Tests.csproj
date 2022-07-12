@@ -22,4 +22,10 @@
     <Folder Include="ModuloCondutor\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ConfiguracaoAplicacao.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

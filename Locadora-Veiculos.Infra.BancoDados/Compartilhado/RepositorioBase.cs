@@ -1,19 +1,27 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
 {
     public abstract class RepositorioBase<T, TMapeador> : IRepositorio<T>
         where T : EntidadeBase<T>
         where TMapeador : MapeadorBase<T>, new()
-
     {
-        protected string enderecoBanco =
-            @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-              Initial Catalog=LocadoraVeiculos;
-              Integrated Security=True";
+        protected readonly string enderecoBanco;
+       
+        public RepositorioBase()
+        {
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
+
+            enderecoBanco = configuracao.GetConnectionString("SqlServer");
+        }
 
         protected abstract string sqlInserir { get; }
 
