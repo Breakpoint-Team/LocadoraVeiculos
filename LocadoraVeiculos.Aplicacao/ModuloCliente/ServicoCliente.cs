@@ -111,7 +111,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             var resultadoValidacao = validador.Validate(cliente);
 
             if (DocumentoDuplicado(cliente))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Documento", "Documento já está cadastrado!"));
+            {
+                if (cliente.TipoCliente == TipoCliente.PessoaFisica)
+                    resultadoValidacao.Errors.Add(new ValidationFailure("Documento", "CPF já está cadastrado!"));
+                else if (cliente.TipoCliente == TipoCliente.PessoaJuridica)
+                    resultadoValidacao.Errors.Add(new ValidationFailure("Documento", "CNPJ já está cadastrado!"));
+            }
 
             return resultadoValidacao;
         }
