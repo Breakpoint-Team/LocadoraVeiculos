@@ -1,6 +1,9 @@
-﻿using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
+using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ModuloTaxa;
+using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
 {
@@ -9,131 +12,128 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
     public class RepositorioTaxaEmBancoDadosTest
     {
         private RepositorioTaxaEmBancoDados repositorioTaxa;
-
+        private ServicoTaxa servicoTaxa;
         public RepositorioTaxaEmBancoDadosTest()
         {
-            Db.ExecutarSql("DELETE FROM TBTAXA; DBCC CHECKIDENT (TBTAXA, RESEED, 0)");
+            Db.ExecutarSql("DELETE FROM TBTAXA");
             repositorioTaxa = new RepositorioTaxaEmBancoDados();
+            servicoTaxa = new ServicoTaxa(repositorioTaxa);
         }
 
-        //[TestMethod]
-        //public void Deve_inserir_registro()
-        //{
-        //    //arrange
-        //    var taxa = NovaTaxa();
+        [TestMethod]
+        public void Deve_inserir_registro()
+        {
+            //arrange
+            var taxa = NovaTaxa();
 
-        //    //action
-        //    repositorioTaxa.Inserir(taxa);
+            //action
+            servicoTaxa.Inserir(taxa);
 
-        //    //assert
-        //    var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
+            //assert
+            var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
 
-        //    Assert.IsNotNull(registroEncontrado);
-        //    Assert.AreEqual(taxa, registroEncontrado);
-        //}
+            Assert.IsNotNull(registroEncontrado);
+            Assert.AreEqual(taxa, registroEncontrado);
+        }
 
-        //[TestMethod]
-        //public void Deve_editar_registro()
-        //{
-        //    //arrange
-        //    var taxa = NovaTaxa();
+        [TestMethod]
+        public void Deve_editar_registro()
+        {
+            //arrange
+            var taxa = NovaTaxa();
 
-        //    repositorioTaxa.Inserir(taxa);
+            servicoTaxa.Inserir(taxa);
 
-        //    taxa.Descricao = "Gasolina";
+            taxa.Descricao = "Gasolina";
 
-        //    //action
-        //    repositorioTaxa.Editar(taxa);
+            //action
+            servicoTaxa.Editar(taxa);
 
-        //    //assert
-        //    var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
+            //assert
+            var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
 
-        //    Assert.IsNotNull(registroEncontrado);
-        //    Assert.AreEqual(taxa, registroEncontrado);
-        //}
+            Assert.IsNotNull(registroEncontrado);
+            Assert.AreEqual(taxa, registroEncontrado);
+        }
 
-        //[TestMethod]
-        //public void Deve_excluir_registro()
-        //{
-        //    //arrange
-        //    var taxa = NovaTaxa();
-        //    repositorioTaxa.Inserir(taxa);
+        [TestMethod]
+        public void Deve_excluir_registro()
+        {
+            //arrange
+            var taxa = NovaTaxa();
+            servicoTaxa.Inserir(taxa);
 
-        //    //action
-        //    repositorioTaxa.Excluir(taxa);
+            //action
+            servicoTaxa.Excluir(taxa);
 
-        //    var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
+            var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
 
-        //    //assert
-        //    Assert.IsNull(registroEncontrado);
-        //}
+            //assert
+            Assert.IsNull(registroEncontrado);
+        }
 
-        //[TestMethod]
-        //public void Deve_selecionar_um_registro()
-        //{
-        //    //arrange
-        //    var taxa = NovaTaxa();
+        [TestMethod]
+        public void Deve_selecionar_um_registro()
+        {
+            //arrange
+            var taxa = NovaTaxa();
 
-        //    repositorioTaxa.Inserir(taxa);
+            servicoTaxa.Inserir(taxa);
 
-        //    //action
-        //    var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
+            //action
+            var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
 
-        //    //assert
-        //    Assert.IsNotNull(registroEncontrado);
-        //    Assert.AreEqual(taxa, registroEncontrado);
-        //}
+            //assert
+            Assert.IsNotNull(registroEncontrado);
+            Assert.AreEqual(taxa, registroEncontrado);
+        }
 
-        //[TestMethod]
-        //public void Deve_selecionar_todos_os_registros()
-        //{
-        //    //arrange
-        //    var taxas = NovasTaxas();
-        //    foreach (var t in taxas)
-        //    {
-        //        repositorioTaxa.Inserir(t);
-        //    }
+        [TestMethod]
+        public void Deve_selecionar_todos_os_registros()
+        {
+            //arrange
+            var taxas = NovasTaxas();
+            foreach (var t in taxas)
+               servicoTaxa.Inserir(t);
+            
 
-        //    //action
-        //    var registrosEncontrados = repositorioTaxa.SelecionarTodos();
+            //action
+            var registrosEncontrados = repositorioTaxa.SelecionarTodos();
 
-        //    //assert
-        //    Assert.AreEqual(3, registrosEncontrados.Count);
+            //assert
+            Assert.AreEqual(3, registrosEncontrados.Count);
+            Assert.AreEqual(true, registrosEncontrados.Contains(taxas[0]));
+            Assert.AreEqual(true, registrosEncontrados.Contains(taxas[1]));
+            Assert.AreEqual(true, registrosEncontrados.Contains(taxas[2]));
 
-        //    int posicao = 0;
-        //    foreach (var t in taxas)
-        //    {
-        //        Assert.AreEqual(registrosEncontrados[posicao].Id, t.Id);
-        //        posicao++;
-        //    }
-        //}
+        }
 
-        //#region MÉTODOS PRIVADOS
+        #region MÉTODOS PRIVADOS
 
-        //private Taxa NovaTaxa()
-        //{
-        //    var t = new Taxa();
-        //    t.Descricao = "Lavação do Veículo";
-        //    t.Valor = 100;
-        //    t.TipoCalculo = TipoCalculo.Fixo;
+        private Taxa NovaTaxa()
+        {
+            var t = new Taxa();
+            t.Descricao = "Lavação do Veículo";
+            t.Valor = 100;
+            t.TipoCalculo = TipoCalculo.Fixo;
 
-        //    return t;
-        //}
+            return t;
+        }
 
-        //private List<Taxa> NovasTaxas()
-        //{
-        //    var t1 = new Taxa("Lavação do Veículo", 100, TipoCalculo.Fixo);
-        //    var t2 = new Taxa("Cadeira de Bebê", 90, TipoCalculo.Diario);
-        //    var t3 = new Taxa("Frigobar", 50, TipoCalculo.Diario);
+        private List<Taxa> NovasTaxas()
+        {
+            var t1 = new Taxa("Lavação do Veículo", 100, TipoCalculo.Fixo);
+            var t2 = new Taxa("Cadeira de Bebê", 90, TipoCalculo.Diario);
+            var t3 = new Taxa("Frigobar", 50, TipoCalculo.Diario);
 
-        //    var lista = new List<Taxa>();
-        //    lista.Add(t1);
-        //    lista.Add(t2);
-        //    lista.Add(t3);
+            var lista = new List<Taxa>();
+            lista.Add(t1);
+            lista.Add(t2);
+            lista.Add(t3);
 
-        //    return lista;
-        //}
+            return lista;
+        }
 
-        //#endregion
+        #endregion
     }
 }
