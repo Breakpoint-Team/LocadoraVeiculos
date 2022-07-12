@@ -74,7 +74,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         {
             //arrange
             var cliente = NovoCliente();
-            repositorioCliente.Inserir(cliente);
+            servicoCliente.Inserir(cliente);
 
             //action
             servicoCliente.Excluir(cliente);
