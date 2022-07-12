@@ -21,7 +21,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             set
             {
                 funcionario = value;
-                if (funcionario.Id != 0)
+                if (funcionario.DadosPopulados)
                     PreencherDadosNaTela();
             }
         }

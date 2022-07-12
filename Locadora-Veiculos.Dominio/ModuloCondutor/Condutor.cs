@@ -54,6 +54,15 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
                 return retorno;
             }
         }
+        public override bool DadosPopulados
+        {
+            get
+            {
+                if (Endereco == null || Cliente == null)
+                    return false;
+                return true;
+            }
+        }
 
         #endregion
 
@@ -65,7 +74,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
         public override bool Equals(object obj)
         {
             return obj is Condutor condutor &&
-                   Id == condutor.Id &&
+                   Id.Equals(condutor.Id) &&
                    Nome == condutor.Nome &&
                    Telefone == condutor.Telefone &&
                    Email == condutor.Email &&

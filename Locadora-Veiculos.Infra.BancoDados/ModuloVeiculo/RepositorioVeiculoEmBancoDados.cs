@@ -9,29 +9,32 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
         protected override string sqlInserir =>
             @"INSERT INTO [TBVEICULO]
                (
-                [MODELO]
-               ,[MARCA]
-               ,[ANO]
-               ,[COR]
-               ,[PLACA]
-               ,[TIPO_COMBUSTIVEL]
-               ,[QUILOMETRAGEM_PERCORRIDA]
-               ,[CAPACIDADE_TANQUE]
-               ,[ID_GRUPO_VEICULOS]
-               ,[IMAGEM])
+                [ID],
+                [MODELO],
+                [MARCA],
+                [ANO],
+                [COR],
+                [PLACA],
+                [TIPO_COMBUSTIVEL],
+                [QUILOMETRAGEM_PERCORRIDA],
+                [CAPACIDADE_TANQUE],
+                [ID_GRUPO_VEICULOS],
+                [IMAGEM]
+                )
              VALUES
                 (
-                @MODELO
-               ,@MARCA
-               ,@ANO
-               ,@COR
-               ,@PLACA
-               ,@TIPO_COMBUSTIVEL
-               ,@QUILOMETRAGEM_PERCORRIDA
-               ,@CAPACIDADE_TANQUE
-               ,@ID_GRUPO_VEICULOS
-               ,@IMAGEM
-                ); SELECT SCOPE_IDENTITY();";
+                @ID,
+                @MODELO,
+                @MARCA,
+                @ANO,
+                @COR,
+                @PLACA,
+                @TIPO_COMBUSTIVEL,
+                @QUILOMETRAGEM_PERCORRIDA,
+                @CAPACIDADE_TANQUE,
+                @ID_GRUPO_VEICULOS,
+                @IMAGEM
+                );";
 
         protected override string sqlEditar =>
             @"UPDATE [TBVEICULO]

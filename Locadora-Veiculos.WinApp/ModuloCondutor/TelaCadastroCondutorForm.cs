@@ -30,7 +30,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             set
             {
                 condutor = value;
-                if (condutor.Id != 0)
+                if (condutor.DadosPopulados)
                     PreencherDadosNaTela();
             }
         }

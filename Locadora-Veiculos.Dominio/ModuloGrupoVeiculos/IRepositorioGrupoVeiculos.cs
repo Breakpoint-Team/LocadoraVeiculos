@@ -1,4 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using System;
 
 namespace Locadora_Veiculos.Dominio.ModuloGrupoVeiculos
 {
@@ -8,8 +9,8 @@ namespace Locadora_Veiculos.Dominio.ModuloGrupoVeiculos
 
         int QuantidadeGrupoVeiculosCadastrados();
 
-        int QuantidadeVeiculosRelacionadosAoGrupo(int id);
+        int QuantidadeVeiculosRelacionadosAoGrupo(Guid id);
 
-        int QuantidadePlanosDeCobrancaRelacionadosAoGrupo(int id);
+        int QuantidadePlanosDeCobrancaRelacionadosAoGrupo(Guid id);
     }
 }

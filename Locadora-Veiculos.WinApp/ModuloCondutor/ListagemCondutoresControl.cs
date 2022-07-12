@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloCondutor;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -36,9 +37,9 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             return colunas;
         }
 
-        public int ObtemIdCondutorSelecionado()
+        public Guid ObtemIdCondutorSelecionado()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
 
         public void AtualizarRegistros(List<Condutor> condutores)

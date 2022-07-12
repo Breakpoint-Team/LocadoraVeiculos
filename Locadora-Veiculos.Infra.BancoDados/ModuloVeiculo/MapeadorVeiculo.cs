@@ -25,7 +25,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
 
         public override Veiculo ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            var id = Convert.ToInt32(leitorRegistro["ID"]);
+            var id = Guid.Parse(leitorRegistro["ID"].ToString());
             var modelo = Convert.ToString(leitorRegistro["MODELO"]);
             var marca = Convert.ToString(leitorRegistro["MARCA"]);
             var ano = Convert.ToInt32(leitorRegistro["ANO"]);

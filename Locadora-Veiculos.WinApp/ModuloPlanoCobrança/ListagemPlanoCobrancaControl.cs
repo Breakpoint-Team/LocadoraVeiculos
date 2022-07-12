@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -45,9 +46,9 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
             }
         }
 
-        public int ObtemIdPlanoCobrancaSelecionado()
+        public Guid ObtemIdPlanoCobrancaSelecionado()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
     }
 }

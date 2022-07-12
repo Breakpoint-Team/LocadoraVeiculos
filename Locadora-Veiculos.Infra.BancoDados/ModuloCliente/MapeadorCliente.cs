@@ -25,7 +25,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 
         public override Cliente ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            var id = Convert.ToInt32(leitorRegistro["CLIENTE_ID"]);
+            var id = Guid.Parse(leitorRegistro["CLIENTE_ID"].ToString());
             var nome = Convert.ToString(leitorRegistro["CLIENTE_NOME"]);
             var email = Convert.ToString(leitorRegistro["CLIENTE_EMAIL"]);
             var telefone = Convert.ToString(leitorRegistro["CLIENTE_TELEFONE"]);

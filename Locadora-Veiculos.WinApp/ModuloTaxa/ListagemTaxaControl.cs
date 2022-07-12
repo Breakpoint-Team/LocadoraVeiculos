@@ -1,6 +1,7 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -42,9 +43,9 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             }
         }
 
-        public int ObtemIdTaxaSelecionada()
+        public Guid ObtemIdTaxaSelecionada()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
     }
 }

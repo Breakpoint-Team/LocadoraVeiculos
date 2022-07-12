@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System;
 using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloPlanoCobranca
@@ -11,6 +12,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloPlanoCobranca
         protected override string sqlInserir =>
             @"INSERT INTO [TBPLANOCOBRANCA]
 				(
+					[ID],
 					[DIARIO_VALOR_DIA],
 					[DIARIO_VALOR_KM],
 					[KM_CONTROLADO_VALOR_DIA],
@@ -21,6 +23,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloPlanoCobranca
 				)
 			VALUES
 				(
+					@ID,
 					@DIARIO_VALOR_DIA,
 					@DIARIO_VALOR_KM,
 					@KM_CONTROLADO_VALOR_DIA,
@@ -28,7 +31,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloPlanoCobranca
 					@KM_CONTROLADO_LIMITE_KM,
 					@KM_LIVRE_VALOR_DIA,
 					@ID_GRUPO_VEICULOS
-				); SELECT SCOPE_IDENTITY();";
+				);";
 
         protected override string sqlEditar =>
             @"UPDATE [TBPLANOCOBRANCA]
@@ -102,7 +105,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloPlanoCobranca
             WHERE
                 GRUPO.[ID] = @ID";
 
-        public PlanoCobranca SelecionarPlanoPorIdDoGrupoVeiculos(int idGrupoVeiculo)
+        public PlanoCobranca SelecionarPlanoPorIdDoGrupoVeiculos(Guid idGrupoVeiculo)
         {
             return SelecionarPorParametro(sqlSelecionarPlanoPorIdDoGrupoVeiculo, new SqlParameter("ID", idGrupoVeiculo));
         }

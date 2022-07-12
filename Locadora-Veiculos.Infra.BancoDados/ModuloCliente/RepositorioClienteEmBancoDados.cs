@@ -11,6 +11,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
         protected override string sqlInserir =>
             @"INSERT INTO [TBCLIENTE]
                  (
+		            [ID],
 		            [NOME],
                     [DOCUMENTO],
                     [EMAIL],
@@ -24,6 +25,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
 		         )
             VALUES
                 (
+		            @ID, 
 		            @NOME, 
                     @DOCUMENTO, 
                     @EMAIL,
@@ -34,7 +36,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
                     @BAIRRO,
                     @RUA,
                     @NUMERO
-			);SELECT SCOPE_IDENTITY();";
+			);";
 
         protected override string sqlEditar =>
             @"UPDATE [TBCLIENTE]
@@ -132,7 +134,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCliente
             return count;
         }
 
-        public int QuantidadeCondutoresRelacionadosAoCliente(int id)
+        public int QuantidadeCondutoresRelacionadosAoCliente(Guid id)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 

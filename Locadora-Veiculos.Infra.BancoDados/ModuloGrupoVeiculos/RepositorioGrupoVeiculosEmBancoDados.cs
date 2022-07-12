@@ -12,12 +12,14 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
         protected override string sqlInserir =>
             @"INSERT INTO [TBGRUPOVEICULOS]
                 (
+                    [ID],    
                     [NOME]    
                 )
             VALUES
                 (
+                    @ID,
                     @NOME
-                ); SELECT SCOPE_IDENTITY();";
+                );";
 
         protected override string sqlEditar =>
             @" UPDATE [TBGRUPOVEICULOS]
@@ -85,7 +87,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
             return count;
         }
 
-        public int QuantidadeVeiculosRelacionadosAoGrupo(int id)
+        public int QuantidadeVeiculosRelacionadosAoGrupo(Guid id)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
@@ -100,7 +102,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos
             return count;
         }
 
-        public int QuantidadePlanosDeCobrancaRelacionadosAoGrupo(int id)
+        public int QuantidadePlanosDeCobrancaRelacionadosAoGrupo(Guid id)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 

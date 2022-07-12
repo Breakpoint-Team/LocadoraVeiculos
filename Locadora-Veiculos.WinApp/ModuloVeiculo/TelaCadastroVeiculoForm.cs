@@ -35,7 +35,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             set
             {
                 veiculo = value;
-                if (veiculo.Id != 0)
+                if (veiculo.DadosPopulados)
                 {
                     txtModelo.Text = veiculo.Modelo;
                     txtMarca.Text = veiculo.Marca;

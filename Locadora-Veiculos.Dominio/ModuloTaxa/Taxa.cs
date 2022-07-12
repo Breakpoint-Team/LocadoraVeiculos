@@ -10,6 +10,15 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
         public string Descricao { get; set; }
         public Decimal Valor { get; set; }
         public TipoCalculo TipoCalculo { get; set; }
+        public override bool DadosPopulados
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Descricao))
+                    return false;
+                return true;
+            }
+        }
 
         #endregion
 
@@ -36,17 +45,16 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
 
         public override bool Equals(object obj)
         {
-            Taxa t = obj as Taxa;
+            return obj is Taxa taxa &&
+                   Id.Equals(taxa.Id) &&
+                   Descricao == taxa.Descricao &&
+                   Valor == taxa.Valor &&
+                   TipoCalculo == taxa.TipoCalculo;
+        }
 
-            if (t == null)
-                return false;
-
-            return
-             t.Id.Equals(Id) &&
-             t.Descricao.Equals(Descricao) &&
-             t.Valor.Equals(Valor) &&
-             t.TipoCalculo.Equals(TipoCalculo);
-
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Descricao, Valor, TipoCalculo);
         }
     }
 }

@@ -35,6 +35,15 @@ namespace Locadora_Veiculos.Dominio.ModuloPlanoCobranca
         public decimal KmControladoLimiteKm { get; set; }
         public decimal KmLivreValorDia { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
+        public override bool DadosPopulados
+        {
+            get
+            {
+                if (GrupoVeiculos == null)
+                    return false;
+                return true;
+            }
+        }
 
         #endregion
 
@@ -46,7 +55,7 @@ namespace Locadora_Veiculos.Dominio.ModuloPlanoCobranca
         public override bool Equals(object obj)
         {
             return obj is PlanoCobranca cobranca &&
-                   Id == cobranca.Id &&
+                   Id.Equals(cobranca.Id) &&
                    DiarioValorDia == cobranca.DiarioValorDia &&
                    DiarioValorKm == cobranca.DiarioValorKm &&
                    KmControladoValorDia == cobranca.KmControladoValorDia &&
@@ -58,8 +67,7 @@ namespace Locadora_Veiculos.Dominio.ModuloPlanoCobranca
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, DiarioValorDia, DiarioValorKm, KmControladoValorDia,
-                KmControladoValorKm, KmControladoLimiteKm, KmLivreValorDia, GrupoVeiculos);
+            return HashCode.Combine(Id, DiarioValorDia, DiarioValorKm, KmControladoValorDia, KmControladoValorKm, KmControladoLimiteKm, KmLivreValorDia, GrupoVeiculos);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -52,9 +53,9 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             }
         }
 
-        public int ObtemIdVeiculoSelecionado()
+        public Guid ObtemIdVeiculoSelecionado()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
     }
 }

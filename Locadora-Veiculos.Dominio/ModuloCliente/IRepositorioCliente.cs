@@ -1,4 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using System;
 
 namespace Locadora_Veiculos.Dominio.ModuloCliente
 {
@@ -8,6 +9,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
 
         int QuantidadeClientesCadastrados();
 
-        int QuantidadeCondutoresRelacionadosAoCliente(int id);
+        int QuantidadeCondutoresRelacionadosAoCliente(Guid id);
     }
 }

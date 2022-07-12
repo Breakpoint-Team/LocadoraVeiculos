@@ -21,7 +21,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             set
             {
                 cliente = value;
-                if (cliente.Id != 0)
+                if (cliente.DadosPopulados)
                     PreencherDadosNaTela();
                 else
                 {
@@ -73,6 +73,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
         }
+        
         #endregion
 
         #region MÉTODOS PRIVADOS
@@ -181,7 +182,5 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
         }
 
         #endregion
-
-
     }
 }

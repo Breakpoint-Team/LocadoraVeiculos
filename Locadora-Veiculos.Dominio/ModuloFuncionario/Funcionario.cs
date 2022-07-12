@@ -35,6 +35,15 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
         public Decimal Salario { get; set; }
         public bool EhAdmin { get; set; }
         public bool EstaAtivo { get; set; }
+        public override bool DadosPopulados
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Nome) || string.IsNullOrEmpty(Login))
+                    return false;
+                return true;
+            }
+        }
 
         #endregion
 
@@ -43,27 +52,27 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
             return string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}", Nome, Login, Senha, DataAdmissao, Salario, EhAdmin, EstaAtivo);
         }
 
-        public override bool Equals(object obj)
-        {
-            Funcionario f = obj as Funcionario;
-            if (f == null)
-                return false;
-
-            return
-             f.Id.Equals(Id) &&
-             f.Nome.Equals(Nome) &&
-             f.Login.Equals(Login) &&
-             f.Senha.Equals(Senha) &&
-             f.DataAdmissao.Equals(DataAdmissao) &&
-             f.Salario.Equals(Salario) &&
-             f.EhAdmin.Equals(EhAdmin) &&
-             f.EstaAtivo.Equals(EstaAtivo);
-
-        }
-
         public Funcionario Clone()
         {
             return MemberwiseClone() as Funcionario;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Funcionario funcionario &&
+                   Id.Equals(funcionario.Id) &&
+                   Nome == funcionario.Nome &&
+                   Login == funcionario.Login &&
+                   Senha == funcionario.Senha &&
+                   DataAdmissao == funcionario.DataAdmissao &&
+                   Salario == funcionario.Salario &&
+                   EhAdmin == funcionario.EhAdmin &&
+                   EstaAtivo == funcionario.EstaAtivo;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Nome, Login, Senha, DataAdmissao, Salario, EhAdmin, EstaAtivo);
         }
     }
 }

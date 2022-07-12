@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -31,9 +32,9 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             return colunas;
         }
 
-        public int ObtemIdFuncionarioSelecionado()
+        public Guid ObtemIdFuncionarioSelecionado()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
 
         public void AtualizarRegistros(List<Funcionario> funcionarios)

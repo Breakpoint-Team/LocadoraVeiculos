@@ -1,5 +1,7 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
+using System;
+using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Dominio.ModuloVeiculo
 {
@@ -42,12 +44,54 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
         public decimal CapacidadeTanque { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public byte[] Imagem { get; set; }
+        public override bool DadosPopulados
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Modelo) || GrupoVeiculos == null)
+                    return false;
+                return true;
+            }
+        }
 
         #endregion
 
         public override string ToString()
         {
             return string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", Modelo, Marca, Ano, Cor, Placa, TipoCombustivel, QuilometragemPercorrida, CapacidadeTanque, GrupoVeiculos);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Veiculo veiculo &&
+                   Id.Equals(veiculo.Id) &&
+                   Modelo == veiculo.Modelo &&
+                   Marca == veiculo.Marca &&
+                   Ano == veiculo.Ano &&
+                   Cor == veiculo.Cor &&
+                   Placa == veiculo.Placa &&
+                   TipoCombustivel == veiculo.TipoCombustivel &&
+                   QuilometragemPercorrida == veiculo.QuilometragemPercorrida &&
+                   CapacidadeTanque == veiculo.CapacidadeTanque &&
+                   EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, veiculo.GrupoVeiculos) &&
+                   EqualityComparer<byte[]>.Default.Equals(Imagem, veiculo.Imagem);
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(Modelo);
+            hash.Add(Marca);
+            hash.Add(Ano);
+            hash.Add(Cor);
+            hash.Add(Placa);
+            hash.Add(TipoCombustivel);
+            hash.Add(QuilometragemPercorrida);
+            hash.Add(CapacidadeTanque);
+            hash.Add(GrupoVeiculos);
+            hash.Add(Imagem);
+            return hash.ToHashCode();
         }
     }
 }

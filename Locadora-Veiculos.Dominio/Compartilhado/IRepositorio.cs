@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Dominio.Compartilhado
 {
@@ -12,6 +13,6 @@ namespace Locadora_Veiculos.Dominio.Compartilhado
 
         List<T> SelecionarTodos();
 
-        T SelecionarPorId(int id);
+        T SelecionarPorId(Guid id);
     }
 }

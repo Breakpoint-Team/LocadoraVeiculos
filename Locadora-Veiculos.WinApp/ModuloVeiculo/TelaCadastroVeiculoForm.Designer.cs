@@ -142,7 +142,7 @@
             // 
             this.numericQuilometragemPercorrida.Location = new System.Drawing.Point(172, 168);
             this.numericQuilometragemPercorrida.Maximum = new decimal(new int[] {
-            9999,
+            1000000,
             0,
             0,
             0});
