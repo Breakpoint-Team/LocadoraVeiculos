@@ -35,19 +35,26 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             set
             {
                 veiculo = value;
-                if (veiculo.DadosPopulados)
-                {
-                    txtModelo.Text = veiculo.Modelo;
-                    txtMarca.Text = veiculo.Marca;
-                    txtCor.Text = veiculo.Cor;
-                    txtPlaca.Text = veiculo.Placa;
+                txtModelo.Text = veiculo.Modelo;
+                txtMarca.Text = veiculo.Marca;
+                txtCor.Text = veiculo.Cor;
+                txtPlaca.Text = veiculo.Placa;
+
+                if (veiculo.Ano != 0)
                     numericAno.Value = veiculo.Ano;
-                    numericQuilometragemPercorrida.Value = veiculo.QuilometragemPercorrida;
+
+                numericQuilometragemPercorrida.Value = veiculo.QuilometragemPercorrida;
+
+                if (veiculo.CapacidadeTanque != 0)
                     numericCapacidadeTanque.Value = veiculo.CapacidadeTanque;
-                    comboBoxTipoCombustivel.Text = veiculo.TipoCombustivel;
+
+                comboBoxTipoCombustivel.Text = veiculo.TipoCombustivel;
+
+                if (veiculo.GrupoVeiculos != null)
                     comboBoxGrupoVeiculos.Text = veiculo.GrupoVeiculos.Nome;
+
+                if (veiculo.Imagem != null)
                     ExibirImagem();
-                }
             }
         }
 

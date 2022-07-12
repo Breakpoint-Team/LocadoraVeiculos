@@ -23,16 +23,6 @@ namespace Locadora_Veiculos.Dominio.ModuloGrupoVeiculos
 
         public string Nome { get; set; }
 
-        public override bool DadosPopulados
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Nome))
-                    return false;
-                return true;
-            }
-        }
-
         #endregion
 
         public override bool Equals(object obj)

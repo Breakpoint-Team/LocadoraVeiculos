@@ -44,16 +44,7 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
         public decimal CapacidadeTanque { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public byte[] Imagem { get; set; }
-        public override bool DadosPopulados
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Modelo) || GrupoVeiculos == null)
-                    return false;
-                return true;
-            }
-        }
-
+        
         #endregion
 
         public override string ToString()

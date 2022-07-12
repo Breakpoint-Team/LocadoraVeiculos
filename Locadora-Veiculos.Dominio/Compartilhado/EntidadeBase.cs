@@ -6,8 +6,6 @@ namespace Locadora_Veiculos.Dominio.Compartilhado
     {
         public Guid Id { get; set; }
 
-        public abstract bool DadosPopulados { get; }
-
         public EntidadeBase()
         {
             Id = Guid.NewGuid();

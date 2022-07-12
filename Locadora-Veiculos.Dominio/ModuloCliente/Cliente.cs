@@ -34,15 +34,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
         public TipoCliente TipoCliente { get; set; }
         public string Documento { get; set; }
         public Endereco Endereco { get; set; }
-        public override bool DadosPopulados
-        {
-            get
-            {
-                if (Endereco == null)
-                    return false;
-                return true;
-            }
-        }
 
         #endregion
 

@@ -54,15 +54,6 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
                 return retorno;
             }
         }
-        public override bool DadosPopulados
-        {
-            get
-            {
-                if (Endereco == null || Cliente == null)
-                    return false;
-                return true;
-            }
-        }
 
         #endregion
 

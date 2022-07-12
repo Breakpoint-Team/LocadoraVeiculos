@@ -10,16 +10,7 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
         public string Descricao { get; set; }
         public Decimal Valor { get; set; }
         public TipoCalculo TipoCalculo { get; set; }
-        public override bool DadosPopulados
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Descricao))
-                    return false;
-                return true;
-            }
-        }
-
+        
         #endregion
 
         #region CONSTRUTORES

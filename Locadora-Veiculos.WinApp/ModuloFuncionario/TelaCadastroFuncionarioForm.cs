@@ -21,8 +21,7 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             set
             {
                 funcionario = value;
-                if (funcionario.DadosPopulados)
-                    PreencherDadosNaTela();
+                PreencherDadosNaTela();
             }
         }
 
@@ -80,7 +79,9 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             txtLogin.Text = funcionario.Login;
             txtSenha.Text = funcionario.Senha;
             numericSalario.Value = funcionario.Salario;
-            dateTimePickerDataAdmissao.Value = funcionario.DataAdmissao;
+            
+            if(funcionario.DataAdmissao.Date != new DateTime(1,1,1).Date)
+                dateTimePickerDataAdmissao.Value = funcionario.DataAdmissao;
 
             if (funcionario.EhAdmin == true)
                 checkBoxIsAdmin.Checked = true;
@@ -105,7 +106,5 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
         }
 
         #endregion
-
-
     }
 }

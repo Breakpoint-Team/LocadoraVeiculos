@@ -35,15 +35,6 @@ namespace Locadora_Veiculos.Dominio.ModuloFuncionario
         public Decimal Salario { get; set; }
         public bool EhAdmin { get; set; }
         public bool EstaAtivo { get; set; }
-        public override bool DadosPopulados
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Nome) || string.IsNullOrEmpty(Login))
-                    return false;
-                return true;
-            }
-        }
 
         #endregion
 

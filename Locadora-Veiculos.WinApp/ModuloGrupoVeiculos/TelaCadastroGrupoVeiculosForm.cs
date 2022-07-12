@@ -25,8 +25,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
             set
             {
                 grupoVeiculos = value;
-                if(grupoVeiculos.DadosPopulados)
-                    txtNome.Text = grupoVeiculos.Nome;
+                txtNome.Text = grupoVeiculos.Nome;
             }
         }
 

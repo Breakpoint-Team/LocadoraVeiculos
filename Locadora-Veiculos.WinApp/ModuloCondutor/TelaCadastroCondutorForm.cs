@@ -30,8 +30,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             set
             {
                 condutor = value;
-                if (condutor.DadosPopulados)
-                    PreencherDadosNaTela();
+                PreencherDadosNaTela();
             }
         }
 
@@ -102,7 +101,8 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
 
         private void PreencherDadosNaTela()
         {
-            comboBoxClientes.SelectedItem = condutor.Cliente;
+            if (condutor.Cliente != null)
+                comboBoxClientes.SelectedItem = condutor.Cliente;
 
             if (condutor.ClienteCondutor)
             {
@@ -115,15 +115,20 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
                 txtEmail.Text = condutor.Email;
                 txtTelefone.Text = condutor.Telefone;
                 txtCpf.Text = condutor.Cpf;
-                txtNumero.Text = Convert.ToString(condutor.Endereco.Numero);
-                txtRua.Text = condutor.Endereco.Logradouro;
-                txtBairro.Text = condutor.Endereco.Bairro;
-                txtCidade.Text = condutor.Endereco.Cidade;
-                comboBoxEstado.SelectedItem = condutor.Endereco.Estado;
+                if (condutor.Endereco != null)
+                {
+                    txtNumero.Text = Convert.ToString(condutor.Endereco.Numero);
+                    txtRua.Text = condutor.Endereco.Logradouro;
+                    txtBairro.Text = condutor.Endereco.Bairro;
+                    txtCidade.Text = condutor.Endereco.Cidade;
+                    comboBoxEstado.SelectedItem = condutor.Endereco.Estado;
+                }
             }
 
             txtCnh.Text = condutor.Cnh;
-            dateTimePickerDataValidadeCnh.Value = condutor.DataValidadeCnh;
+
+            if (condutor.DataValidadeCnh.Date != new DateTime(1, 1, 1).Date)
+                dateTimePickerDataValidadeCnh.Value = condutor.DataValidadeCnh;
         }
 
         private void ObterDadosTela()

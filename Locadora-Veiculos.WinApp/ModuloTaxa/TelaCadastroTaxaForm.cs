@@ -26,14 +26,11 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             set
             {
                 taxa = value;
-                if (taxa.DadosPopulados)
-                {
                     txtDescricao.Text = taxa.Descricao;
                     numericValor.Value = taxa.Valor;
                     if (taxa.TipoCalculo == 0)
                         radioButtonDiario.Checked = true;
                     else radioButtonFixo.Checked = true;
-                }
             }
         }
 
@@ -69,8 +66,5 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
         }
 
         #endregion
-
-
-
     }
 }

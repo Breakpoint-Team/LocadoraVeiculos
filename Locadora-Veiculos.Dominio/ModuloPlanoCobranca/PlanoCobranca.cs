@@ -35,15 +35,6 @@ namespace Locadora_Veiculos.Dominio.ModuloPlanoCobranca
         public decimal KmControladoLimiteKm { get; set; }
         public decimal KmLivreValorDia { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
-        public override bool DadosPopulados
-        {
-            get
-            {
-                if (GrupoVeiculos == null)
-                    return false;
-                return true;
-            }
-        }
 
         #endregion
 

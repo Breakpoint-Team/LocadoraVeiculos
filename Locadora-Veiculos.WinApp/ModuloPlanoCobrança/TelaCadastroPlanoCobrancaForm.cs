@@ -27,8 +27,7 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
             set
             {
                 plano = value;
-                if (plano.DadosPopulados)
-                    PreencherDadosNaTela();
+                PreencherDadosNaTela();
             }
         }
 

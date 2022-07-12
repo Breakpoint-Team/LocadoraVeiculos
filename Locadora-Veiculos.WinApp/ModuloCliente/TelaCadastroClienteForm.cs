@@ -21,14 +21,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             set
             {
                 cliente = value;
-                if (cliente.DadosPopulados)
-                    PreencherDadosNaTela();
-                else
-                {
-                    HabilitarPessoaFisica();
-                    radioButtonPessoaFisica.Checked = true;
-                    DesabilitarPessoaJuridica();
-                }
+                PreencherDadosNaTela();
             }
         }
 
@@ -73,7 +66,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
         }
-        
+
         #endregion
 
         #region MÉTODOS PRIVADOS
@@ -106,11 +99,16 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             txtNome.Text = cliente.Nome;
             txtEmail.Text = cliente.Email;
             txtTelefone.Text = cliente.Telefone;
-            txtNumero.Text = Convert.ToString(cliente.Endereco.Numero);
-            txtRua.Text = cliente.Endereco.Logradouro;
-            txtBairro.Text = cliente.Endereco.Bairro;
-            txtCidade.Text = cliente.Endereco.Cidade;
-            comboBoxEstado.SelectedItem = cliente.Endereco.Estado;
+
+            if (cliente.Endereco != null)
+            {
+                txtNumero.Text = Convert.ToString(cliente.Endereco.Numero);
+                txtRua.Text = cliente.Endereco.Logradouro;
+                txtBairro.Text = cliente.Endereco.Bairro;
+                txtCidade.Text = cliente.Endereco.Cidade;
+                comboBoxEstado.SelectedItem = cliente.Endereco.Estado;
+            }
+
             PreencherTipoCliente();
         }
 
