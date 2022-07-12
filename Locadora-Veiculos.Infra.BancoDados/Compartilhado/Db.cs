@@ -7,9 +7,9 @@ namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
     public static class Db
     {
         private static IConfigurationRoot configuracao = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("ConfiguracaoAplicacao.json")
-            .Build();
+                  .SetBasePath(Directory.GetCurrentDirectory())
+                  .AddJsonFile("ConfiguracaoAplicacao.json")
+                  .Build();
 
         private static string enderecoBanco = configuracao.GetConnectionString("SqlServer");
 
