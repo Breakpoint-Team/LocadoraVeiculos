@@ -12,7 +12,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
         where TMapeador : MapeadorBase<T>, new()
     {
         protected readonly string enderecoBanco;
-       
+
         public RepositorioBase()
         {
             var configuracao = new ConfigurationBuilder()
@@ -75,11 +75,22 @@ namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
 
             comandoExclusao.Parameters.AddWithValue("ID", registro.Id);
 
-            conexaoComBanco.Open();
+            try
+            {
+                conexaoComBanco.Open();
 
-            comandoExclusao.ExecuteNonQuery();
+                comandoExclusao.ExecuteNonQuery();
 
-            conexaoComBanco.Close();
+                conexaoComBanco.Close();
+
+            }
+            catch (Exception ex)
+            {
+                if (ex != null && ex.Message.Contains("The DELETE statement conflicted with the REFERENCE constraint"))
+                    throw new NaoPodeExcluirEsteRegistroException(ex);
+
+                throw;
+            }
         }
 
         public virtual T SelecionarPorId(Guid id)
