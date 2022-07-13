@@ -2,6 +2,7 @@
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora_Veiculos.Dominio.ModuloVeiculo
 {
@@ -15,9 +16,11 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
 
         }
 
+        
+
         public Veiculo(string modelo, string marca, int ano, string cor, string placa,
             string tipoCombustivel, int quilometragemPercorrida,
-            int capacidadeTanque, GrupoVeiculos grupoVeiculos)
+            decimal capacidadeTanque, GrupoVeiculos grupoVeiculos, byte[] img)
         {
             Modelo = modelo;
             Marca = marca;
@@ -28,6 +31,8 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
             QuilometragemPercorrida = quilometragemPercorrida;
             CapacidadeTanque = capacidadeTanque;
             GrupoVeiculos = grupoVeiculos;
+            Imagem = img;
+
         }
 
         #endregion
@@ -44,13 +49,17 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
         public decimal CapacidadeTanque { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public byte[] Imagem { get; set; }
-        
+
+
+
+
         #endregion
 
         public override string ToString()
         {
             return string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", Modelo, Marca, Ano, Cor, Placa, TipoCombustivel, QuilometragemPercorrida, CapacidadeTanque, GrupoVeiculos);
         }
+
 
         public override bool Equals(object obj)
         {
@@ -65,24 +74,8 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
                    QuilometragemPercorrida == veiculo.QuilometragemPercorrida &&
                    CapacidadeTanque == veiculo.CapacidadeTanque &&
                    EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, veiculo.GrupoVeiculos) &&
-                   EqualityComparer<byte[]>.Default.Equals(Imagem, veiculo.Imagem);
+                   Imagem.SequenceEqual(veiculo.Imagem);
         }
 
-        public override int GetHashCode()
-        {
-            HashCode hash = new HashCode();
-            hash.Add(Id);
-            hash.Add(Modelo);
-            hash.Add(Marca);
-            hash.Add(Ano);
-            hash.Add(Cor);
-            hash.Add(Placa);
-            hash.Add(TipoCombustivel);
-            hash.Add(QuilometragemPercorrida);
-            hash.Add(CapacidadeTanque);
-            hash.Add(GrupoVeiculos);
-            hash.Add(Imagem);
-            return hash.ToHashCode();
-        }
     }
 }

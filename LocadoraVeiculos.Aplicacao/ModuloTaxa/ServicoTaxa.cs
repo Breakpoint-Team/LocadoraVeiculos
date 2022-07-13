@@ -82,7 +82,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
             var resultadoValidacao = validador.Validate(taxa);
 
             if (DescricaoDuplicada(taxa))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "Nome já está cadastrado!"));
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Descrição já está cadastrada!"));
 
             return resultadoValidacao;
         }

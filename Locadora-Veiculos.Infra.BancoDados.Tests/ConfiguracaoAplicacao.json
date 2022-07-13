@@ -1,6 +1,6 @@
 {
   "ConfiguracaoLogs": {
-    "DiretorioSaida": "D:\\logs"
+    "DiretorioSaida": "C:\\logs"
   },
 
   "ConnectionStrings": {
