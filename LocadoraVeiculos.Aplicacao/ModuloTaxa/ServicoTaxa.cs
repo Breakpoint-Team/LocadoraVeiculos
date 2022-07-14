@@ -27,10 +27,10 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir uma Taxa '{TaxaId}' - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar inserir a Taxa '{TaxaId}' - {Motivo}",
                         taxa.Id, erro.Message);
-                    return Result.Fail(resultadoValidacao.Errors);
                 }
+                return Result.Fail(resultadoValidacao.Errors);
             }
             try
             {
@@ -60,7 +60,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar a Taxa a {TaxaId} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar editar a Taxa {TaxaId} - {Motivo}",
                         taxa.Id, erro.Message);
                 }
                 return Result.Fail(resultadoValidacao.Errors);
