@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using System;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
             InitializeComponent();
         }
 
-        public Func<GrupoVeiculos, ValidationResult> GravarRegistro { get; set; }
+        public Func<GrupoVeiculos, Result<GrupoVeiculos>> GravarRegistro { get; set; }
 
         public GrupoVeiculos Grupo
         {
@@ -36,13 +37,22 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
             grupoVeiculos.Nome = txtNome.Text;
 
             var resultadoValidacao = GravarRegistro(grupoVeiculos);
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 

@@ -138,7 +138,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             var resultado = servicoGrupoVeiculos.Inserir(g2);
 
             //assert
-            Assert.AreEqual("Nome já está cadastrado!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("Falha ao tentar inserir o Grupo de Veículos", resultado.Errors[0].Message);
         }
 
         [TestMethod]
@@ -156,7 +156,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             var resultado = servicoGrupoVeiculos.Excluir(grupoVeiculos);
 
             //assert
-            Assert.AreEqual("Não é possível excluir um Grupo de veículos que possui Veículos relacionados!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("Falha no sistema ao tentar excluir o Grupo de Veículos", resultado.Errors[0].Message);
 
         }
 
@@ -176,7 +176,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             var resultado = servicoGrupoVeiculos.Excluir(grupoVeiculos);
 
             //assert
-            Assert.AreEqual("Não é possível excluir um Grupo de veículos que possui Planos de Cobrança relacionados!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("Falha no sistema ao tentar excluir o Grupo de Veículos", resultado.Errors[0].Message);
 
         }
 
