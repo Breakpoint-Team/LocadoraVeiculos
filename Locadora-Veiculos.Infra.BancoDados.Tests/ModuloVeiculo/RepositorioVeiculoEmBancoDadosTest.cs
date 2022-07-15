@@ -21,6 +21,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
 
         public RepositorioVeiculoEmBancoDadosTest()
         {
+            Db.ExecutarSql("DELETE FROM TBPLANOCOBRANCA");
             Db.ExecutarSql("DELETE FROM TBVEICULO");
             Db.ExecutarSql("DELETE FROM TBGRUPOVEICULOS");
 
@@ -37,11 +38,15 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
             var veiculo = NovoVeiculo();
 
             //action
-            servicoVeiculo.Inserir(veiculo);
+            var resultadoInsercao =  servicoVeiculo.Inserir(veiculo);
 
             //assert
-            var registroEncontrado = repositorioVeiculo.SelecionarPorId(veiculo.Id);
+            var resultadoSelecao = servicoVeiculo.SelecionarPorId(veiculo.Id);
 
+            var registroEncontrado = resultadoSelecao.Value;
+
+            Assert.AreEqual(true, resultadoInsercao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(veiculo, registroEncontrado);
         }
@@ -57,11 +62,15 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
             veiculo.Cor = "Preto";
 
             //action
-            servicoVeiculo.Editar(veiculo);
+            var resultadoEdicao = servicoVeiculo.Editar(veiculo);
 
+            var resultadoSelecao = servicoVeiculo.SelecionarPorId(veiculo.Id);
+         
+            var registroEncontrado = resultadoSelecao.Value;
             //assert
-            var registroEncontrado = repositorioVeiculo.SelecionarPorId(veiculo.Id);
 
+            Assert.AreEqual(true, resultadoEdicao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(veiculo, registroEncontrado);
         }
@@ -74,11 +83,15 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
             servicoVeiculo.Inserir(veiculo);
 
             //action
-            servicoVeiculo.Excluir(veiculo);
+            var resultadoExclusao = servicoVeiculo.Excluir(veiculo);
 
-            var registroEncontrado = repositorioVeiculo.SelecionarPorId(veiculo.Id);
+            var resultadoSelecao = servicoVeiculo.SelecionarPorId(veiculo.Id);
+
+            var registroEncontrado = resultadoSelecao.Value;
 
             //assert
+            Assert.AreEqual(true, resultadoExclusao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNull(registroEncontrado);
         }
 
@@ -91,9 +104,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
             servicoVeiculo.Inserir(veiculo);
 
             //action
-            var registroEncontrado = repositorioVeiculo.SelecionarPorId(veiculo.Id);
+            var resultadoSelecao = servicoVeiculo.SelecionarPorId(veiculo.Id);
+            var registroEncontrado = resultadoSelecao.Value;
 
             //assert
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(veiculo, registroEncontrado);
         }
@@ -108,9 +123,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
 
 
             //action
-            var registrosEncontrados = repositorioVeiculo.SelecionarTodos();
+            var resultadoSelecao = servicoVeiculo.SelecionarTodos();
+            var registrosEncontrados = resultadoSelecao.Value;
 
             //assert
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.AreEqual(3, registrosEncontrados.Count);
             Assert.AreEqual(true, registrosEncontrados.Contains(veiculos[0]));
             Assert.AreEqual(true, registrosEncontrados.Contains(veiculos[1]));
@@ -118,20 +135,23 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
 
         }
 
-        //[TestMethod]
-        //public void Nao_deve_inserir_veiculo_com_placa_duplicada()
-        //{
-        //    //arrange
-        //    var v1 = NovoVeiculo();
-        //    servicoVeiculo.Inserir(v1);
-        //    var v2 = NovoVeiculo();
+        [TestMethod]
+        public void Nao_deve_inserir_veiculo_com_placa_duplicada()
+        {
+            //arrange
+            var v1 = NovoVeiculo();
+            var resultadoInsercaoV1 = servicoVeiculo.Inserir(v1);
+            var v2 = NovoVeiculo();
+            
 
-        //    //action
-        //    var resultado = servicoVeiculo.Inserir(v2);
+            //action
+            var resultadoInsercaoV2 = servicoVeiculo.Inserir(v2);
 
-        //    //assert
-        //    Assert.AreEqual("Placa já está cadastrada!", resultado.Errors[0].ErrorMessage);
-        //}
+            //assert
+            Assert.AreEqual(true, resultadoInsercaoV1.IsSuccess);
+            Assert.AreEqual(true, resultadoInsercaoV2.IsFailed);
+            Assert.AreEqual("Placa já está cadastrada!", resultadoInsercaoV2.Errors[0].Message);
+        }
 
         #region MÉTODOS PRIVADOS
         private Veiculo NovoVeiculo()

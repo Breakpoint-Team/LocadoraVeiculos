@@ -148,8 +148,20 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             foreach (ValidationFailure item in resultadoValidacao.Errors)        
                 erros.Add(new Error(item.ErrorMessage));
 
-            if (PlacaDuplicada(veiculo))
-                resultadoValidacao.Errors.Add(new ValidationFailure("", "Placa já está cadastrada!"));
+            var resultadoComparacao = PlacaDuplicada(veiculo);
+
+
+            if (resultadoComparacao.IsSuccess)
+            {
+                if (resultadoComparacao.Value == true)
+                {
+                    erros.Add(new Error("Placa já está cadastrada!"));
+                }
+            }
+            else
+            {
+                erros.Add(new Error(resultadoComparacao.Errors[0].Message));
+            }
 
             if(erros.Any())
                 return Result.Fail(erros);
@@ -157,13 +169,26 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             return Result.Ok();
         }
 
-        private bool PlacaDuplicada(Veiculo veiculo)
+        private Result<bool> PlacaDuplicada(Veiculo veiculo)
         {
+            try
+            {
             var placaEncontrada = repositorioVeiculo.SelecionarVeiculoPorPlaca(veiculo.Placa);
-
-            return placaEncontrada != null &&
+            var resultadoComparacao = placaEncontrada != null &&
                    placaEncontrada.Placa.Equals(veiculo.Placa, StringComparison.OrdinalIgnoreCase) &&
                    placaEncontrada.Id != veiculo.Id;
+                return Result.Ok(resultadoComparacao);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar comparar a placa do veículo";
+
+                Log.Logger.Error(ex, msgErro + " {VeiculosId}", veiculo.Id);
+
+                return Result.Fail(msgErro);
+            }
+
+
         }
 
         #endregion
