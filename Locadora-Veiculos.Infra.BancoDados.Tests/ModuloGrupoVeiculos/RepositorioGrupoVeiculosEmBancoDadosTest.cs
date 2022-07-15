@@ -48,10 +48,14 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             var grupoVeiculos = NovoGrupoVeiculos();
 
             //action
-            servicoGrupoVeiculos.Inserir(grupoVeiculos);
+            var resultadoInsercao = servicoGrupoVeiculos.Inserir(grupoVeiculos);
 
             //assert
-            var registroEncontrado = repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
+            var resultadoSelecao = servicoGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
+            var registroEncontrado = resultadoSelecao.Value;
+
+            Assert.AreEqual(true, resultadoInsercao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(grupoVeiculos, registroEncontrado);
         }
@@ -67,11 +71,14 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             grupoVeiculos.Nome = "Uber";
 
             //action
-            servicoGrupoVeiculos.Editar(grupoVeiculos);
+            var resultadoEdicao = servicoGrupoVeiculos.Editar(grupoVeiculos);
 
             //assert
-            var registroEncontrado = repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
+            var resultadoSelecao = servicoGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
+            var registroEncontrado = resultadoSelecao.Value;
 
+            Assert.AreEqual(true, resultadoEdicao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(grupoVeiculos, registroEncontrado);
         }
@@ -84,10 +91,13 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             servicoGrupoVeiculos.Inserir(grupoVeiculos);
 
             //action
-            servicoGrupoVeiculos.Excluir(grupoVeiculos);
+            var resultadoExclusao = servicoGrupoVeiculos.Excluir(grupoVeiculos);
+            var resultadoSelecao = servicoGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
+            var registroEncontrado = resultadoSelecao.Value;
 
             //assert
-            var registroEncontrado = repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
+            Assert.AreEqual(true, resultadoExclusao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNull(registroEncontrado);
         }
 
@@ -100,9 +110,12 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             servicoGrupoVeiculos.Inserir(grupoVeiculos);
 
             //action
-            var registroEncontrado = repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
+            var resultadoSelecao = servicoGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
+
+            var registroEncontrado = resultadoSelecao.Value;
 
             //assert
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(grupoVeiculos, registroEncontrado);
         }
@@ -116,9 +129,12 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
                 servicoGrupoVeiculos.Inserir(g);
 
             //action
-            var registrosEncontrados = repositorioGrupoVeiculos.SelecionarTodos();
+            var resultadoSelecao = servicoGrupoVeiculos.SelecionarTodos();
+
+            var registrosEncontrados = resultadoSelecao.Value;
 
             //assert
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.AreEqual(3, registrosEncontrados.Count);
             Assert.AreEqual(true, registrosEncontrados.Contains(grupos[0]));
             Assert.AreEqual(true, registrosEncontrados.Contains(grupos[1]));
@@ -126,20 +142,26 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
 
         }
 
-        //[TestMethod]
-        //public void Nao_deve_inserir_grupo_de_veiculos_com_nome_duplicado()
-        //{
-        //    //arrange
-        //    var g1 = NovoGrupoVeiculos();
-        //    servicoGrupoVeiculos.Inserir(g1);
-        //    var g2 = NovoGrupoVeiculos();
+        [TestMethod]
+        public void Nao_deve_inserir_grupo_de_veiculos_com_nome_duplicado()
+        {
+            //arrange
+            var g1 = NovoGrupoVeiculos();
+            var resultadoInsercaoG1 = servicoGrupoVeiculos.Inserir(g1);
 
-        //    //action
-        //    var resultado = servicoGrupoVeiculos.Inserir(g2);
+            var g2 = new GrupoVeiculos();
+            g2.Nome = "SUV";
 
-        //    //assert
-        //    Assert.AreEqual("Falha ao tentar inserir o Grupo de Veículos", resultado.Errors[0].Message);
-        //}
+            //action
+            var resultadoInsercaoG2 = servicoGrupoVeiculos.Inserir(g2);
+
+            //assert
+            Assert.AreEqual(true, resultadoInsercaoG1.IsSuccess);
+
+            Assert.AreEqual(true, resultadoInsercaoG2.IsFailed);
+
+          Assert.AreEqual("Nome já está cadastrado!", resultadoInsercaoG2.Errors[0].Message);
+        }
 
         [TestMethod]
         public void Nao_deve_excluir_grupo_de_veiculos_que_possui_veiculo_relacionado()
@@ -153,10 +175,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             servicoVeiculo.Inserir(veiculo);
 
             //action
-            var resultado = servicoGrupoVeiculos.Excluir(grupoVeiculos);
+            var resultadoExclusao = servicoGrupoVeiculos.Excluir(grupoVeiculos);
 
             //assert
-            Assert.AreEqual("Falha no sistema ao tentar excluir o Grupo de Veículos", resultado.Errors[0].Message);
+            Assert.AreEqual(true, resultadoExclusao.IsFailed);
+            Assert.AreEqual("Falha no sistema ao tentar excluir o Grupo de Veículos", resultadoExclusao.Errors[0].Message);
 
         }
 
@@ -173,10 +196,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             servicoPlanoCobranca.Inserir(planoCobranca);
 
             //action
-            var resultado = servicoGrupoVeiculos.Excluir(grupoVeiculos);
+            var resultadoExclusao = servicoGrupoVeiculos.Excluir(grupoVeiculos);
 
             //assert
-            Assert.AreEqual("Falha no sistema ao tentar excluir o Grupo de Veículos", resultado.Errors[0].Message);
+            Assert.AreEqual(true, resultadoExclusao.IsFailed);
+            Assert.AreEqual("Falha no sistema ao tentar excluir o Grupo de Veículos", resultadoExclusao.Errors[0].Message);
 
         }
 

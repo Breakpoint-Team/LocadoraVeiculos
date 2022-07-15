@@ -1,6 +1,7 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using System;
 using System.Collections.Generic;
@@ -11,29 +12,35 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
     public class ControladorPlanoCobranca : ControladorBase
     {
         
-        private readonly IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
         private readonly ServicoPlanoCobranca servicoPlanoCobranca;
+        private readonly ServicoGrupoVeiculos servicoGrupoVeiculos;
         private ListagemPlanoCobrancaControl listagemPlanoCobranca;
 
-        public ControladorPlanoCobranca(ServicoPlanoCobranca servicoPlanoCobranca, IRepositorioGrupoVeiculos repositorioGrupoVeiculos)
+        public ControladorPlanoCobranca(ServicoPlanoCobranca servicoPlanoCobranca, ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
             
             this.servicoPlanoCobranca = servicoPlanoCobranca;
-            this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
+            this.servicoGrupoVeiculos = servicoGrupoVeiculos;
         }
 
 
         public override void Inserir()
         {
-            
-          /*  int qtd = repositorioGrupoVeiculos.QuantidadeGrupoVeiculosCadastrados(); 
+            var resultado = servicoGrupoVeiculos.QuantidadeGrupoVeiculosCadastrados();
 
-            if (qtd == 0)
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+               "Inserção de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var qtd = resultado.Value;
+            if (qtd < 1)
             {
                 MessageBox.Show("Para cadastrar um Plano de Cobrança, é necessário que haja um Grupo de Veículos cadastrado!",
                 "Inserção de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-            } */
+            }
 
             var tela = new TelaCadastroPlanoCobrancaForm(ObterGrupos());
 
@@ -41,9 +48,8 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
             tela.GravarRegistro = servicoPlanoCobranca.Inserir;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            CarregarPlanos();
+            if (tela.ShowDialog() == DialogResult.OK)
+                CarregarPlanos();
         }
 
         public override void Editar()
@@ -156,7 +162,16 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
         private List<GrupoVeiculos> ObterGrupos()
         {
-            return repositorioGrupoVeiculos.SelecionarTodos();
+            var resultado = servicoGrupoVeiculos.SelecionarTodos();
+
+            List<GrupoVeiculos> grupos = new List<GrupoVeiculos>();
+
+            if (resultado.IsSuccess)
+            {
+                grupos = resultado.Value;
+            }
+
+            return grupos;
         }
 
         #endregion

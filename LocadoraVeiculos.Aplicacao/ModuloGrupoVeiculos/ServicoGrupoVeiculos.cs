@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Serilog;
 using System;
@@ -97,7 +98,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
                 Log.Logger.Information("Grupo de Veículos {GrupoVeiculosId} excluído com sucesso", grupoVeiculos.Id);
                 return Result.Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir o Grupo de Veículos";
 
@@ -153,9 +154,19 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             foreach (ValidationFailure item in resultadoValidacao.Errors) //FluentValidation            
                 erros.Add(new Error(item.ErrorMessage));
 
+            var resultadoComparacao = NomeDuplicado(grupoVeiculos);
 
-            if (NomeDuplicado(grupoVeiculos))
-                resultadoValidacao.Errors.Add(new ValidationFailure("", "Nome já está cadastrado!"));
+            if (resultadoComparacao.IsSuccess)
+            {
+                if (resultadoComparacao.Value == true)
+                {
+                    erros.Add(new Error("Nome já está cadastrado!"));
+                }
+            }
+            else
+            {
+                erros.Add(new Error(resultadoComparacao.Errors[0].Message));
+            }
 
             if (erros.Any())
                 return Result.Fail(erros);
@@ -163,15 +174,45 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             return Result.Ok();
         }
 
-        private bool NomeDuplicado(GrupoVeiculos grupoVeiculos)
+        private Result<bool> NomeDuplicado(GrupoVeiculos grupoVeiculos)
         {
+            try
+            {
             var grupoVeiculosEncontrado = repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome(grupoVeiculos.Nome);
-
-            return grupoVeiculosEncontrado != null &&
+            var resultadoComparacao = grupoVeiculosEncontrado != null &&
                    grupoVeiculosEncontrado.Nome.Equals(grupoVeiculos.Nome, StringComparison.OrdinalIgnoreCase) &&
                    grupoVeiculosEncontrado.Id != grupoVeiculos.Id;
 
+            return Result.Ok(resultadoComparacao);
+            }
+            catch(Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar comparar o nome do grupo de veículos";
+
+                Log.Logger.Error(ex, msgErro + " {GrupoVeiculosId}", grupoVeiculos.Id);
+
+                return Result.Fail(msgErro);
+            }
+
+
         }
+
+        public Result<int> QuantidadeGrupoVeiculosCadastrados()
+        {
+            try
+            {
+                return Result.Ok(repositorioGrupoVeiculos.QuantidadeGrupoVeiculosCadastrados());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar a quantidade de grupo de veículos";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
 
         #endregion
     }

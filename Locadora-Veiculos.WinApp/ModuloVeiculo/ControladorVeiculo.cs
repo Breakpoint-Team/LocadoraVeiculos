@@ -22,10 +22,16 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
         public override void Inserir()
         {
-            var resultado = servicoGrupoVeiculos.SelecionarTodos();  
+            var resultado = servicoGrupoVeiculos.QuantidadeGrupoVeiculosCadastrados();
 
-            if (resultado.Value.Count < 1)
+            if (resultado.IsFailed)
             {
+                MessageBox.Show(resultado.Errors[0].Message,
+               "Inserção de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var qtd = resultado.Value;
+            if(qtd < 1) { 
                 MessageBox.Show("Para cadastrar um Veículo, é necessário que haja um Grupo de Veículos cadastrado!",
                 "Inserção de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;

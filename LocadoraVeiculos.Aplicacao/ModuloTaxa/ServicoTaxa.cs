@@ -150,8 +150,21 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
             foreach (ValidationFailure item in resultadoValidacao.Errors) //FluentValidation            
                 erros.Add(new Error(item.ErrorMessage));
 
-            if (DescricaoDuplicada(taxa))
-                resultadoValidacao.Errors.Add(new ValidationFailure("", "Descrição já está cadastrada!"));
+            var resultadoComparacao = DescricaoDuplicada(taxa);
+
+
+            if (resultadoComparacao.IsSuccess)
+            {
+                if (resultadoComparacao.Value == true)
+                {
+                    erros.Add(new Error("Descrição já está cadastrada!"));
+                }
+            }
+            else
+            {
+                erros.Add(new Error(resultadoComparacao.Errors[0].Message));
+            }
+
 
             if (erros.Any())
                 return Result.Fail(erros);
@@ -159,13 +172,25 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
             return Result.Ok();
         }
 
-        private bool DescricaoDuplicada(Taxa taxa)
+        private Result<bool> DescricaoDuplicada(Taxa taxa)
         {
+            try
+            {
             var taxaEncontrada = repositorioTaxa.SelecionarTaxaPorDescricao(taxa.Descricao);
-
-            return taxaEncontrada != null &&
+            var resultadoComparacao= taxaEncontrada != null &&
                    taxaEncontrada.Descricao.Equals(taxa.Descricao, StringComparison.OrdinalIgnoreCase) &&
                    taxaEncontrada.Id != taxa.Id;
+                return Result.Ok(resultadoComparacao);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar comparar a descrição da taxa";
+
+                Log.Logger.Error(ex, msgErro + " {TaxaId}", taxa.Id);
+
+                return Result.Fail(msgErro);
+            }
+
         }
 
         #endregion

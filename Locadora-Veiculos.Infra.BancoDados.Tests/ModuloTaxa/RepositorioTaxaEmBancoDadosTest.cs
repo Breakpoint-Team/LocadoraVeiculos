@@ -27,11 +27,15 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
             var taxa = NovaTaxa();
 
             //action
-            servicoTaxa.Inserir(taxa);
+            var resultadoInsercao = servicoTaxa.Inserir(taxa);
+
+            var resultadoSelecao = servicoTaxa.SelecionarPorId(taxa.Id);
+           
+            var registroEncontrado = resultadoSelecao.Value;
 
             //assert
-            var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
-
+            Assert.AreEqual(true, resultadoInsercao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(taxa, registroEncontrado);
         }
@@ -47,11 +51,15 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
             taxa.Descricao = "Gasolina";
 
             //action
-            servicoTaxa.Editar(taxa);
+            var resultadoEdicao = servicoTaxa.Editar(taxa);
+
+            var resultadoSelecao = servicoTaxa.SelecionarPorId(taxa.Id);
+          
+            var registroEncontrado = resultadoSelecao.Value;
 
             //assert
-            var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
-
+            Assert.AreEqual(true, resultadoEdicao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(taxa, registroEncontrado);
         }
@@ -64,11 +72,15 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
             servicoTaxa.Inserir(taxa);
 
             //action
-            servicoTaxa.Excluir(taxa);
+           var resultadoExclusao = servicoTaxa.Excluir(taxa);
 
-            var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
+            var resultadoSelecao = servicoTaxa.SelecionarPorId(taxa.Id);
+            var registroEncontrado = resultadoSelecao.Value;
+
 
             //assert
+            Assert.AreEqual(true, resultadoExclusao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNull(registroEncontrado);
         }
 
@@ -79,11 +91,12 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
             var taxa = NovaTaxa();
 
             servicoTaxa.Inserir(taxa);
-
             //action
-            var registroEncontrado = repositorioTaxa.SelecionarPorId(taxa.Id);
+            var resultadoSelecao = servicoTaxa.SelecionarPorId(taxa.Id);
+            var registroEncontrado = resultadoSelecao.Value;
 
             //assert
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(taxa, registroEncontrado);
         }
@@ -97,10 +110,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
                 servicoTaxa.Inserir(t);
 
 
-            //action
-            var registrosEncontrados = repositorioTaxa.SelecionarTodos();
+            var resultadoSelecao = servicoTaxa.SelecionarTodos();
+            var registrosEncontrados = resultadoSelecao.Value;
 
             //assert
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.AreEqual(3, registrosEncontrados.Count);
             Assert.AreEqual(true, registrosEncontrados.Contains(taxas[0]));
             Assert.AreEqual(true, registrosEncontrados.Contains(taxas[1]));
@@ -108,20 +122,25 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
 
         }
 
-        //[TestMethod]
-        //public void Nao_deve_inserir_taxa_com_descricao_duplicada()
-        //{
-        //    //arrange
-        //    var t1 = NovaTaxa();
-        //    servicoTaxa.Inserir(t1);
-        //    var t2 = NovaTaxa();
+        [TestMethod]
+        public void Nao_deve_inserir_taxa_com_descricao_duplicada()
+        {
+            //arrange
+            var t1 = NovaTaxa();
+            var resultadoInsercaoT1 = servicoTaxa.Inserir(t1);
+            var t2 = new Taxa();
+            t2.Descricao = "Lavação do Veículo";
+            t2.Valor = 200;
+            t2.TipoCalculo = TipoCalculo.Fixo;
 
-        //    //action
-        //    var resultado = servicoTaxa.Inserir(t2);
+            //action
+            var resultadoInsercaoT2 = servicoTaxa.Inserir(t2);
 
-        //    //assert
-        //    Assert.AreEqual("Descrição já está cadastrada!", resultado.Errors[0].ErrorMessage);
-        //}
+            //assert
+            Assert.AreEqual(true, resultadoInsercaoT1.IsSuccess);
+           Assert.AreEqual(true, resultadoInsercaoT2.IsFailed);
+          Assert.AreEqual("Descrição já está cadastrada!", resultadoInsercaoT2.Errors[0].Message);
+        }
 
 
         #region MÉTODOS PRIVADOS
