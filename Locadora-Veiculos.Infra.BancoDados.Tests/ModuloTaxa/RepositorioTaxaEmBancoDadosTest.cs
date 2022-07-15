@@ -94,8 +94,8 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
             //arrange
             var taxas = NovasTaxas();
             foreach (var t in taxas)
-               servicoTaxa.Inserir(t);
-            
+                servicoTaxa.Inserir(t);
+
 
             //action
             var registrosEncontrados = repositorioTaxa.SelecionarTodos();

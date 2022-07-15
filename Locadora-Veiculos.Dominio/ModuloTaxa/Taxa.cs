@@ -10,7 +10,7 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
         public string Descricao { get; set; }
         public Decimal Valor { get; set; }
         public TipoCalculo TipoCalculo { get; set; }
-        
+
         #endregion
 
         #region CONSTRUTORES

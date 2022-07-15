@@ -8,7 +8,7 @@ using LocadoraVeiculos.Aplicacao.ModuloCliente;
 using LocadoraVeiculos.Aplicacao.ModuloCondutor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
 {
@@ -36,13 +36,16 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
             //Arrange
             var condutor = NovoCondutor();
 
-            //action
-            var resultado = servicoCondutor.Inserir(condutor);
+            //Action
+            var resultadoInsercao = servicoCondutor.Inserir(condutor);
 
-            var registroEncontrado = repositorioCondutor.SelecionarPorId(condutor.Id);
+            var resultadoSelecao = servicoCondutor.SelecionarPorId(condutor.Id);
+
+            var registroEncontrado = resultadoSelecao.Value;
 
             //assert
-            Assert.AreEqual(0, resultado.Errors.Count);
+            Assert.AreEqual(true, resultadoInsercao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(condutor, registroEncontrado);
         }
@@ -50,7 +53,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
         [TestMethod]
         public void Deve_editar_registro()
         {
-            //arrange
+            //Arrange
             var condutor = NovoCondutor();
 
             servicoCondutor.Inserir(condutor);
@@ -58,13 +61,16 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
             condutor.Nome = "Alexandre Rech";
             condutor.Email = "rech@academia.com";
 
-            //action
-            var resultado = servicoCondutor.Editar(condutor);
+            //Action
+            var resultadoEdicao = servicoCondutor.Editar(condutor);
 
-            var registroEncontrado = repositorioCondutor.SelecionarPorId(condutor.Id);
+            var resultadoSelecao = servicoCondutor.SelecionarPorId(condutor.Id);
 
-            //assert
-            Assert.AreEqual(0, resultado.Errors.Count);
+            var registroEncontrado = resultadoSelecao.Value;
+
+            //Assert
+            Assert.AreEqual(true, resultadoEdicao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(condutor, registroEncontrado);
         }
@@ -72,31 +78,39 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
         [TestMethod]
         public void Deve_excluir_registro()
         {
-            //arrange
+            //Arrange
             var condutor = NovoCondutor();
             servicoCondutor.Inserir(condutor);
 
-            //action
-            servicoCondutor.Excluir(condutor);
+            //Action
+            var resultadoExclusao = servicoCondutor.Excluir(condutor);
 
-            var registroEncontrado = repositorioCondutor.SelecionarPorId(condutor.Id);
+            var resultadoSelecao = servicoCondutor.SelecionarPorId(condutor.Id);
 
-            //assert
+            var registroEncontrado = resultadoSelecao.Value;
+
+            //Assert
+            Assert.AreEqual(true, resultadoExclusao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNull(registroEncontrado);
         }
 
         [TestMethod]
         public void Deve_selecionar_um_registro()
         {
-            //arrange
+            //Arrange
             var condutor = NovoCondutor();
 
-            servicoCondutor.Inserir(condutor);
+            var resultadoInsercao = servicoCondutor.Inserir(condutor);
 
-            //action
-            var registroEncontrado = repositorioCondutor.SelecionarPorId(condutor.Id);
+            //Action
+            var resultadoSelecao = servicoCondutor.SelecionarPorId(condutor.Id);
 
-            //assert
+            var registroEncontrado = resultadoSelecao.Value;
+
+            //Assert
+            Assert.AreEqual(true, resultadoInsercao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(condutor, registroEncontrado);
         }
@@ -109,10 +123,12 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
             foreach (var condutor in condutores)
                 servicoCondutor.Inserir(condutor);
 
-            //action
-            var registrosEncontrados = repositorioCondutor.SelecionarTodos();
+            //Action
+            var resultadoSelecao = servicoCondutor.SelecionarTodos();
+            var registrosEncontrados = resultadoSelecao.Value;
 
-            //assert
+            //Assert
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.AreEqual(3, registrosEncontrados.Count);
             Assert.AreEqual(true, registrosEncontrados.Contains(condutores[0]));
             Assert.AreEqual(true, registrosEncontrados.Contains(condutores[1]));
@@ -124,7 +140,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
         {
             //Arrange
             var condutor1 = NovoCondutor();
-            servicoCondutor.Inserir(condutor1);
+            var resultadoInsercao1 = servicoCondutor.Inserir(condutor1);
 
             var cliente2 = new Cliente("Carlos Pereira", "(49) 98842-9922", "carlos@gmail.com",
                  TipoCliente.PessoaFisica, "583.127.545-96", GetEndereco());
@@ -134,11 +150,13 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
             var condutor2 = new Condutor("Paulo Pereira", "(49) 95588-9564", "paulo@gmail.com", "018.987.765-09", "288677554",
                new DateTime(2025, 12, 28), GetEndereco(), cliente2);
 
-            //action
-            var resultado = servicoCondutor.Inserir(condutor2);
+            //Action
+            var resultadoInsercao2 = servicoCondutor.Inserir(condutor2);
 
-            //assert
-            Assert.AreEqual("CPF já está cadastrado como condutor!", resultado.Errors[0].ErrorMessage);
+            //Assert
+            Assert.AreEqual(true, resultadoInsercao1.IsSuccess);
+            Assert.AreEqual(true, resultadoInsercao2.IsFailed);
+            Assert.AreEqual("CPF já está cadastrado como condutor!", resultadoInsercao2.Errors[0].Message);
         }
 
         [TestMethod]
@@ -146,7 +164,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
         {
             //Arrange
             var condutor1 = NovoCondutor();
-            servicoCondutor.Inserir(condutor1);
+            var resultadoInsercao1 = servicoCondutor.Inserir(condutor1);
 
             var cliente2 = new Cliente("Carlos Pereira", "(49) 98842-9922", "carlos@gmail.com",
                  TipoCliente.PessoaFisica, "583.127.545-96", GetEndereco());
@@ -156,13 +174,14 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
             var condutor2 = new Condutor("Paulo Pereira", "(49) 95588-9564", "paulo@gmail.com", "045.456.742-26", "123456789",
                new DateTime(2025, 12, 28), GetEndereco(), cliente2);
 
-            //action
-            var resultado = servicoCondutor.Inserir(condutor2);
+            //Action
+            var resultadoInsercao2 = servicoCondutor.Inserir(condutor2);
 
-            //assert
-            Assert.AreEqual("CNH já está cadastrada como condutor!", resultado.Errors[0].ErrorMessage);
+            //Assert
+            Assert.AreEqual(true, resultadoInsercao1.IsSuccess);
+            Assert.AreEqual(true, resultadoInsercao2.IsFailed);
+            Assert.AreEqual("CNH já está cadastrada como condutor!", resultadoInsercao2.Errors[0].Message);
         }
-
 
         #region MÉTODOS PRIVADOS
 
@@ -183,17 +202,20 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCondutor
                  TipoCliente.PessoaFisica, "013.987.765-09", GetEndereco());
 
             servicoCliente.Inserir(cliente);
-            return repositorioCliente.SelecionarPorId(cliente.Id);
+
+            var resultado = servicoCliente.SelecionarPorId(cliente.Id);
+
+            return resultado.Value;
         }
 
         private List<Condutor> NovosCondutores()
         {
             var cliente1 = new Cliente("Mario Barros", "(49) 98844-9923", "mario@gmail.com",
                  TipoCliente.PessoaFisica, "021.749.743-02", GetEndereco());
-            
+
             var cliente2 = new Cliente("Carlos Pereira", "(49) 98842-9922", "carlos@gmail.com",
                  TipoCliente.PessoaFisica, "583.127.545-96", GetEndereco());
-            
+
             var cliente3 = new Cliente("Claudio Ramos", "(49) 94444-9909", "claudio@gmail.com",
                  TipoCliente.PessoaFisica, "016.941.763-09", GetEndereco());
 

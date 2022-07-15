@@ -16,7 +16,7 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
 
         }
 
-        
+
 
         public Veiculo(string modelo, string marca, int ano, string cor, string placa,
             string tipoCombustivel, int quilometragemPercorrida,

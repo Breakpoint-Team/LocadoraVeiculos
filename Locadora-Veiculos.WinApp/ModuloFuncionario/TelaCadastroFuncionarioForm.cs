@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using System;
 using System.Windows.Forms;
@@ -89,8 +88,8 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             txtLogin.Text = funcionario.Login;
             txtSenha.Text = funcionario.Senha;
             numericSalario.Value = funcionario.Salario;
-            
-            if(funcionario.DataAdmissao.Date != new DateTime(1,1,1).Date)
+
+            if (funcionario.DataAdmissao.Date != new DateTime(1, 1, 1).Date)
                 dateTimePickerDataAdmissao.Value = funcionario.DataAdmissao;
 
             if (funcionario.EhAdmin == true)

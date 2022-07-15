@@ -147,19 +147,29 @@ namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorParametro, conexaoComBanco);
 
             comandoSelecao.Parameters.Add(parametro);
-
-            conexaoComBanco.Open();
-
-            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
-
-            var mapeador = new TMapeador();
-
+            
             T registro = null;
+            
+            try
+            {
+                conexaoComBanco.Open();
 
-            if (leitorRegistro.Read())
-                registro = mapeador.ConverterRegistro(leitorRegistro);
+                SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
 
-            conexaoComBanco.Close();
+                var mapeador = new TMapeador();
+
+                if (leitorRegistro.Read())
+                    registro = mapeador.ConverterRegistro(leitorRegistro);
+
+                conexaoComBanco.Close();
+            }
+            catch (Exception ex)
+            {
+                if (ex != null && ex.Message.Contains("Cannot open database"))
+                    throw new ConexaoSqlException(ex);
+
+                throw;
+            }
 
             return registro;
         }

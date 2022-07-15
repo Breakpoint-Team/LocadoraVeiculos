@@ -36,13 +36,16 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
             //Arrange
             var cliente = NovoCliente();
 
-            //action
-            var resultado = servicoCliente.Inserir(cliente);
+            //Action
+            var resultadoInsercao = servicoCliente.Inserir(cliente);
 
-            var registroEncontrado = repositorioCliente.SelecionarPorId(cliente.Id);
+            var resultadoSelecao = servicoCliente.SelecionarPorId(cliente.Id);
 
-            //assert
-            Assert.AreEqual(0, resultado.Errors.Count);
+            var registroEncontrado = resultadoSelecao.Value;
+
+            //Assert
+            Assert.AreEqual(true, resultadoInsercao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(cliente, registroEncontrado);
         }
@@ -50,7 +53,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         [TestMethod]
         public void Deve_editar_registro()
         {
-            //arrange
+            //Arrange
             var cliente = NovoCliente();
 
             servicoCliente.Inserir(cliente);
@@ -58,13 +61,16 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
             cliente.Nome = "Alexandre Rech";
             cliente.Email = "rech@academia.com";
 
-            //action
-            var resultado = servicoCliente.Editar(cliente);
+            //Action
+            var resultadoEdicao = servicoCliente.Editar(cliente);
 
-            var registroEncontrado = repositorioCliente.SelecionarPorId(cliente.Id);
+            var resultadoSelecao = servicoCliente.SelecionarPorId(cliente.Id);
 
-            //assert
-            Assert.AreEqual(0, resultado.Errors.Count);
+            var registroEncontrado = resultadoSelecao.Value;
+
+            //Assert
+            Assert.AreEqual(true, resultadoEdicao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(cliente, registroEncontrado);
         }
@@ -72,31 +78,40 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         [TestMethod]
         public void Deve_excluir_registro()
         {
-            //arrange
+            //Arrange
             var cliente = NovoCliente();
+
             servicoCliente.Inserir(cliente);
 
-            //action
-            servicoCliente.Excluir(cliente);
+            //Action
+            var resultadoExclusao = servicoCliente.Excluir(cliente);
 
-            var registroEncontrado = repositorioCliente.SelecionarPorId(cliente.Id);
+            var resultadoSelecao = servicoCliente.SelecionarPorId(cliente.Id);
 
-            //assert
+            var registroEncontrado = resultadoSelecao.Value;
+
+            //Assert
+            Assert.AreEqual(true, resultadoExclusao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNull(registroEncontrado);
         }
 
         [TestMethod]
         public void Deve_selecionar_um_registro()
         {
-            //arrange
+            //Arrange
             var cliente = NovoCliente();
 
-            servicoCliente.Inserir(cliente);
+            var resultadoInsercao = servicoCliente.Inserir(cliente);
 
-            //action
-            var registroEncontrado = repositorioCliente.SelecionarPorId(cliente.Id);
+            //Action
+            var resultadoSelecao = servicoCliente.SelecionarPorId(cliente.Id);
 
-            //assert
+            var registroEncontrado = resultadoSelecao.Value;
+
+            //Assert
+            Assert.AreEqual(true, resultadoInsercao.IsSuccess);
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.IsNotNull(registroEncontrado);
             Assert.AreEqual(cliente, registroEncontrado);
         }
@@ -104,15 +119,17 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         [TestMethod]
         public void Deve_selecionar_todos_os_registros()
         {
-            //arrange
+            //Arrange
             var clientes = NovosClientesFisicos();
             foreach (var cliente in clientes)
                 servicoCliente.Inserir(cliente);
 
-            //action
-            var registrosEncontrados = repositorioCliente.SelecionarTodos();
+            //Action
+            var resultadoSelecao = servicoCliente.SelecionarTodos();
+            var registrosEncontrados = resultadoSelecao.Value;
 
-            //assert
+            //Assert
+            Assert.AreEqual(true, resultadoSelecao.IsSuccess);
             Assert.AreEqual(3, registrosEncontrados.Count);
             Assert.AreEqual(true, registrosEncontrados.Contains(clientes[0]));
             Assert.AreEqual(true, registrosEncontrados.Contains(clientes[1]));
@@ -124,16 +141,18 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
         {
             //Arrange
             var cliente1 = NovoCliente();
-            servicoCliente.Inserir(cliente1);
+            var resultadoInsercao1 = servicoCliente.Inserir(cliente1);
 
             var cliente2 = new Cliente("Sérgio Ramos", "(49) 99943-9554", "sergio@gmail.com",
                 TipoCliente.PessoaFisica, "013.987.765-09", GetEndereco());
 
-            //action
-            var resultado = servicoCliente.Inserir(cliente2);
+            ////Action
+            var resultadoInsercao2 = servicoCliente.Inserir(cliente2);
 
-            //assert
-            Assert.AreEqual("CPF já está cadastrado!", resultado.Errors[0].ErrorMessage);
+            //Assert
+            Assert.AreEqual(true, resultadoInsercao1.IsSuccess);
+            Assert.AreEqual(true, resultadoInsercao2.IsFailed);
+            Assert.AreEqual("CPF já está cadastrado!", resultadoInsercao2.Errors[0].Message);
         }
 
         [TestMethod]
@@ -142,16 +161,19 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
             //Arrange
             var cliente1 = new Cliente("Coca cola", "(49) 99943-9554", "cocacola@gmail.com",
                 TipoCliente.PessoaJuridica, "01.987.765/0001-09", GetEndereco());
-            servicoCliente.Inserir(cliente1);
+
+            var resultadoInsercao1 = servicoCliente.Inserir(cliente1);
 
             var cliente2 = new Cliente("Itaú", "(49) 99943-9554", "itau@gmail.com",
                 TipoCliente.PessoaJuridica, "01.987.765/0001-09", GetEndereco());
 
-            //action
-            var resultado = servicoCliente.Inserir(cliente2);
+            ////Action
+            var resultadoInsercao2 = servicoCliente.Inserir(cliente2);
 
-            //assert
-            Assert.AreEqual("CNPJ já está cadastrado!", resultado.Errors[0].ErrorMessage);
+            //Assert
+            Assert.AreEqual(true, resultadoInsercao1.IsSuccess);
+            Assert.AreEqual(true, resultadoInsercao2.IsFailed);
+            Assert.AreEqual("CNPJ já está cadastrado!", resultadoInsercao2.Errors[0].Message);
         }
 
         [TestMethod]
@@ -160,18 +182,22 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloCliente
             //Arrange
             var cliente = new Cliente("Coca cola", "(49) 99943-9554", "cocacola@gmail.com",
                 TipoCliente.PessoaJuridica, "01.987.765/0001-09", GetEndereco());
-            servicoCliente.Inserir(cliente);
+
+            var resultadoInsercaoCliente = servicoCliente.Inserir(cliente);
 
             Condutor condutor = new Condutor("João dos Santos", "(49) 98888-9999", "joao@gmail.com", "018.987.765-09", "123456789",
                new DateTime(2025, 12, 28), GetEndereco(), cliente);
-            
-            servicoCondutor.Inserir(condutor);
+
+            var resultadoInsercaoCondutor = servicoCondutor.Inserir(condutor);
 
             //Action
-            var resultado = servicoCliente.Excluir(cliente);
+            var resultadoExclusaoCliente = servicoCliente.Excluir(cliente);
 
             //Assert
-            Assert.AreEqual("Não é possível excluir um Cliente que possui Condutores relacionados!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual(true, resultadoInsercaoCliente.IsSuccess);
+            Assert.AreEqual(true, resultadoInsercaoCondutor.IsSuccess);
+            Assert.AreEqual(true, resultadoExclusaoCliente.IsFailed);
+            Assert.AreEqual("O cliente Coca cola está relacionado com um condutor e não pode ser excluído", resultadoExclusaoCliente.Errors[0].Message);
         }
 
         #region MÉTODOS PRIVADOS
