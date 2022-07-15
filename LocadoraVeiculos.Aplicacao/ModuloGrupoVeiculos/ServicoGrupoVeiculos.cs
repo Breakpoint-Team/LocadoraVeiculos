@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Serilog;
 using System;
@@ -97,7 +98,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
                 Log.Logger.Information("Grupo de Veículos {GrupoVeiculosId} excluído com sucesso", grupoVeiculos.Id);
                 return Result.Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir o Grupo de Veículos";
 
@@ -172,6 +173,23 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
                    grupoVeiculosEncontrado.Id != grupoVeiculos.Id;
 
         }
+
+        public Result<int> QuantidadeGrupoVeiculosCadastrados()
+        {
+            try
+            {
+                return Result.Ok(repositorioGrupoVeiculos.QuantidadeGrupoVeiculosCadastrados());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar a quantidade de grupo de veículos";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
 
         #endregion
     }
