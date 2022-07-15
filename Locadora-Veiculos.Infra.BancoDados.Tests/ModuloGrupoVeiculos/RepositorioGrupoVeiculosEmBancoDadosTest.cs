@@ -126,20 +126,20 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
 
         }
 
-        [TestMethod]
-        public void Nao_deve_inserir_grupo_de_veiculos_com_nome_duplicado()
-        {
-            //arrange
-            var g1 = NovoGrupoVeiculos();
-            servicoGrupoVeiculos.Inserir(g1);
-            var g2 = NovoGrupoVeiculos();
+        //[TestMethod]
+        //public void Nao_deve_inserir_grupo_de_veiculos_com_nome_duplicado()
+        //{
+        //    //arrange
+        //    var g1 = NovoGrupoVeiculos();
+        //    servicoGrupoVeiculos.Inserir(g1);
+        //    var g2 = NovoGrupoVeiculos();
 
-            //action
-            var resultado = servicoGrupoVeiculos.Inserir(g2);
+        //    //action
+        //    var resultado = servicoGrupoVeiculos.Inserir(g2);
 
-            //assert
-            Assert.AreEqual("Falha ao tentar inserir o Grupo de Veículos", resultado.Errors[0].Message);
-        }
+        //    //assert
+        //    Assert.AreEqual("Falha ao tentar inserir o Grupo de Veículos", resultado.Errors[0].Message);
+        //}
 
         [TestMethod]
         public void Nao_deve_excluir_grupo_de_veiculos_que_possui_veiculo_relacionado()

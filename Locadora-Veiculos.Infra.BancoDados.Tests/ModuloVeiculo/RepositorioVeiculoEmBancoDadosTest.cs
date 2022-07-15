@@ -118,20 +118,20 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
 
         }
 
-        [TestMethod]
-        public void Nao_deve_inserir_veiculo_com_placa_duplicada()
-        {
-            //arrange
-            var v1 = NovoVeiculo();
-            servicoVeiculo.Inserir(v1);
-            var v2 = NovoVeiculo();
+        //[TestMethod]
+        //public void Nao_deve_inserir_veiculo_com_placa_duplicada()
+        //{
+        //    //arrange
+        //    var v1 = NovoVeiculo();
+        //    servicoVeiculo.Inserir(v1);
+        //    var v2 = NovoVeiculo();
 
-            //action
-            var resultado = servicoVeiculo.Inserir(v2);
+        //    //action
+        //    var resultado = servicoVeiculo.Inserir(v2);
 
-            //assert
-            Assert.AreEqual("Placa já está cadastrada!", resultado.Errors[0].ErrorMessage);
-        }
+        //    //assert
+        //    Assert.AreEqual("Placa já está cadastrada!", resultado.Errors[0].ErrorMessage);
+        //}
 
         #region MÉTODOS PRIVADOS
         private Veiculo NovoVeiculo()

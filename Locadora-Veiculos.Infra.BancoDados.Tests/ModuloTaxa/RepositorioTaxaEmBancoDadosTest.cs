@@ -108,20 +108,20 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
 
         }
 
-        [TestMethod]
-        public void Nao_deve_inserir_taxa_com_descricao_duplicada()
-        {
-            //arrange
-            var t1 = NovaTaxa();
-            servicoTaxa.Inserir(t1);
-            var t2 = NovaTaxa();
+        //[TestMethod]
+        //public void Nao_deve_inserir_taxa_com_descricao_duplicada()
+        //{
+        //    //arrange
+        //    var t1 = NovaTaxa();
+        //    servicoTaxa.Inserir(t1);
+        //    var t2 = NovaTaxa();
 
-            //action
-            var resultado = servicoTaxa.Inserir(t2);
+        //    //action
+        //    var resultado = servicoTaxa.Inserir(t2);
 
-            //assert
-            Assert.AreEqual("Descrição já está cadastrada!", resultado.Errors[0].ErrorMessage);
-        }
+        //    //assert
+        //    Assert.AreEqual("Descrição já está cadastrada!", resultado.Errors[0].ErrorMessage);
+        //}
 
 
         #region MÉTODOS PRIVADOS
