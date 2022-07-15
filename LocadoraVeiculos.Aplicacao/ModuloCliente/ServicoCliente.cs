@@ -1,6 +1,12 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
+using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloCliente;
+using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 {
@@ -13,121 +19,208 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             this.repositorioCliente = repositorioCliente;
         }
 
-        public ValidationResult Inserir(Cliente cliente)
+        public Result<Cliente> Inserir(Cliente cliente)
         {
             Log.Logger.Debug("Tentando inserir Cliente... {@Cliente}", cliente);
 
-            var resultadoValidacao = Validar(cliente);
+            var resultadoValidacao = ValidarCliente(cliente);
 
-            if (resultadoValidacao.IsValid)
-            {
-                repositorioCliente.Inserir(cliente);
-                Log.Logger.Debug("Cliente '{ClienteNome}' inserido com sucesso", cliente.Nome);
-            }
-            else
+            if (resultadoValidacao.IsFailed)
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir um Cliente '{ClienteNome}' - {Motivo}",
-                        cliente.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir um Cliente '{ClienteId}' - {Motivo}",
+                        cliente.Id, erro.Message);
                 }
+
+                return Result.Fail(resultadoValidacao.Errors);
             }
 
-            return resultadoValidacao;
+            try
+            {
+                repositorioCliente.Inserir(cliente);
+
+                Log.Logger.Information("Cliente {ClienteId} inserido com sucesso", cliente.Id);
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar inserir o cliente";
+
+                Log.Logger.Error(ex, msgErro + " {ClienteId}", cliente.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public ValidationResult Editar(Cliente cliente)
+        public Result<Cliente> Editar(Cliente cliente)
         {
             Log.Logger.Debug("Tentando editar Cliente... {@Cliente}", cliente);
 
-            var resultadoValidacao = Validar(cliente);
+            var resultadoValidacao = ValidarCliente(cliente);
 
-            if (resultadoValidacao.IsValid)
-            {
-                repositorioCliente.Editar(cliente);
-                Log.Logger.Debug("Cliente com Id = '{ClienteId}' editado com sucesso", cliente.Id);
-            }
-            else
+            if (resultadoValidacao.IsFailed)
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar o Cliente com Id = '{ClienteId}' - {Motivo}",
-                        cliente.Id, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar o Cliente {ClienteId} - {Motivo}",
+                        cliente.Id, erro.Message);
                 }
+
+                return Result.Fail(resultadoValidacao.Errors);
             }
 
-            return resultadoValidacao;
+            try
+            {
+                repositorioCliente.Editar(cliente);
+
+                Log.Logger.Information("Cliente {ClienteId} editado com sucesso", cliente.Id);
+
+                return Result.Ok(cliente);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar editar o Cliente";
+
+                Log.Logger.Error(ex, msgErro + " ClienteId", cliente.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public ValidationResult Excluir(Cliente cliente)
+        public Result Excluir(Cliente cliente)
         {
             Log.Logger.Debug("Tentando excluir Cliente... {@Cliente}", cliente);
 
-            var resultadoValidacao = ExclusaoValida(cliente);
-
-            if (resultadoValidacao.IsValid)
+            try
             {
                 repositorioCliente.Excluir(cliente);
-                Log.Logger.Debug("Cliente com Id = '{ClienteId}' excluído com sucesso", cliente.Id);
-            }
-            else
-            {
-                foreach (var erro in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar excluir o Cliente com Id = '{ClienteId}' - {Motivo}",
-                        cliente.Id, erro.ErrorMessage);
-                }
-            }
 
-            return resultadoValidacao;
+                Log.Logger.Information("Cliente {ClienteId} excluído com sucesso", cliente.Id);
+
+                return Result.Ok();
+            }
+            catch (NaoPodeExcluirEsteRegistroException ex)
+            {
+                string msgErro = $"O cliente {cliente.Nome} está relacionado com um condutor e não pode ser excluído";
+
+                Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+
+                return Result.Fail(msgErro);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar excluir o cliente";
+
+                Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result<List<Cliente>> SelecionarTodos()
+        {
+            try
+            {
+                return Result.Ok(repositorioCliente.SelecionarTodos());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar todos os clientes";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result<Cliente> SelecionarPorId(Guid id)
+        {
+            try
+            {
+                return Result.Ok(repositorioCliente.SelecionarPorId(id));
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar o cliente";
+
+                Log.Logger.Error(ex, msgErro + " {ClienteId}", id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result<int> QuantidadeClientesCadastrados()
+        {
+            try
+            {
+                return Result.Ok(repositorioCliente.QuantidadeClientesCadastrados());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar a quantidade de clientes";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
         }
 
         #region MÉTODOS PRIVADOS
 
-        private ValidationResult ExclusaoValida(Cliente cliente)
-        {
-            ValidationResult resultadoValidacao = new ValidationResult();
-
-            if (TemCondutoresRelacionados(cliente))
-                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não é possível excluir um Cliente que possui Condutores relacionados!"));
-
-            return resultadoValidacao;
-        }
-
-        private bool TemCondutoresRelacionados(Cliente cliente)
-        {
-            int qtdCondutoresRelacionados = repositorioCliente.QuantidadeCondutoresRelacionadosAoCliente(cliente.Id);
-
-            if (qtdCondutoresRelacionados > 0)
-                return true;
-
-            return false;
-        }
-
-        private ValidationResult Validar(Cliente cliente)
+        private Result ValidarCliente(Cliente cliente)
         {
             ValidadorCliente validador = new ValidadorCliente();
 
             var resultadoValidacao = validador.Validate(cliente);
 
-            if (DocumentoDuplicado(cliente))
-            {
-                if (cliente.TipoCliente == TipoCliente.PessoaFisica)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("Documento", "CPF já está cadastrado!"));
-                else if (cliente.TipoCliente == TipoCliente.PessoaJuridica)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("Documento", "CNPJ já está cadastrado!"));
-            }
+            List<Error> erros = new List<Error>();
 
-            return resultadoValidacao;
+            foreach (ValidationFailure item in resultadoValidacao.Errors)
+                erros.Add(new Error(item.ErrorMessage));
+
+            var resultadoComparacao = DocumentoDuplicado(cliente);
+
+            if (resultadoComparacao.IsSuccess)
+            {
+                if (resultadoComparacao.Value == true)
+                {
+                    if (cliente.TipoCliente == TipoCliente.PessoaFisica)
+                        erros.Add(new Error("CPF já está cadastrado!"));
+                    else if (cliente.TipoCliente == TipoCliente.PessoaJuridica)
+                        erros.Add(new Error("CNPJ já está cadastrado!"));
+                }
+            }
+            else
+                erros.Add(new Error(resultadoComparacao.Errors[0].Message));
+
+            if (erros.Any())
+                return Result.Fail(erros);
+
+            return Result.Ok();
         }
 
-        private bool DocumentoDuplicado(Cliente cliente)
+        private Result<bool> DocumentoDuplicado(Cliente cliente)
         {
-            var clienteEncontrado = repositorioCliente.SelecionarClientePorDocumento(cliente.Documento);
+            try
+            {
+                var clienteEncontrado = repositorioCliente.SelecionarClientePorDocumento(cliente.Documento);
 
-            return clienteEncontrado != null &&
-                   clienteEncontrado.Documento == cliente.Documento &&
-                   clienteEncontrado.Id != cliente.Id;
+                var resultadoComparacao = clienteEncontrado != null &&
+                       clienteEncontrado.Documento == cliente.Documento &&
+                       clienteEncontrado.Id != cliente.Id;
+
+                return Result.Ok(resultadoComparacao);
+            }
+            catch (ConexaoSqlException ex)
+            {
+                string msgErro = "Falha no sistema ao tentar comparar o Documento (CPF ou CNPJ) do cliente";
+
+                Log.Logger.Error(ex, msgErro + " {ClienteId}", cliente.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
         #endregion

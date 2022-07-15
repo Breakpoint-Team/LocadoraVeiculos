@@ -1,4 +1,4 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
 using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.Dominio.ModuloEndereco;
 using System;
@@ -25,7 +25,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             }
         }
 
-        public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
+        public Func<Cliente, Result<Cliente>> GravarRegistro { get; set; }
 
         #region EVENTOS
 
@@ -35,13 +35,21 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
 
             var resultadoValidacao = GravarRegistro(cliente);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                        "Inserção de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 

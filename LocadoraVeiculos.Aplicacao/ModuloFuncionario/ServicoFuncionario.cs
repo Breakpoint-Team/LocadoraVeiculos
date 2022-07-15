@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloFuncionario;
+using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -46,12 +47,10 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             {
                 string msgErro = "Falha no sistema ao tentar inserir o funcionário";
 
-                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.Id);
+                Log.Logger.Error(ex, msgErro + " {FuncionarioId}", funcionario.Id);
 
                 return Result.Fail(msgErro);
             }
-
-            return resultadoValidacao;
         }
 
         public Result<Funcionario> Editar(Funcionario funcionario)
@@ -83,12 +82,10 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             {
                 string msgErro = "Falha no sistema ao tentar editar o funcionário";
 
-                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.Id);
+                Log.Logger.Error(ex, msgErro + " {FuncionarioId}", funcionario.Id);
 
                 return Result.Fail(msgErro);
             }
-
-            return resultadoValidacao;
         }
 
         public Result Excluir(Funcionario funcionario)
@@ -107,7 +104,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             {
                 string msgErro = "Falha no sistema ao tentar excluir o funcionário";
 
-                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.Id);
+                Log.Logger.Error(ex, msgErro + " {FuncionarioId}", funcionario.Id);
 
                 return Result.Fail(msgErro);
             }
@@ -139,7 +136,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             {
                 string msgErro = "Falha no sistema ao tentar selecionar o funcionário";
 
-                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", id);
+                Log.Logger.Error(ex, msgErro + " {FuncionarioId}", id);
 
                 return Result.Fail(msgErro);
             }
@@ -153,28 +150,47 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
 
             var resultadoValidacao = validador.Validate(funcionario);
 
-            List<Error> erros = new List<Error>(); //FluentResult
+            List<Error> erros = new List<Error>(); 
 
-            foreach (ValidationFailure item in resultadoValidacao.Errors) //FluentValidation            
+            foreach (ValidationFailure item in resultadoValidacao.Errors)             
                 erros.Add(new Error(item.ErrorMessage));
 
-            if (LoginDuplicado(funcionario))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Login", "Login já está cadastrado!"));
+            var resultadoComparacao = LoginDuplicado(funcionario);
+
+            if (resultadoComparacao.IsSuccess)
+            {
+                if (resultadoComparacao.Value == true)
+                    erros.Add(new Error("Login já está cadastrado!"));
+            }
+            else
+                erros.Add(new Error(resultadoComparacao.Errors[0].Message));
 
             if (erros.Any())
                 return Result.Fail(erros);
 
             return Result.Ok();
-
         }
 
-        private bool LoginDuplicado(Funcionario funcionario)
+        private Result<bool> LoginDuplicado(Funcionario funcionario)
         {
-            var funcionarioEncontrado = repositorioFuncionario.SelecionarFuncionarioPorLogin(funcionario.Login);
+            try
+            {
+                var funcionarioEncontrado = repositorioFuncionario.SelecionarFuncionarioPorLogin(funcionario.Login);
 
-            return funcionarioEncontrado != null &&
-                   funcionarioEncontrado.Login.Equals(funcionario.Login, StringComparison.OrdinalIgnoreCase) &&
-                   funcionarioEncontrado.Id != funcionario.Id;
+                bool resultadoComparacao = funcionarioEncontrado != null &&
+                       funcionarioEncontrado.Login.Equals(funcionario.Login, StringComparison.OrdinalIgnoreCase) &&
+                       funcionarioEncontrado.Id != funcionario.Id;
+
+                return Result.Ok(resultadoComparacao);
+            }
+            catch (ConexaoSqlException ex)
+            {
+                string msgErro = "Falha no sistema ao tentar comparar o login do funcionário";
+
+                Log.Logger.Error(ex, msgErro + " {FuncionarioId}", funcionario.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
         #endregion

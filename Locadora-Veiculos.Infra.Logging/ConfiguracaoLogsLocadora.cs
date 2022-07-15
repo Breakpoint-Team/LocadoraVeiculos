@@ -17,7 +17,7 @@ namespace Locadora_Veiculos.Infra.Logging
                 .GetSection("ConfiguracaoLogs")
                 .GetSection("DiretorioSaida")
                 .Value;
-            
+
             Log.Logger = new LoggerConfiguration()
                .MinimumLevel.Debug()
                .WriteTo.File(diretorioSaida + "\\log.txt",

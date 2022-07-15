@@ -26,11 +26,11 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             set
             {
                 taxa = value;
-                    txtDescricao.Text = taxa.Descricao;
-                    numericValor.Value = taxa.Valor;
-                    if (taxa.TipoCalculo == 0)
-                        radioButtonDiario.Checked = true;
-                    else radioButtonFixo.Checked = true;
+                txtDescricao.Text = taxa.Descricao;
+                numericValor.Value = taxa.Valor;
+                if (taxa.TipoCalculo == 0)
+                    radioButtonDiario.Checked = true;
+                else radioButtonFixo.Checked = true;
             }
         }
 

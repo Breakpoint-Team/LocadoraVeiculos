@@ -64,7 +64,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
         public ValidationResult Excluir(Taxa taxa)
         {
             Log.Logger.Debug("Tentando excluir Taxa... {@Taxa}", taxa);
-         
+
             repositorioTaxa.Excluir(taxa);
 
             Log.Logger.Debug("Taxa com Id = '{TaxaId}' excluído com sucesso", taxa.Id);
