@@ -33,7 +33,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
 
             repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
             servicoGrupoVeiculos = new ServicoGrupoVeiculos(repositorioGrupoVeiculos);
-           
+
             repositorioVeiculo = new RepositorioVeiculoEmBancoDados();
             servicoVeiculo = new ServicoVeiculo(repositorioVeiculo);
 
@@ -159,7 +159,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
             Assert.AreEqual("Falha no sistema ao tentar excluir o Grupo de Veículos", resultado.Errors[0].Message);
 
         }
-     
+
         [TestMethod]
         public void Nao_deve_excluir_grupo_de_veiculos_que_possui_plano_de_cobranca_relacionado()
         {

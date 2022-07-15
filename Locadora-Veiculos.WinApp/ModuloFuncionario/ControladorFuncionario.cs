@@ -22,14 +22,13 @@ namespace Locadora_Veiculos.WinApp.ModuloFuncionario
             var tela = new TelaCadastroFuncionarioForm();
             tela.Funcionario = new Funcionario();
             tela.GravarRegistro = servicoFuncionario.Inserir;
-            DialogResult resultado = tela.ShowDialog();
 
-            CarregarFuncionarios();
+            if (tela.ShowDialog() == DialogResult.OK)
+                CarregarFuncionarios();
         }
 
         public override void Editar()
         {
-
             var id = listagemFuncionarios.ObtemIdFuncionarioSelecionado();
 
             if (id == Guid.Empty)

@@ -1,7 +1,9 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.WinApp.Compartilhado;
+using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -9,22 +11,20 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 {
     public class ControladorVeiculo : ControladorBase
     {
-        private IRepositorioVeiculo repositorioVeiculo;
         private ListagemVeiculoControl listagemVeiculo;
         private ServicoVeiculo servicoVeiculo;
-        private IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
-
-        public ControladorVeiculo(IRepositorioVeiculo repositorioVeiculo, ServicoVeiculo servicoVeiculo, IRepositorioGrupoVeiculos repositorioGrupoVeiculos)
+        private ServicoGrupoVeiculos servicoGrupoVeiculos;
+        public ControladorVeiculo(ServicoVeiculo servicoVeiculo, ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
-            this.repositorioVeiculo = repositorioVeiculo;
             this.servicoVeiculo = servicoVeiculo;
-            this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
+            this.servicoGrupoVeiculos = servicoGrupoVeiculos;
         }
 
         public override void Inserir()
         {
-            int qtd = repositorioGrupoVeiculos.QuantidadeGrupoVeiculosCadastrados();
-            if (qtd == 0)
+            var resultado = servicoGrupoVeiculos.SelecionarTodos();  
+
+            if (resultado.Value.Count < 1)
             {
                 MessageBox.Show("Para cadastrar um Veículo, é necessário que haja um Grupo de Veículos cadastrado!",
                 "Inserção de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -35,51 +35,67 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             tela.Veiculo = new Veiculo();
             tela.GravarRegistro = servicoVeiculo.Inserir;
 
-            DialogResult resultado = tela.ShowDialog();
-            CarregarVeiculos();
+            if(tela.ShowDialog() == DialogResult.OK)
+                CarregarVeiculos();
         }
 
         public override void Editar()
         {
-            Veiculo veiculoSelecionado = ObtemVeiculoSelecionado();
+            var id = listagemVeiculo.ObtemIdVeiculoSelecionado();
 
-            if (veiculoSelecionado == null)
+            if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione um veículo primeiro!",
                 "Edição de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
+            var resultado = servicoVeiculo.SelecionarPorId(id);
+            var veiculoSelecionado = resultado.Value;
+
             var tela = new TelaCadastroVeiculoForm();
-
             tela.Veiculo = veiculoSelecionado;
-
             tela.GravarRegistro = servicoVeiculo.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            CarregarVeiculos();
+            if(tela.ShowDialog() == DialogResult.OK)
+                CarregarVeiculos();
         }
 
         public override void Excluir()
         {
-            Veiculo veiculoSelecionado = ObtemVeiculoSelecionado();
+            var id = listagemVeiculo.ObtemIdVeiculoSelecionado();
 
-            if (veiculoSelecionado == null)
+            if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione um veículo primeiro!",
                 "Exclusão de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o veículo?",
-            "Exclusão de Veículo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var resultado = servicoVeiculo.SelecionarPorId(id);
 
-            if (resultado == DialogResult.OK)
+            if (resultado.IsFailed)
             {
-                servicoVeiculo.Excluir(veiculoSelecionado);
+                MessageBox.Show(resultado.Errors[0].Message,
+                "Exclusão de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
-            CarregarVeiculos();
+
+            var veiculoSelecionado = resultado.Value;
+
+
+
+            if(MessageBox.Show("Deseja realmente excluir o veículo?",
+            "Exclusão de Veículo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoVeiculo.Excluir(veiculoSelecionado);
+                if (resultadoExclusao.IsSuccess)
+                    CarregarVeiculos();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                  "Exclusão de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
@@ -99,18 +115,21 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
         #region MÉTODOS PRIVADOS
 
-        private Veiculo ObtemVeiculoSelecionado()
-        {
-            var id = listagemVeiculo.ObtemIdVeiculoSelecionado();
-
-            return repositorioVeiculo.SelecionarPorId(id);
-        }
-
         private void CarregarVeiculos()
         {
-            List<Veiculo> veiculos = repositorioVeiculo.SelecionarTodos();
-            listagemVeiculo.AtualizarRegistros(veiculos);
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} veículo(s)");
+            var resultado = servicoVeiculo.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Veiculo> veiculos = resultado.Value;
+                listagemVeiculo.AtualizarRegistros(veiculos);
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} veículo(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Visualização de Veículo",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
