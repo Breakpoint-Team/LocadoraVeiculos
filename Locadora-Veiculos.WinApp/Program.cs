@@ -1,4 +1,5 @@
 using Locadora_Veiculos.Infra.Logging;
+using Locadora_Veiculos.WinApp.Compartilhado.Servicelocator;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +17,10 @@ namespace Locadora_Veiculos.WinApp
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TelaPrincipalForm());
+            
+            IServiceLocator servicelocator = new ServiceLocatorComAutoFac();
+
+            Application.Run(new TelaPrincipalForm(servicelocator));
         }
     }
 }
