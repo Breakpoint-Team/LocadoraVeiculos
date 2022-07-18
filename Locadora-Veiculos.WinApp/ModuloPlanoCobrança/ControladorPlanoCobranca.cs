@@ -23,7 +23,6 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
             this.servicoGrupoVeiculos = servicoGrupoVeiculos;
         }
 
-
         public override void Inserir()
         {
             var resultado = servicoGrupoVeiculos.QuantidadeGrupoVeiculosCadastrados();
@@ -157,8 +156,6 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        
 
         private List<GrupoVeiculos> ObterGrupos()
         {

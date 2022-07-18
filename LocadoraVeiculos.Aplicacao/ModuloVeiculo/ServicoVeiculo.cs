@@ -30,7 +30,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
                     Log.Logger.Warning("Falha ao tentar inserir o Veículo '{VeiculoId}' - {Motivo}",
                         veiculo.Id, erro.Message);
                 }
-               return Result.Fail(resultadoValidacao.Errors);
+                return Result.Fail(resultadoValidacao.Errors);
             }
             try
             {
@@ -38,7 +38,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
                 Log.Logger.Debug("Veículo {VeiculoId} inserido com sucesso", veiculo.Id);
                 return Result.Ok(veiculo);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar inserir o Veículo";
 
@@ -46,8 +46,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
 
                 return Result.Fail(msgErro);
             }
-
-            return resultadoValidacao;
         }
 
         public Result<Veiculo> Editar(Veiculo veiculo)
@@ -71,7 +69,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
                 Log.Logger.Information("Veículo {VeiculoId} editado com sucesso", veiculo.Id);
                 return Result.Ok(veiculo);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar editar o veículo";
 
@@ -79,7 +77,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
 
                 return Result.Fail(msgErro);
             }
-            return resultadoValidacao;
         }
 
         public Result Excluir(Veiculo veiculo)
@@ -92,7 +89,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
                 Log.Logger.Debug("Veículo '{VeiculoId}' excluído com sucesso", veiculo.Id);
                 return Result.Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir o veículo";
 
@@ -145,7 +142,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
 
             List<Error> erros = new List<Error>();
 
-            foreach (ValidationFailure item in resultadoValidacao.Errors)        
+            foreach (ValidationFailure item in resultadoValidacao.Errors)
                 erros.Add(new Error(item.ErrorMessage));
 
             var resultadoComparacao = PlacaDuplicada(veiculo);
@@ -163,7 +160,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
                 erros.Add(new Error(resultadoComparacao.Errors[0].Message));
             }
 
-            if(erros.Any())
+            if (erros.Any())
                 return Result.Fail(erros);
 
             return Result.Ok();
@@ -173,10 +170,10 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
         {
             try
             {
-            var placaEncontrada = repositorioVeiculo.SelecionarVeiculoPorPlaca(veiculo.Placa);
-            var resultadoComparacao = placaEncontrada != null &&
-                   placaEncontrada.Placa.Equals(veiculo.Placa, StringComparison.OrdinalIgnoreCase) &&
-                   placaEncontrada.Id != veiculo.Id;
+                var placaEncontrada = repositorioVeiculo.SelecionarVeiculoPorPlaca(veiculo.Placa);
+                var resultadoComparacao = placaEncontrada != null &&
+                       placaEncontrada.Placa.Equals(veiculo.Placa, StringComparison.OrdinalIgnoreCase) &&
+                       placaEncontrada.Id != veiculo.Id;
                 return Result.Ok(resultadoComparacao);
             }
             catch (Exception ex)

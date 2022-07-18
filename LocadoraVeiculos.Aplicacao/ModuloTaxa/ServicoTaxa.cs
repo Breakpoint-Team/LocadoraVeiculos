@@ -46,8 +46,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
 
                 return Result.Fail(msgErro);
             }
-
-            return resultadoValidacao;
         }
 
         public Result<Taxa> Editar(Taxa taxa)
@@ -80,9 +78,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
 
                 return Result.Fail(msgErro);
             }
-
-            return resultadoValidacao;
-
         }
 
         public Result Excluir(Taxa taxa)

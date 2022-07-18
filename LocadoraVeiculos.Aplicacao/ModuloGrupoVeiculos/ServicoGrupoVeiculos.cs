@@ -49,9 +49,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
 
                 return Result.Fail(msgErro);
             }
-
-            return resultadoValidacao;
-
         }
 
         public Result<GrupoVeiculos> Editar(GrupoVeiculos grupoVeiculos)
@@ -84,8 +81,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
 
                 return Result.Fail(msgErro);
             }
-
-            return resultadoValidacao;
         }
 
         public Result Excluir(GrupoVeiculos grupoVeiculos)

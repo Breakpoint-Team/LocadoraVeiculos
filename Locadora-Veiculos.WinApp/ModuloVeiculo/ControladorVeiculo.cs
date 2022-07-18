@@ -57,6 +57,13 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             }
 
             var resultado = servicoVeiculo.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Edição de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var veiculoSelecionado = resultado.Value;
 
             var tela = new TelaCadastroVeiculoForm();
@@ -98,8 +105,10 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
                 if (resultadoExclusao.IsSuccess)
                     CarregarVeiculos();
                 else
+                {
                     MessageBox.Show(resultadoExclusao.Errors[0].Message,
                   "Exclusão de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }

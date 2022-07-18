@@ -49,10 +49,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
 
                 return Result.Fail(msgErro);
             }
-
-            
-
-            return resultadoValidacao;
         }
 
         public Result<PlanoCobranca> Editar(PlanoCobranca planoCobranca)
@@ -87,9 +83,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
                 Log.Logger.Error(ex, msgErro + "{PlanoCobrancaId}", planoCobranca.Id);
 
                 return Result.Fail(msgErro);
-                
+
             }
-            return resultadoValidacao;
         }
 
         public Result<List<PlanoCobranca>> SelecionarTodos()
@@ -116,7 +111,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar o plano de cobranças";
+                string msgErro = "Falha no sistema ao tentar selecionar o plano de cobrança";
 
                 Log.Logger.Error(ex, msgErro + "{PlanoCobrancasId}", id);
 
@@ -124,24 +119,22 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             }
         }
 
-        public Result<PlanoCobranca> Excluir(PlanoCobranca planoCobranca)
+        public Result Excluir(PlanoCobranca planoCobranca)
         {
             Log.Logger.Debug("Tentando excluir Plano de Cobrança... {@PlanoCobranca}", planoCobranca);
             try
             {
                 repositorioPlanoCobranca.Excluir(planoCobranca);
-                Log.Logger.Information("Plano de Cobrança {PlanoCobrancaId} excluído com sucesso",planoCobranca.Id);
+                Log.Logger.Information("Plano de Cobrança {PlanoCobrancaId} excluído com sucesso", planoCobranca.Id);
                 return Result.Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir o Plano de Cobranças";
                 Log.Logger.Error(ex, msgErro + "{PlanoCobrancaId}", planoCobranca.Id);
                 return Result.Fail(msgErro);
             }
         }
-
-        
 
         #region MÉTODOS PRIVADOS
 
@@ -151,13 +144,24 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
 
             var resultadoValidacao = validador.Validate(planoCobranca);
 
-            List<Error> erros =new List<Error>();
+            List<Error> erros = new List<Error>();
 
             foreach (ValidationFailure item in resultadoValidacao.Errors)
                 erros.Add(new Error(item.ErrorMessage));
 
-            if (GrupoVeiculoJaTemPlanoRelacionado(planoCobranca))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Grupo de Veículos", "O Grupo de Veículos selecionado ja possui um plano de cobrança relacionado!"));
+            var resultadoComparacao = GrupoVeiculoJaTemPlanoRelacionado(planoCobranca);
+
+            if (resultadoComparacao.IsSuccess)
+            {
+                if(resultadoComparacao.Value == true)
+                {
+                    erros.Add(new Error("Grupo de Veículos já possui um plano de cobrança cadastrado!"));
+                }
+            }
+            else
+            {
+                erros.Add(new Error(resultadoComparacao.Errors[0].Message));
+            }
 
             if (erros.Any())
                 return Result.Fail(erros);
@@ -165,13 +169,25 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             return Result.Ok();
         }
 
-        private bool GrupoVeiculoJaTemPlanoRelacionado(PlanoCobranca plano)
+        private Result<bool> GrupoVeiculoJaTemPlanoRelacionado(PlanoCobranca plano)
         {
-            var planoEncontrado = repositorioPlanoCobranca.SelecionarPlanoPorIdDoGrupoVeiculos(plano.GrupoVeiculos.Id);
+            try
+            {
+                var planoEncontrado = repositorioPlanoCobranca.SelecionarPlanoPorIdDoGrupoVeiculos(plano.GrupoVeiculos.Id);
 
-            return planoEncontrado != null &&
-                   planoEncontrado.GrupoVeiculos.Id == plano.GrupoVeiculos.Id &&
-                   planoEncontrado.Id != plano.Id;
+                var resultadoComparacao = planoEncontrado != null &&
+                       planoEncontrado.GrupoVeiculos.Id == plano.GrupoVeiculos.Id &&
+                       planoEncontrado.Id != plano.Id;
+                return Result.Ok(resultadoComparacao);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar verificar a quantidade de planos relacionados ao grupo de veículos";
+
+                Log.Logger.Error(ex, msgErro + " {PlanoId}", plano.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
         #endregion

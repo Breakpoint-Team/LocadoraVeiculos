@@ -169,7 +169,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCondutor
 
             if (resultadoComparacaoCNH.IsSuccess)
             {
-                if (resultadoComparacaoCPF.Value == true)
+                if (resultadoComparacaoCNH.Value == true)
                     erros.Add(new Error("CNH já está cadastrada como condutor!"));
             }
             else
