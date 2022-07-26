@@ -4,14 +4,16 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
 {
     [DbContext(typeof(LocadoraVeiculosDbContext))]
-    partial class LocadoraVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220726174454_updateTabelaCondutor")]
+    partial class updateTabelaCondutor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,143 +218,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
             modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloCliente.Cliente", b =>
                 {
                     b.Navigation("Condutores");
-                });
-
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TBGrupoVeiculos");
-                });
-
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("DiarioValorDia")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("DiarioValorKm")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("GrupoVeiculosId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("KmControladoLimiteKm")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("KmControladoValorDia")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("KmControladoValorKm")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("KmLivreValorDia")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GrupoVeiculosId");
-
-                    b.ToTable("TBPlanoCobranca");
-                });
-
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloTaxa.Taxa", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<int>("TipoCalculo")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Valor")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TBTaxa");
-                });
-
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloVeiculo.Veiculo", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Ano")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("CapacidadeTanque")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Cor")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<Guid>("GrupoVeiculosId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<byte[]>("Imagem")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Marca")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<string>("Modelo")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<string>("Placa")
-                        .IsRequired()
-                        .HasColumnType("varchar(7)");
-
-                    b.Property<int>("QuilometragemPercorrida")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TipoCombustivel")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GrupoVeiculosId");
-
-                    b.ToTable("TBVeiculo");
-                });
-
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
-                {
-                    b.HasOne("Locadora_Veiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", "GrupoVeiculos")
-                        .WithMany()
-                        .HasForeignKey("GrupoVeiculosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GrupoVeiculos");
-                });
-
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloVeiculo.Veiculo", b =>
-                {
-                    b.HasOne("Locadora_Veiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", "GrupoVeiculos")
-                        .WithMany()
-                        .HasForeignKey("GrupoVeiculosId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("GrupoVeiculos");
                 });
 #pragma warning restore 612, 618
         }

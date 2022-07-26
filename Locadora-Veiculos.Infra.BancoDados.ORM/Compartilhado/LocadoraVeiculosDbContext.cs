@@ -5,6 +5,8 @@ using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
+using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCliente;
+using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
@@ -46,20 +48,27 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new MapeadorFuncionarioORM());
+
+            modelBuilder.ApplyConfiguration(new MapeadorClienteORM());
             modelBuilder.ApplyConfiguration(new MapeadorGrupoVeiculosORM());
             modelBuilder.ApplyConfiguration(new MapeadorTaxaORM());
             modelBuilder.ApplyConfiguration(new MapeadorPlanoCobrancaORM());
             modelBuilder.ApplyConfiguration(new MapeadorVeiculoORM());
+            modelBuilder.ApplyConfiguration(new MapeadorCondutorORM());
 
 
             //USAR DEPOIS QUE TODOS OS MAPEADORES ESTIVEREMPRONTOS
 
             //var dllComConfiguracoesOrm = typeof(LocadoraVeiculosDbContext).Assembly;
 
+
+
             //modelBuilder.ApplyConfigurationsFromAssembly(dllComConfiguracoesOrm);
 
-            modelBuilder.Ignore<Cliente>();
-            modelBuilder.Ignore<Condutor>();
+
+            //var dllComConfiguracoesOrm = typeof(LocadoraVeiculosDbContext).Assembly;
+
+            //modelBuilder.ApplyConfigurationsFromAssembly(dllComConfiguracoesOrm);
 
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using Locadora_Veiculos.Dominio.ModuloCondutor;
 using Locadora_Veiculos.Dominio.ModuloEndereco;
 using System;
 using System.Collections.Generic;
@@ -34,8 +35,22 @@ namespace Locadora_Veiculos.Dominio.ModuloCliente
         public TipoCliente TipoCliente { get; set; }
         public string Documento { get; set; }
         public Endereco Endereco { get; set; }
+        public List<Condutor> Condutores { get; set; }
 
         #endregion
+
+        public bool AdicionarCondutor(Condutor condutor)
+        {
+            if (Condutores == null)
+                Condutores = new List<Condutor>();
+
+            if (Condutores.Contains(condutor))
+                return false;
+
+            Condutores.Add(condutor);
+
+            return true;
+        }
 
         public Cliente Clone()
         {

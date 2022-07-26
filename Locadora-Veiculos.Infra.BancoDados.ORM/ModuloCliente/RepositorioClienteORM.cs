@@ -40,8 +40,8 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCliente
 
         public int QuantidadeCondutoresRelacionadosAoCliente(Guid id)
         {
-            //Implmentar aqui.
-            return 0;
+            var qtd = clientes.FirstOrDefault(x => x.Id == id).Condutores.Count;
+            return qtd;
         }
 
         public Cliente SelecionarClientePorDocumento(string documento)
