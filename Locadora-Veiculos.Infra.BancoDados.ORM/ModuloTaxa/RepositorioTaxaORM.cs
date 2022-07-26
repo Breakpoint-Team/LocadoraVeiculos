@@ -4,6 +4,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa
 {
@@ -20,32 +21,32 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa
 
         public void Inserir(Taxa novoRegistro)
         {
-            throw new NotImplementedException();
+            taxas.Add(novoRegistro);
         }
 
         public void Editar(Taxa registro)
         {
-            throw new NotImplementedException();
+            taxas.Update(registro);
         }
 
         public void Excluir(Taxa registro)
         {
-            throw new NotImplementedException();
+            taxas.Remove(registro);
         }
 
         public Taxa SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return taxas.FirstOrDefault(x => x.Id == id);
         }
 
         public Taxa SelecionarTaxaPorDescricao(string descricao)
         {
-            throw new NotImplementedException();
+            return taxas.FirstOrDefault(x => x.Descricao == descricao);
         }
 
         public List<Taxa> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return taxas.ToList();
         }
     }
 }

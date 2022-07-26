@@ -7,6 +7,7 @@ using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos;
+using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -44,6 +45,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
         {
             modelBuilder.ApplyConfiguration(new MapeadorFuncionarioORM());
             modelBuilder.ApplyConfiguration(new MapeadorGrupoVeiculosORM());
+            modelBuilder.ApplyConfiguration(new MapeadorTaxaORM());
 
 
             //USAR DEPOIS QUE TODOS OS MAPEADORES ESTIVEREMPRONTOS
@@ -54,7 +56,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
 
             modelBuilder.Ignore<Cliente>();
             modelBuilder.Ignore<Condutor>();
-            modelBuilder.Ignore<Taxa>();
             modelBuilder.Ignore<PlanoCobranca>();
             modelBuilder.Ignore<Veiculo>();
 

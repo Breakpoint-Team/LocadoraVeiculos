@@ -8,7 +8,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa
     {
         public void Configure(EntityTypeBuilder<Taxa> builder)
         {
-            throw new System.NotImplementedException();
+            builder.ToTable("TBTaxa");
+            builder.Property(x => x.Id).ValueGeneratedNever();
+            builder.Property(x => x.Descricao).HasColumnType("varchar(300)").IsRequired();
+            builder.Property(x => x.Valor).HasColumnType("decimal(18,2)").IsRequired();
+            builder.Property(x => x.TipoCalculo).HasConversion<int>().IsRequired();
         }
     }
 }
