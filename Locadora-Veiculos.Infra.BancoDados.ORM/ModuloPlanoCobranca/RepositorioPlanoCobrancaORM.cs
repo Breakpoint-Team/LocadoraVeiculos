@@ -4,6 +4,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca
 {
@@ -20,32 +21,32 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca
 
         public void Inserir(PlanoCobranca novoRegistro)
         {
-            throw new NotImplementedException();
+            planos.Add(novoRegistro);
         }
 
         public void Editar(PlanoCobranca registro)
         {
-            throw new NotImplementedException();
+            planos.Update(registro);
         }
 
         public void Excluir(PlanoCobranca registro)
         {
-            throw new NotImplementedException();
+            planos.Remove(registro);
         }
 
         public PlanoCobranca SelecionarPlanoPorIdDoGrupoVeiculos(Guid idGrupoVeiculo)
         {
-            throw new NotImplementedException();
+            return planos.FirstOrDefault(x => x.GrupoVeiculosId == idGrupoVeiculo);
         }
 
         public PlanoCobranca SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return planos.FirstOrDefault(x => x.Id == id);
         }
 
         public List<PlanoCobranca> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return planos.ToList();
         }
     }
 }
