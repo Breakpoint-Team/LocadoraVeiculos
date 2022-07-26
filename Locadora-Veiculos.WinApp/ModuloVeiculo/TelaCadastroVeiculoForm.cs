@@ -14,15 +14,13 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
     public partial class TelaCadastroVeiculoForm : Form
     {
         private Veiculo veiculo;
-        private IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
         public string caminhoImagem = "";
 
-        public TelaCadastroVeiculoForm()
+        public TelaCadastroVeiculoForm(List<GrupoVeiculos> grupos)
         {
-            InitializeComponent();
-            repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
+            InitializeComponent();            
             CarregarTipoCombustivel();
-            CarregarGrupoVeiculos();
+            CarregarGrupoVeiculos(grupos);
         }
 
         public Func<Veiculo, Result<Veiculo>> GravarRegistro { get; set; }
@@ -112,16 +110,11 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             if (comboBoxTipoCombustivel.SelectedItem != null)
                 veiculo.TipoCombustivel = (string)comboBoxTipoCombustivel.SelectedItem;
             if (comboBoxGrupoVeiculos.SelectedItem != null)
-                veiculo.GrupoVeiculos = ObterGrupoVeiculosSelecionado();
+                veiculo.ConfigurarGrupoVeiculos((GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem);
             if (caminhoImagem != "")
                 veiculo.Imagem = GetImagem(caminhoImagem);
         }
 
-        private GrupoVeiculos ObterGrupoVeiculosSelecionado()
-        {
-            string nome = (string)comboBoxGrupoVeiculos.SelectedItem;
-            return repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome(nome);
-        }
 
         private void TelaCadastroVeiculoForm_Load(object sender, EventArgs e)
         {
@@ -182,14 +175,13 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             comboBoxTipoCombustivel.Items.Add("Flex");
         }
 
-        private void CarregarGrupoVeiculos()
+        private void CarregarGrupoVeiculos(List<GrupoVeiculos> gruposVeiculos)
         {
             comboBoxGrupoVeiculos.Items.Clear();
-            List<GrupoVeiculos> grupos = repositorioGrupoVeiculos.SelecionarTodos();
 
-            foreach (var g in grupos)
+            foreach (var g in gruposVeiculos)
             {
-                comboBoxGrupoVeiculos.Items.Add(g.Nome);
+                comboBoxGrupoVeiculos.Items.Add(g);
             }
 
         }

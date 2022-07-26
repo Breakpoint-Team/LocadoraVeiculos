@@ -48,12 +48,23 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
         public int QuilometragemPercorrida { get; set; }
         public decimal CapacidadeTanque { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
+        public  Guid GrupoVeiculosId { get; set; }
+
         public byte[] Imagem { get; set; }
 
 
 
 
         #endregion
+
+        public void ConfigurarGrupoVeiculos(GrupoVeiculos grupo)
+        {
+            if (grupo == null)
+                return;
+
+            GrupoVeiculos = grupo;
+            GrupoVeiculosId = grupo.Id;
+        }
 
         public override string ToString()
         {

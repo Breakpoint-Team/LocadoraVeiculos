@@ -37,7 +37,8 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
                 return;
             }
 
-            var tela = new TelaCadastroVeiculoForm();
+            var grupos = servicoGrupoVeiculos.SelecionarTodos().Value;
+            var tela = new TelaCadastroVeiculoForm(grupos);
             tela.Veiculo = new Veiculo();
             tela.GravarRegistro = servicoVeiculo.Inserir;
 
@@ -66,7 +67,8 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
             var veiculoSelecionado = resultado.Value;
 
-            var tela = new TelaCadastroVeiculoForm();
+            var grupos = servicoGrupoVeiculos.SelecionarTodos().Value;
+            var tela = new TelaCadastroVeiculoForm(grupos);
             tela.Veiculo = veiculoSelecionado;
             tela.GravarRegistro = servicoVeiculo.Editar;
 
