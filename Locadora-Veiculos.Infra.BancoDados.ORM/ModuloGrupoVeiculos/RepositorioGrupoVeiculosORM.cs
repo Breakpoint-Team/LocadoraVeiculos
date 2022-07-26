@@ -3,12 +3,14 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos
 {
     public class RepositorioGrupoVeiculosORM : IRepositorioGrupoVeiculos
     {
         private DbSet<GrupoVeiculos> grupos;
+
         private readonly LocadoraVeiculosDbContext dbContext;
 
         public RepositorioGrupoVeiculosORM(LocadoraVeiculosDbContext dbContext)
@@ -19,22 +21,22 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos
 
         public void Inserir(GrupoVeiculos novoRegistro)
         {
-            throw new NotImplementedException();
+            grupos.Add(novoRegistro);
         }
         
         public void Editar(GrupoVeiculos registro)
         {
-            throw new NotImplementedException();
+            grupos.Update(registro);
         }
 
         public void Excluir(GrupoVeiculos registro)
         {
-            throw new NotImplementedException();
+            grupos.Remove(registro);
         }
         
         public int QuantidadeGrupoVeiculosCadastrados()
         {
-            throw new NotImplementedException();
+            return grupos.Count();
         }
 
         public int QuantidadePlanosDeCobrancaRelacionadosAoGrupo(Guid id)
@@ -49,17 +51,18 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos
 
         public GrupoVeiculos SelecionarGrupoVeiculosPorNome(string nome)
         {
-            throw new NotImplementedException();
+            return grupos.FirstOrDefault(x => x.Nome == nome);
+
         }
 
         public GrupoVeiculos SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return grupos.FirstOrDefault(x => x.Id == id);
         }
 
         public List<GrupoVeiculos> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return grupos.ToList();
         }
     }
 }
