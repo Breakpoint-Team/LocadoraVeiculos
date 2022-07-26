@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Serilog;
 using System;
@@ -11,10 +12,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
     public class ServicoVeiculo
     {
         private IRepositorioVeiculo repositorioVeiculo;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoVeiculo(IRepositorioVeiculo repositorioVeiculo)
+        public ServicoVeiculo(IRepositorioVeiculo repositorioVeiculo, IContextoPersistencia contextoPersistencia)
         {
             this.repositorioVeiculo = repositorioVeiculo;
+            this.contextoPersistencia = contextoPersistencia;
         }
 
         public Result<Veiculo> Inserir(Veiculo veiculo)
@@ -35,7 +38,11 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             try
             {
                 repositorioVeiculo.Inserir(veiculo);
+                
+                contextoPersistencia.GravarDados();
+
                 Log.Logger.Debug("Veículo {VeiculoId} inserido com sucesso", veiculo.Id);
+                
                 return Result.Ok(veiculo);
             }
             catch (Exception ex)
@@ -66,7 +73,11 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             try
             {
                 repositorioVeiculo.Editar(veiculo);
+
+                contextoPersistencia.GravarDados();
+
                 Log.Logger.Information("Veículo {VeiculoId} editado com sucesso", veiculo.Id);
+                
                 return Result.Ok(veiculo);
             }
             catch (Exception ex)
@@ -86,7 +97,11 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             try
             {
                 repositorioVeiculo.Excluir(veiculo);
+
+                contextoPersistencia.GravarDados();
+
                 Log.Logger.Debug("Veículo '{VeiculoId}' excluído com sucesso", veiculo.Id);
+                
                 return Result.Ok();
             }
             catch (Exception ex)

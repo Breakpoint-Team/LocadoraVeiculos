@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Locadora-Veiculos.Dominio\Locadora-Veiculos.Dominio.csproj" />
+    <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados.ORM\Locadora-Veiculos.Infra.BancoDados.ORM.csproj" />
     <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados\Locadora-Veiculos.Infra.BancoDados.csproj" />
   </ItemGroup>
 

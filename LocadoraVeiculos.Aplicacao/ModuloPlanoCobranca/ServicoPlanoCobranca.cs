@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Serilog;
 using System;
@@ -11,10 +12,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
     public class ServicoPlanoCobranca
     {
         private IRepositorioPlanoCobranca repositorioPlanoCobranca;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoPlanoCobranca(IRepositorioPlanoCobranca repositorioPlanoCobranca)
+        public ServicoPlanoCobranca(IRepositorioPlanoCobranca repositorioPlanoCobranca, IContextoPersistencia contextoPersistencia)
         {
             this.repositorioPlanoCobranca = repositorioPlanoCobranca;
+            this.contextoPersistencia = contextoPersistencia;
         }
 
         public Result<PlanoCobranca> Inserir(PlanoCobranca planoCobranca)
@@ -36,6 +39,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             try
             {
                 repositorioPlanoCobranca.Inserir(planoCobranca);
+
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Plano Cobrança {PlanoCobrancaId} inserido com sucesso", planoCobranca.Id);
 
@@ -71,6 +76,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             try
             {
                 repositorioPlanoCobranca.Editar(planoCobranca);
+
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Plano de cobrança {PlanoCobrancaId} editado com sucesso", planoCobranca.Id);
 
@@ -125,7 +132,11 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             try
             {
                 repositorioPlanoCobranca.Excluir(planoCobranca);
+
+                contextoPersistencia.GravarDados();
+
                 Log.Logger.Information("Plano de Cobrança {PlanoCobrancaId} excluído com sucesso", planoCobranca.Id);
+                
                 return Result.Ok();
             }
             catch (Exception ex)

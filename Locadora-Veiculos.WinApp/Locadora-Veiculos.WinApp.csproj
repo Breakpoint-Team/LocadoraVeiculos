@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados.ORM\Locadora-Veiculos.Infra.BancoDados.ORM.csproj" />
     <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados\Locadora-Veiculos.Infra.BancoDados.csproj" />
     <ProjectReference Include="..\Locadora-Veiculos.Infra.Logging\Locadora-Veiculos.Infra.Logging.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
@@ -21,6 +22,10 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.4.0" />
     <PackageReference Include="FluentResults" Version="3.8.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
