@@ -35,12 +35,22 @@ namespace Locadora_Veiculos.Dominio.ModuloPlanoCobranca
         public decimal KmControladoLimiteKm { get; set; }
         public decimal KmLivreValorDia { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
+        public Guid GrupoVeiculosId { get; set; }
 
         #endregion
 
         public PlanoCobranca Clone()
         {
             return MemberwiseClone() as PlanoCobranca;
+        }
+
+        public void ConfigurarGrupoVeiculos(GrupoVeiculos grupo)
+        {
+            if (grupo == null)
+                return;
+
+            GrupoVeiculos = grupo;
+            GrupoVeiculosId = grupo.Id;
         }
 
         public override bool Equals(object obj)

@@ -217,6 +217,84 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                 {
                     b.Navigation("Condutores");
                 });
+
+            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TBGrupoVeiculos");
+                });
+
+            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("DiarioValorDia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DiarioValorKm")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("GrupoVeiculosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("KmControladoLimiteKm")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("KmControladoValorDia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("KmControladoValorKm")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("KmLivreValorDia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GrupoVeiculosId");
+
+                    b.ToTable("TBPlanoCobranca");
+                });
+
+            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloTaxa.Taxa", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<int>("TipoCalculo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TBTaxa");
+                });
+
+            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
+                {
+                    b.HasOne("Locadora_Veiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", "GrupoVeiculos")
+                        .WithMany()
+                        .HasForeignKey("GrupoVeiculosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GrupoVeiculos");
+                });
 #pragma warning restore 612, 618
         }
     }

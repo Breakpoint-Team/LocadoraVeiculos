@@ -9,7 +9,9 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos
     {
         public void Configure(EntityTypeBuilder<GrupoVeiculos> builder)
         {
-            throw new System.NotImplementedException();
+            builder.ToTable("TBGrupoVeiculos");
+            builder.Property(x => x.Id).ValueGeneratedNever();
+            builder.Property(x => x.Nome).HasColumnType("varchar(200)").IsRequired();
         }
     }
 }
