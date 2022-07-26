@@ -39,6 +39,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
         public DateTime DataValidadeCnh { get; set; }
         public Endereco Endereco { get; set; }
         public Cliente Cliente { get; set; }
+        public Guid ClienteId { get; set; }
         public bool ClienteCondutor
         {
             get
@@ -56,6 +57,16 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
         }
 
         #endregion
+
+        public void ConfigurarCliente(Cliente cliente)
+        {
+            if (cliente == null)
+                return;
+
+            Cliente = cliente;
+            ClienteId = cliente.Id;
+            Cliente.AdicionarCondutor(this);
+        }
 
         public Condutor Clone()
         {
@@ -95,9 +106,7 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
 
         public override string ToString()
         {
-            return $"Nome: {Nome} Telefone: {Telefone} Email: {Email}" +
-                $" CPF: {Cpf} CNH: {Cnh} Data de validade CNH: {DataValidadeCnh}" +
-                $" Cliente: {Cliente.Nome} - {Cliente.Documento}";
+            return Nome;
         }
     }
 }

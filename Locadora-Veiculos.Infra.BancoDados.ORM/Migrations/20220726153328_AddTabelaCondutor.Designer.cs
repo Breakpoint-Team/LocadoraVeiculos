@@ -4,14 +4,16 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
 {
     [DbContext(typeof(LocadoraVeiculosDbContext))]
-    partial class LocadoraVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220726153328_AddTabelaCondutor")]
+    partial class AddTabelaCondutor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,9 +58,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                     b.Property<Guid>("ClienteId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ClienteId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Cnh")
                         .IsRequired()
                         .HasColumnType("varchar(30)");
@@ -85,8 +84,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
-
-                    b.HasIndex("ClienteId1");
 
                     b.ToTable("TBCondutor");
                 });
@@ -168,12 +165,8 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                     b.HasOne("Locadora_Veiculos.Dominio.ModuloCliente.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Locadora_Veiculos.Dominio.ModuloCliente.Cliente", null)
-                        .WithMany("Condutores")
-                        .HasForeignKey("ClienteId1");
 
                     b.OwnsOne("Locadora_Veiculos.Dominio.ModuloEndereco.Endereco", "Endereco", b1 =>
                         {
@@ -211,11 +204,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
 
                     b.Navigation("Endereco")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloCliente.Cliente", b =>
-                {
-                    b.Navigation("Condutores");
                 });
 #pragma warning restore 612, 618
         }

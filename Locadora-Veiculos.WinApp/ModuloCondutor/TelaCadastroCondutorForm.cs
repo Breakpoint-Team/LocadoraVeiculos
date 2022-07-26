@@ -160,7 +160,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             condutor.DataValidadeCnh = dateTimePickerDataValidadeCnh.Value;
 
             if (comboBoxClientes.SelectedIndex != -1)
-                condutor.Cliente = (Cliente)comboBoxClientes.SelectedItem;
+                condutor.ConfigurarCliente((Cliente)comboBoxClientes.SelectedItem);
         }
 
         private void CarregarClientes()

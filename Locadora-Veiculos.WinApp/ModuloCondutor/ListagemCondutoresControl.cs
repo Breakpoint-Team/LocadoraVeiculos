@@ -49,7 +49,7 @@ namespace Locadora_Veiculos.WinApp.ModuloCondutor
             {
                 grid.Rows.Add(condutor.Id, condutor.Nome, condutor.Telefone, condutor.Email,
                                condutor.Cpf, condutor.Cnh, condutor.DataValidadeCnh.ToShortDateString(),
-                              condutor.Cliente, condutor.Endereco.Estado, condutor.Endereco.Cidade,
+                              condutor.Cliente.Nome, condutor.Endereco.Estado, condutor.Endereco.Cidade,
                               condutor.Endereco.Bairro, condutor.Endereco.Logradouro, condutor.Endereco.Numero);
             }
         }
