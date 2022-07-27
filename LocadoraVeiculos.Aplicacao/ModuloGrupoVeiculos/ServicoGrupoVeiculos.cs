@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
         private IRepositorioGrupoVeiculos repositorioGrupoVeiculos;
         private IContextoPersistencia contextoPersistencia;
 
-        public ServicoGrupoVeiculos(IRepositorioGrupoVeiculos repositorioGrupoVeiculos, IContextoPersistencia contextoPersistencia)
+        public ServicoGrupoVeiculos(IRepositorioGrupoVeiculos repositorioGrupoVeiculos,
+            IContextoPersistencia contextoPersistencia)
         {
             this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
             this.contextoPersistencia = contextoPersistencia;
@@ -23,7 +25,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
         public Result<GrupoVeiculos> Inserir(GrupoVeiculos grupoVeiculos)
         {
             Log.Logger.Debug("Tentando inserir Grupo de Veículos... {@GrupoVeiculos}", grupoVeiculos);
-           
+
             Result resultadoValidacao = Validar(grupoVeiculos);
 
             if (resultadoValidacao.IsFailed)
@@ -81,9 +83,10 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Grupo de Veículos {GrupoVeiculosId} editado com sucesso", grupoVeiculos.Id);
-                
+
                 return Result.Ok(grupoVeiculos);
-            } catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar editar o grupo de veículos";
 
@@ -96,7 +99,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
         public Result Excluir(GrupoVeiculos grupoVeiculos)
         {
             Log.Logger.Debug("Tentando excluir Grupo de Veículos... {@GrupoVeiculos}", grupoVeiculos);
-            
+
             try
             {
                 repositorioGrupoVeiculos.Excluir(grupoVeiculos);
@@ -106,16 +109,37 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
                 Log.Logger.Information("Grupo de Veículos {GrupoVeiculosId} excluído com sucesso", grupoVeiculos.Id);
                 return Result.Ok();
             }
+            catch (DbUpdateException ex)
+            {
+                string msgErro = $"O grupo de veículos {grupoVeiculos.Nome} está relacionado com um veículo ou plano de cobrança e não pode ser excluído";
+
+                contextoPersistencia.RollBack();
+
+                Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", grupoVeiculos.Id);
+
+                return Result.Fail(msgErro);
+            }
+            catch (InvalidOperationException ex)
+            {
+                string msgErro = $"O grupo de veículos {grupoVeiculos.Nome} está relacionado com um veículo ou plano de cobrança e não pode ser excluído";
+
+                contextoPersistencia.RollBack();
+
+                Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", grupoVeiculos.Id);
+
+                return Result.Fail(msgErro);
+            }
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir o Grupo de Veículos";
+
+                contextoPersistencia.RollBack();
 
                 Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", grupoVeiculos.Id);
 
                 return Result.Fail(msgErro);
 
             }
-
         }
 
         public Result<List<GrupoVeiculos>> SelecionarTodos()
@@ -186,14 +210,14 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
         {
             try
             {
-            var grupoVeiculosEncontrado = repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome(grupoVeiculos.Nome);
-            var resultadoComparacao = grupoVeiculosEncontrado != null &&
-                   grupoVeiculosEncontrado.Nome.Equals(grupoVeiculos.Nome, StringComparison.OrdinalIgnoreCase) &&
-                   grupoVeiculosEncontrado.Id != grupoVeiculos.Id;
+                var grupoVeiculosEncontrado = repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome(grupoVeiculos.Nome);
+                var resultadoComparacao = grupoVeiculosEncontrado != null &&
+                       grupoVeiculosEncontrado.Nome.Equals(grupoVeiculos.Nome, StringComparison.OrdinalIgnoreCase) &&
+                       grupoVeiculosEncontrado.Id != grupoVeiculos.Id;
 
-            return Result.Ok(resultadoComparacao);
+                return Result.Ok(resultadoComparacao);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar comparar o nome do grupo de veículos";
 

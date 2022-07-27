@@ -90,7 +90,7 @@ namespace Locadora_Veiculos.WinApp.ModuloGrupoVeiculos
                     CarregarGrupos();
                 else
                     MessageBox.Show(resultadoExclusao.Errors[0].Message,
-                        "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
         }
