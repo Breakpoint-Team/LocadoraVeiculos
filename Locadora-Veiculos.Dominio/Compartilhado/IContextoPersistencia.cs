@@ -4,6 +4,6 @@
     {
         void GravarDados();
 
-        void RollBack();
+        void DesfazerAlteracoes();
     }
 }

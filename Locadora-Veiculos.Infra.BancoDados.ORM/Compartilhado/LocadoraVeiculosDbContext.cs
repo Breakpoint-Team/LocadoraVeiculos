@@ -33,7 +33,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
             SaveChanges();
         }
 
-        public void RollBack()
+        public void DesfazerAlteracoes()
         {
             var context = this;
             var changedEntries = context.ChangeTracker.Entries()

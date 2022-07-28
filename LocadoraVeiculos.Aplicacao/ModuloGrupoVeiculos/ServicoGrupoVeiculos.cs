@@ -99,7 +99,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
         public Result Excluir(GrupoVeiculos grupoVeiculos)
         {
             Log.Logger.Debug("Tentando excluir Grupo de Veículos... {@GrupoVeiculos}", grupoVeiculos);
-
             try
             {
                 repositorioGrupoVeiculos.Excluir(grupoVeiculos);
@@ -107,38 +106,27 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Grupo de Veículos {GrupoVeiculosId} excluído com sucesso", grupoVeiculos.Id);
+
                 return Result.Ok();
-            }
-            catch (DbUpdateException ex)
-            {
-                string msgErro = $"O grupo de veículos {grupoVeiculos.Nome} está relacionado com um veículo ou plano de cobrança e não pode ser excluído";
-
-                contextoPersistencia.RollBack();
-
-                Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", grupoVeiculos.Id);
-
-                return Result.Fail(msgErro);
-            }
-            catch (InvalidOperationException ex)
-            {
-                string msgErro = $"O grupo de veículos {grupoVeiculos.Nome} está relacionado com um veículo ou plano de cobrança e não pode ser excluído";
-
-                contextoPersistencia.RollBack();
-
-                Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", grupoVeiculos.Id);
-
-                return Result.Fail(msgErro);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o Grupo de Veículos";
+                string msgErro = "";
 
-                contextoPersistencia.RollBack();
+                if (ex is DbUpdateException || ex is InvalidOperationException)
+                {
+                    msgErro = $"O grupo de veículos {grupoVeiculos.Nome} está relacionado com um veículo ou plano de cobrança e não pode ser excluído";
 
+                    contextoPersistencia.DesfazerAlteracoes();
+                }
+                else
+                {
+                    msgErro = "Falha no sistema ao tentar excluir o Grupo de Veículos";
+                }
+                
                 Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", grupoVeiculos.Id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 
