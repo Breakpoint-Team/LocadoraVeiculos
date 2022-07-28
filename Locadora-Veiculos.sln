@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{70A3C1F1-4A3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ORM", "ORM", "{AD72C04C-0935-4E56-88DF-DAED531B4327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locadora-Veiculos.Infra.BancoDados.ORM", "Locadora-Veiculos.Infra.BancoDados.ORM\Locadora-Veiculos.Infra.BancoDados.ORM.csproj", "{234994A7-B3A9-4238-8EBA-F85A890BE6AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locadora-Veiculos.Infra.BancoDados.ORM", "Locadora-Veiculos.Infra.BancoDados.ORM\Locadora-Veiculos.Infra.BancoDados.ORM.csproj", "{234994A7-B3A9-4238-8EBA-F85A890BE6AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -10,6 +10,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
+using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPrecoCombustiveis;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
 using Microsoft.EntityFrameworkCore;
@@ -48,23 +49,20 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new MapeadorFuncionarioORM());
-
             modelBuilder.ApplyConfiguration(new MapeadorClienteORM());
             modelBuilder.ApplyConfiguration(new MapeadorGrupoVeiculosORM());
             modelBuilder.ApplyConfiguration(new MapeadorTaxaORM());
             modelBuilder.ApplyConfiguration(new MapeadorPlanoCobrancaORM());
             modelBuilder.ApplyConfiguration(new MapeadorVeiculoORM());
             modelBuilder.ApplyConfiguration(new MapeadorCondutorORM());
+            modelBuilder.ApplyConfiguration(new MapeadorPrecoCombustivelORM());
 
 
             //USAR DEPOIS QUE TODOS OS MAPEADORES ESTIVEREMPRONTOS
 
             //var dllComConfiguracoesOrm = typeof(LocadoraVeiculosDbContext).Assembly;
 
-
-
             //modelBuilder.ApplyConfigurationsFromAssembly(dllComConfiguracoesOrm);
-
 
             //var dllComConfiguracoesOrm = typeof(LocadoraVeiculosDbContext).Assembly;
 
