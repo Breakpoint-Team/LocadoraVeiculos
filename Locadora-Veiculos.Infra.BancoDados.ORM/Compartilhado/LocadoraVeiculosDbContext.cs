@@ -9,6 +9,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos;
+using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
@@ -80,6 +81,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
             modelBuilder.ApplyConfiguration(new MapeadorPlanoCobrancaORM());
             modelBuilder.ApplyConfiguration(new MapeadorVeiculoORM());
             modelBuilder.ApplyConfiguration(new MapeadorCondutorORM());
+            modelBuilder.ApplyConfiguration(new MapeadorLocacaoORM());
 
 
             //USAR DEPOIS QUE TODOS OS MAPEADORES ESTIVEREMPRONTOS

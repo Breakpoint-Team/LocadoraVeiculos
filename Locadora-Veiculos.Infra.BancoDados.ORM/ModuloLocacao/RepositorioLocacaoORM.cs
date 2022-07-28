@@ -3,6 +3,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
 {
@@ -19,27 +20,39 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
 
         public void Inserir(Locacao novoRegistro)
         {
-            throw new NotImplementedException();
+            locacoes.Add(novoRegistro);
         }
-        
+
         public void Editar(Locacao registro)
         {
-            throw new NotImplementedException();
+            locacoes.Update(registro);
         }
 
         public void Excluir(Locacao registro)
         {
-            throw new NotImplementedException();
+            locacoes.Remove(registro);
         }
-        
+
         public Locacao SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            var locacao = locacoes.Include(x => x.GrupoVeiculos)
+                .Include(x => x.PlanoCobranca)
+                .Include(x => x.Cliente)
+                .Include(x => x.Taxas)
+                .SingleOrDefault(x => x.Id == id);
+
+            return locacao;
         }
 
         public List<Locacao> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            var retorno = locacoes.Include(x => x.GrupoVeiculos)
+                .Include(x => x.PlanoCobranca)
+                .Include(x => x.Cliente)
+                .Include(x => x.Taxas)
+                .ToList();
+
+            return retorno;
         }
     }
 }
