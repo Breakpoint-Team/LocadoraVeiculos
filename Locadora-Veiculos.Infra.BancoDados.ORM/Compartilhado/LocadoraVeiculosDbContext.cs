@@ -16,6 +16,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
 {
@@ -31,6 +32,30 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
         public void GravarDados()
         {
             SaveChanges();
+        }
+
+        public void DesfazerAlteracoes()
+        {
+            var context = this;
+            var changedEntries = context.ChangeTracker.Entries()
+                .Where(x => x.State != EntityState.Unchanged).ToList();
+
+            foreach (var entry in changedEntries)
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                        entry.CurrentValues.SetValues(entry.OriginalValues);
+                        entry.State = EntityState.Unchanged;
+                        break;
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached;
+                        break;
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Unchanged;
+                        break;
+                }
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -4,44 +4,22 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
 {
     [DbContext(typeof(LocadoraVeiculosDbContext))]
-    partial class LocadoraVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220727015546_DefinindoAhExclusaoDaTabelaPlanoCobranca")]
+    partial class DefinindoAhExclusaoDaTabelaPlanoCobranca
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.Compartilhado.PrecoCombustivel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("PrecoAlcool")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("PrecoDiesel")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("PrecoGNV")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("PrecoGasolina")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TBPrecoCombustivel");
-                });
 
             modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloCliente.Cliente", b =>
                 {
