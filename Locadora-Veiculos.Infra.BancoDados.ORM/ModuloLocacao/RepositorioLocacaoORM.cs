@@ -37,8 +37,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
         {
             var locacao = locacoes.Include(x => x.GrupoVeiculos)
                 .Include(x => x.PlanoCobranca)
-                .Include(x => x.Cliente)
-                .Include(x => x.Taxas)
+                .Include(x => x.TaxasSelecionadas)
                 .SingleOrDefault(x => x.Id == id);
 
             return locacao;
@@ -48,8 +47,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
         {
             var retorno = locacoes.Include(x => x.GrupoVeiculos)
                 .Include(x => x.PlanoCobranca)
-                .Include(x => x.Cliente)
-                .Include(x => x.Taxas)
+                .Include(x => x.TaxasSelecionadas)
                 .ToList();
 
             return retorno;

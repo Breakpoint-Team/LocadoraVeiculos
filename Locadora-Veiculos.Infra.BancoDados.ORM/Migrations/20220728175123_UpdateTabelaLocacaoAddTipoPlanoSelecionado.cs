@@ -3,24 +3,19 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
 {
-    public partial class AddTabelaLocacao : Migration
+    public partial class UpdateTabelaLocacaoAddTipoPlanoSelecionado : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<Guid>(
-                name: "LocacaoId",
-                table: "TBCondutor",
-                type: "uniqueidentifier",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "TBLocacao",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CondutorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     VeiculoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GrupoVeiculosId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TipoPlanoSelecionado = table.Column<int>(type: "int", nullable: false),
                     PlanoCobrancaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataLocacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ValorTotalPrevisto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -36,9 +31,9 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                 {
                     table.PrimaryKey("PK_TBLocacao", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TBLocacao_TBCliente_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "TBCliente",
+                        name: "FK_TBLocacao_TBCondutor_CondutorId",
+                        column: x => x.CondutorId,
+                        principalTable: "TBCondutor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -66,11 +61,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                 columns: table => new
                 {
                     LocacoesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TaxasId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    TaxasSelecionadasId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocacaoTaxa", x => new { x.LocacoesId, x.TaxasId });
+                    table.PrimaryKey("PK_LocacaoTaxa", x => new { x.LocacoesId, x.TaxasSelecionadasId });
                     table.ForeignKey(
                         name: "FK_LocacaoTaxa_TBLocacao_LocacoesId",
                         column: x => x.LocacoesId,
@@ -78,27 +73,22 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LocacaoTaxa_TBTaxa_TaxasId",
-                        column: x => x.TaxasId,
+                        name: "FK_LocacaoTaxa_TBTaxa_TaxasSelecionadasId",
+                        column: x => x.TaxasSelecionadasId,
                         principalTable: "TBTaxa",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TBCondutor_LocacaoId",
-                table: "TBCondutor",
-                column: "LocacaoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocacaoTaxa_TaxasId",
+                name: "IX_LocacaoTaxa_TaxasSelecionadasId",
                 table: "LocacaoTaxa",
-                column: "TaxasId");
+                column: "TaxasSelecionadasId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TBLocacao_ClienteId",
+                name: "IX_TBLocacao_CondutorId",
                 table: "TBLocacao",
-                column: "ClienteId",
+                column: "CondutorId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -118,35 +108,15 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                 table: "TBLocacao",
                 column: "VeiculoId",
                 unique: true);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_TBCondutor_TBLocacao_LocacaoId",
-                table: "TBCondutor",
-                column: "LocacaoId",
-                principalTable: "TBLocacao",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_TBCondutor_TBLocacao_LocacaoId",
-                table: "TBCondutor");
-
             migrationBuilder.DropTable(
                 name: "LocacaoTaxa");
 
             migrationBuilder.DropTable(
                 name: "TBLocacao");
-
-            migrationBuilder.DropIndex(
-                name: "IX_TBCondutor_LocacaoId",
-                table: "TBCondutor");
-
-            migrationBuilder.DropColumn(
-                name: "LocacaoId",
-                table: "TBCondutor");
         }
     }
 }

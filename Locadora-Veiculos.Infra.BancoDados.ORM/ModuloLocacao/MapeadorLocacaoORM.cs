@@ -19,15 +19,17 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
             builder.Property(x => x.NivelTanqueDevolucao).HasConversion<int>();
             builder.Property(x => x.ValorTotalEfetivo);
             builder.Property(x => x.StatusLocacao).HasConversion<int>().IsRequired();
-            builder.HasMany(x => x.Taxas);
+            builder.Property(x => x.TipoPlanoSelecionado).HasConversion<int>().IsRequired();
 
-            builder.HasOne(x => x.Cliente)
-                    .WithOne()
-                    .OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.TaxasSelecionadas);
+
+            builder.HasOne(x => x.Condutor)
+                        .WithOne()
+                        .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.GrupoVeiculos)
-                    .WithOne()
-                    .OnDelete(DeleteBehavior.Restrict);
+                        .WithOne()
+                        .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.Veiculo)
                     .WithOne()
