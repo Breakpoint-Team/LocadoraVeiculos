@@ -28,215 +28,262 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControlPlanos = new System.Windows.Forms.TabControl();
-            this.tabPageDiario = new System.Windows.Forms.TabPage();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tabControlLocacao = new System.Windows.Forms.TabControl();
+            this.tabPageCliente = new System.Windows.Forms.TabPage();
+            this.listBoxCondutores = new System.Windows.Forms.ListBox();
+            this.comboBoxClientes = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tabPageKmControlado = new System.Windows.Forms.TabPage();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.tabPageVeiculo = new System.Windows.Forms.TabPage();
+            this.listBoxInformacoesVeiculo = new System.Windows.Forms.ListBox();
+            this.comboBoxVeiculos = new System.Windows.Forms.ComboBox();
+            this.comboBoxGrupoVeiculos = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.tabPageKmLivre = new System.Windows.Forms.TabPage();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.tabPagePlanoCobranca = new System.Windows.Forms.TabPage();
+            this.listBoxInformacoesPlanoCobranca = new System.Windows.Forms.ListBox();
+            this.comboBoxPlanosCobranca = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPageTaxas = new System.Windows.Forms.TabPage();
+            this.checkedListBoxTaxas = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDataDevolucaoPrevista = new System.Windows.Forms.DateTimePicker();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.tabControlPlanos.SuspendLayout();
-            this.tabPageDiario.SuspendLayout();
-            this.tabPageKmControlado.SuspendLayout();
-            this.tabPageKmLivre.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelValorPrevisto = new System.Windows.Forms.Label();
+            this.tabControlLocacao.SuspendLayout();
+            this.tabPageCliente.SuspendLayout();
+            this.tabPageVeiculo.SuspendLayout();
+            this.tabPagePlanoCobranca.SuspendLayout();
+            this.tabPageTaxas.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControlPlanos
+            // tabControlLocacao
             // 
-            this.tabControlPlanos.Controls.Add(this.tabPageDiario);
-            this.tabControlPlanos.Controls.Add(this.tabPageKmControlado);
-            this.tabControlPlanos.Controls.Add(this.tabPageKmLivre);
-            this.tabControlPlanos.Controls.Add(this.tabPage1);
-            this.tabControlPlanos.Location = new System.Drawing.Point(12, 28);
-            this.tabControlPlanos.Name = "tabControlPlanos";
-            this.tabControlPlanos.SelectedIndex = 0;
-            this.tabControlPlanos.Size = new System.Drawing.Size(386, 445);
-            this.tabControlPlanos.TabIndex = 2;
+            this.tabControlLocacao.Controls.Add(this.tabPageCliente);
+            this.tabControlLocacao.Controls.Add(this.tabPageVeiculo);
+            this.tabControlLocacao.Controls.Add(this.tabPagePlanoCobranca);
+            this.tabControlLocacao.Controls.Add(this.tabPageTaxas);
+            this.tabControlLocacao.Location = new System.Drawing.Point(10, 21);
+            this.tabControlLocacao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabControlLocacao.Name = "tabControlLocacao";
+            this.tabControlLocacao.SelectedIndex = 0;
+            this.tabControlLocacao.Size = new System.Drawing.Size(338, 334);
+            this.tabControlLocacao.TabIndex = 2;
             // 
-            // tabPageDiario
+            // tabPageCliente
             // 
-            this.tabPageDiario.Controls.Add(this.listBox1);
-            this.tabPageDiario.Controls.Add(this.comboBox1);
-            this.tabPageDiario.Controls.Add(this.label3);
-            this.tabPageDiario.Location = new System.Drawing.Point(4, 29);
-            this.tabPageDiario.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.tabPageDiario.Name = "tabPageDiario";
-            this.tabPageDiario.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDiario.Size = new System.Drawing.Size(378, 412);
-            this.tabPageDiario.TabIndex = 0;
-            this.tabPageDiario.Text = "Cliente";
-            this.tabPageDiario.UseVisualStyleBackColor = true;
+            this.tabPageCliente.Controls.Add(this.listBoxCondutores);
+            this.tabPageCliente.Controls.Add(this.comboBoxClientes);
+            this.tabPageCliente.Controls.Add(this.label3);
+            this.tabPageCliente.Location = new System.Drawing.Point(4, 24);
+            this.tabPageCliente.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.tabPageCliente.Name = "tabPageCliente";
+            this.tabPageCliente.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageCliente.Size = new System.Drawing.Size(330, 306);
+            this.tabPageCliente.TabIndex = 0;
+            this.tabPageCliente.Text = "Cliente";
+            this.tabPageCliente.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // listBoxCondutores
             // 
-            this.listBox1.AccessibleName = "";
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(31, 183);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(292, 204);
-            this.listBox1.TabIndex = 8;
-            this.listBox1.Tag = "";
+            this.listBoxCondutores.AccessibleName = "";
+            this.listBoxCondutores.FormattingEnabled = true;
+            this.listBoxCondutores.ItemHeight = 15;
+            this.listBoxCondutores.Location = new System.Drawing.Point(27, 107);
+            this.listBoxCondutores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxCondutores.Name = "listBoxCondutores";
+            this.listBoxCondutores.ScrollAlwaysVisible = true;
+            this.listBoxCondutores.Size = new System.Drawing.Size(257, 184);
+            this.listBoxCondutores.TabIndex = 8;
+            this.listBoxCondutores.Tag = "";
             // 
-            // comboBox1
+            // comboBoxClientes
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(130, 45);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(194, 28);
-            this.comboBox1.TabIndex = 7;
+            this.comboBoxClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxClientes.FormattingEnabled = true;
+            this.comboBoxClientes.Location = new System.Drawing.Point(80, 34);
+            this.comboBoxClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxClientes.Name = "comboBoxClientes";
+            this.comboBoxClientes.Size = new System.Drawing.Size(204, 23);
+            this.comboBoxClientes.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 48);
+            this.label3.Location = new System.Drawing.Point(28, 36);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 20);
+            this.label3.Size = new System.Drawing.Size(47, 15);
             this.label3.TabIndex = 6;
             this.label3.Text = "Cliente:";
             // 
-            // tabPageKmControlado
+            // tabPageVeiculo
             // 
-            this.tabPageKmControlado.Controls.Add(this.listBox2);
-            this.tabPageKmControlado.Controls.Add(this.comboBox3);
-            this.tabPageKmControlado.Controls.Add(this.comboBox2);
-            this.tabPageKmControlado.Controls.Add(this.label5);
-            this.tabPageKmControlado.Controls.Add(this.label4);
-            this.tabPageKmControlado.Location = new System.Drawing.Point(4, 29);
-            this.tabPageKmControlado.Name = "tabPageKmControlado";
-            this.tabPageKmControlado.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageKmControlado.Size = new System.Drawing.Size(378, 412);
-            this.tabPageKmControlado.TabIndex = 1;
-            this.tabPageKmControlado.Text = "Veículo";
-            this.tabPageKmControlado.UseVisualStyleBackColor = true;
+            this.tabPageVeiculo.Controls.Add(this.listBoxInformacoesVeiculo);
+            this.tabPageVeiculo.Controls.Add(this.comboBoxVeiculos);
+            this.tabPageVeiculo.Controls.Add(this.comboBoxGrupoVeiculos);
+            this.tabPageVeiculo.Controls.Add(this.label5);
+            this.tabPageVeiculo.Controls.Add(this.label4);
+            this.tabPageVeiculo.Location = new System.Drawing.Point(4, 24);
+            this.tabPageVeiculo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageVeiculo.Name = "tabPageVeiculo";
+            this.tabPageVeiculo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageVeiculo.Size = new System.Drawing.Size(330, 306);
+            this.tabPageVeiculo.TabIndex = 1;
+            this.tabPageVeiculo.Text = "Veículo";
+            this.tabPageVeiculo.UseVisualStyleBackColor = true;
             // 
-            // comboBox3
+            // listBoxInformacoesVeiculo
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(130, 122);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(194, 28);
-            this.comboBox3.TabIndex = 9;
+            this.listBoxInformacoesVeiculo.AccessibleName = "";
+            this.listBoxInformacoesVeiculo.FormattingEnabled = true;
+            this.listBoxInformacoesVeiculo.ItemHeight = 15;
+            this.listBoxInformacoesVeiculo.Location = new System.Drawing.Point(28, 122);
+            this.listBoxInformacoesVeiculo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxInformacoesVeiculo.Name = "listBoxInformacoesVeiculo";
+            this.listBoxInformacoesVeiculo.ScrollAlwaysVisible = true;
+            this.listBoxInformacoesVeiculo.Size = new System.Drawing.Size(284, 169);
+            this.listBoxInformacoesVeiculo.TabIndex = 10;
+            this.listBoxInformacoesVeiculo.Tag = "";
             // 
-            // comboBox2
+            // comboBoxVeiculos
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(130, 45);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(194, 28);
-            this.comboBox2.TabIndex = 8;
+            this.comboBoxVeiculos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxVeiculos.FormattingEnabled = true;
+            this.comboBoxVeiculos.Location = new System.Drawing.Point(114, 69);
+            this.comboBoxVeiculos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxVeiculos.Name = "comboBoxVeiculos";
+            this.comboBoxVeiculos.Size = new System.Drawing.Size(198, 23);
+            this.comboBoxVeiculos.TabIndex = 9;
+            // 
+            // comboBoxGrupoVeiculos
+            // 
+            this.comboBoxGrupoVeiculos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGrupoVeiculos.FormattingEnabled = true;
+            this.comboBoxGrupoVeiculos.Location = new System.Drawing.Point(114, 25);
+            this.comboBoxGrupoVeiculos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxGrupoVeiculos.Name = "comboBoxGrupoVeiculos";
+            this.comboBoxGrupoVeiculos.Size = new System.Drawing.Size(198, 23);
+            this.comboBoxGrupoVeiculos.TabIndex = 8;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 125);
+            this.label5.Location = new System.Drawing.Point(28, 69);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 20);
+            this.label5.Size = new System.Drawing.Size(50, 15);
             this.label5.TabIndex = 7;
             this.label5.Text = "Veículos";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 33);
+            this.label4.Location = new System.Drawing.Point(28, 25);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 40);
+            this.label4.Size = new System.Drawing.Size(59, 30);
             this.label4.TabIndex = 6;
             this.label4.Text = "Grupo de \r\nVeículos:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // tabPageKmLivre
+            // tabPagePlanoCobranca
             // 
-            this.tabPageKmLivre.Controls.Add(this.listBox3);
-            this.tabPageKmLivre.Controls.Add(this.comboBox4);
-            this.tabPageKmLivre.Controls.Add(this.label7);
-            this.tabPageKmLivre.Location = new System.Drawing.Point(4, 29);
-            this.tabPageKmLivre.Name = "tabPageKmLivre";
-            this.tabPageKmLivre.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageKmLivre.Size = new System.Drawing.Size(378, 412);
-            this.tabPageKmLivre.TabIndex = 2;
-            this.tabPageKmLivre.Text = "Plano de Cobrança";
-            this.tabPageKmLivre.UseVisualStyleBackColor = true;
+            this.tabPagePlanoCobranca.Controls.Add(this.listBoxInformacoesPlanoCobranca);
+            this.tabPagePlanoCobranca.Controls.Add(this.comboBoxPlanosCobranca);
+            this.tabPagePlanoCobranca.Controls.Add(this.label7);
+            this.tabPagePlanoCobranca.Location = new System.Drawing.Point(4, 24);
+            this.tabPagePlanoCobranca.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPagePlanoCobranca.Name = "tabPagePlanoCobranca";
+            this.tabPagePlanoCobranca.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPagePlanoCobranca.Size = new System.Drawing.Size(330, 306);
+            this.tabPagePlanoCobranca.TabIndex = 2;
+            this.tabPagePlanoCobranca.Text = "Plano de Cobrança";
+            this.tabPagePlanoCobranca.UseVisualStyleBackColor = true;
             // 
-            // comboBox4
+            // listBoxInformacoesPlanoCobranca
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(130, 45);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(194, 28);
-            this.comboBox4.TabIndex = 9;
+            this.listBoxInformacoesPlanoCobranca.AccessibleName = "";
+            this.listBoxInformacoesPlanoCobranca.FormattingEnabled = true;
+            this.listBoxInformacoesPlanoCobranca.ItemHeight = 15;
+            this.listBoxInformacoesPlanoCobranca.Location = new System.Drawing.Point(28, 77);
+            this.listBoxInformacoesPlanoCobranca.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxInformacoesPlanoCobranca.Name = "listBoxInformacoesPlanoCobranca";
+            this.listBoxInformacoesPlanoCobranca.ScrollAlwaysVisible = true;
+            this.listBoxInformacoesPlanoCobranca.Size = new System.Drawing.Size(281, 214);
+            this.listBoxInformacoesPlanoCobranca.TabIndex = 10;
+            this.listBoxInformacoesPlanoCobranca.Tag = "";
+            // 
+            // comboBoxPlanosCobranca
+            // 
+            this.comboBoxPlanosCobranca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPlanosCobranca.FormattingEnabled = true;
+            this.comboBoxPlanosCobranca.Location = new System.Drawing.Point(114, 34);
+            this.comboBoxPlanosCobranca.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxPlanosCobranca.Name = "comboBoxPlanosCobranca";
+            this.comboBoxPlanosCobranca.Size = new System.Drawing.Size(195, 23);
+            this.comboBoxPlanosCobranca.TabIndex = 9;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(32, 33);
+            this.label7.Location = new System.Drawing.Point(28, 25);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 40);
+            this.label7.Size = new System.Drawing.Size(61, 30);
             this.label7.TabIndex = 5;
             this.label7.Text = "Plano de \r\nCobrança:";
             // 
-            // tabPage1
+            // tabPageTaxas
             // 
-            this.tabPage1.Controls.Add(this.checkedListBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(378, 412);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Taxas";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPageTaxas.Controls.Add(this.checkedListBoxTaxas);
+            this.tabPageTaxas.Location = new System.Drawing.Point(4, 24);
+            this.tabPageTaxas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageTaxas.Name = "tabPageTaxas";
+            this.tabPageTaxas.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageTaxas.Size = new System.Drawing.Size(330, 306);
+            this.tabPageTaxas.TabIndex = 3;
+            this.tabPageTaxas.Text = "Taxas";
+            this.tabPageTaxas.UseVisualStyleBackColor = true;
+            // 
+            // checkedListBoxTaxas
+            // 
+            this.checkedListBoxTaxas.FormattingEnabled = true;
+            this.checkedListBoxTaxas.Location = new System.Drawing.Point(3, 4);
+            this.checkedListBoxTaxas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkedListBoxTaxas.Name = "checkedListBoxTaxas";
+            this.checkedListBoxTaxas.Size = new System.Drawing.Size(326, 292);
+            this.checkedListBoxTaxas.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 485);
+            this.label2.Location = new System.Drawing.Point(18, 364);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 40);
+            this.label2.Size = new System.Drawing.Size(65, 30);
             this.label2.TabIndex = 5;
             this.label2.Text = "Data de \r\ndevolução:\r\n";
             // 
-            // dateTimePicker1
+            // dateTimePickerDataDevolucaoPrevista
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(107, 498);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(284, 27);
-            this.dateTimePicker1.TabIndex = 6;
+            this.dateTimePickerDataDevolucaoPrevista.Location = new System.Drawing.Point(94, 374);
+            this.dateTimePickerDataDevolucaoPrevista.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dateTimePickerDataDevolucaoPrevista.Name = "dateTimePickerDataDevolucaoPrevista";
+            this.dateTimePickerDataDevolucaoPrevista.Size = new System.Drawing.Size(249, 23);
+            this.dateTimePickerDataDevolucaoPrevista.TabIndex = 6;
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(309, 569);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(268, 442);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(86, 31);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(217, 569);
-            this.btnLimpar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLimpar.Location = new System.Drawing.Point(186, 442);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(86, 31);
+            this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 8;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
@@ -244,71 +291,61 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(125, 569);
-            this.btnGravar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnGravar.Location = new System.Drawing.Point(106, 442);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(86, 31);
+            this.btnGravar.Size = new System.Drawing.Size(75, 23);
             this.btnGravar.TabIndex = 7;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
-            // listBox2
+            // label1
             // 
-            this.listBox2.AccessibleName = "";
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 20;
-            this.listBox2.Location = new System.Drawing.Point(32, 183);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.ScrollAlwaysVisible = true;
-            this.listBox2.Size = new System.Drawing.Size(292, 204);
-            this.listBox2.TabIndex = 10;
-            this.listBox2.Tag = "";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 413);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 15);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Valor total previsto:";
             // 
-            // checkedListBox1
+            // labelValorPrevisto
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(3, 6);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(372, 400);
-            this.checkedListBox1.TabIndex = 0;
-            // 
-            // listBox3
-            // 
-            this.listBox3.AccessibleName = "";
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 20;
-            this.listBox3.Location = new System.Drawing.Point(32, 183);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.ScrollAlwaysVisible = true;
-            this.listBox3.Size = new System.Drawing.Size(292, 204);
-            this.listBox3.TabIndex = 10;
-            this.listBox3.Tag = "";
+            this.labelValorPrevisto.AutoSize = true;
+            this.labelValorPrevisto.Location = new System.Drawing.Point(132, 413);
+            this.labelValorPrevisto.Name = "labelValorPrevisto";
+            this.labelValorPrevisto.Size = new System.Drawing.Size(0, 15);
+            this.labelValorPrevisto.TabIndex = 11;
             // 
             // TelaCadastroLocacaoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 609);
+            this.ClientSize = new System.Drawing.Size(360, 479);
+            this.Controls.Add(this.labelValorPrevisto);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnGravar);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.tabControlPlanos);
+            this.Controls.Add(this.dateTimePickerDataDevolucaoPrevista);
+            this.Controls.Add(this.tabControlLocacao);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroLocacaoForm";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Locação";
-            this.Load += new System.EventHandler(this.TelaCadastroLocacaoForm_Load);
-            this.tabControlPlanos.ResumeLayout(false);
-            this.tabPageDiario.ResumeLayout(false);
-            this.tabPageDiario.PerformLayout();
-            this.tabPageKmControlado.ResumeLayout(false);
-            this.tabPageKmControlado.PerformLayout();
-            this.tabPageKmLivre.ResumeLayout(false);
-            this.tabPageKmLivre.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
+            this.tabControlLocacao.ResumeLayout(false);
+            this.tabPageCliente.ResumeLayout(false);
+            this.tabPageCliente.PerformLayout();
+            this.tabPageVeiculo.ResumeLayout(false);
+            this.tabPageVeiculo.PerformLayout();
+            this.tabPagePlanoCobranca.ResumeLayout(false);
+            this.tabPagePlanoCobranca.PerformLayout();
+            this.tabPageTaxas.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,27 +353,29 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControlPlanos;
-        private System.Windows.Forms.TabPage tabPageDiario;
+        private System.Windows.Forms.TabControl tabControlLocacao;
+        private System.Windows.Forms.TabPage tabPageCliente;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabPage tabPageKmControlado;
+        private System.Windows.Forms.TabPage tabPageVeiculo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TabPage tabPageKmLivre;
+        private System.Windows.Forms.TabPage tabPagePlanoCobranca;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPageTaxas;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDataDevolucaoPrevista;
+        private System.Windows.Forms.ListBox listBoxCondutores;
+        private System.Windows.Forms.ComboBox comboBoxClientes;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnGravar;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.ComboBox comboBoxVeiculos;
+        private System.Windows.Forms.ComboBox comboBoxGrupoVeiculos;
+        private System.Windows.Forms.ComboBox comboBoxPlanosCobranca;
+        private System.Windows.Forms.ListBox listBoxInformacoesVeiculo;
+        private System.Windows.Forms.ListBox listBoxInformacoesPlanoCobranca;
+        private System.Windows.Forms.CheckedListBox checkedListBoxTaxas;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelValorPrevisto;
     }
 }

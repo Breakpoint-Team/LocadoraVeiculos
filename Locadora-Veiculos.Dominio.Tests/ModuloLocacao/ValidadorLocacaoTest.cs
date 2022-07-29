@@ -26,7 +26,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
             GetGrupoVeiculos(), GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 2000,
             new DateTime(2025, 8, 13), GetVeiculo().QuilometragemPercorrida);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
             var resultado2 = validador.Validate(locacao2);
@@ -42,7 +42,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
             GetGrupoVeiculos(), GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 2000,
             new DateTime(2025, 8, 13), GetVeiculo().QuilometragemPercorrida);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -56,7 +56,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
             null, GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 2000,
             new DateTime(2025, 8, 13), GetVeiculo().QuilometragemPercorrida);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -70,7 +70,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
             GetGrupoVeiculos(), null, TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 2000,
             new DateTime(2025, 8, 13), GetVeiculo().QuilometragemPercorrida);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -84,7 +84,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
             GetGrupoVeiculos(), GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.MinValue, 2000,
             new DateTime(2025, 8, 13), GetVeiculo().QuilometragemPercorrida);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -98,7 +98,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
             GetGrupoVeiculos(), GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 0,
             new DateTime(2025, 8, 13), GetVeiculo().QuilometragemPercorrida);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -112,7 +112,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
             GetGrupoVeiculos(), GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 2000,
             DateTime.MinValue, GetVeiculo().QuilometragemPercorrida);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -126,7 +126,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
             GetGrupoVeiculos(), GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 2000,
             DateTime.Today.AddDays(-1), GetVeiculo().QuilometragemPercorrida);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -149,7 +149,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
             GetGrupoVeiculos(), GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 2000,
             dataPrevistaDevolucao, GetVeiculo().QuilometragemPercorrida);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
             var resultado2 = validador.Validate(locacao2);
@@ -171,7 +171,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
 
             locacao1.QuilometragemFinalVeiculo = locacao1.QuilometragemInicialVeiculo - 1;
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -191,7 +191,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
 
             locacao1.QuilometragemFinalVeiculo = locacao1.QuilometragemInicialVeiculo + 50;
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -213,7 +213,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
 
             locacao1.DataDevolucaoEfetiva = locacao1.DataLocacao.AddDays(-1);
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -235,7 +235,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
 
             locacao1.DataDevolucaoEfetiva = dataPrevistaDevolucao;
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -259,7 +259,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
 
             locacao1.NivelTanqueDevolucao = NivelTanque.Meio;
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
@@ -285,7 +285,7 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
 
             locacao1.ValorTotalEfetivo = 0;
 
-            var validador = new ValidadorLocacao();
+            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 

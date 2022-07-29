@@ -3,6 +3,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos;
+using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
@@ -10,6 +11,7 @@ using Locadora_Veiculos.WinApp.ModuloCliente;
 using Locadora_Veiculos.WinApp.ModuloCondutor;
 using Locadora_Veiculos.WinApp.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.ModuloGrupoVeiculos;
+using Locadora_Veiculos.WinApp.ModuloLocacao;
 using Locadora_Veiculos.WinApp.ModuloPlanoCobrança;
 using Locadora_Veiculos.WinApp.ModuloTaxas;
 using Locadora_Veiculos.WinApp.ModuloVeiculo;
@@ -17,6 +19,7 @@ using LocadoraVeiculos.Aplicacao.ModuloCliente;
 using LocadoraVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Aplicacao.ModuloLocacao;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
@@ -84,6 +87,11 @@ namespace Locadora_Veiculos.WinApp.Compartilhado.Servicelocator
             var repositorioPlanoCobranca = new RepositorioPlanoCobrancaORM(contextoDadosOrm);
             var servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
             controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(servicoPlanoCobranca,servicoGrupoVeiculo));
+            
+            var repositorioLocacao = new RepositorioLocacaoORM(contextoDadosOrm);
+            var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm);
+            controladores.Add("ControladorLocacao", new ControladorLocacao(servicoCondutor, servicoCliente,
+                servicoGrupoVeiculo, servicoVeiculo, servicoTaxa, servicoPlanoCobranca, servicoLocacao));
         }
     }
 }

@@ -47,6 +47,7 @@
             this.statusStripRodape = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.locaçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStripRodape.SuspendLayout();
@@ -72,7 +73,8 @@
             this.taxasMenuItem,
             this.veiculosMenuItem,
             this.condutoresToolStripMenuItem,
-            this.planosDeCobrançaToolStripMenuItem});
+            this.planosDeCobrançaToolStripMenuItem,
+            this.locaçõesToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -242,6 +244,14 @@
             this.panelRegistros.Size = new System.Drawing.Size(800, 379);
             this.panelRegistros.TabIndex = 3;
             // 
+            // locaçõesToolStripMenuItem
+            // 
+            this.locaçõesToolStripMenuItem.Name = "locaçõesToolStripMenuItem";
+            this.locaçõesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
+            this.locaçõesToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.locaçõesToolStripMenuItem.Text = "Locações";
+            this.locaçõesToolStripMenuItem.Click += new System.EventHandler(this.locacoesToolStripMenuItem_Click);
+            // 
             // TelaPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -290,5 +300,6 @@
         private System.Windows.Forms.ToolStripMenuItem planosDeCobrançaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preçoCombustToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem locaçõesToolStripMenuItem;
     }
 }
