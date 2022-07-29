@@ -38,7 +38,6 @@
             this.condutoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planosDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preçoCombustToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox = new System.Windows.Forms.ToolStrip();
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
@@ -139,18 +138,10 @@
             // 
             // configuraçõesToolStripMenuItem
             // 
-            this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preçoCombustToolStripMenuItem});
             this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
             this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
             this.configuraçõesToolStripMenuItem.Text = "Configurações";
-            // 
-            // preçoCombustToolStripMenuItem
-            // 
-            this.preçoCombustToolStripMenuItem.Name = "preçoCombustToolStripMenuItem";
-            this.preçoCombustToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.preçoCombustToolStripMenuItem.Text = "Preço do Combustível";
-            this.preçoCombustToolStripMenuItem.Click += new System.EventHandler(this.preçoCombustToolStripMenuItem_Click);
+            this.configuraçõesToolStripMenuItem.Click += new System.EventHandler(this.configuraçõesToolStripMenuItem_Click);
             // 
             // toolbox
             // 
@@ -289,6 +280,5 @@
         private System.Windows.Forms.ToolStripMenuItem condutoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planosDeCobrançaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preçoCombustToolStripMenuItem;
     }
 }

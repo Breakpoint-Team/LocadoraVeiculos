@@ -6,8 +6,10 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
+using Locadora_Veiculos.Infra.Configs;
 using Locadora_Veiculos.WinApp.ModuloCliente;
 using Locadora_Veiculos.WinApp.ModuloCondutor;
+using Locadora_Veiculos.WinApp.ModuloConfiguracao;
 using Locadora_Veiculos.WinApp.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.ModuloGrupoVeiculos;
 using Locadora_Veiculos.WinApp.ModuloPlanoCobrança;
@@ -52,6 +54,7 @@ namespace Locadora_Veiculos.WinApp.Compartilhado.Servicelocator
                .SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("ConfiguracaoAplicacao.json")
                .Build();
+            var config = new ConfiguracaoAplicacao();
 
             var connectionString = configuracao.GetConnectionString("SqlServer");
 
@@ -84,6 +87,8 @@ namespace Locadora_Veiculos.WinApp.Compartilhado.Servicelocator
             var repositorioPlanoCobranca = new RepositorioPlanoCobrancaORM(contextoDadosOrm);
             var servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
             controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(servicoPlanoCobranca,servicoGrupoVeiculo));
+
+            controladores.Add("ControladorConfiguracao", new ControladorConfiguracao(config));
         }
     }
 }

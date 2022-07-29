@@ -78,13 +78,13 @@ namespace Locadora_Veiculos.WinApp
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorPlanoCobranca>());
         }
-        private void preçoCombustToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        private void configuraçõesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var tela = new TelaConfigPrecoCombustivelForm();
-            tela.ShowDialog();
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorConfiguracao>());
 
         }
-
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();
@@ -122,8 +122,8 @@ namespace Locadora_Veiculos.WinApp
         {
             this.controlador = controlador;
 
-            ConfigurarToolbox();
 
+            ConfigurarToolbox();
             ConfigurarListagem();
         }
 
