@@ -87,7 +87,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloPlanoCobranca
                 PLANO.[ID_GRUPO_VEICULOS] = GRUPO.[ID]";
 
         private string sqlSelecionarPlanoPorIdDoGrupoVeiculo =>
-         @"SELECT 
+            @"SELECT 
                 PLANO.[ID] AS PLANO_ID,
                 PLANO.[DIARIO_VALOR_DIA] AS PLANO_DIARIO_VALOR_DIA,
                 PLANO.[DIARIO_VALOR_KM] AS PLANO_DIARIO_VALOR_KM,
@@ -104,6 +104,23 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloPlanoCobranca
                 PLANO.[ID_GRUPO_VEICULOS] = GRUPO.[ID]
             WHERE
                 GRUPO.[ID] = @ID";
+
+        private string sqlCountPlanos =>
+            @"SELECT COUNT(*) 
+                FROM TBPLANOCOBRANCA;";
+
+        public int QuantidadePlanosCadastrados()
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comando = new SqlCommand(sqlCountPlanos, conexaoComBanco);
+
+            conexaoComBanco.Open();
+
+            var count = Convert.ToInt32(comando.ExecuteScalar());
+
+            return count;
+        }
 
         public PlanoCobranca SelecionarPlanoPorIdDoGrupoVeiculos(Guid idGrupoVeiculo)
         {

@@ -53,5 +53,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor
         {
             return condutores.Include(x =>x.Cliente).ToList();
         }
+
+        public int QuantidadeCondutoresCadastrados()
+        {
+            return condutores.ToList().Count;
+        }
     }
 }

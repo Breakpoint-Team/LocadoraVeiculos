@@ -47,5 +47,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo
         {
             return veiculos.SingleOrDefault(x => x.Placa == placa);
         }
+
+        public int QuantidadeVeiculosCadastrados()
+        {
+            return veiculos.ToList().Count;
+        }
     }
 }

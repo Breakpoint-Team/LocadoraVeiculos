@@ -1,10 +1,12 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System;
 using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
 {
-    public class RepositorioVeiculoEmBancoDados : RepositorioBase<Veiculo, MapeadorVeiculo>, IRepositorioVeiculo
+    public class RepositorioVeiculoEmBancoDados : RepositorioBase<Veiculo, MapeadorVeiculo>,
+        IRepositorioVeiculo
     {
         protected override string sqlInserir =>
             @"INSERT INTO [TBVEICULO]
@@ -128,6 +130,23 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo
 
             WHERE VEICULO.PLACA = @PLACA
             ";
+
+        private string sqlCountVeiculos =>
+            @"SELECT COUNT(*) 
+                FROM TBVEICULO;";
+
+        public int QuantidadeVeiculosCadastrados()
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comando = new SqlCommand(sqlCountVeiculos, conexaoComBanco);
+
+            conexaoComBanco.Open();
+
+            var count = Convert.ToInt32(comando.ExecuteScalar());
+
+            return count;
+        }
 
         public Veiculo SelecionarVeiculoPorPlaca(string placa)
         {
