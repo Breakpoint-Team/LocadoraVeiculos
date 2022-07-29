@@ -1,43 +1,59 @@
-﻿using FluentResults;
-using Locadora_Veiculos.Dominio.Compartilhado;
+﻿using Locadora_Veiculos.Dominio.ModuloConfiguracao;
+using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
 {
     public partial class TelaConfigPrecoCombustivelForm : Form
     {
-        private PrecoCombustivel preco;
         public TelaConfigPrecoCombustivelForm()
         {
             InitializeComponent();
+            ExibirDados();
+
         }
 
-        public PrecoCombustivel PrecoCombustivel
+        private void ExibirDados()
         {
-            get {
-                return preco;
-                }
-            set
+            try
             {
-                preco = value;
-                numPrecoGNV.Value = preco.PrecoGNV;
-                numPrecoGasolina.Value = preco.PrecoGasolina;
-                numPrecoDiesel.Value = preco.PrecoDiesel;
-                numPrecoAlcool.Value = preco.PrecoAlcool;
+                var json = File.ReadAllText("arquivoConfig.json");
+                var jObject = JObject.Parse(json);
+                numPrecoGNV.Value = (decimal)jObject["PrecoGNV"];
+                numPrecoGasolina.Value = (decimal)jObject["PrecoGasolina"];
+                numPrecoDiesel.Value = (decimal)jObject["PrecoDiesel"];
+                numPrecoAlcool.Value = (decimal)jObject["PrecoAlcool"];
+                data.Value = (DateTime)jObject["DataAtualizacao"];
+
             }
+            catch
+            {
+
+            }
+
         }
-
-
-        public Func<PrecoCombustivel, Result<PrecoCombustivel>> GravarRegistro { get; set; }
-
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            preco.PrecoGNV = numPrecoGNV.Value;
-            preco.PrecoAlcool = numPrecoAlcool.Value;
-            preco.PrecoGasolina = numPrecoGasolina.Value;
+            var registro = new PrecoCombustivel()
+            {
+                PrecoAlcool = numPrecoAlcool.Value,
+                PrecoDiesel = numPrecoDiesel.Value,
+                PrecoGasolina = numPrecoGasolina.Value,
+                PrecoGNV = numPrecoGNV.Value,
+                DataAtualizacao = DateTime.Now
+            };
+
+            string arquivo = "arquivoConfig.json";
+
+            string jsonString = JsonSerializer.Serialize(registro);
+            File.WriteAllText(arquivo, jsonString);
+
         }
+
 
 
     }

@@ -82,10 +82,7 @@ namespace Locadora_Veiculos.WinApp
         {
             var tela = new TelaConfigPrecoCombustivelForm();
             tela.ShowDialog();
-            //if(tela.DialogResult == DialogResult.OK)
-            //{
 
-            //}
         }
 
         private void btnInserir_Click(object sender, EventArgs e)

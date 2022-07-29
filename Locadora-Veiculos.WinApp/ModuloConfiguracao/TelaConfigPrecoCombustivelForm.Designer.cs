@@ -39,7 +39,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.dataAtualizacao = new System.Windows.Forms.DateTimePicker();
+            this.data = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoGasolina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoDiesel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoAlcool)).BeginInit();
@@ -144,15 +144,15 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // dataAtualizacao
+            // data
             // 
-            this.dataAtualizacao.Enabled = false;
-            this.dataAtualizacao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dataAtualizacao.Location = new System.Drawing.Point(127, 16);
-            this.dataAtualizacao.Name = "dataAtualizacao";
-            this.dataAtualizacao.Size = new System.Drawing.Size(105, 23);
-            this.dataAtualizacao.TabIndex = 14;
-            this.dataAtualizacao.Value = new System.DateTime(2022, 7, 6, 23, 59, 59, 0);
+            this.data.Enabled = false;
+            this.data.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.data.Location = new System.Drawing.Point(127, 16);
+            this.data.Name = "data";
+            this.data.Size = new System.Drawing.Size(105, 23);
+            this.data.TabIndex = 14;
+            this.data.Value = new System.DateTime(2022, 7, 6, 23, 59, 59, 0);
             // 
             // TelaConfigPrecoCombustivelForm
             // 
@@ -160,7 +160,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 214);
-            this.Controls.Add(this.dataAtualizacao);
+            this.Controls.Add(this.data);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.numPrecoGNV);
@@ -201,6 +201,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.DateTimePicker dataAtualizacao;
+        private System.Windows.Forms.DateTimePicker data;
     }
 }
