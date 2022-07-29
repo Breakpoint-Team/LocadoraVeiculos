@@ -1,5 +1,4 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
-using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.Dominio.ModuloCondutor;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
@@ -17,19 +16,35 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
         public Locacao()
         {
             this.StatusLocacao = StatusLocacao.Aberta;
-            this.CondutoresAtivos = new List<Condutor>();
-            this.Taxas = new List<Taxa>();
+            this.TaxasSelecionadas = new List<Taxa>();
+            //this.DataLocacao = DateTime.Today;
+        }
+
+        public Locacao(Condutor condutor, Veiculo veiculo,
+            GrupoVeiculos grupoVeiculos, PlanoCobranca planoCobranca, TipoPlano tipoPlanoSelecionado,
+            List<Taxa> taxas,
+            DateTime dataLocacao, decimal valorTotalPrevisto,
+            DateTime dataDevolucaoPrevista, int quilometragemInicialVeiculo) : this()
+        {
+            Condutor = condutor;
+            Veiculo = veiculo;
+            GrupoVeiculos = grupoVeiculos;
+            PlanoCobranca = planoCobranca;
+            TipoPlanoSelecionado = tipoPlanoSelecionado;
+            TaxasSelecionadas = taxas;
+            DataLocacao = dataLocacao;
+            ValorTotalPrevisto = valorTotalPrevisto;
+            DataDevolucaoPrevista = dataDevolucaoPrevista;
+            QuilometragemInicialVeiculo = quilometragemInicialVeiculo;
         }
 
         #endregion
 
         #region PROPS
 
-        public Cliente Cliente { get; set; }
+        public Condutor Condutor { get; set; }
 
-        public Guid ClienteId { get; set; }
-
-        public List<Condutor> CondutoresAtivos { get; set; }
+        public Guid CondutorId { get; set; }
 
         public Veiculo Veiculo { get; set; }
 
@@ -41,9 +56,11 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 
         public PlanoCobranca PlanoCobranca { get; set; }
 
+        public TipoPlano TipoPlanoSelecionado { get; set; }
+
         public Guid PlanoCobrancaId { get; set; }
 
-        public List<Taxa> Taxas { get; set; }
+        public List<Taxa> TaxasSelecionadas { get; set; }
 
         public DateTime DataLocacao { get; set; }
 
@@ -74,15 +91,6 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 
         #endregion
 
-        public void ConfigurarCliente(Cliente cliente)
-        {
-            if (cliente == null)
-                return;
-
-            Cliente = cliente;
-            ClienteId = cliente.Id;
-        }
-
         public void ConfigurarGrupoVeiculos(GrupoVeiculos grupo)
         {
             if (grupo == null)
@@ -101,65 +109,18 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             PlanoCobrancaId = planoCobranca.Id;
         }
 
-        public void AdicionarCondutorAtivo(Condutor condutor)
+        public void ConfigurarCondutor(Condutor condutor)
         {
-            CondutoresAtivos.Add(condutor);
+            if (condutor == null)
+                return;
+
+            Condutor = condutor;
+            CondutorId = condutor.Id;
         }
 
         public void AdicionarTaxa(Taxa taxa)
         {
-            Taxas.Add(taxa);
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Locacao locacao &&
-                   Id.Equals(locacao.Id) &&
-                   EqualityComparer<Cliente>.Default.Equals(Cliente, locacao.Cliente) &&
-                   ClienteId.Equals(locacao.ClienteId) &&
-                   EqualityComparer<List<Condutor>>.Default.Equals(CondutoresAtivos, locacao.CondutoresAtivos) &&
-                   EqualityComparer<Veiculo>.Default.Equals(Veiculo, locacao.Veiculo) &&
-                   VeiculoId.Equals(locacao.VeiculoId) &&
-                   EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, locacao.GrupoVeiculos) &&
-                   GrupoVeiculosId.Equals(locacao.GrupoVeiculosId) &&
-                   EqualityComparer<PlanoCobranca>.Default.Equals(PlanoCobranca, locacao.PlanoCobranca) &&
-                   PlanoCobrancaId.Equals(locacao.PlanoCobrancaId) &&
-                   EqualityComparer<List<Taxa>>.Default.Equals(Taxas, locacao.Taxas) &&
-                   DataLocacao == locacao.DataLocacao &&
-                   ValorTotalPrevisto == locacao.ValorTotalPrevisto &&
-                   DataDevolucaoPrevista == locacao.DataDevolucaoPrevista &&
-                   QuilometragemInicialVeiculo == locacao.QuilometragemInicialVeiculo &&
-                   QuilometragemFinalVeiculo == locacao.QuilometragemFinalVeiculo &&
-                   DataDevolucaoEfetiva == locacao.DataDevolucaoEfetiva &&
-                   NivelTanqueDevolucao == locacao.NivelTanqueDevolucao &&
-                   ValorTotalEfetivo == locacao.ValorTotalEfetivo &&
-                   StatusLocacao == locacao.StatusLocacao;
-        }
-
-        public override int GetHashCode()
-        {
-            HashCode hash = new HashCode();
-            hash.Add(Id);
-            hash.Add(Cliente);
-            hash.Add(ClienteId);
-            hash.Add(CondutoresAtivos);
-            hash.Add(Veiculo);
-            hash.Add(VeiculoId);
-            hash.Add(GrupoVeiculos);
-            hash.Add(GrupoVeiculosId);
-            hash.Add(PlanoCobranca);
-            hash.Add(PlanoCobrancaId);
-            hash.Add(Taxas);
-            hash.Add(DataLocacao);
-            hash.Add(ValorTotalPrevisto);
-            hash.Add(DataDevolucaoPrevista);
-            hash.Add(QuilometragemInicialVeiculo);
-            hash.Add(QuilometragemFinalVeiculo);
-            hash.Add(DataDevolucaoEfetiva);
-            hash.Add(NivelTanqueDevolucao);
-            hash.Add(ValorTotalEfetivo);
-            hash.Add(StatusLocacao);
-            return hash.ToHashCode();
+            TaxasSelecionadas.Add(taxa);
         }
     }
 }

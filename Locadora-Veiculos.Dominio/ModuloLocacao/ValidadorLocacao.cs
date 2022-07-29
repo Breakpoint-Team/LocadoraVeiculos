@@ -6,13 +6,16 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
     {
         public ValidadorLocacao()
         {
-            RuleFor(x => x.Cliente)
+            RuleFor(x => x.Condutor)
                 .NotNull()
-                .WithMessage("O campo 'Cliente' é obrigatório!");
+                .WithMessage("O campo 'Condutor' é obrigatório!");
 
-            RuleFor(x => x.CondutoresAtivos.Count)
-                .GreaterThan(0)
-                .WithMessage("O cliente selecionado deve ter pelo menos um Condutor Ativo!");
+            When(x => x.Condutor != null, () =>
+            {
+                RuleFor(x => x.Condutor.DataValidadeCnh.Date)
+                    .GreaterThanOrEqualTo(x => x.DataDevolucaoPrevista.Date)
+                    .WithMessage("A data de validade da CNH do condutor selecionado não deve ser menor que a data de devolução prevista!");
+            });
 
             RuleFor(x => x.GrupoVeiculos)
                 .NotNull()
@@ -20,11 +23,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 
             RuleFor(x => x.Veiculo)
                 .NotNull()
-                .WithMessage("O campo 'Veiculo' é obrigatório!");
-
-            RuleFor(x => x.PlanoCobranca)
-                .NotNull()
-                .WithMessage("O campo 'Plano de Cobrança' é obrigatório!");
+                .WithMessage("O campo 'Veículo' é obrigatório!");
 
             RuleFor(x => x.PlanoCobranca)
                 .NotNull()
@@ -32,11 +31,13 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 
             RuleFor(x => x.DataLocacao)
                 .NotNull()
+                .WithMessage("O campo 'Data de Locação' é obrigatório!")
+                .NotEmpty()
                 .WithMessage("O campo 'Data de Locação' é obrigatório!");
 
             RuleFor(x => x.DataDevolucaoPrevista)
-                .NotNull()
-                .WithMessage("O campo 'Data de Devolução Prevista' é obrigatório!")
+                .NotNull().WithMessage("O campo 'Data de Devolução Prevista' é obrigatório!")
+                .NotEmpty().WithMessage("O campo 'Data de Devolução Prevista' é obrigatório!")
                 .GreaterThanOrEqualTo(x => x.DataLocacao)
                 .WithMessage("O campo 'Data de Devolução Prevista' deve ser maior ou igual a data da locação!");
 
@@ -44,9 +45,6 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
                .GreaterThan(0)
                .WithMessage("O campo 'Valor Total Previsto' deve ser maior que 0 (zero)!");
 
-            RuleFor(x => x.QuilometragemInicialVeiculo)
-               .Equal(x => x.Veiculo.QuilometragemPercorrida)
-               .WithMessage("O campo 'Quilometragem Inicial' deve ser igual à quilometragem percorrida do veículo!");
 
             When(x => x.StatusLocacao == StatusLocacao.Fechada, () =>
             {
@@ -55,8 +53,8 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
                 .WithMessage("O campo 'Quilometragem Final' deve ser maior ou igual à quilometragem inicial!");
 
                 RuleFor(x => x.DataDevolucaoEfetiva)
-                .NotNull()
-                .WithMessage("O campo 'Data de Devolução Efetiva' é obrigatório!")
+                .NotNull().WithMessage("O campo 'Data de Devolução Efetiva' é obrigatório!")
+                .NotEmpty().WithMessage("O campo 'Data de Devolução Efetiva' é obrigatório!")
                 .GreaterThanOrEqualTo(x => x.DataLocacao)
                 .WithMessage("O campo 'Data de Devolução Efetiva' deve ser maior ou igual a data da locação!");
 
@@ -65,9 +63,10 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
                 .WithMessage("O campo 'Nível do Tanque' é obrigatório!");
 
                 RuleFor(x => x.ValorTotalEfetivo)
-                .GreaterThanOrEqualTo(x => x.ValorTotalPrevisto)
-                .WithMessage("O campo 'Valor Total Efetivo' deve ser maior ou igual ao valor total previsto!");
+                .NotNull().WithMessage("O campo 'Valor Total Efetivo' é obrigatório!")
+                .GreaterThan(0).WithMessage("O campo 'Valor Total Efetivo' deve ser maior que 0 (zero)!");
             });
         }
+
     }
 }
