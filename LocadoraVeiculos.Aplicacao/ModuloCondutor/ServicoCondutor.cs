@@ -151,6 +151,23 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCondutor
             }
         }
 
+        public Result<int> QuantidadeCondutoresCadastrados()
+        {
+            try
+            {
+                return Result.Ok(repositorioCondutor.QuantidadeCondutoresCadastrados());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar a quantidade de condutores";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+
         #region MÉTODOS PRIVADOS
 
         private Result ValidarCondutor(Condutor condutor)

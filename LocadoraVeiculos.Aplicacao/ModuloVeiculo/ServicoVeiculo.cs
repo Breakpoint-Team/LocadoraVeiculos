@@ -147,6 +147,22 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             }
         }
 
+        public Result<int> QuantidadeVeiculosCadastrados()
+        {
+            try
+            {
+                return Result.Ok(repositorioVeiculo.QuantidadeVeiculosCadastrados());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar a quantidade de veículos";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
         #region MÉTODOS PRIVADOS
 
         private Result Validar(Veiculo veiculo)
