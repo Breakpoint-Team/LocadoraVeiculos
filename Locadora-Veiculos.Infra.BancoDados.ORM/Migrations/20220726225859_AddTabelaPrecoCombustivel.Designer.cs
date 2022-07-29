@@ -4,35 +4,22 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
 {
     [DbContext(typeof(LocadoraVeiculosDbContext))]
-    partial class LocadoraVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220726225859_AddTabelaPrecoCombustivel")]
+    partial class AddTabelaPrecoCombustivel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("LocacaoTaxa", b =>
-                {
-                    b.Property<Guid>("LocacoesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TaxasSelecionadasId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("LocacoesId", "TaxasSelecionadasId");
-
-                    b.HasIndex("TaxasSelecionadasId");
-
-                    b.ToTable("LocacaoTaxa");
-                });
 
             modelBuilder.Entity("Locadora_Veiculos.Dominio.Compartilhado.PrecoCombustivel", b =>
                 {
@@ -178,70 +165,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                     b.ToTable("TBGrupoVeiculos");
                 });
 
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloLocacao.Locacao", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CondutorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DataDevolucaoEfetiva")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataDevolucaoPrevista")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataLocacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("GrupoVeiculosId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("NivelTanqueDevolucao")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("PlanoCobrancaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("QuilometragemFinalVeiculo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuilometragemInicialVeiculo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StatusLocacao")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoPlanoSelecionado")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("ValorTotalEfetivo")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ValorTotalPrevisto")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("VeiculoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CondutorId")
-                        .IsUnique();
-
-                    b.HasIndex("GrupoVeiculosId")
-                        .IsUnique();
-
-                    b.HasIndex("PlanoCobrancaId")
-                        .IsUnique();
-
-                    b.HasIndex("VeiculoId")
-                        .IsUnique();
-
-                    b.ToTable("TBLocacao");
-                });
-
             modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
                 {
                     b.Property<Guid>("Id")
@@ -270,8 +193,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GrupoVeiculosId")
-                        .IsUnique();
+                    b.HasIndex("GrupoVeiculosId");
 
                     b.ToTable("TBPlanoCobranca");
                 });
@@ -342,21 +264,6 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                     b.HasIndex("GrupoVeiculosId");
 
                     b.ToTable("TBVeiculo");
-                });
-
-            modelBuilder.Entity("LocacaoTaxa", b =>
-                {
-                    b.HasOne("Locadora_Veiculos.Dominio.ModuloLocacao.Locacao", null)
-                        .WithMany()
-                        .HasForeignKey("LocacoesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Locadora_Veiculos.Dominio.ModuloTaxa.Taxa", null)
-                        .WithMany()
-                        .HasForeignKey("TaxasSelecionadasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloCliente.Cliente", b =>
@@ -447,47 +354,12 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloLocacao.Locacao", b =>
-                {
-                    b.HasOne("Locadora_Veiculos.Dominio.ModuloCondutor.Condutor", "Condutor")
-                        .WithOne()
-                        .HasForeignKey("Locadora_Veiculos.Dominio.ModuloLocacao.Locacao", "CondutorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Locadora_Veiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", "GrupoVeiculos")
-                        .WithOne()
-                        .HasForeignKey("Locadora_Veiculos.Dominio.ModuloLocacao.Locacao", "GrupoVeiculosId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Locadora_Veiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", "PlanoCobranca")
-                        .WithOne()
-                        .HasForeignKey("Locadora_Veiculos.Dominio.ModuloLocacao.Locacao", "PlanoCobrancaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Locadora_Veiculos.Dominio.ModuloVeiculo.Veiculo", "Veiculo")
-                        .WithOne()
-                        .HasForeignKey("Locadora_Veiculos.Dominio.ModuloLocacao.Locacao", "VeiculoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Condutor");
-
-                    b.Navigation("GrupoVeiculos");
-
-                    b.Navigation("PlanoCobranca");
-
-                    b.Navigation("Veiculo");
-                });
-
             modelBuilder.Entity("Locadora_Veiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
                 {
                     b.HasOne("Locadora_Veiculos.Dominio.ModuloGrupoVeiculos.GrupoVeiculos", "GrupoVeiculos")
-                        .WithOne()
-                        .HasForeignKey("Locadora_Veiculos.Dominio.ModuloPlanoCobranca.PlanoCobranca", "GrupoVeiculosId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany()
+                        .HasForeignKey("GrupoVeiculosId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("GrupoVeiculos");

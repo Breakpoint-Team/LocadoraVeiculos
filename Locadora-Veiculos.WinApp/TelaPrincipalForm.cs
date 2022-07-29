@@ -2,13 +2,13 @@
 using Locadora_Veiculos.WinApp.Compartilhado.Servicelocator;
 using Locadora_Veiculos.WinApp.ModuloCliente;
 using Locadora_Veiculos.WinApp.ModuloCondutor;
+using Locadora_Veiculos.WinApp.ModuloConfiguracao;
 using Locadora_Veiculos.WinApp.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.ModuloGrupoVeiculos;
 using Locadora_Veiculos.WinApp.ModuloPlanoCobrança;
 using Locadora_Veiculos.WinApp.ModuloTaxas;
 using Locadora_Veiculos.WinApp.ModuloVeiculo;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp
@@ -77,6 +77,15 @@ namespace Locadora_Veiculos.WinApp
         private void planosDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorPlanoCobranca>());
+        }
+        private void preçoCombustToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var tela = new TelaConfigPrecoCombustivelForm();
+            tela.ShowDialog();
+            //if(tela.DialogResult == DialogResult.OK)
+            //{
+
+            //}
         }
 
         private void btnInserir_Click(object sender, EventArgs e)

@@ -16,5 +16,25 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         {
             InitializeComponent();
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TelaCadastroLocacaoForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
