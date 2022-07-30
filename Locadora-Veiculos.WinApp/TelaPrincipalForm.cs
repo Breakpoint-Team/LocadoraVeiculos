@@ -85,9 +85,6 @@ namespace Locadora_Veiculos.WinApp
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
         }
 
-        private void preçoCombustToolStripMenuItem_Click(object sender, EventArgs e)
-
-
         private void configuraçõesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorConfiguracao>());
