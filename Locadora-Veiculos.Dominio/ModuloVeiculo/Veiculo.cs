@@ -13,14 +13,12 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
 
         public Veiculo()
         {
-
+            this.StatusVeiculo = StatusVeiculo.Disponivel;
         }
-
-
 
         public Veiculo(string modelo, string marca, int ano, string cor, string placa,
             string tipoCombustivel, int quilometragemPercorrida,
-            decimal capacidadeTanque, GrupoVeiculos grupoVeiculos, byte[] img)
+            decimal capacidadeTanque, GrupoVeiculos grupoVeiculos, byte[] img) : this ()
         {
             Modelo = modelo;
             Marca = marca;
@@ -49,6 +47,7 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
         public decimal CapacidadeTanque { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public  Guid GrupoVeiculosId { get; set; }
+        public StatusVeiculo StatusVeiculo { get; set; }
 
         public byte[] Imagem { get; set; }
 
@@ -71,7 +70,6 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
             return string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", Modelo, Marca, Ano, Cor, Placa, TipoCombustivel, QuilometragemPercorrida, CapacidadeTanque, GrupoVeiculos);
         }
 
-
         public override bool Equals(object obj)
         {
             return obj is Veiculo veiculo &&
@@ -85,6 +83,7 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
                    QuilometragemPercorrida == veiculo.QuilometragemPercorrida &&
                    CapacidadeTanque == veiculo.CapacidadeTanque &&
                    EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, veiculo.GrupoVeiculos) &&
+                   StatusVeiculo == veiculo.StatusVeiculo &&
                    Imagem.SequenceEqual(veiculo.Imagem);
         }
 

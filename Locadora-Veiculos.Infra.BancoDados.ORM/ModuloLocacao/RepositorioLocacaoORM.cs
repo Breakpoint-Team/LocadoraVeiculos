@@ -46,8 +46,11 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
         public List<Locacao> SelecionarTodos()
         {
             var retorno = locacoes.Include(x => x.GrupoVeiculos)
+                .Include(x => x.Condutor)
+                .Include(x => x.Condutor.Cliente)
                 .Include(x => x.PlanoCobranca)
                 .Include(x => x.TaxasSelecionadas)
+                .Include(x => x.Veiculo)
                 .ToList();
 
             return retorno;

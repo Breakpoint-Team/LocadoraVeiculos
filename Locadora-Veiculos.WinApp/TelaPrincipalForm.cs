@@ -5,6 +5,7 @@ using Locadora_Veiculos.WinApp.ModuloCondutor;
 using Locadora_Veiculos.WinApp.ModuloConfiguracao;
 using Locadora_Veiculos.WinApp.ModuloFuncionario;
 using Locadora_Veiculos.WinApp.ModuloGrupoVeiculos;
+using Locadora_Veiculos.WinApp.ModuloLocacao;
 using Locadora_Veiculos.WinApp.ModuloPlanoCobrança;
 using Locadora_Veiculos.WinApp.ModuloTaxas;
 using Locadora_Veiculos.WinApp.ModuloVeiculo;
@@ -79,6 +80,10 @@ namespace Locadora_Veiculos.WinApp
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorPlanoCobranca>());
         }
 
+        private void locacoesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
+        }
 
         private void configuraçõesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -158,5 +163,6 @@ namespace Locadora_Veiculos.WinApp
 
         #endregion
 
+       
     }
 }

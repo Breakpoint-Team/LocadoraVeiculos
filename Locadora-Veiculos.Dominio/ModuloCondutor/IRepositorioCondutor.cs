@@ -7,5 +7,8 @@ namespace Locadora_Veiculos.Dominio.ModuloCondutor
         Condutor SelecionarCondutorPorCPF(string cpf);
 
         Condutor SelecionarCondutorPorCNH(string cnh);
+
+        int QuantidadeCondutoresCadastrados();
+
     }
 }

@@ -4,12 +4,12 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
 {
     public class ConfiguracaoToolBoxLocacao : ConfiguracaoToolboxBase
     {
-        public override string TipoCadastro => "";
+        public override string TipoCadastro => "Cadastro de Locações";
 
-        public override string TooltipInserir => "";
+        public override string TooltipInserir => "Inserir uma nova Locação";
 
-        public override string TooltipEditar => "";
+        public override string TooltipEditar => "Editar uma Locação existente";
 
-        public override string TooltipExcluir => "";
+        public override string TooltipExcluir => "Excluir uma Locação existente";
     }
 }

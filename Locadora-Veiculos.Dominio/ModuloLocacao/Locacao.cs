@@ -17,7 +17,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
         {
             this.StatusLocacao = StatusLocacao.Aberta;
             this.TaxasSelecionadas = new List<Taxa>();
-            //this.DataLocacao = DateTime.Today;
+            this.DataLocacao = DateTime.Today;
         }
 
         public Locacao(Condutor condutor, Veiculo veiculo,

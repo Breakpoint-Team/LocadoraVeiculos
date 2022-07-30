@@ -48,5 +48,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca
         {
             return planos.Include(x => x.GrupoVeiculos).ToList();
         }
+
+        public int QuantidadePlanosCadastrados()
+        {
+            return planos.ToList().Count;
+        }
     }
 }
