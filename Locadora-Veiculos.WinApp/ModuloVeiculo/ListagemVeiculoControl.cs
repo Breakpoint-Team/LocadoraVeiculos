@@ -1,4 +1,5 @@
-﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
+﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.WinApp.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,9 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "CapacidadeTanque", HeaderText = "Capacidade do Tanque"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "GrupoVeiculos", HeaderText = "Grupo de Veículos"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "GrupoVeiculos", HeaderText = "Grupo de Veículos"},
+                
+                new DataGridViewTextBoxColumn { DataPropertyName = "StatusVeiculo", HeaderText = "Status"}
             };
 
             return colunas;
@@ -49,7 +52,9 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             grid.Rows.Clear();
             foreach (var v in veiculos)
             {
-                grid.Rows.Add(v.Id, v.Modelo, v.Marca, v.Ano, v.Cor, v.Placa, v.TipoCombustivel, v.QuilometragemPercorrida + " Km", v.CapacidadeTanque + " Litros", v.GrupoVeiculos.Nome);
+                grid.Rows.Add(v.Id, v.Modelo, v.Marca, v.Ano, v.Cor, v.Placa, v.TipoCombustivel,
+                    v.QuilometragemPercorrida + " Km", v.CapacidadeTanque + " Litros",
+                    v.GrupoVeiculos.Nome, v.StatusVeiculo.GetDescription());
             }
         }
 

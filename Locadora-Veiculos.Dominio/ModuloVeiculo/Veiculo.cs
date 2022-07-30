@@ -18,7 +18,7 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
 
         public Veiculo(string modelo, string marca, int ano, string cor, string placa,
             string tipoCombustivel, int quilometragemPercorrida,
-            decimal capacidadeTanque, GrupoVeiculos grupoVeiculos, byte[] img) : this ()
+            decimal capacidadeTanque, GrupoVeiculos grupoVeiculos, byte[] img) : this()
         {
             Modelo = modelo;
             Marca = marca;
@@ -46,7 +46,7 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
         public int QuilometragemPercorrida { get; set; }
         public decimal CapacidadeTanque { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
-        public  Guid GrupoVeiculosId { get; set; }
+        public Guid GrupoVeiculosId { get; set; }
         public StatusVeiculo StatusVeiculo { get; set; }
 
         public byte[] Imagem { get; set; }
@@ -63,6 +63,19 @@ namespace Locadora_Veiculos.Dominio.ModuloVeiculo
 
             GrupoVeiculos = grupo;
             GrupoVeiculosId = grupo.Id;
+        }
+
+        public void AtualizarStatus()
+        {
+            switch (StatusVeiculo)
+            {
+                case StatusVeiculo.Locado:
+                    StatusVeiculo = StatusVeiculo.Disponivel;
+                    break;
+                case StatusVeiculo.Disponivel:
+                    StatusVeiculo = StatusVeiculo.Locado;
+                    break;
+            }
         }
 
         public override string ToString()
