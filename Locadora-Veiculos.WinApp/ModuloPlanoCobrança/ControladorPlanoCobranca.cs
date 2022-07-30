@@ -114,8 +114,7 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
                 else
                 {
-                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
-                        "Exclusão plano de cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão plano de cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 

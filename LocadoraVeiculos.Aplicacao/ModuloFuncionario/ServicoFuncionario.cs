@@ -3,7 +3,6 @@ using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -112,20 +111,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             }
             catch (Exception ex)
             {
-                string msgErro = "";
+                string msgErro = "Falha no sistema ao tentar excluir o funcionário";
 
-                if (ex is DbUpdateException || ex is InvalidOperationException)
-                {
-                    msgErro = $"O funcionário {funcionario.Nome} está relacionado com uma locação e não pode ser excluído";
-
-                    contextoPersistencia.DesfazerAlteracoes();
-                }
-                else
-                {
-                    msgErro = "Falha no sistema ao tentar excluir o funcionário";
-                }
-
-                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.Id);
+                Log.Logger.Error(ex, msgErro + " {FuncionarioId}", funcionario.Id);
 
                 return Result.Fail(msgErro);
             }
@@ -171,9 +159,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
 
             var resultadoValidacao = validador.Validate(funcionario);
 
-            List<Error> erros = new List<Error>();
+            List<Error> erros = new List<Error>(); 
 
-            foreach (ValidationFailure item in resultadoValidacao.Errors)
+            foreach (ValidationFailure item in resultadoValidacao.Errors)             
                 erros.Add(new Error(item.ErrorMessage));
 
             var resultadoComparacao = LoginDuplicado(funcionario);

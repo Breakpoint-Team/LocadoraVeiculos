@@ -2,7 +2,6 @@
 using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -107,23 +106,13 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             }
             catch (Exception ex)
             {
-                string msgErro = "";
-
-                if (ex is DbUpdateException || ex is InvalidOperationException)
-                {
-                    msgErro = $"O veículo está relacionado com uma locação e não pode ser excluído";
-
-                    contextoPersistencia.DesfazerAlteracoes();
-                }
-                else
-                {
-                    msgErro = "Falha no sistema ao tentar excluir o veículo";
-                }
+                string msgErro = "Falha no sistema ao tentar excluir o veículo";
 
                 Log.Logger.Error(ex, msgErro + "{VeiculoId}", veiculo.Id);
 
                 return Result.Fail(msgErro);
             }
+
         }
 
         public Result<List<Veiculo>> SelecionarTodos()
