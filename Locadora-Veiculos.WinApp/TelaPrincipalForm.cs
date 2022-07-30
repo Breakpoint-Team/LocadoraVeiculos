@@ -105,6 +105,11 @@ namespace Locadora_Veiculos.WinApp
             controlador.Excluir();
         }
 
+        private void btnGerarPDF_Click(object sender, EventArgs e)
+        {
+            serviceLocator.Get<ControladorLocacao>().GerarPDF();
+
+        }
         #endregion
 
         #region MÉTODOS PRIVADOS
@@ -114,6 +119,8 @@ namespace Locadora_Veiculos.WinApp
             btnInserir.Visible = configuracao.InserirHabilitado;
             btnEditar.Visible = configuracao.EditarHabilitado;
             btnExcluir.Visible = configuracao.ExcluirHabilitado;
+            btnGerarPDF.Visible = configuracao.GerarPDFHabilidado;
+
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
@@ -161,8 +168,10 @@ namespace Locadora_Veiculos.WinApp
             panelRegistros.Controls.Add(listagemControl);
         }
 
+
+
+
         #endregion
 
-       
     }
 }

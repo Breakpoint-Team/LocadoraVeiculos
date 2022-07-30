@@ -15,5 +15,8 @@
         public virtual bool EditarHabilitado { get { return true; } }
 
         public virtual bool ExcluirHabilitado { get { return true; } }
+
+        public virtual bool GerarPDFHabilidado { get { return false; } }
+
     }
 }

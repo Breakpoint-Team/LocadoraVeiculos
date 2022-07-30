@@ -11,5 +11,8 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         public override string TooltipEditar => "Editar uma Locação existente";
 
         public override string TooltipExcluir => "Excluir uma Locação existente";
+
+        public override bool GerarPDFHabilidado { get { return true; } }
+
     }
 }
