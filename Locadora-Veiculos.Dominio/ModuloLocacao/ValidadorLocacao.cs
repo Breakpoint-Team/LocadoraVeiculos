@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Locadora_Veiculos.Dominio.ModuloVeiculo;
 
 namespace Locadora_Veiculos.Dominio.ModuloLocacao
 {
@@ -20,10 +21,16 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             RuleFor(x => x.GrupoVeiculos)
                 .NotNull()
                 .WithMessage("O campo 'Grupo de Veículos' é obrigatório!");
-
             RuleFor(x => x.Veiculo)
                 .NotNull()
                 .WithMessage("O campo 'Veículo' é obrigatório!");
+
+            When(x => x.Veiculo != null, () =>
+            {
+                RuleFor(x => x.Veiculo.StatusVeiculo)
+                .Equal(StatusVeiculo.Disponivel)
+                .WithMessage("O veículo selecionado já está locado!");
+            });
 
             RuleFor(x => x.PlanoCobranca)
                 .NotNull()

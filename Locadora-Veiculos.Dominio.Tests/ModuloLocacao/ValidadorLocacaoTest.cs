@@ -285,13 +285,30 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
 
             locacao1.ValorTotalEfetivo = 0;
 
-            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
+            var validador = new ValidadorLocacao();
 
             var resultado1 = validador.Validate(locacao1);
 
             Assert.AreEqual("O campo 'Valor Total Efetivo' deve ser maior que 0 (zero)!", resultado1.Errors[0].ErrorMessage);
         }
+        [TestMethod]
+        public void Nao_deve_permitir_locar_um_veiculo_ja_locado()
+        {
+            var dataPrevistaDevolucao = DateTime.Today.AddDays(30);
 
+            var veiculo = GetVeiculo();
+            veiculo.StatusVeiculo = StatusVeiculo.Locado;
+
+            Locacao locacao1 = new(GetCondutor(), veiculo,
+            GetGrupoVeiculos(), GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 2000,
+            dataPrevistaDevolucao, GetVeiculo().QuilometragemPercorrida);
+
+            var validador = new ValidadorLocacao();
+
+            var resultado1 = validador.Validate(locacao1);
+
+            Assert.AreEqual("O veículo selecionado já está locado!", resultado1.Errors[0].ErrorMessage);
+        }
 
         #region MÉTODOS PRIVADOS
 
