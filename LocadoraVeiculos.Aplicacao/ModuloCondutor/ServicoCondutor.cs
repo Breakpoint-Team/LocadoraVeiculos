@@ -3,6 +3,7 @@ using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -111,9 +112,20 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCondutor
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o condutor";
+                string msgErro = "";
 
-                Log.Logger.Error(ex, msgErro + " {CondutorId}", condutor.Id);
+                if (ex is DbUpdateException || ex is InvalidOperationException)
+                {
+                    msgErro = $"O condutor {condutor.Nome} está relacionado com uma locação não pode ser excluído";
+
+                    contextoPersistencia.DesfazerAlteracoes();
+                }
+                else
+                {
+                    msgErro = "Falha no sistema ao tentar excluir o Condutor";
+                }
+
+                Log.Logger.Error(ex, msgErro + "{CondutorId}", condutor.Id);
 
                 return Result.Fail(msgErro);
             }
