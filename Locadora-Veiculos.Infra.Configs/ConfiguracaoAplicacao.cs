@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Locadora_Veiculos.Infra.Configs
 {
@@ -13,8 +15,8 @@ namespace Locadora_Veiculos.Infra.Configs
                 .AddJsonFile("ConfiguracaoAplicacao.json")
                 .Build();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
 
+            var connectionString = configuracao.GetConnectionString("SqlServer");
             ConnectionStrings = new ConnectionStrings { SqlServer = connectionString };
 
             var diretorioSaida = configuracao
@@ -23,17 +25,15 @@ namespace Locadora_Veiculos.Infra.Configs
                 .Value;
             ConfiguracaoLogs = new ConfiguracaoLogs { DiretorioSaida = diretorioSaida };
 
-            
-            #region PrecoGNV
+
+            #region PrecoCombustivel
             var precoGNV = configuracao
              .GetSection("ConfiguracaoPrecoCombustivel")
              .GetSection("PrecoGNV")
              .Value;
             var auxGNV = precoGNV.Replace('.',',');
             decimal pGNV = Convert.ToDecimal(auxGNV);
-            #endregion
 
-            #region PrecoGasolina
             var precoGasolina = configuracao
              .GetSection("ConfiguracaoPrecoCombustivel")
              .GetSection("PrecoGasolina")
@@ -41,9 +41,7 @@ namespace Locadora_Veiculos.Infra.Configs
 
             var auxGasolina = precoGasolina.Replace('.', ',');
             decimal pGasolina = Convert.ToDecimal(auxGasolina);
-            #endregion
 
-            #region PrecoDiesel
             var precoDiesel = configuracao
              .GetSection("ConfiguracaoPrecoCombustivel")
              .GetSection("PrecoDiesel")
@@ -51,9 +49,7 @@ namespace Locadora_Veiculos.Infra.Configs
 
             var auxDiesel = precoDiesel.Replace('.', ',');
             decimal pDiesel = Convert.ToDecimal(auxDiesel);
-            #endregion
 
-            #region PrecoAlcool
             var precoAlcool = configuracao
              .GetSection("ConfiguracaoPrecoCombustivel")
              .GetSection("PrecoAlcool")
@@ -61,13 +57,12 @@ namespace Locadora_Veiculos.Infra.Configs
 
             var auxAlcool = precoAlcool.Replace('.', ',');
             decimal pAlcool = Convert.ToDecimal(auxAlcool);
-            #endregion
 
             var data = configuracao
              .GetSection("ConfiguracaoPrecoCombustivel")
              .GetSection("DataAtualizacao")
              .Value;
-
+            #endregion
 
             ConfiguracaoPrecoCombustivel = new ConfiguracaoPrecoCombustivel {
                 PrecoGNV = pGNV,
@@ -77,6 +72,7 @@ namespace Locadora_Veiculos.Infra.Configs
                 DataAtualizacao = data
             };
 
+
         }
 
         public ConfiguracaoLogs ConfiguracaoLogs { get; set; }
@@ -84,6 +80,9 @@ namespace Locadora_Veiculos.Infra.Configs
         public ConnectionStrings ConnectionStrings { get; set; }
 
         public ConfiguracaoPrecoCombustivel ConfiguracaoPrecoCombustivel { get; set; }
+
+
+
     }
 
     public class ConfiguracaoLogs
@@ -103,6 +102,5 @@ namespace Locadora_Veiculos.Infra.Configs
         public decimal PrecoGNV { get; set; }
         public string DataAtualizacao { get; set; }
     }
-
 
 }
