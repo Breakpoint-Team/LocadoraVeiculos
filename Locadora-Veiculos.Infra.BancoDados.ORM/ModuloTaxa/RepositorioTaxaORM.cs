@@ -48,5 +48,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa
         {
             return taxas.ToList();
         }
+
+        public int QuantidadeTaxasCadastradas()
+        {
+            return taxas.ToList().Count;
+        }
     }
 }

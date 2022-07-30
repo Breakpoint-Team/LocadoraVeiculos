@@ -1,10 +1,4 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
-using Locadora_Veiculos.Dominio.ModuloCliente;
-using Locadora_Veiculos.Dominio.ModuloCondutor;
-using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
-using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
-using Locadora_Veiculos.Dominio.ModuloTaxa;
-using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario;

@@ -147,6 +147,25 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             }
         }
 
+        //QuantidadePlanosCadastrados
+
+        public Result<int> QuantidadePlanosCadastrados()
+        {
+            try
+            {
+                return Result.Ok(repositorioPlanoCobranca.QuantidadePlanosCadastrados());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar a quantidade de planos de cobrança";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+
         #region MÉTODOS PRIVADOS
 
         private Result Validar(PlanoCobranca planoCobranca)

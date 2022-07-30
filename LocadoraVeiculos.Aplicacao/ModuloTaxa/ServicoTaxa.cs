@@ -147,6 +147,23 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
             }
         }
 
+        public Result<int> QuantidadeTaxasCadastradas()
+        {
+            try
+            {
+                return Result.Ok(repositorioTaxa.QuantidadeTaxasCadastradas());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar a quantidade de veículos";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+
         #region MÉTODOS PRIVADOS
 
         private Result Validar(Taxa taxa)

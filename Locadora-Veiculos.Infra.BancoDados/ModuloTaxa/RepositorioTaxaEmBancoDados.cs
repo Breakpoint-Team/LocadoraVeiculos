@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System;
 using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
@@ -66,6 +67,23 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
                 [TBTAXA]
             WHERE 
              [DESCRICAO] = @DESCRICAO";
+        
+        private string sqlCountTaxas =>
+           @"SELECT COUNT(*) 
+                FROM TBTAXA;";
+
+        public int QuantidadeTaxasCadastradas()
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comando = new SqlCommand(sqlCountTaxas, conexaoComBanco);
+
+            conexaoComBanco.Open();
+
+            var count = Convert.ToInt32(comando.ExecuteScalar());
+
+            return count;
+        }
 
         public Taxa SelecionarTaxaPorDescricao(string descricao)
         {

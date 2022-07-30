@@ -18,6 +18,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo
             builder.Property(x => x.TipoCombustivel).HasColumnType("varchar(300)").IsRequired();
             builder.Property(x => x.QuilometragemPercorrida).HasColumnType("int").IsRequired();
             builder.Property(x => x.CapacidadeTanque).HasColumnType("decimal(18,2)").IsRequired();
+            builder.Property(x => x.StatusVeiculo).HasConversion<int>().IsRequired();
             builder.Property(x => x.Imagem).HasColumnType("varbinary(max)").IsRequired();
          
             builder.HasOne(x => x.GrupoVeiculos)

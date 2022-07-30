@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using System;
 using System.Data.SqlClient;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ModuloCondutor
@@ -192,6 +193,23 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloCondutor
                 CONDUTOR.[ID_CLIENTE] = CLIENTE.[ID]
             WHERE
                 CONDUTOR.[CPF] = @CPF";
+
+        private string sqlCountCondutores =>
+            @"SELECT COUNT(*) 
+                FROM TBCONDUTOR;";
+
+        public int QuantidadeCondutoresCadastrados()
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comando = new SqlCommand(sqlCountCondutores, conexaoComBanco);
+
+            conexaoComBanco.Open();
+
+            var count = Convert.ToInt32(comando.ExecuteScalar());
+
+            return count;
+        }
 
         public Condutor SelecionarCondutorPorCNH(string cnh)
         {
