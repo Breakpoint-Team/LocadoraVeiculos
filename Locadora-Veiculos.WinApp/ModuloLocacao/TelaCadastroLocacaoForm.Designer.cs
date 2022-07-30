@@ -30,19 +30,42 @@
         {
             this.tabControlLocacao = new System.Windows.Forms.TabControl();
             this.tabPageCliente = new System.Windows.Forms.TabPage();
-            this.listBoxCondutores = new System.Windows.Forms.ListBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboBoxCondutores = new System.Windows.Forms.ComboBox();
             this.comboBoxClientes = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPageVeiculo = new System.Windows.Forms.TabPage();
-            this.listBoxInformacoesVeiculo = new System.Windows.Forms.ListBox();
+            this.labelKmInicial = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.pictureBoxImagem = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.labelPlaca = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.labelModelo = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.comboBoxVeiculos = new System.Windows.Forms.ComboBox();
             this.comboBoxGrupoVeiculos = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPagePlanoCobranca = new System.Windows.Forms.TabPage();
-            this.listBoxInformacoesPlanoCobranca = new System.Windows.Forms.ListBox();
-            this.comboBoxPlanosCobranca = new System.Windows.Forms.ComboBox();
+            this.labelKmLivreValorDia = new System.Windows.Forms.Label();
+            this.labelKmControladoLimiteKm = new System.Windows.Forms.Label();
+            this.labelKmControladoValorKm = new System.Windows.Forms.Label();
+            this.labelKmControladoValorDia = new System.Windows.Forms.Label();
+            this.labelDiarioValorKm = new System.Windows.Forms.Label();
+            this.labelDiarioValorDia = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.radioButtonKmLivre = new System.Windows.Forms.RadioButton();
+            this.radioButtonKmControlado = new System.Windows.Forms.RadioButton();
+            this.radioButtonPlanoDiario = new System.Windows.Forms.RadioButton();
+            this.labelGrupoVeiculos = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabPageTaxas = new System.Windows.Forms.TabPage();
             this.checkedListBoxTaxas = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,6 +78,7 @@
             this.tabControlLocacao.SuspendLayout();
             this.tabPageCliente.SuspendLayout();
             this.tabPageVeiculo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagem)).BeginInit();
             this.tabPagePlanoCobranca.SuspendLayout();
             this.tabPageTaxas.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +98,8 @@
             // 
             // tabPageCliente
             // 
-            this.tabPageCliente.Controls.Add(this.listBoxCondutores);
+            this.tabPageCliente.Controls.Add(this.label18);
+            this.tabPageCliente.Controls.Add(this.comboBoxCondutores);
             this.tabPageCliente.Controls.Add(this.comboBoxClientes);
             this.tabPageCliente.Controls.Add(this.label3);
             this.tabPageCliente.Location = new System.Drawing.Point(4, 24);
@@ -86,33 +111,40 @@
             this.tabPageCliente.Text = "Cliente";
             this.tabPageCliente.UseVisualStyleBackColor = true;
             // 
-            // listBoxCondutores
+            // label18
             // 
-            this.listBoxCondutores.AccessibleName = "";
-            this.listBoxCondutores.FormattingEnabled = true;
-            this.listBoxCondutores.ItemHeight = 15;
-            this.listBoxCondutores.Location = new System.Drawing.Point(27, 107);
-            this.listBoxCondutores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listBoxCondutores.Name = "listBoxCondutores";
-            this.listBoxCondutores.ScrollAlwaysVisible = true;
-            this.listBoxCondutores.Size = new System.Drawing.Size(257, 184);
-            this.listBoxCondutores.TabIndex = 8;
-            this.listBoxCondutores.Tag = "";
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(13, 152);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(61, 15);
+            this.label18.TabIndex = 9;
+            this.label18.Text = "Condutor:";
+            // 
+            // comboBoxCondutores
+            // 
+            this.comboBoxCondutores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCondutores.FormattingEnabled = true;
+            this.comboBoxCondutores.Location = new System.Drawing.Point(80, 144);
+            this.comboBoxCondutores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxCondutores.Name = "comboBoxCondutores";
+            this.comboBoxCondutores.Size = new System.Drawing.Size(225, 23);
+            this.comboBoxCondutores.TabIndex = 8;
             // 
             // comboBoxClientes
             // 
             this.comboBoxClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxClientes.FormattingEnabled = true;
-            this.comboBoxClientes.Location = new System.Drawing.Point(80, 34);
+            this.comboBoxClientes.Location = new System.Drawing.Point(80, 111);
             this.comboBoxClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxClientes.Name = "comboBoxClientes";
-            this.comboBoxClientes.Size = new System.Drawing.Size(204, 23);
+            this.comboBoxClientes.Size = new System.Drawing.Size(225, 23);
             this.comboBoxClientes.TabIndex = 7;
+            this.comboBoxClientes.SelectedIndexChanged += new System.EventHandler(this.comboBoxClientes_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 36);
+            this.label3.Location = new System.Drawing.Point(28, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 15);
             this.label3.TabIndex = 6;
@@ -120,7 +152,14 @@
             // 
             // tabPageVeiculo
             // 
-            this.tabPageVeiculo.Controls.Add(this.listBoxInformacoesVeiculo);
+            this.tabPageVeiculo.Controls.Add(this.labelKmInicial);
+            this.tabPageVeiculo.Controls.Add(this.label17);
+            this.tabPageVeiculo.Controls.Add(this.pictureBoxImagem);
+            this.tabPageVeiculo.Controls.Add(this.label8);
+            this.tabPageVeiculo.Controls.Add(this.labelPlaca);
+            this.tabPageVeiculo.Controls.Add(this.label10);
+            this.tabPageVeiculo.Controls.Add(this.labelModelo);
+            this.tabPageVeiculo.Controls.Add(this.label6);
             this.tabPageVeiculo.Controls.Add(this.comboBoxVeiculos);
             this.tabPageVeiculo.Controls.Add(this.comboBoxGrupoVeiculos);
             this.tabPageVeiculo.Controls.Add(this.label5);
@@ -134,28 +173,86 @@
             this.tabPageVeiculo.Text = "Veículo";
             this.tabPageVeiculo.UseVisualStyleBackColor = true;
             // 
-            // listBoxInformacoesVeiculo
+            // labelKmInicial
             // 
-            this.listBoxInformacoesVeiculo.AccessibleName = "";
-            this.listBoxInformacoesVeiculo.FormattingEnabled = true;
-            this.listBoxInformacoesVeiculo.ItemHeight = 15;
-            this.listBoxInformacoesVeiculo.Location = new System.Drawing.Point(28, 122);
-            this.listBoxInformacoesVeiculo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listBoxInformacoesVeiculo.Name = "listBoxInformacoesVeiculo";
-            this.listBoxInformacoesVeiculo.ScrollAlwaysVisible = true;
-            this.listBoxInformacoesVeiculo.Size = new System.Drawing.Size(284, 169);
-            this.listBoxInformacoesVeiculo.TabIndex = 10;
-            this.listBoxInformacoesVeiculo.Tag = "";
+            this.labelKmInicial.AutoSize = true;
+            this.labelKmInicial.Location = new System.Drawing.Point(112, 93);
+            this.labelKmInicial.Name = "labelKmInicial";
+            this.labelKmInicial.Size = new System.Drawing.Size(0, 15);
+            this.labelKmInicial.TabIndex = 24;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(29, 93);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(62, 15);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "Km inicial:";
+            // 
+            // pictureBoxImagem
+            // 
+            this.pictureBoxImagem.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pictureBoxImagem.Location = new System.Drawing.Point(114, 187);
+            this.pictureBoxImagem.Name = "pictureBoxImagem";
+            this.pictureBoxImagem.Size = new System.Drawing.Size(198, 114);
+            this.pictureBoxImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxImagem.TabIndex = 22;
+            this.pictureBoxImagem.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(26, 177);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(57, 15);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Imagem: ";
+            // 
+            // labelPlaca
+            // 
+            this.labelPlaca.AutoSize = true;
+            this.labelPlaca.Location = new System.Drawing.Point(112, 152);
+            this.labelPlaca.Name = "labelPlaca";
+            this.labelPlaca.Size = new System.Drawing.Size(0, 15);
+            this.labelPlaca.TabIndex = 14;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(29, 152);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 15);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "Placa:";
+            // 
+            // labelModelo
+            // 
+            this.labelModelo.AutoSize = true;
+            this.labelModelo.Location = new System.Drawing.Point(112, 123);
+            this.labelModelo.Name = "labelModelo";
+            this.labelModelo.Size = new System.Drawing.Size(0, 15);
+            this.labelModelo.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(26, 123);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 15);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Modelo:";
             // 
             // comboBoxVeiculos
             // 
             this.comboBoxVeiculos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVeiculos.FormattingEnabled = true;
-            this.comboBoxVeiculos.Location = new System.Drawing.Point(114, 69);
+            this.comboBoxVeiculos.Location = new System.Drawing.Point(114, 57);
             this.comboBoxVeiculos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxVeiculos.Name = "comboBoxVeiculos";
             this.comboBoxVeiculos.Size = new System.Drawing.Size(198, 23);
             this.comboBoxVeiculos.TabIndex = 9;
+            this.comboBoxVeiculos.SelectedIndexChanged += new System.EventHandler(this.comboBoxVeiculos_SelectedIndexChanged);
             // 
             // comboBoxGrupoVeiculos
             // 
@@ -166,11 +263,12 @@
             this.comboBoxGrupoVeiculos.Name = "comboBoxGrupoVeiculos";
             this.comboBoxGrupoVeiculos.Size = new System.Drawing.Size(198, 23);
             this.comboBoxGrupoVeiculos.TabIndex = 8;
+            this.comboBoxGrupoVeiculos.SelectedIndexChanged += new System.EventHandler(this.comboBoxGrupoVeiculos_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 69);
+            this.label5.Location = new System.Drawing.Point(29, 65);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 15);
             this.label5.TabIndex = 7;
@@ -187,9 +285,24 @@
             // 
             // tabPagePlanoCobranca
             // 
-            this.tabPagePlanoCobranca.Controls.Add(this.listBoxInformacoesPlanoCobranca);
-            this.tabPagePlanoCobranca.Controls.Add(this.comboBoxPlanosCobranca);
+            this.tabPagePlanoCobranca.Controls.Add(this.labelKmLivreValorDia);
+            this.tabPagePlanoCobranca.Controls.Add(this.labelKmControladoLimiteKm);
+            this.tabPagePlanoCobranca.Controls.Add(this.labelKmControladoValorKm);
+            this.tabPagePlanoCobranca.Controls.Add(this.labelKmControladoValorDia);
+            this.tabPagePlanoCobranca.Controls.Add(this.labelDiarioValorKm);
+            this.tabPagePlanoCobranca.Controls.Add(this.labelDiarioValorDia);
+            this.tabPagePlanoCobranca.Controls.Add(this.label16);
+            this.tabPagePlanoCobranca.Controls.Add(this.label15);
+            this.tabPagePlanoCobranca.Controls.Add(this.label14);
+            this.tabPagePlanoCobranca.Controls.Add(this.label13);
+            this.tabPagePlanoCobranca.Controls.Add(this.label12);
             this.tabPagePlanoCobranca.Controls.Add(this.label7);
+            this.tabPagePlanoCobranca.Controls.Add(this.label11);
+            this.tabPagePlanoCobranca.Controls.Add(this.radioButtonKmLivre);
+            this.tabPagePlanoCobranca.Controls.Add(this.radioButtonKmControlado);
+            this.tabPagePlanoCobranca.Controls.Add(this.radioButtonPlanoDiario);
+            this.tabPagePlanoCobranca.Controls.Add(this.labelGrupoVeiculos);
+            this.tabPagePlanoCobranca.Controls.Add(this.label9);
             this.tabPagePlanoCobranca.Location = new System.Drawing.Point(4, 24);
             this.tabPagePlanoCobranca.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPagePlanoCobranca.Name = "tabPagePlanoCobranca";
@@ -199,37 +312,169 @@
             this.tabPagePlanoCobranca.Text = "Plano de Cobrança";
             this.tabPagePlanoCobranca.UseVisualStyleBackColor = true;
             // 
-            // listBoxInformacoesPlanoCobranca
+            // labelKmLivreValorDia
             // 
-            this.listBoxInformacoesPlanoCobranca.AccessibleName = "";
-            this.listBoxInformacoesPlanoCobranca.FormattingEnabled = true;
-            this.listBoxInformacoesPlanoCobranca.ItemHeight = 15;
-            this.listBoxInformacoesPlanoCobranca.Location = new System.Drawing.Point(28, 77);
-            this.listBoxInformacoesPlanoCobranca.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listBoxInformacoesPlanoCobranca.Name = "listBoxInformacoesPlanoCobranca";
-            this.listBoxInformacoesPlanoCobranca.ScrollAlwaysVisible = true;
-            this.listBoxInformacoesPlanoCobranca.Size = new System.Drawing.Size(281, 214);
-            this.listBoxInformacoesPlanoCobranca.TabIndex = 10;
-            this.listBoxInformacoesPlanoCobranca.Tag = "";
+            this.labelKmLivreValorDia.AutoSize = true;
+            this.labelKmLivreValorDia.Location = new System.Drawing.Point(211, 260);
+            this.labelKmLivreValorDia.Name = "labelKmLivreValorDia";
+            this.labelKmLivreValorDia.Size = new System.Drawing.Size(0, 15);
+            this.labelKmLivreValorDia.TabIndex = 28;
             // 
-            // comboBoxPlanosCobranca
+            // labelKmControladoLimiteKm
             // 
-            this.comboBoxPlanosCobranca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPlanosCobranca.FormattingEnabled = true;
-            this.comboBoxPlanosCobranca.Location = new System.Drawing.Point(114, 34);
-            this.comboBoxPlanosCobranca.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBoxPlanosCobranca.Name = "comboBoxPlanosCobranca";
-            this.comboBoxPlanosCobranca.Size = new System.Drawing.Size(195, 23);
-            this.comboBoxPlanosCobranca.TabIndex = 9;
+            this.labelKmControladoLimiteKm.AutoSize = true;
+            this.labelKmControladoLimiteKm.Location = new System.Drawing.Point(211, 220);
+            this.labelKmControladoLimiteKm.Name = "labelKmControladoLimiteKm";
+            this.labelKmControladoLimiteKm.Size = new System.Drawing.Size(0, 15);
+            this.labelKmControladoLimiteKm.TabIndex = 27;
+            // 
+            // labelKmControladoValorKm
+            // 
+            this.labelKmControladoValorKm.AutoSize = true;
+            this.labelKmControladoValorKm.Location = new System.Drawing.Point(211, 194);
+            this.labelKmControladoValorKm.Name = "labelKmControladoValorKm";
+            this.labelKmControladoValorKm.Size = new System.Drawing.Size(0, 15);
+            this.labelKmControladoValorKm.TabIndex = 26;
+            // 
+            // labelKmControladoValorDia
+            // 
+            this.labelKmControladoValorDia.AutoSize = true;
+            this.labelKmControladoValorDia.Location = new System.Drawing.Point(211, 168);
+            this.labelKmControladoValorDia.Name = "labelKmControladoValorDia";
+            this.labelKmControladoValorDia.Size = new System.Drawing.Size(0, 15);
+            this.labelKmControladoValorDia.TabIndex = 25;
+            // 
+            // labelDiarioValorKm
+            // 
+            this.labelDiarioValorKm.AutoSize = true;
+            this.labelDiarioValorKm.Location = new System.Drawing.Point(211, 128);
+            this.labelDiarioValorKm.Name = "labelDiarioValorKm";
+            this.labelDiarioValorKm.Size = new System.Drawing.Size(0, 15);
+            this.labelDiarioValorKm.TabIndex = 24;
+            // 
+            // labelDiarioValorDia
+            // 
+            this.labelDiarioValorDia.AutoSize = true;
+            this.labelDiarioValorDia.Location = new System.Drawing.Point(211, 102);
+            this.labelDiarioValorDia.Name = "labelDiarioValorDia";
+            this.labelDiarioValorDia.Size = new System.Drawing.Size(0, 15);
+            this.labelDiarioValorDia.TabIndex = 23;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(119, 260);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(76, 15);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "Valor por dia:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(119, 220);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(80, 15);
+            this.label15.TabIndex = 21;
+            this.label15.Text = "Limite de Km:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(119, 194);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(78, 15);
+            this.label14.TabIndex = 20;
+            this.label14.Text = "Valor por Km:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(119, 168);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(76, 15);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "Valor por dia:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(119, 128);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(78, 15);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "Valor por Km:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 25);
+            this.label7.Location = new System.Drawing.Point(119, 102);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 30);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Plano de \r\nCobrança:";
+            this.label7.Size = new System.Drawing.Size(76, 15);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Valor por dia:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(56, 50);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(213, 15);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "Seleione um dos tipos de plano abaixo:";
+            // 
+            // radioButtonKmLivre
+            // 
+            this.radioButtonKmLivre.AutoSize = true;
+            this.radioButtonKmLivre.Enabled = false;
+            this.radioButtonKmLivre.Location = new System.Drawing.Point(69, 238);
+            this.radioButtonKmLivre.Name = "radioButtonKmLivre";
+            this.radioButtonKmLivre.Size = new System.Drawing.Size(68, 19);
+            this.radioButtonKmLivre.TabIndex = 15;
+            this.radioButtonKmLivre.Text = "Km livre";
+            this.radioButtonKmLivre.UseVisualStyleBackColor = true;
+            this.radioButtonKmLivre.CheckedChanged += new System.EventHandler(this.radioButtonKmLivre_CheckedChanged);
+            // 
+            // radioButtonKmControlado
+            // 
+            this.radioButtonKmControlado.AutoSize = true;
+            this.radioButtonKmControlado.Enabled = false;
+            this.radioButtonKmControlado.Location = new System.Drawing.Point(69, 146);
+            this.radioButtonKmControlado.Name = "radioButtonKmControlado";
+            this.radioButtonKmControlado.Size = new System.Drawing.Size(104, 19);
+            this.radioButtonKmControlado.TabIndex = 14;
+            this.radioButtonKmControlado.Text = "Km controlado";
+            this.radioButtonKmControlado.UseVisualStyleBackColor = true;
+            this.radioButtonKmControlado.CheckedChanged += new System.EventHandler(this.radioButtonKmControlado_CheckedChanged);
+            // 
+            // radioButtonPlanoDiario
+            // 
+            this.radioButtonPlanoDiario.AutoSize = true;
+            this.radioButtonPlanoDiario.Enabled = false;
+            this.radioButtonPlanoDiario.Location = new System.Drawing.Point(69, 80);
+            this.radioButtonPlanoDiario.Name = "radioButtonPlanoDiario";
+            this.radioButtonPlanoDiario.Size = new System.Drawing.Size(88, 19);
+            this.radioButtonPlanoDiario.TabIndex = 13;
+            this.radioButtonPlanoDiario.Text = "Plano diário";
+            this.radioButtonPlanoDiario.UseVisualStyleBackColor = true;
+            this.radioButtonPlanoDiario.CheckedChanged += new System.EventHandler(this.radioButtonPlanoDiario_CheckedChanged);
+            // 
+            // labelGrupoVeiculos
+            // 
+            this.labelGrupoVeiculos.AutoSize = true;
+            this.labelGrupoVeiculos.Location = new System.Drawing.Point(180, 13);
+            this.labelGrupoVeiculos.Name = "labelGrupoVeiculos";
+            this.labelGrupoVeiculos.Size = new System.Drawing.Size(0, 15);
+            this.labelGrupoVeiculos.TabIndex = 12;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(56, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(105, 15);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Grupo de veículos:";
             // 
             // tabPageTaxas
             // 
@@ -251,6 +496,7 @@
             this.checkedListBoxTaxas.Name = "checkedListBoxTaxas";
             this.checkedListBoxTaxas.Size = new System.Drawing.Size(326, 292);
             this.checkedListBoxTaxas.TabIndex = 0;
+            this.checkedListBoxTaxas.SelectedValueChanged += new System.EventHandler(this.checkedListBoxTaxas_SelectedValueChanged);
             // 
             // label2
             // 
@@ -268,6 +514,7 @@
             this.dateTimePickerDataDevolucaoPrevista.Name = "dateTimePickerDataDevolucaoPrevista";
             this.dateTimePickerDataDevolucaoPrevista.Size = new System.Drawing.Size(249, 23);
             this.dateTimePickerDataDevolucaoPrevista.TabIndex = 6;
+            this.dateTimePickerDataDevolucaoPrevista.ValueChanged += new System.EventHandler(this.dateTimePickerDataDevolucaoPrevista_ValueChanged);
             // 
             // btnCancelar
             // 
@@ -287,6 +534,7 @@
             this.btnLimpar.TabIndex = 8;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnGravar
             // 
@@ -343,6 +591,7 @@
             this.tabPageCliente.PerformLayout();
             this.tabPageVeiculo.ResumeLayout(false);
             this.tabPageVeiculo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagem)).EndInit();
             this.tabPagePlanoCobranca.ResumeLayout(false);
             this.tabPagePlanoCobranca.PerformLayout();
             this.tabPageTaxas.ResumeLayout(false);
@@ -360,22 +609,45 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabPage tabPagePlanoCobranca;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabPage tabPageTaxas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataDevolucaoPrevista;
-        private System.Windows.Forms.ListBox listBoxCondutores;
         private System.Windows.Forms.ComboBox comboBoxClientes;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.ComboBox comboBoxVeiculos;
         private System.Windows.Forms.ComboBox comboBoxGrupoVeiculos;
-        private System.Windows.Forms.ComboBox comboBoxPlanosCobranca;
-        private System.Windows.Forms.ListBox listBoxInformacoesVeiculo;
-        private System.Windows.Forms.ListBox listBoxInformacoesPlanoCobranca;
         private System.Windows.Forms.CheckedListBox checkedListBoxTaxas;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelValorPrevisto;
+        private System.Windows.Forms.Label labelPlaca;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelModelo;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox pictureBoxImagem;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelGrupoVeiculos;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.RadioButton radioButtonKmLivre;
+        private System.Windows.Forms.RadioButton radioButtonKmControlado;
+        private System.Windows.Forms.RadioButton radioButtonPlanoDiario;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelKmLivreValorDia;
+        private System.Windows.Forms.Label labelKmControladoLimiteKm;
+        private System.Windows.Forms.Label labelKmControladoValorKm;
+        private System.Windows.Forms.Label labelKmControladoValorDia;
+        private System.Windows.Forms.Label labelDiarioValorKm;
+        private System.Windows.Forms.Label labelDiarioValorDia;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label labelKmInicial;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox comboBoxCondutores;
     }
 }
