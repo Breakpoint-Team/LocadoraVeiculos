@@ -1,6 +1,8 @@
-﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
+﻿using Locadora_Veiculos.Dominio.ModuloLocacao;
+using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Collections.Generic;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa
 {
@@ -13,8 +15,14 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa
             builder.Property(x => x.Descricao).HasColumnType("varchar(300)").IsRequired();
             builder.Property(x => x.Valor).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(x => x.TipoCalculo).HasConversion<int>().IsRequired();
-            //Teste para a criação da tabela TBLocaçãp
-            builder.HasMany(x => x.Locacoes);
+            
+            builder.HasMany(x => x.Locacoes)
+                .WithMany(l => l.TaxasSelecionadas)
+                .UsingEntity<Dictionary<string, object>> (
+                "LocacaoTaxa",
+                x => x.HasOne<Locacao>().WithMany().OnDelete(DeleteBehavior.Cascade),
+                x => x.HasOne<Taxa>().WithMany().OnDelete(DeleteBehavior.Restrict)
+                );
         }
     }
 }

@@ -42,6 +42,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             {
                 repositorioLocacao.Inserir(locacao);
 
+                locacao.Veiculo.AtualizarStatus();
+
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Locação {LocacaoId} inserida com sucesso", locacao.Id);
@@ -101,6 +103,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
             try
             {
+                locacao.Veiculo.AtualizarStatus();
+                
                 repositorioLocacao.Excluir(locacao);
 
                 contextoPersistencia.GravarDados();

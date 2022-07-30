@@ -63,17 +63,17 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         private void ObterDadosTela()
         {
             if (comboBoxCondutores.SelectedIndex != -1)
-                locacao.Condutor = (Condutor)comboBoxCondutores.SelectedItem;
+                locacao.ConfigurarCondutor((Condutor)comboBoxCondutores.SelectedItem);
 
             if (comboBoxVeiculos.SelectedIndex != -1)
             {
-                locacao.Veiculo = (Veiculo)comboBoxVeiculos.SelectedItem;
+                locacao.ConfigurarVeiculo((Veiculo)comboBoxVeiculos.SelectedItem);
                 locacao.QuilometragemInicialVeiculo = locacao.Veiculo.QuilometragemPercorrida;
             }
 
             if (comboBoxGrupoVeiculos.SelectedIndex != -1)
             {
-                locacao.GrupoVeiculos = (GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem;
+                locacao.ConfigurarGrupoVeiculos((GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem);
                 locacao.PlanoCobranca = planosDeCobranca.Find(x => x.GrupoVeiculos == locacao.GrupoVeiculos);
             }
 

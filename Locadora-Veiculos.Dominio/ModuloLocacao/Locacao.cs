@@ -99,6 +99,15 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             GrupoVeiculos = grupo;
             GrupoVeiculosId = grupo.Id;
         }
+        
+        public void ConfigurarVeiculo(Veiculo veiculo)
+        {
+            if (veiculo == null)
+                return;
+
+            Veiculo = veiculo;
+            VeiculoId = veiculo.Id;
+        }
 
         public void ConfigurarPlanoCobranca(PlanoCobranca planoCobranca)
         {

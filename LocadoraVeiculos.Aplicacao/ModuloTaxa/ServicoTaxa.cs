@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Debug("Taxa {TaxaId} inserida com sucesso", taxa.Id);
-                
+
                 return Result.Ok(taxa);
             }
             catch (Exception ex)
@@ -78,7 +79,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Taxa {TaxaId} editada com sucesso", taxa.Id);
-                
+
                 return Result.Ok(taxa);
             }
             catch (Exception ex)
@@ -101,17 +102,27 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Debug("Taxa {TaxaId} excluída com sucesso", taxa.Id);
-                
+
                 return Result.Ok();
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir a Taxa";
+                string msgErro = "";
+
+                if (ex is DbUpdateException || ex is InvalidOperationException)
+                {
+                    msgErro = $"A taxa {taxa} está relacionada com uma locação e não pode ser excluída";
+
+                    contextoPersistencia.DesfazerAlteracoes();
+                }
+                else
+                {
+                    msgErro = "Falha no sistema ao tentar excluir a taxa";
+                }
 
                 Log.Logger.Error(ex, msgErro + "{TaxaId}", taxa.Id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 
@@ -203,10 +214,10 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
         {
             try
             {
-            var taxaEncontrada = repositorioTaxa.SelecionarTaxaPorDescricao(taxa.Descricao);
-            var resultadoComparacao= taxaEncontrada != null &&
-                   taxaEncontrada.Descricao.Equals(taxa.Descricao, StringComparison.OrdinalIgnoreCase) &&
-                   taxaEncontrada.Id != taxa.Id;
+                var taxaEncontrada = repositorioTaxa.SelecionarTaxaPorDescricao(taxa.Descricao);
+                var resultadoComparacao = taxaEncontrada != null &&
+                       taxaEncontrada.Descricao.Equals(taxa.Descricao, StringComparison.OrdinalIgnoreCase) &&
+                       taxaEncontrada.Id != taxa.Id;
                 return Result.Ok(resultadoComparacao);
             }
             catch (Exception ex)
