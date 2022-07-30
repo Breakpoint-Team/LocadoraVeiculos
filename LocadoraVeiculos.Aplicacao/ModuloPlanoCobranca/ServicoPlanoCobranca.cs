@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -136,15 +137,29 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Plano de Cobrança {PlanoCobrancaId} excluído com sucesso", planoCobranca.Id);
-                
+
                 return Result.Ok();
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o Plano de Cobranças";
+                string msgErro = "";
+
+                if (ex is DbUpdateException || ex is InvalidOperationException)
+                {
+                    msgErro = $"O plano de cobrança está relacionado com uma locação e não pode ser excluído";
+
+                    contextoPersistencia.DesfazerAlteracoes();
+                }
+                else
+                {
+                    msgErro = "Falha no sistema ao tentar excluir o Plano de Cobranças";
+                }
+
                 Log.Logger.Error(ex, msgErro + "{PlanoCobrancaId}", planoCobranca.Id);
+
                 return Result.Fail(msgErro);
             }
+
         }
 
         //QuantidadePlanosCadastrados
@@ -183,7 +198,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
 
             if (resultadoComparacao.IsSuccess)
             {
-                if(resultadoComparacao.Value == true)
+                if (resultadoComparacao.Value == true)
                 {
                     erros.Add(new Error("Grupo de Veículos já possui um plano de cobrança cadastrado!"));
                 }
