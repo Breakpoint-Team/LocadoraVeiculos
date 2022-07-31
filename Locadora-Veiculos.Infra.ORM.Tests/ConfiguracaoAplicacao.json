@@ -1,0 +1,9 @@
+{
+  "ConfiguracaoLogs": {
+    "DiretorioSaida": "C:\\logs"
+  },
+
+  "ConnectionStrings": {
+    "SqlServer": "Data Source=(LOCALDB)\\MSSQLLOCALDB;Initial Catalog=LocadoraVeiculosTestesORM;Integrated Security=True"
+  }
+}
