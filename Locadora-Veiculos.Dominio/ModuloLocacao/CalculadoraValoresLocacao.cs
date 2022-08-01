@@ -16,7 +16,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
         {
             decimal valorEfetivoAtual = 0;
 
-                valorEfetivoAtual += GetValorTaxasDevolucao(locacao);
+            valorEfetivoAtual += GetValorTaxasDevolucao(locacao);
             valorEfetivoAtual += GetTaxaCombustivel(locacao);
             valorEfetivoAtual += GetTaxaValorDataDevolucao(locacao, valorEfetivoAtual);
             if (locacao.DataDevolucaoEfetiva < locacao.DataDevolucaoPrevista)
@@ -104,7 +104,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 
             foreach (var item in locacao.TaxasSelecionadas)
             {
-                if (item.TipoTaxa == TipoTaxa.TaxaDevolucao)
+                //if (item.TipoTaxa == TipoTaxa.TaxaDevolucao)
                     resultado += item.Valor;
             }
             return resultado;

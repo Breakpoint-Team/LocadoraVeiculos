@@ -55,7 +55,6 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             ObterDadosTela();
 
             locacao.StatusLocacao = StatusLocacao.EmProcessoDeDevolucao;
-
             var resultadoValidacao = GravarRegistro(locacao);
 
             if (resultadoValidacao.IsFailed)
@@ -170,8 +169,9 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
 
                 locacao.NivelTanqueDevolucao = nivel;
             }
-            
+
             ObterTaxasDevolucaoSelecionadas();
+            locacao.TaxasSelecionadas.AddRange(taxasDevolucaoSelecionadas);
 
             locacao.ValorTotalEfetivo = CalcularValorTotalEfetivo();
         }

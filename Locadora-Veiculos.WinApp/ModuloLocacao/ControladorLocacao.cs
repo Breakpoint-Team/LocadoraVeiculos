@@ -71,7 +71,6 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                GerarPDF();
                 CarregarLocacoes();
             }
         }
@@ -362,152 +361,468 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             var resultadoSelecao = servicoLocacao.SelecionarPorId(id);
             var locacao = resultadoSelecao.Value;
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente gerar um pdf da locação?",
+            string tipo = locacao.StatusLocacao == 0 ? "locação" : "devolução";
+
+            DialogResult resultado = MessageBox.Show("Deseja realmente gerar um pdf da " + tipo + "?",
                   "Geração de PDF", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
             {
-                #region obtem local para salvar o arquivo
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "Pdf File |*.pdf";
+                if (locacao.StatusLocacao == 0)
+                    GerarPdfLocacao(locacao);
+                else
+                    GerarPdfDevolucao(locacao);
+
+                MessageBox.Show("Arquivo PDF foi salvo!", "Geração de PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void GerarPdfLocacao(Locacao locacao)
+        {
+            #region obtem local para salvar o arquivo
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Pdf File |*.pdf";
+            #endregion
+
+            #region gera o pdf 
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                var doc = new Document(PageSize.A4);
+                PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
+
+                doc.Open();
+
+                #region aux
+                Paragraph pulaLinha = new Paragraph("\n");
+                Font fontNormal = FontFactory.GetFont("Arial", 8, Font.NORMAL, new BaseColor(0, 0, 0));
+                Font fontBold = FontFactory.GetFont("Arial", 8, Font.BOLD, new BaseColor(0, 0, 0));
+                Chunk linebreak = new Chunk(new LineSeparator(2f, 100f, new BaseColor(192, 192, 192), Element.ALIGN_CENTER, -1));
+
                 #endregion
 
-                #region gera o pdf 
-                if (sfd.ShowDialog() == DialogResult.OK)
+                var dataEmitido = new Paragraph("Emitido em: " + DateTime.Now, fontNormal);
+                dataEmitido.Alignment = Element.ALIGN_TOP;
+                dataEmitido.Alignment = Element.ALIGN_RIGHT;
+                doc.Add(dataEmitido);
+
+                Paragraph t1 = new Paragraph("Registro de Locação\n\n\n", FontFactory.GetFont("Arial", 12, Font.BOLD, new BaseColor(0, 0, 0)));
+                t1.Alignment = Element.ALIGN_CENTER;
+                doc.Add(t1);
+                doc.Add(pulaLinha);
+
+
+                #region CLIENTE
+                Paragraph infosCliente = new Paragraph("Informações do Cliente\n", fontBold);
+                Phrase cliente = new Phrase($"Nome: {locacao.Condutor.Cliente.Nome}\nDocumento: {locacao.Condutor.Cliente.Documento}\n", fontNormal);
+                doc.Add(infosCliente);
+                doc.Add(cliente);
+                doc.Add(linebreak);
+                doc.Add(pulaLinha);
+
+                #endregion
+
+                #region CONDUTOR
+                Paragraph infosCondutor = new Paragraph("Informações do Condutor\n", fontBold);
+
+                Phrase nomeCondutor = new Phrase($"Nome: {locacao.Condutor.Nome}\n", fontNormal);
+
+                Paragraph sessaoDoc = new Paragraph("Documentos\n", fontBold);
+                Phrase sessaoDocConteudo = new Phrase(
+                    $"CPF: {locacao.Condutor.Cpf}\n" +
+                    $"CNH: {locacao.Condutor.Cnh}\n" +
+                    $"Data de Validade da CNH: {locacao.Condutor.DataValidadeCnh.ToShortDateString()}\n",
+                    fontNormal);
+
+                Paragraph sessaoContato = new Paragraph("Contato:\n", fontBold);
+                Phrase sessaoContatoConteudo = new Phrase(
+                    $"Telefone: {locacao.Condutor.Telefone}\n" +
+                    $"Email: {locacao.Condutor.Email}\n",
+                    fontNormal);
+
+                Paragraph sessaoEndereco = new Paragraph("Endereço:\n", fontBold);
+                Phrase sessaoEnderecoConteudo = new Phrase(
+                    $"{locacao.Condutor.Endereco.Logradouro}, " +
+                    $"{locacao.Condutor.Endereco.Numero} - " +
+                    $"{locacao.Condutor.Endereco.Bairro}, " +
+                    $"{locacao.Condutor.Endereco.Cidade} - " +
+                    $"{locacao.Condutor.Endereco.Estado}\n", fontNormal);
+
+                doc.Add(infosCondutor);
+                doc.Add(nomeCondutor);
+                doc.Add(sessaoDoc);
+                doc.Add(sessaoDocConteudo);
+                doc.Add(sessaoContato);
+                doc.Add(sessaoContatoConteudo);
+                doc.Add(sessaoEndereco);
+                doc.Add(sessaoEnderecoConteudo);
+                doc.Add(linebreak);
+                doc.Add(pulaLinha);
+                #endregion
+
+                #region VEICULO
+                Paragraph infosVeiculo = new Paragraph("Informações do Veículo\n", fontBold);
+
+                Phrase sessaoVeiculoConteudo = new Phrase(
+                $"Modelo: {locacao.Veiculo.Modelo}\n" +
+                $"Marca: {locacao.Veiculo.Marca}\n" +
+                $"Ano: {locacao.Veiculo.Ano}\n" +
+                $"Cor: {locacao.Veiculo.Cor}\n" +
+                $"Placa: {locacao.Veiculo.Placa}\n" +
+                $"Combustível: {locacao.Veiculo.TipoCombustivel}\n" +
+                $"Capacidade do Tanque: {locacao.Veiculo.CapacidadeTanque}\n" +
+                $"Quilometragem: {locacao.Veiculo.QuilometragemPercorrida}\n" +
+                $"Grupo de Veículos: {locacao.Veiculo.GrupoVeiculos.Nome}\n", fontNormal);
+
+                doc.Add(infosVeiculo);
+                doc.Add(sessaoVeiculoConteudo);
+                doc.Add(linebreak);
+                doc.Add(pulaLinha);
+                #endregion
+
+                #region DATAS
+
+                PdfPTable tabelaDatas = new PdfPTable(2);
+
+                PdfPCell cell = new PdfPCell(new Phrase("Datas", fontBold));
+                cell.Colspan = 2;
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaDatas.AddCell(cell);
+
+                tabelaDatas.AddCell(new Phrase("Data da locação", fontBold));
+                tabelaDatas.AddCell(new Phrase("Data de devolução prevista", fontBold));
+
+
+                tabelaDatas.AddCell(new Phrase($"{locacao.DataLocacao.ToShortDateString()}\n", fontNormal));
+                tabelaDatas.AddCell(new Phrase($"{locacao.DataDevolucaoPrevista.ToShortDateString()}\n", fontNormal));
+
+                doc.Add(tabelaDatas);
+                #endregion
+
+                doc.Add(pulaLinha);
+
+                #region PLANOCOBRANCA
+
+                if (locacao.TipoPlanoSelecionado == 0) //diario
                 {
-                    var doc = new Document(PageSize.A4);
-                    PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
+                    PdfPTable tabelaPlanoCobrancaDiario = new PdfPTable(2);
 
-                    doc.Open();
+                    PdfPCell cellPlanoCobrancaDiario1 = new PdfPCell(new Phrase("Plano de Cobrança selecionado: " + locacao.TipoPlanoSelecionado, fontBold));
+                    cellPlanoCobrancaDiario1.Colspan = 2;
+                    cellPlanoCobrancaDiario1.HorizontalAlignment = Element.ALIGN_CENTER;
+                    tabelaPlanoCobrancaDiario.AddCell(cellPlanoCobrancaDiario1);
 
-                    #region aux
-                    Paragraph pulaLinha = new Paragraph("\n");
-                    Font fontNormal = FontFactory.GetFont("Arial", 8, Font.NORMAL, new BaseColor(0, 0, 0));
-                    Font fontBold = FontFactory.GetFont("Arial", 8, Font.BOLD, new BaseColor(0, 0, 0));
-                    Chunk linebreak = new Chunk(new LineSeparator(2f, 100f, new BaseColor(192, 192, 192), Element.ALIGN_CENTER, -1));
-
-                    #endregion
-
-                    var dataEmitido = new Paragraph("Emitido em: " + DateTime.Now, fontNormal);
-                    dataEmitido.Alignment = Element.ALIGN_TOP;
-                    dataEmitido.Alignment = Element.ALIGN_RIGHT;
-                    doc.Add(dataEmitido);
-
-                    Paragraph t1 = new Paragraph("Registro de Locação\n\n\n", FontFactory.GetFont("Arial", 12, Font.BOLD, new BaseColor(0, 0, 0)));
-                    t1.Alignment = Element.ALIGN_CENTER;
-                    doc.Add(t1);
-                    doc.Add(pulaLinha);
+                    tabelaPlanoCobrancaDiario.AddCell(new Phrase($"Valor por dia: R$ {locacao.PlanoCobranca.DiarioValorDia}", fontNormal));
+                    tabelaPlanoCobrancaDiario.AddCell(new Phrase($"Valor por Km: R$ {locacao.PlanoCobranca.DiarioValorKm}", fontNormal));
 
 
-                    #region CLIENTE
-                    Paragraph infosCliente = new Paragraph("Informações do Cliente\n", fontBold);
-                    Phrase cliente = new Phrase($"Nome: {locacao.Condutor.Cliente.Nome}\nDocumento: {locacao.Condutor.Cliente.Documento}\n", fontNormal);
-                    doc.Add(infosCliente);
-                    doc.Add(cliente);
-                    doc.Add(linebreak);
-                    doc.Add(pulaLinha);
-
-                    #endregion
-
-                    #region CONDUTOR
-                    Paragraph infosCondutor = new Paragraph("Informações do Condutor\n", fontBold);
-
-                    Phrase nomeCondutor = new Phrase($"Nome: {locacao.Condutor.Nome}\n", fontNormal);
-
-                    Paragraph sessaoDoc = new Paragraph("Documentos\n", fontBold);
-                    Phrase sessaoDocConteudo = new Phrase(
-                        $"CPF: {locacao.Condutor.Cpf}\n" +
-                        $"CNH: {locacao.Condutor.Cnh}\n" +
-                        $"Data de Validade da CNH: {locacao.Condutor.DataValidadeCnh.ToShortDateString()}\n",
-                        fontNormal);
-
-                    Paragraph sessaoContato = new Paragraph("Contato:\n", fontBold);
-                    Phrase sessaoContatoConteudo = new Phrase(
-                        $"Telefone: {locacao.Condutor.Telefone}\n" +
-                        $"Email: {locacao.Condutor.Email}\n",
-                        fontNormal);
-
-                    Paragraph sessaoEndereco = new Paragraph("Endereço:\n", fontBold);
-                    Phrase sessaoEnderecoConteudo = new Phrase(
-                        $"{locacao.Condutor.Endereco.Logradouro}, " +
-                        $"{locacao.Condutor.Endereco.Numero} - " +
-                        $"{locacao.Condutor.Endereco.Bairro}, " +
-                        $"{locacao.Condutor.Endereco.Cidade} - " +
-                        $"{locacao.Condutor.Endereco.Estado}\n", fontNormal);
-
-                    doc.Add(infosCondutor);
-                    doc.Add(nomeCondutor);
-                    doc.Add(sessaoDoc);
-                    doc.Add(sessaoDocConteudo);
-                    doc.Add(sessaoContato);
-                    doc.Add(sessaoContatoConteudo);
-                    doc.Add(sessaoEndereco);
-                    doc.Add(sessaoEnderecoConteudo);
-                    doc.Add(linebreak);
-                    doc.Add(pulaLinha);
-                    #endregion
-
-                    #region VEICULO
-                    Paragraph infosVeiculo = new Paragraph("Informações do Veículo\n", fontBold);
-
-                    Phrase sessaoVeiculoConteudo = new Phrase(
-                    $"Modelo: {locacao.Veiculo.Modelo}\n" +
-                    $"Marca: {locacao.Veiculo.Marca}\n" +
-                    $"Ano: {locacao.Veiculo.Ano}\n" +
-                    $"Cor: {locacao.Veiculo.Cor}\n" +
-                    $"Placa: {locacao.Veiculo.Placa}\n" +
-                    $"Combustível: {locacao.Veiculo.TipoCombustivel}\n" +
-                    $"Capacidade do Tanque: {locacao.Veiculo.CapacidadeTanque}\n" +
-                    $"Quilometragem: {locacao.Veiculo.QuilometragemPercorrida}\n" +
-                    $"Grupo de Veículos: {locacao.Veiculo.GrupoVeiculos.Nome}\n", fontNormal);
-
-                    doc.Add(infosVeiculo);
-                    doc.Add(sessaoVeiculoConteudo);
-                    doc.Add(linebreak);
-                    doc.Add(pulaLinha);
-                    #endregion
-
-                    #region DATAS
-                    Phrase dataLocacao = new Phrase($"Data da locação: {locacao.DataLocacao.ToShortDateString()}\n", fontBold);
-                    Phrase dataDevolucaoPrevista = new Phrase($"Data de devolução prevista: {locacao.DataLocacao.ToShortDateString()}\n", fontBold);
-                    doc.Add(dataLocacao);
-                    doc.Add(dataDevolucaoPrevista);
-                    #endregion
-
-                    #region PLANOCOBRANCA
-                    Phrase planoCobranca = new Phrase($"Plano de cobrança: {locacao.TipoPlanoSelecionado}\n", fontBold);
-                    doc.Add(planoCobranca);
-                    #endregion
-
-                    #region TAXAS
-                    Phrase taxa = new Phrase($"Taxas selecionadas: \n", fontBold);
-                    doc.Add(taxa);
-                    foreach (var t in locacao.TaxasSelecionadas)
-                    {
-                        doc.Add(new Paragraph(t.ToString() + "\n", fontNormal));
-                    }
-                    doc.Add(pulaLinha);
-                    #endregion
-
-                    #region TOTALPREVISTO
-                    Phrase totalPrevisto = new Phrase($"Total previsto: R$ {locacao.ValorTotalPrevisto}\n", fontBold);
-                    doc.Add(totalPrevisto);
-                    #endregion
-
-                    //#region RODAPE
-                    //var rodape = new Paragraph("Breakpoint - Academia do Programador 2022", fontNormal);
-                    //rodape.Alignment = Element.ALIGN_BOTTOM;
-                    //rodape.Alignment = Element.ALIGN_CENTER;
-                    //doc.Add(rodape);
-                    //#endregion
-
-                    doc.Close();
-
-                    MessageBox.Show("Arquivo PDF foi salvo!",
-                    "Geração de PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    doc.Add(tabelaPlanoCobrancaDiario);
                 }
                 #endregion
+
+                doc.Add(pulaLinha);
+
+                #region TAXAS
+
+                PdfPTable tabelaTaxas = new PdfPTable(3);
+
+                PdfPCell cell1 = new PdfPCell(new Phrase("Taxas Selecionadas", fontBold));
+                cell1.Colspan = 3;
+                cell1.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaTaxas.AddCell(cell1);
+
+                tabelaTaxas.AddCell(new Phrase("Descrição", fontBold));
+                tabelaTaxas.AddCell(new Phrase("Valor", fontBold));
+                tabelaTaxas.AddCell(new Phrase("Tipo de Cálculo", fontBold));
+
+                foreach (var t in locacao.TaxasSelecionadas)
+                {
+                    if (t.TipoTaxa == TipoTaxa.TaxaLocacao)
+                    {
+                        tabelaTaxas.AddCell(new Phrase($"{t.Descricao}", fontNormal));
+                        tabelaTaxas.AddCell(new Phrase($"{t.Valor}", fontNormal));
+                        tabelaTaxas.AddCell(new Phrase($"{t.TipoCalculo}", fontNormal));
+                    }
+                }
+                doc.Add(tabelaTaxas);
+                #endregion
+
+                doc.Add(pulaLinha);
+
+                #region TOTALPREVISTO
+                Paragraph totalPrevisto = new Paragraph($"Valor total previsto: R$ {locacao.ValorTotalPrevisto}\n", fontBold);
+                totalPrevisto.Alignment = Element.ALIGN_CENTER;
+                doc.Add(totalPrevisto);
+                #endregion
+
+
+                doc.Close();
+
             }
+            #endregion
+        }
+        private void GerarPdfDevolucao(Locacao locacao)
+        {
+            #region obtem local para salvar o arquivo
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Pdf File |*.pdf";
+            #endregion
+
+            #region gera o pdf 
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                var doc = new Document(PageSize.A4);
+                PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
+
+                doc.Open();
+
+                #region aux
+                Paragraph pulaLinha = new Paragraph("\n");
+                Font fontNormal = FontFactory.GetFont("Arial", 8, Font.NORMAL, new BaseColor(0, 0, 0));
+                Font fontBold = FontFactory.GetFont("Arial", 8, Font.BOLD, new BaseColor(0, 0, 0));
+                Chunk linebreak = new Chunk(new LineSeparator(2f, 100f, new BaseColor(192, 192, 192), Element.ALIGN_CENTER, -1));
+
+                #endregion
+
+                #region HEADER
+
+                var dataEmitido = new Paragraph("Emitido em: " + DateTime.Now, fontNormal);
+                dataEmitido.Alignment = Element.ALIGN_TOP;
+                dataEmitido.Alignment = Element.ALIGN_RIGHT;
+                doc.Add(dataEmitido);
+
+                Paragraph t1 = new Paragraph("Registro de Devolução\n\n\n", FontFactory.GetFont("Arial", 12, Font.BOLD, new BaseColor(0, 0, 0)));
+                t1.Alignment = Element.ALIGN_CENTER;
+                doc.Add(t1);
+                doc.Add(pulaLinha);
+                #endregion
+
+                #region CLIENTE
+                Paragraph infosCliente = new Paragraph("Informações do Cliente\n", fontBold);
+                Phrase cliente = new Phrase($"Nome: {locacao.Condutor.Cliente.Nome}\nDocumento: {locacao.Condutor.Cliente.Documento}\n", fontNormal);
+                doc.Add(infosCliente);
+                doc.Add(cliente);
+                doc.Add(linebreak);
+                doc.Add(pulaLinha);
+
+                #endregion
+
+                #region CONDUTOR
+                Paragraph infosCondutor = new Paragraph("Informações do Condutor\n", fontBold);
+
+                Phrase nomeCondutor = new Phrase($"Nome: {locacao.Condutor.Nome}\n", fontNormal);
+
+                Paragraph sessaoDoc = new Paragraph("Documentos\n", fontBold);
+                Phrase sessaoDocConteudo = new Phrase(
+                    $"CPF: {locacao.Condutor.Cpf}\n" +
+                    $"CNH: {locacao.Condutor.Cnh}\n" +
+                    $"Data de Validade da CNH: {locacao.Condutor.DataValidadeCnh.ToShortDateString()}\n",
+                    fontNormal);
+
+                Paragraph sessaoContato = new Paragraph("Contato:\n", fontBold);
+                Phrase sessaoContatoConteudo = new Phrase(
+                    $"Telefone: {locacao.Condutor.Telefone}\n" +
+                    $"Email: {locacao.Condutor.Email}\n",
+                    fontNormal);
+
+                Paragraph sessaoEndereco = new Paragraph("Endereço:\n", fontBold);
+                Phrase sessaoEnderecoConteudo = new Phrase(
+                    $"{locacao.Condutor.Endereco.Logradouro}, " +
+                    $"{locacao.Condutor.Endereco.Numero} - " +
+                    $"{locacao.Condutor.Endereco.Bairro}, " +
+                    $"{locacao.Condutor.Endereco.Cidade} - " +
+                    $"{locacao.Condutor.Endereco.Estado}\n", fontNormal);
+
+                doc.Add(infosCondutor);
+                doc.Add(nomeCondutor);
+                doc.Add(sessaoDoc);
+                doc.Add(sessaoDocConteudo);
+                doc.Add(sessaoContato);
+                doc.Add(sessaoContatoConteudo);
+                doc.Add(sessaoEndereco);
+                doc.Add(sessaoEnderecoConteudo);
+                doc.Add(linebreak);
+                doc.Add(pulaLinha);
+                #endregion
+
+                #region VEICULO
+                Paragraph infosVeiculo = new Paragraph("Informações do Veículo\n", fontBold);
+
+                Phrase sessaoVeiculoConteudo = new Phrase(
+                $"Modelo: {locacao.Veiculo.Modelo}\n" +
+                $"Marca: {locacao.Veiculo.Marca}\n" +
+                $"Ano: {locacao.Veiculo.Ano}\n" +
+                $"Cor: {locacao.Veiculo.Cor}\n" +
+                $"Placa: {locacao.Veiculo.Placa}\n" +
+                $"Combustível: {locacao.Veiculo.TipoCombustivel}\n" +
+                $"Capacidade do Tanque: {locacao.Veiculo.CapacidadeTanque}\n" +
+                $"Quilometragem: {locacao.Veiculo.QuilometragemPercorrida}\n" +
+                $"Grupo de Veículos: {locacao.Veiculo.GrupoVeiculos.Nome}\n", fontNormal);
+
+                doc.Add(infosVeiculo);
+                doc.Add(sessaoVeiculoConteudo);
+                doc.Add(linebreak);
+                doc.Add(pulaLinha);
+                #endregion
+
+                #region DATAS
+
+                PdfPTable tabelaDatas = new PdfPTable(3);
+
+                PdfPCell cell = new PdfPCell(new Phrase("Datas", fontBold));
+                cell.Colspan = 3;
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaDatas.AddCell(cell);
+
+                tabelaDatas.AddCell(new Phrase("Data da locação", fontBold));
+                tabelaDatas.AddCell(new Phrase("Data de devolução prevista", fontBold));
+                tabelaDatas.AddCell(new Phrase("Data de devolução efetiva", fontBold));
+
+
+                tabelaDatas.AddCell(new Phrase($"{locacao.DataLocacao.ToShortDateString()}\n", fontNormal));
+                tabelaDatas.AddCell(new Phrase($"{locacao.DataDevolucaoPrevista.ToShortDateString()}\n", fontNormal));
+                tabelaDatas.AddCell(new Phrase($"{locacao.DataDevolucaoEfetiva.Value.ToShortDateString()}\n", fontNormal));
+
+                TimeSpan diasPrevistos = Convert.ToDateTime(locacao.DataDevolucaoPrevista) - Convert.ToDateTime(locacao.DataLocacao);
+                int diasP = diasPrevistos.Days;
+
+                TimeSpan diasLocacao = Convert.ToDateTime(locacao.DataDevolucaoEfetiva.Value) - Convert.ToDateTime(locacao.DataLocacao);
+                int diasL = diasLocacao.Days;
+
+                string statusDevolucao = diasL > diasP ? $"Atrasada" : "No prazo";
+
+                PdfPCell cell2 = new PdfPCell(new Phrase("Status da devolução: "+statusDevolucao, fontNormal));
+                cell2.Colspan = 3;
+                cell2.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaDatas.AddCell(cell2);
+
+                PdfPCell cell3 = new PdfPCell(new Phrase("Total de dias de locação: " + diasL, fontNormal));
+                cell3.Colspan = 3;
+                cell3.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaDatas.AddCell(cell3);
+
+                doc.Add(tabelaDatas);
+                doc.Add(pulaLinha);
+                #endregion
+
+                #region PLANOCOBRANCA
+
+                if (locacao.TipoPlanoSelecionado == 0) //diario
+                {
+                    PdfPTable tabelaPlanoCobrancaDiario = new PdfPTable(2);
+
+                    PdfPCell cellPlanoCobrancaDiario1 = new PdfPCell(new Phrase("Plano de Cobrança selecionado: " + locacao.TipoPlanoSelecionado, fontBold));
+                    cellPlanoCobrancaDiario1.Colspan = 2;
+                    cellPlanoCobrancaDiario1.HorizontalAlignment = Element.ALIGN_CENTER;
+                    tabelaPlanoCobrancaDiario.AddCell(cellPlanoCobrancaDiario1);
+
+                    tabelaPlanoCobrancaDiario.AddCell(new Phrase($"Valor por dia: R$ {locacao.PlanoCobranca.DiarioValorDia}", fontNormal));
+                    tabelaPlanoCobrancaDiario.AddCell(new Phrase($"Valor por Km: R$ {locacao.PlanoCobranca.DiarioValorKm}", fontNormal));
+
+
+                    doc.Add(tabelaPlanoCobrancaDiario);
+                }
+                doc.Add(pulaLinha);
+                #endregion
+
+                #region TAXAS
+
+                PdfPTable tabelaTaxas = new PdfPTable(3);
+
+                PdfPCell cell1 = new PdfPCell(new Phrase("Taxas selecionadas", fontBold));
+                cell1.Colspan = 3;
+                cell1.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaTaxas.AddCell(cell1);
+
+                tabelaTaxas.AddCell(new Phrase("Descrição", fontBold));
+                tabelaTaxas.AddCell(new Phrase("Valor", fontBold));
+                tabelaTaxas.AddCell(new Phrase("Tipo de Cálculo", fontBold));
+
+                foreach (var t in locacao.TaxasSelecionadas)
+                {
+                    if (t.TipoTaxa == TipoTaxa.TaxaLocacao)
+                    {
+                        tabelaTaxas.AddCell(new Phrase($"{t.Descricao}", fontNormal));
+                        tabelaTaxas.AddCell(new Phrase($"{t.Valor}", fontNormal));
+                        tabelaTaxas.AddCell(new Phrase($"{t.TipoCalculo}", fontNormal));
+                    }
+                }
+
+                PdfPTable tabelaTaxasDevolucao = new PdfPTable(3);
+
+                PdfPCell cellTaxasDevolucaoHeader = new PdfPCell(new Phrase("Taxas de devolução", fontBold));
+                cellTaxasDevolucaoHeader.Colspan = 3;
+                cellTaxasDevolucaoHeader.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaTaxasDevolucao.AddCell(cellTaxasDevolucaoHeader);
+
+                tabelaTaxasDevolucao.AddCell(new Phrase("Descrição", fontBold));
+                tabelaTaxasDevolucao.AddCell(new Phrase("Valor", fontBold));
+                tabelaTaxasDevolucao.AddCell(new Phrase("Tipo de Cálculo", fontBold));
+
+                foreach (var t in locacao.TaxasSelecionadas)
+                {
+                    if (t.TipoTaxa == TipoTaxa.TaxaDevolucao)
+                    {
+                        tabelaTaxasDevolucao.AddCell(new Phrase($"{t.Descricao}", fontNormal));
+                        tabelaTaxasDevolucao.AddCell(new Phrase($"{t.Valor}", fontNormal));
+                        tabelaTaxasDevolucao.AddCell(new Phrase($"{t.TipoCalculo}", fontNormal));
+                    }
+                }
+
+                doc.Add(tabelaTaxas);
+                doc.Add(tabelaTaxasDevolucao);
+                doc.Add(pulaLinha);
+                #endregion
+
+                #region VALORFINAL
+
+                PdfPTable tabelaValores = new PdfPTable(3);
+                var taxas = locacao.TaxasSelecionadas;
+
+                PdfPCell cellValorFinalHeader = new PdfPCell(new Phrase("Valor total da locação", fontBold));
+                cellValorFinalHeader.Colspan = 3;
+                cellValorFinalHeader.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaValores.AddCell(cellValorFinalHeader);
+
+                #region planocobranca
+                if (locacao.TipoPlanoSelecionado == 0) //diario
+                {
+                    tabelaValores.AddCell(new Phrase($"Plano de Cobrança - Valor por dia", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.DiarioValorDia} x {diasL}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.DiarioValorDia * diasL}", fontNormal));
+
+                    tabelaValores.AddCell(new Phrase($"Plano de Cobrança - Valor por Km", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.DiarioValorKm} x {diasL}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.DiarioValorKm * diasL}", fontNormal));
+                }
+                #endregion
+
+                #region taxas
+                int tipoCalculo; 
+                foreach(var t in taxas)
+                {
+                    tabelaValores.AddCell(new Phrase($"{t.Descricao}",fontNormal));
+
+                    if (t.TipoCalculo == 0) //diario
+                        tipoCalculo = diasL;
+                    else
+                        tipoCalculo = 1; //fixo
+
+                    tabelaValores.AddCell(new Phrase($"{t.Valor} x {tipoCalculo}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{t.Valor * tipoCalculo}", fontNormal));
+
+                }
+                #endregion
+
+                PdfPCell cellValorFinal = new PdfPCell(new Phrase("Valor total", fontBold));
+                cellValorFinal.Colspan = 2;
+                cellValorFinal.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaValores.AddCell(cellValorFinal);
+                tabelaValores.AddCell(new Phrase($"R$ {locacao.ValorTotalEfetivo}", fontBold));
+                doc.Add(tabelaValores);
+                #endregion
+
+                doc.Close();
+            }
+            #endregion
         }
 
     }
