@@ -12,6 +12,8 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
         public string Descricao { get; set; }
         public Decimal Valor { get; set; }
         public TipoCalculo TipoCalculo { get; set; }
+        public TipoTaxa TipoTaxa { get; set; }
+
         public List<Locacao> Locacoes { get; set; }
 
         #endregion
@@ -43,12 +45,14 @@ namespace Locadora_Veiculos.Dominio.ModuloTaxa
                    Id.Equals(taxa.Id) &&
                    Descricao == taxa.Descricao &&
                    Valor == taxa.Valor &&
-                   TipoCalculo == taxa.TipoCalculo;
+                   TipoCalculo == taxa.TipoCalculo &&
+                   TipoTaxa == taxa.TipoTaxa &&
+                   EqualityComparer<List<Locacao>>.Default.Equals(Locacoes, taxa.Locacoes);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Descricao, Valor, TipoCalculo);
+            return HashCode.Combine(Id, Descricao, Valor, TipoCalculo, TipoTaxa, Locacoes);
         }
     }
 }
