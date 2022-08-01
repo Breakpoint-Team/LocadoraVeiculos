@@ -172,7 +172,6 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             comboBoxTipoCombustivel.Items.Add("Diesel");
             comboBoxTipoCombustivel.Items.Add("Álcool");
             comboBoxTipoCombustivel.Items.Add("GNV");
-            comboBoxTipoCombustivel.Items.Add("Flex");
         }
 
         private void CarregarGrupoVeiculos(List<GrupoVeiculos> gruposVeiculos)

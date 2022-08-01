@@ -83,6 +83,16 @@ namespace Locadora_Veiculos.WinApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap devolver_locação {
+            get {
+                object obj = ResourceManager.GetObject("devolver locação", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap edit_note_FILL0_wght200_GRAD0_opsz24 {
             get {
                 object obj = ResourceManager.GetObject("edit_note_FILL0_wght200_GRAD0_opsz24", resourceCulture);

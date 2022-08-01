@@ -145,6 +145,38 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             }
         }
 
+        public void DevolverLocacao()
+        {
+            var id = listagemLocacoes.ObtemIdLocacaoSelecionado();
+
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione uma locação primeiro!",
+                "Edição de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Result<Locacao> resultado = servicoLocacao.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Devolução de Locação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var locacaoSelecionada = resultado.Value;
+
+            TelaDevolucaoLocacaoForm tela = new TelaDevolucaoLocacaoForm(ObterTaxas());
+            
+            tela.Locacao = locacaoSelecionada;
+
+            tela.GravarRegistro = servicoLocacao.DevolverLocacao;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+                CarregarLocacoes();
+        }
+        
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolBoxLocacao();

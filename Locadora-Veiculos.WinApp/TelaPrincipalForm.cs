@@ -110,6 +110,11 @@ namespace Locadora_Veiculos.WinApp
             serviceLocator.Get<ControladorLocacao>().GerarPDF();
 
         }
+        private void btnDevolucaoLocacao_Click(object sender, EventArgs e)
+        {
+            serviceLocator.Get<ControladorLocacao>().DevolverLocacao();
+        }
+
         #endregion
 
         #region MÉTODOS PRIVADOS
@@ -120,7 +125,7 @@ namespace Locadora_Veiculos.WinApp
             btnEditar.Visible = configuracao.EditarHabilitado;
             btnExcluir.Visible = configuracao.ExcluirHabilitado;
             btnGerarPDF.Visible = configuracao.GerarPDFHabilidado;
-
+            btnDevolucaoLocacao.Visible = configuracao.DevolucaoLocacaoHabilidado;
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)

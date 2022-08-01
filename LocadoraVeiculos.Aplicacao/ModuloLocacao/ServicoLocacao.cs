@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloLocacao;
+using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -97,6 +98,51 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             }
         }
 
+        public Result<Locacao> DevolverLocacao(Locacao locacao)
+        {
+            Log.Logger.Debug("Tentando devolver Locação... {@Locacao}", locacao);
+
+            Result resultadoValidacao = ValidarLocacao(locacao);
+
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (Error erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar devolver a Locação {LocacaoId} - {Motivo}",
+                        locacao.Id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
+            {
+                repositorioLocacao.Editar(locacao);
+
+                locacao.StatusLocacao = StatusLocacao.Fechada;
+
+                locacao.Veiculo.StatusVeiculo = StatusVeiculo.Disponivel;
+
+                int quilometragemLocacao = Convert.ToInt32(locacao.QuilometragemFinalVeiculo - locacao.QuilometragemInicialVeiculo);
+
+                locacao.Veiculo.QuilometragemPercorrida = quilometragemLocacao;
+
+                contextoPersistencia.GravarDados();
+
+                Log.Logger.Information("Locação {LocacaoId} devolvida com sucesso", locacao.Id);
+
+                return Result.Ok(locacao);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar devolver a locação";
+
+                Log.Logger.Error(ex, msgErro + " {LocacaoId}", locacao.Id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
         public Result Excluir(Locacao locacao)
         {
             Log.Logger.Debug("Tentando excluir Locação... {@Locacao}", locacao);
@@ -104,7 +150,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             try
             {
                 locacao.Veiculo.AtualizarStatus();
-                
+
                 repositorioLocacao.Excluir(locacao);
 
                 contextoPersistencia.GravarDados();

@@ -38,6 +38,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
+            this.checkBoxTaxaDevolucao = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericValor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,7 +83,7 @@
             // radioButtonFixo
             // 
             this.radioButtonFixo.AutoSize = true;
-            this.radioButtonFixo.Location = new System.Drawing.Point(175, 83);
+            this.radioButtonFixo.Location = new System.Drawing.Point(184, 82);
             this.radioButtonFixo.Name = "radioButtonFixo";
             this.radioButtonFixo.Size = new System.Drawing.Size(47, 19);
             this.radioButtonFixo.TabIndex = 3;
@@ -96,7 +97,6 @@
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(209, 23);
             this.txtDescricao.TabIndex = 0;
-            this.txtDescricao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numericValor
             // 
@@ -115,24 +115,23 @@
             this.numericValor.Name = "numericValor";
             this.numericValor.Size = new System.Drawing.Size(109, 23);
             this.numericValor.TabIndex = 1;
-            this.numericValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(247, 128);
+            this.btnCancelar.Location = new System.Drawing.Point(247, 152);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(166, 128);
+            this.btnLimpar.Location = new System.Drawing.Point(166, 152);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpar.TabIndex = 5;
+            this.btnLimpar.TabIndex = 6;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -140,19 +139,30 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(85, 128);
+            this.btnGravar.Location = new System.Drawing.Point(85, 152);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
-            this.btnGravar.TabIndex = 4;
+            this.btnGravar.TabIndex = 5;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
+            // 
+            // checkBoxTaxaDevolucao
+            // 
+            this.checkBoxTaxaDevolucao.AutoSize = true;
+            this.checkBoxTaxaDevolucao.Location = new System.Drawing.Point(113, 108);
+            this.checkBoxTaxaDevolucao.Name = "checkBoxTaxaDevolucao";
+            this.checkBoxTaxaDevolucao.Size = new System.Drawing.Size(142, 19);
+            this.checkBoxTaxaDevolucao.TabIndex = 4;
+            this.checkBoxTaxaDevolucao.Text = "A taxa é de devolução";
+            this.checkBoxTaxaDevolucao.UseVisualStyleBackColor = true;
             // 
             // TelaCadastroTaxaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 171);
+            this.ClientSize = new System.Drawing.Size(334, 196);
+            this.Controls.Add(this.checkBoxTaxaDevolucao);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnGravar);
@@ -190,5 +200,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnGravar;
+        private System.Windows.Forms.CheckBox checkBoxTaxaDevolucao;
     }
 }

@@ -15,6 +15,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa
             builder.Property(x => x.Descricao).HasColumnType("varchar(300)").IsRequired();
             builder.Property(x => x.Valor).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(x => x.TipoCalculo).HasConversion<int>().IsRequired();
+            builder.Property(x => x.TipoTaxa).HasConversion<int>().IsRequired();
             
             builder.HasMany(x => x.Locacoes)
                 .WithMany(l => l.TaxasSelecionadas)

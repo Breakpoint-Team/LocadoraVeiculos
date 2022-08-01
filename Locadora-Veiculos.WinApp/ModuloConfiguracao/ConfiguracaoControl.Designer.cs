@@ -127,7 +127,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(517, 250);
+            this.tabPage1.Size = new System.Drawing.Size(566, 362);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Preço dos Combustíveis ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -222,10 +222,11 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(24, 33);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(525, 278);
+            this.tabControl1.Size = new System.Drawing.Size(574, 390);
             this.tabControl1.TabIndex = 19;
             // 
             // ConfiguracaoControl

@@ -148,7 +148,8 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         {
             if (taxas.Count > 0)
                 foreach (var taxa in taxas)
-                    checkedListBoxTaxas.Items.Add(taxa);
+                    if (taxa.TipoTaxa == TipoTaxa.TaxaLocacao)
+                        checkedListBoxTaxas.Items.Add(taxa);
         }
 
         private void CarregarCondutores(Cliente cliente)
@@ -178,15 +179,23 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             labelGrupoVeiculos.Text = grupo.Nome;
 
             var planoCobrancaGrupo = planosDeCobranca.Find(x => x.GrupoVeiculos == grupo);
-            planoTela = planoCobrancaGrupo;
-            labelDiarioValorDia.Text = $"R$ {planoCobrancaGrupo.DiarioValorDia}";
-            labelDiarioValorKm.Text = $"R$ {planoCobrancaGrupo.DiarioValorKm}";
+            if (planoCobrancaGrupo != null)
+            {
+                planoTela = planoCobrancaGrupo;
+                labelDiarioValorDia.Text = $"R$ {planoCobrancaGrupo.DiarioValorDia}";
+                labelDiarioValorKm.Text = $"R$ {planoCobrancaGrupo.DiarioValorKm}";
 
-            labelKmControladoValorDia.Text = $"R$ {planoCobrancaGrupo.KmControladoValorDia}";
-            labelKmControladoValorKm.Text = $"R$ {planoCobrancaGrupo.KmControladoValorKm}";
-            labelKmControladoLimiteKm.Text = $"{planoCobrancaGrupo.KmControladoLimiteKm} Km";
+                labelKmControladoValorDia.Text = $"R$ {planoCobrancaGrupo.KmControladoValorDia}";
+                labelKmControladoValorKm.Text = $"R$ {planoCobrancaGrupo.KmControladoValorKm}";
+                labelKmControladoLimiteKm.Text = $"{planoCobrancaGrupo.KmControladoLimiteKm} Km";
 
-            labelKmLivreValorDia.Text = $"R$ {planoCobrancaGrupo.KmLivreValorDia}";
+                labelKmLivreValorDia.Text = $"R$ {planoCobrancaGrupo.KmLivreValorDia}";
+            }
+            else
+            {
+                MessageBox.Show("O grupo de veículos selecionado ainda não possui um plano de cobrança relacionado!",
+                    "Alerta",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void ExibirImagem(byte[] imagem)

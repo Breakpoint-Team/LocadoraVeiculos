@@ -25,7 +25,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
                 .NotNull()
                 .WithMessage("O campo 'Veículo' é obrigatório!");
 
-            When(x => x.Veiculo != null, () =>
+            When(x => x.Veiculo != null && x.StatusLocacao != StatusLocacao.EmProcessoDeDevolucao, () =>
             {
                 RuleFor(x => x.Veiculo.StatusVeiculo)
                 .Equal(StatusVeiculo.Disponivel)
@@ -53,7 +53,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
                .WithMessage("O campo 'Valor Total Previsto' deve ser maior que 0 (zero)!");
 
 
-            When(x => x.StatusLocacao == StatusLocacao.Fechada, () =>
+            When(x => x.StatusLocacao == StatusLocacao.Fechada || x.StatusLocacao == StatusLocacao.EmProcessoDeDevolucao, () =>
             {
                 RuleFor(x => x.QuilometragemFinalVeiculo)
                 .GreaterThanOrEqualTo(x => x.QuilometragemInicialVeiculo)

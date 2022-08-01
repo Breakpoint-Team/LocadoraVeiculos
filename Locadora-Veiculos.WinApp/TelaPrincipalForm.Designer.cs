@@ -44,6 +44,7 @@
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.btnGerarPDF = new System.Windows.Forms.ToolStripButton();
+            this.btnDevolucaoLocacao = new System.Windows.Forms.ToolStripButton();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.statusStripRodape = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
@@ -162,10 +163,11 @@
             this.btnEditar,
             this.btnExcluir,
             this.btnGerarPDF,
+            this.btnDevolucaoLocacao,
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 24);
             this.toolbox.Name = "toolbox";
-            this.toolbox.Size = new System.Drawing.Size(800, 41);
+            this.toolbox.Size = new System.Drawing.Size(800, 25);
             this.toolbox.TabIndex = 1;
             this.toolbox.Text = "toolStrip1";
             // 
@@ -225,6 +227,21 @@
             this.btnGerarPDF.Visible = false;
             this.btnGerarPDF.Click += new System.EventHandler(this.btnGerarPDF_Click);
             // 
+            // btnDevolucaoLocacao
+            // 
+            this.btnDevolucaoLocacao.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDevolucaoLocacao.DoubleClickEnabled = true;
+            this.btnDevolucaoLocacao.Image = global::Locadora_Veiculos.WinApp.Properties.Resources.devolver_locação;
+            this.btnDevolucaoLocacao.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnDevolucaoLocacao.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDevolucaoLocacao.Name = "btnDevolucaoLocacao";
+            this.btnDevolucaoLocacao.Padding = new System.Windows.Forms.Padding(5);
+            this.btnDevolucaoLocacao.Size = new System.Drawing.Size(38, 38);
+            this.btnDevolucaoLocacao.Text = "Devolução de locação";
+            this.btnDevolucaoLocacao.ToolTipText = "Devolução de locação";
+            this.btnDevolucaoLocacao.Visible = false;
+            this.btnDevolucaoLocacao.Click += new System.EventHandler(this.btnDevolucaoLocacao_Click);
+            // 
             // labelTipoCadastro
             // 
             this.labelTipoCadastro.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
@@ -232,7 +249,7 @@
             this.labelTipoCadastro.ForeColor = System.Drawing.Color.LightSeaGreen;
             this.labelTipoCadastro.LinkColor = System.Drawing.Color.LightSeaGreen;
             this.labelTipoCadastro.Name = "labelTipoCadastro";
-            this.labelTipoCadastro.Size = new System.Drawing.Size(94, 38);
+            this.labelTipoCadastro.Size = new System.Drawing.Size(94, 22);
             this.labelTipoCadastro.Text = "toolStripLabel1";
             // 
             // statusStripRodape
@@ -254,9 +271,9 @@
             // panelRegistros
             // 
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRegistros.Location = new System.Drawing.Point(0, 65);
+            this.panelRegistros.Location = new System.Drawing.Point(0, 49);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(800, 363);
+            this.panelRegistros.Size = new System.Drawing.Size(800, 379);
             this.panelRegistros.TabIndex = 3;
             // 
             // TelaPrincipalForm
@@ -309,5 +326,6 @@
         private System.Windows.Forms.ToolStripMenuItem preçoCombustToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem locaçõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton btnGerarPDF;
+        private System.Windows.Forms.ToolStripButton btnDevolucaoLocacao;
     }
 }

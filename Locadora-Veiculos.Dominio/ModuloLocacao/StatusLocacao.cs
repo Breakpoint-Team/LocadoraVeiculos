@@ -9,8 +9,11 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 
         [Description("Fechada")]
         Fechada,
-        
+
+        [Description("Em processo de devolução")]
+        EmProcessoDeDevolucao,
+
         [Description("Inativa")]
-        Inativa,
+        Inativa
     }
 }

@@ -17,6 +17,8 @@
         public virtual bool ExcluirHabilitado { get { return true; } }
 
         public virtual bool GerarPDFHabilidado { get { return false; } }
+        
+        public virtual bool DevolucaoLocacaoHabilidado { get { return false; } }
 
     }
 }

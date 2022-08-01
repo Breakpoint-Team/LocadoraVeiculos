@@ -44,6 +44,11 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
 
             taxa.TipoCalculo = (TipoCalculo)(radioButtonDiario.Checked == true ? 0 : 1);
 
+            if (checkBoxTaxaDevolucao.Checked)
+                taxa.TipoTaxa = TipoTaxa.TaxaDevolucao;
+            else
+                taxa.TipoTaxa = TipoTaxa.TaxaLocacao;
+
             var resultadoValidacao = GravarRegistro(taxa);
             if (resultadoValidacao.IsFailed)
             {
