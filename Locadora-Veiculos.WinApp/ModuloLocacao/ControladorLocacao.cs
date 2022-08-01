@@ -694,7 +694,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                 cell2.HorizontalAlignment = Element.ALIGN_CENTER;
                 tabelaDatas.AddCell(cell2);
 
-                PdfPCell cell3 = new PdfPCell(new Phrase("Total de dias de locação: " + diasL, fontNormal));
+                PdfPCell cell3 = new PdfPCell(new Phrase("Total de dias de locação: " + diasL, fontBold));
                 cell3.Colspan = 3;
                 cell3.HorizontalAlignment = Element.ALIGN_CENTER;
                 tabelaDatas.AddCell(cell3);
@@ -722,6 +722,27 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                 }
                 doc.Add(pulaLinha);
                 #endregion
+
+
+                PdfPTable tabelaKM = new PdfPTable(2);
+
+                PdfPCell cellQuilometragemHeader = new PdfPCell(new Phrase("Quilometragem", fontBold));
+                cellQuilometragemHeader.Colspan = 2;
+                cellQuilometragemHeader.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaKM.AddCell(cellQuilometragemHeader);
+
+                tabelaKM.AddCell(new Phrase($"Inicial: {locacao.QuilometragemInicialVeiculo}", fontNormal));
+                tabelaKM.AddCell(new Phrase($"Final: {locacao.QuilometragemFinalVeiculo}", fontNormal));
+
+                int nKmpercorridos = locacao.QuilometragemFinalVeiculo.Value - locacao.QuilometragemInicialVeiculo;
+
+                PdfPCell totalKmPercorridos = new PdfPCell(new Phrase($"Km percorridos: {nKmpercorridos}", fontBold));
+                totalKmPercorridos.Colspan = 2;
+                totalKmPercorridos.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaKM.AddCell(totalKmPercorridos);
+
+                doc.Add(tabelaKM);
+                doc.Add(pulaLinha);
 
                 #region TAXAS
 
@@ -771,7 +792,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                 doc.Add(tabelaTaxasDevolucao);
                 doc.Add(pulaLinha);
                 #endregion
-
+               
                 #region VALORFINAL
 
                 PdfPTable tabelaValores = new PdfPTable(3);
@@ -790,8 +811,8 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                     tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.DiarioValorDia * diasL}", fontNormal));
 
                     tabelaValores.AddCell(new Phrase($"Plano de Cobrança - Valor por Km", fontNormal));
-                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.DiarioValorKm} x {diasL}", fontNormal));
-                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.DiarioValorKm * diasL}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.DiarioValorKm} x {nKmpercorridos}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.DiarioValorKm * nKmpercorridos}", fontNormal));
                 }
                 #endregion
 
@@ -812,6 +833,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                 }
                 #endregion
 
+                doc.NewPage();
                 PdfPCell cellValorFinal = new PdfPCell(new Phrase("Valor total", fontBold));
                 cellValorFinal.Colspan = 2;
                 cellValorFinal.HorizontalAlignment = Element.ALIGN_CENTER;
