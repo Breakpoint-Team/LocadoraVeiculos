@@ -1,4 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
+using System;
 
 namespace Locadora_Veiculos.Dominio.ModuloLocacao
 {
@@ -16,6 +17,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
         {
             decimal valorEfetivoAtual = 0;
 
+            valorEfetivoAtual += GetValorPlanoCobranca(locacao);
             valorEfetivoAtual += GetValorTaxas(locacao);
             valorEfetivoAtual += GetTaxaCombustivel(locacao);
             valorEfetivoAtual += GetTaxaValorDataDevolucao(locacao, valorEfetivoAtual);
@@ -110,6 +112,33 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             return resultado;
         }
 
-        
+        private decimal GetValorPlanoCobranca(Locacao locacao)
+        {
+            var total = 0m;
+         
+            TimeSpan timeSpanDias = Convert.ToDateTime(locacao.DataDevolucaoEfetiva.Value) - Convert.ToDateTime(locacao.DataLocacao);
+            var qtdDiasLocacao = timeSpanDias.Days;
+
+            var km = locacao.QuilometragemFinalVeiculo.Value - locacao.QuilometragemInicialVeiculo;
+            if(locacao.TipoPlanoSelecionado == ModuloPlanoCobranca.TipoPlano.Diario)
+            {
+                total += locacao.PlanoCobranca.DiarioValorDia * qtdDiasLocacao;
+                total += locacao.PlanoCobranca.DiarioValorKm * km; 
+            }
+            else if (locacao.TipoPlanoSelecionado == ModuloPlanoCobranca.TipoPlano.Controlado)
+            {
+                total += locacao.PlanoCobranca.DiarioValorDia * qtdDiasLocacao;
+                if(locacao.QuilometragemFinalVeiculo > locacao.PlanoCobranca.KmControladoLimiteKm)
+                {
+                    total += locacao.PlanoCobranca.KmControladoValorKm * km;
+                }
+            }
+            else if (locacao.TipoPlanoSelecionado == ModuloPlanoCobranca.TipoPlano.Livre)
+            {
+                total += locacao.PlanoCobranca.DiarioValorDia * qtdDiasLocacao;
+            }
+
+            return total;
+        }
     }
 }

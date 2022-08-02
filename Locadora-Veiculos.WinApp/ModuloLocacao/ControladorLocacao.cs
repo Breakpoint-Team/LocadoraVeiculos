@@ -875,6 +875,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                 tabelaValores.AddCell(cellValorFinalHeader);
 
                 #region planocobranca
+
                 if (locacao.TipoPlanoSelecionado == TipoPlano.Diario) //diario
                 {
                     tabelaValores.AddCell(new Phrase($"Plano de Cobrança - Valor por dia", fontNormal));
@@ -901,6 +902,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                     tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.KmLivreValorDia} x {diasL}", fontNormal));
                     tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.KmLivreValorDia * diasL}", fontNormal));
                 }
+
                 #endregion
 
                 #region taxas
