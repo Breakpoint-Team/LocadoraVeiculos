@@ -50,8 +50,8 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                     locacao.Condutor.Cliente.Nome, locacao.Condutor.Cnh,
                     locacao.Veiculo.Modelo, locacao.Veiculo.Placa,
                     locacao.TipoPlanoSelecionado.GetDescription(),
-                    locacao.ValorTotalPrevisto, locacao.DataDevolucaoPrevista,
-                    locacao.StatusLocacao.GetDescription(), locacao.DataDevolucaoEfetiva);
+                    locacao.ValorTotalPrevisto, locacao.DataDevolucaoPrevista.ToShortDateString(),
+                    locacao.StatusLocacao.GetDescription(), locacao.DataDevolucaoEfetiva.Value.ToShortDateString());
             }
         }
     }

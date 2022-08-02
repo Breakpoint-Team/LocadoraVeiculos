@@ -30,9 +30,7 @@
         {
             this.btnGravar = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txturlseq = new System.Windows.Forms.TextBox();
             this.txtDiretorioLogs = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtDataAtualizacao = new System.Windows.Forms.Label();
@@ -68,24 +66,15 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.txturlseq);
             this.tabPage2.Controls.Add(this.txtDiretorioLogs);
-            this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(517, 250);
+            this.tabPage2.Size = new System.Drawing.Size(566, 362);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Escrita de Logs";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // txturlseq
-            // 
-            this.txturlseq.Location = new System.Drawing.Point(121, 70);
-            this.txturlseq.Name = "txturlseq";
-            this.txturlseq.Size = new System.Drawing.Size(227, 23);
-            this.txturlseq.TabIndex = 3;
             // 
             // txtDiretorioLogs
             // 
@@ -93,15 +82,6 @@
             this.txtDiretorioLogs.Name = "txtDiretorioLogs";
             this.txtDiretorioLogs.Size = new System.Drawing.Size(227, 23);
             this.txtDiretorioLogs.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 70);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 15);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "URL de Logs Seq: ";
             // 
             // label2
             // 
@@ -253,9 +233,7 @@
         #endregion
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox txturlseq;
         private System.Windows.Forms.TextBox txtDiretorioLogs;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label txtDataAtualizacao;

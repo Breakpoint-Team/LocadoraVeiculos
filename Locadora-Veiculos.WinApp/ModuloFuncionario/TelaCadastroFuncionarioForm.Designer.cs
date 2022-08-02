@@ -52,7 +52,6 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(300, 23);
             this.txtNome.TabIndex = 0;
-            this.txtNome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
@@ -121,7 +120,6 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(123, 23);
             this.txtLogin.TabIndex = 1;
-            this.txtLogin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtSenha
             // 
@@ -130,7 +128,6 @@
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(123, 23);
             this.txtSenha.TabIndex = 2;
-            this.txtSenha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnGravar
             // 
@@ -191,7 +188,6 @@
             this.numericSalario.Name = "numericSalario";
             this.numericSalario.Size = new System.Drawing.Size(120, 23);
             this.numericSalario.TabIndex = 4;
-            this.numericSalario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TelaCadastroFuncionarioForm
             // 

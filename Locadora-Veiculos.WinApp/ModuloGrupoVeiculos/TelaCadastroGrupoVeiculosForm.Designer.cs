@@ -51,7 +51,6 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(217, 23);
             this.txtNome.TabIndex = 0;
-            this.txtNome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCancelar
             // 

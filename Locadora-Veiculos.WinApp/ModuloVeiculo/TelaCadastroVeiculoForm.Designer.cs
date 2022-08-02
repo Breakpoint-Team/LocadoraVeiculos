@@ -118,7 +118,6 @@
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(217, 23);
             this.txtModelo.TabIndex = 0;
-            this.txtModelo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCor
             // 
@@ -126,7 +125,6 @@
             this.txtCor.Name = "txtCor";
             this.txtCor.Size = new System.Drawing.Size(217, 23);
             this.txtCor.TabIndex = 2;
-            this.txtCor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPlaca
             // 
@@ -136,7 +134,6 @@
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(217, 23);
             this.txtPlaca.TabIndex = 3;
-            this.txtPlaca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numericQuilometragemPercorrida
             // 
@@ -149,7 +146,6 @@
             this.numericQuilometragemPercorrida.Name = "numericQuilometragemPercorrida";
             this.numericQuilometragemPercorrida.Size = new System.Drawing.Size(217, 23);
             this.numericQuilometragemPercorrida.TabIndex = 5;
-            this.numericQuilometragemPercorrida.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // comboBoxGrupoVeiculos
             // 
@@ -202,7 +198,6 @@
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(217, 23);
             this.txtMarca.TabIndex = 1;
-            this.txtMarca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numericAno
             // 
@@ -220,7 +215,6 @@
             this.numericAno.Name = "numericAno";
             this.numericAno.Size = new System.Drawing.Size(217, 23);
             this.numericAno.TabIndex = 4;
-            this.numericAno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericAno.Value = new decimal(new int[] {
             1920,
             0,
@@ -249,7 +243,6 @@
             this.numericCapacidadeTanque.Name = "numericCapacidadeTanque";
             this.numericCapacidadeTanque.Size = new System.Drawing.Size(217, 23);
             this.numericCapacidadeTanque.TabIndex = 7;
-            this.numericCapacidadeTanque.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericCapacidadeTanque.Value = new decimal(new int[] {
             10,
             0,

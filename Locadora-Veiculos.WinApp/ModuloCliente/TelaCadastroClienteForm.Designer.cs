@@ -164,7 +164,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(291, 23);
             this.txtNome.TabIndex = 0;
-            this.txtNome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtEmail
             // 
@@ -172,7 +171,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(291, 23);
             this.txtEmail.TabIndex = 1;
-            this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtTelefone
             // 
@@ -181,7 +179,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(121, 23);
             this.txtTelefone.TabIndex = 2;
-            this.txtTelefone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCpf
             // 
@@ -190,7 +187,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(121, 23);
             this.txtCpf.TabIndex = 5;
-            this.txtCpf.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCnpj
             // 
@@ -199,7 +195,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtCnpj.Name = "txtCnpj";
             this.txtCnpj.Size = new System.Drawing.Size(121, 23);
             this.txtCnpj.TabIndex = 6;
-            this.txtCnpj.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCidade
             // 
@@ -207,7 +202,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(164, 23);
             this.txtCidade.TabIndex = 9;
-            this.txtCidade.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtBairro
             // 
@@ -215,7 +209,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(291, 23);
             this.txtBairro.TabIndex = 10;
-            this.txtBairro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtRua
             // 
@@ -223,7 +216,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(291, 23);
             this.txtRua.TabIndex = 11;
-            this.txtRua.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radioButtonPessoaFisica
             // 
@@ -293,7 +285,6 @@ namespace Locadora_Veiculos.WinApp.ModuloCliente
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(46, 23);
             this.txtNumero.TabIndex = 12;
-            this.txtNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtNumero.ValidatingType = typeof(int);
             // 
             // btnGravar
