@@ -171,7 +171,10 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             }
 
             ObterTaxasDevolucaoSelecionadas();
-            locacao.TaxasSelecionadas.AddRange(taxasDevolucaoSelecionadas);
+            foreach(var item in taxasDevolucaoSelecionadas)
+            {
+                locacao.TaxasSelecionadas.Add(item);
+            }
 
             locacao.ValorTotalEfetivo = CalcularValorTotalEfetivo();
         }

@@ -68,16 +68,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 
         public DateTime DataDevolucaoPrevista { get; set; }
 
-        public int QuilometragemInicialVeiculo
-        {
-            get
-            {
-                if (Veiculo != null)
-                    return Veiculo.QuilometragemPercorrida;
-                return -1;
-            }
-            set { }
-        }
+        public int QuilometragemInicialVeiculo { get; set; }
 
         public int? QuilometragemFinalVeiculo { get; set; }
 

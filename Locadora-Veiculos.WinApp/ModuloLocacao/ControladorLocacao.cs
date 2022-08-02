@@ -832,7 +832,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                     if (t.TipoTaxa == TipoTaxa.TaxaDevolucao)
                     {
                         temTaxaDevolucao = true;
-                        return;
+                        break;
                     }
                 }
 

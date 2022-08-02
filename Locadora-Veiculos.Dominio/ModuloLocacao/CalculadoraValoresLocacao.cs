@@ -16,7 +16,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
         {
             decimal valorEfetivoAtual = 0;
 
-            valorEfetivoAtual += GetValorTaxasDevolucao(locacao);
+            valorEfetivoAtual += GetValorTaxas(locacao);
             valorEfetivoAtual += GetTaxaCombustivel(locacao);
             valorEfetivoAtual += GetTaxaValorDataDevolucao(locacao, valorEfetivoAtual);
             if (locacao.DataDevolucaoEfetiva < locacao.DataDevolucaoPrevista)
@@ -34,17 +34,18 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             if (locacao.DataDevolucaoPrevista == locacao.DataDevolucaoEfetiva)
                 return 0;
 
-            if (locacao.DataDevolucaoEfetiva < locacao.DataDevolucaoPrevista)
-            {
-                int quantidadeDiasPrevistosLocacao = locacao.DataDevolucaoPrevista.DayOfYear - locacao.DataLocacao.DayOfYear;
-                int quantidadeDiasRealLocacao = locacao.DataDevolucaoEfetiva.Value.DayOfYear - locacao.DataLocacao.DayOfYear;
+            //if (locacao.DataDevolucaoEfetiva < locacao.DataDevolucaoPrevista)
+            //{
+            //    int quantidadeDiasPrevistosLocacao = locacao.DataDevolucaoPrevista.DayOfYear - locacao.DataLocacao.DayOfYear;
+            //    int quantidadeDiasRealLocacao = locacao.DataDevolucaoEfetiva.Value.DayOfYear - locacao.DataLocacao.DayOfYear;
 
-                var valorPrevistoEmDias = locacao.ValorTotalPrevisto / quantidadeDiasPrevistosLocacao;
+            //    var valorPrevistoEmDias = locacao.ValorTotalPrevisto / quantidadeDiasPrevistosLocacao;
 
-                resultado = valorPrevistoEmDias * quantidadeDiasRealLocacao;
-            }
+            //    resultado = valorPrevistoEmDias * quantidadeDiasRealLocacao;
+            //}
 
-            else if (locacao.DataDevolucaoEfetiva > locacao.DataDevolucaoPrevista)
+            //else
+            if (locacao.DataDevolucaoEfetiva > locacao.DataDevolucaoPrevista)
             {
                 decimal dezPorCento = valorEfetivoAtual * 0.1m;
                 resultado = resultado + dezPorCento;
@@ -98,16 +99,17 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             return resultado;
         }
 
-        private decimal GetValorTaxasDevolucao(Locacao locacao)
+        private decimal GetValorTaxas(Locacao locacao)
         {
             decimal resultado = 0m;
 
             foreach (var item in locacao.TaxasSelecionadas)
             {
-                //if (item.TipoTaxa == TipoTaxa.TaxaDevolucao)
                     resultado += item.Valor;
             }
             return resultado;
         }
+
+        
     }
 }
