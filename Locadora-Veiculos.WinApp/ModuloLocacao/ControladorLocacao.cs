@@ -151,7 +151,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione uma locação primeiro!",
-                "Edição de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Devolução de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -165,6 +165,13 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             }
 
             var locacaoSelecionada = resultado.Value;
+
+            if(locacaoSelecionada.StatusLocacao == StatusLocacao.Fechada)
+            {
+                MessageBox.Show("A locação selecionada já está fechada!",
+                "Devolução de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             TelaDevolucaoLocacaoForm tela = new TelaDevolucaoLocacaoForm(ObterTaxas());
             
@@ -347,6 +354,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
 
         #endregion
 
+        #region PDF
         public void GerarPDF()
         {
             var id = listagemLocacoes.ObtemIdLocacaoSelecionado();
@@ -936,8 +944,8 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             #endregion
         }
 
+        #endregion
     }
-
 
 
 }
