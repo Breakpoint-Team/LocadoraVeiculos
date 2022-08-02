@@ -125,7 +125,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
                 int quilometragemLocacao = Convert.ToInt32(locacao.QuilometragemFinalVeiculo - locacao.QuilometragemInicialVeiculo);
 
-                locacao.Veiculo.QuilometragemPercorrida = quilometragemLocacao;
+                locacao.Veiculo.QuilometragemPercorrida += quilometragemLocacao;
 
                 contextoPersistencia.GravarDados();
 
