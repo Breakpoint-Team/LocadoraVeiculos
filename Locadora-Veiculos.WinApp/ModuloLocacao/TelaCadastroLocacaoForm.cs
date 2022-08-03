@@ -25,6 +25,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         private List<Taxa> taxas;
         private List<PlanoCobranca> planosDeCobranca;
         private PlanoCobranca planoTela;
+        private GrupoVeiculos grupoTela;
 
         public TelaCadastroLocacaoForm(List<Cliente> clientes, List<Condutor> condutores,
             List<GrupoVeiculos> gruposDeVeiculo, List<Veiculo> veiculos,
@@ -73,8 +74,8 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
 
             if (comboBoxGrupoVeiculos.SelectedIndex != -1)
             {
-                locacao.ConfigurarGrupoVeiculos((GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem);
-                locacao.PlanoCobranca = planosDeCobranca.Find(x => x.GrupoVeiculos == locacao.GrupoVeiculos);
+                grupoTela = ((GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem);
+                locacao.PlanoCobranca = planosDeCobranca.Find(x => x.GrupoVeiculos == grupoTela);
             }
 
             locacao.TipoPlanoSelecionado = ObterTipoPlanoSelecionado();
@@ -279,22 +280,22 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                 comboBoxCondutores.SelectedItem = locacao.Condutor;
             }
 
-            if (locacao.GrupoVeiculos != null)
-            {
-                comboBoxGrupoVeiculos.SelectedItem = locacao.GrupoVeiculos;
-                labelGrupoVeiculos.Text = locacao.GrupoVeiculos.Nome;
-            }
-
             if (locacao.Veiculo != null)
             {
                 ExibirDadosVeiculoSelecionado(locacao.Veiculo);
+
+                if (locacao.Veiculo.GrupoVeiculos != null)
+                {
+                    comboBoxGrupoVeiculos.SelectedItem = locacao.Veiculo.GrupoVeiculos;
+                    labelGrupoVeiculos.Text = locacao.Veiculo.GrupoVeiculos.Nome;
+                }
             }
 
             if (locacao.PlanoCobranca != null)
             {
                 HabilitarCamposPlanoCobranca();
 
-                CarregarPlanoSelecionado(locacao.GrupoVeiculos);
+                CarregarPlanoSelecionado(locacao.Veiculo.GrupoVeiculos);
 
                 planoTela = locacao.PlanoCobranca;
 

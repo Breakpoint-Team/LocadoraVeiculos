@@ -31,7 +31,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                 new DataGridViewTextBoxColumn { DataPropertyName = "ValorTotalPervisto", HeaderText = "Total previsto"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "DataDevolucaoPrevista", HeaderText = "Devolução prevista"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "StatusLocacao", HeaderText = "Status locação"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "DataDevolucaoEfetiva", HeaderText = "Devolução efetiva"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "dataDevolucaoEfetiva", HeaderText = "Devolução efetiva"},
         };
             return colunas;
         }
@@ -45,13 +45,17 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             grid.Rows.Clear();
             foreach (Locacao locacao in locacoes)
             {
+                string dataDevolucaoEfetiva = "";
+                if (locacao.DataDevolucaoEfetiva != null && locacao.DataDevolucaoEfetiva.Value.Date != new DateTime(1, 1, 1).Date)
+                    dataDevolucaoEfetiva = locacao.DataDevolucaoEfetiva.Value.ToShortDateString();
+
                 grid.Rows.Add(
                     locacao.Id, locacao.DataLocacao,
                     locacao.Condutor.Cliente.Nome, locacao.Condutor.Cnh,
                     locacao.Veiculo.Modelo, locacao.Veiculo.Placa,
                     locacao.TipoPlanoSelecionado.GetDescription(),
                     locacao.ValorTotalPrevisto, locacao.DataDevolucaoPrevista.ToShortDateString(),
-                    locacao.StatusLocacao.GetDescription(), locacao.DataDevolucaoEfetiva.Value.ToShortDateString());
+                    locacao.StatusLocacao.GetDescription(), dataDevolucaoEfetiva);
             }
         }
     }

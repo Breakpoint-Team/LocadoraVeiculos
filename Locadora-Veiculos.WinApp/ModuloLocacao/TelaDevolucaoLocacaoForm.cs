@@ -90,7 +90,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         {
             labelClienteNome.Text = locacao.Condutor.Cliente.Nome;
             labelCondutorNome.Text = locacao.Condutor.Nome;
-            labelGrupoVeiculosNome.Text = locacao.GrupoVeiculos.Nome;
+            labelGrupoVeiculosNome.Text = locacao.Veiculo.GrupoVeiculos.Nome;
             labelVeiculoModelo.Text = locacao.Veiculo.Modelo;
             labelPlanoCobrancaTipo.Text = locacao.TipoPlanoSelecionado.GetDescription();
             labelDataLocacao.Text = locacao.DataLocacao.ToShortDateString();

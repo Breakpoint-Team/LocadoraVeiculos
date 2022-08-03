@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             {
                 repositorioLocacao.Inserir(locacao);
 
-                locacao.Veiculo.AtualizarStatus();
+                locacao.Veiculo.StatusVeiculo = StatusVeiculo.Locado;
 
                 contextoPersistencia.GravarDados();
 
@@ -54,6 +54,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar inserir a locação";
+
+                contextoPersistencia.DesfazerAlteracoes();
 
                 Log.Logger.Error(ex, msgErro + " {LocacaoId}", locacao.Id);
 
@@ -91,6 +93,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar editar a locação";
+
+                contextoPersistencia.DesfazerAlteracoes();
 
                 Log.Logger.Error(ex, msgErro + " {LocacaoId}", locacao.Id);
 
@@ -137,6 +141,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             {
                 string msgErro = "Falha no sistema ao tentar devolver a locação";
 
+                contextoPersistencia.DesfazerAlteracoes();
+
                 Log.Logger.Error(ex, msgErro + " {LocacaoId}", locacao.Id);
 
                 return Result.Fail(msgErro);
@@ -147,9 +153,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
         {
             Log.Logger.Debug("Tentando excluir Locação... {@Locacao}", locacao);
 
+            if (locacao.StatusLocacao == StatusLocacao.Aberta)
+                return Result.Fail("A locação está com o status em aberto e não pode ser excluída");
+
             try
             {
-                locacao.Veiculo.AtualizarStatus();
+                locacao.Veiculo.StatusVeiculo = StatusVeiculo.Disponivel;
 
                 repositorioLocacao.Excluir(locacao);
 
@@ -162,6 +171,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir a locação";
+
+                contextoPersistencia.DesfazerAlteracoes();
 
                 Log.Logger.Error(ex, msgErro + " {LocacaoId}", locacao.Id);
 
