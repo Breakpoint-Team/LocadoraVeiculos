@@ -18,9 +18,9 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
                     .WithMessage("A data de validade da CNH do condutor selecionado não deve ser menor que a data de devolução prevista!");
             });
 
-            RuleFor(x => x.GrupoVeiculos)
-                .NotNull()
-                .WithMessage("O campo 'Grupo de Veículos' é obrigatório!");
+            //RuleFor(x => x.GrupoVeiculos)
+            //    .NotNull()
+            //    .WithMessage("O campo 'Grupo de Veículos' é obrigatório!");
             RuleFor(x => x.Veiculo)
                 .NotNull()
                 .WithMessage("O campo 'Veículo' é obrigatório!");

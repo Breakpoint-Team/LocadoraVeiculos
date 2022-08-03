@@ -1,5 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
+using Locadora_Veiculos.Dominio.ModuloLocacao;
 using System;
 using System.Collections.Generic;
 
@@ -36,6 +37,7 @@ namespace Locadora_Veiculos.Dominio.ModuloPlanoCobranca
         public decimal KmLivreValorDia { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public Guid GrupoVeiculosId { get; set; }
+        public List<Locacao> Locacoes { get; set; }
 
         #endregion
 
@@ -63,12 +65,45 @@ namespace Locadora_Veiculos.Dominio.ModuloPlanoCobranca
                    KmControladoValorKm == cobranca.KmControladoValorKm &&
                    KmControladoLimiteKm == cobranca.KmControladoLimiteKm &&
                    KmLivreValorDia == cobranca.KmLivreValorDia &&
-                   EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, cobranca.GrupoVeiculos);
+                   EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, cobranca.GrupoVeiculos) &&
+                   GrupoVeiculosId.Equals(cobranca.GrupoVeiculosId) &&
+                   EqualityComparer<List<Locacao>>.Default.Equals(Locacoes, cobranca.Locacoes);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, DiarioValorDia, DiarioValorKm, KmControladoValorDia, KmControladoValorKm, KmControladoLimiteKm, KmLivreValorDia, GrupoVeiculos);
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(DiarioValorDia);
+            hash.Add(DiarioValorKm);
+            hash.Add(KmControladoValorDia);
+            hash.Add(KmControladoValorKm);
+            hash.Add(KmControladoLimiteKm);
+            hash.Add(KmLivreValorDia);
+            hash.Add(GrupoVeiculos);
+            hash.Add(GrupoVeiculosId);
+            hash.Add(Locacoes);
+            return hash.ToHashCode();
         }
+
+
+
+        //public override bool Equals(object obj)
+        //{
+        //    return obj is PlanoCobranca cobranca &&
+        //           Id.Equals(cobranca.Id) &&
+        //           DiarioValorDia == cobranca.DiarioValorDia &&
+        //           DiarioValorKm == cobranca.DiarioValorKm &&
+        //           KmControladoValorDia == cobranca.KmControladoValorDia &&
+        //           KmControladoValorKm == cobranca.KmControladoValorKm &&
+        //           KmControladoLimiteKm == cobranca.KmControladoLimiteKm &&
+        //           KmLivreValorDia == cobranca.KmLivreValorDia &&
+        //           EqualityComparer<GrupoVeiculos>.Default.Equals(GrupoVeiculos, cobranca.GrupoVeiculos);
+        //}
+
+        //public override int GetHashCode()
+        //{
+        //    return HashCode.Combine(Id, DiarioValorDia, DiarioValorKm, KmControladoValorDia, KmControladoValorKm, KmControladoLimiteKm, KmLivreValorDia, GrupoVeiculos);
+        //}
     }
 }

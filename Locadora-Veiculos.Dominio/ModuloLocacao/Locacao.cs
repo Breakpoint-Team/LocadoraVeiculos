@@ -28,7 +28,6 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
         {
             Condutor = condutor;
             Veiculo = veiculo;
-            GrupoVeiculos = grupoVeiculos;
             PlanoCobranca = planoCobranca;
             TipoPlanoSelecionado = tipoPlanoSelecionado;
             TaxasSelecionadas = taxas;
@@ -49,10 +48,6 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
         public Veiculo Veiculo { get; set; }
 
         public Guid VeiculoId { get; set; }
-
-        public GrupoVeiculos GrupoVeiculos { get; set; }
-
-        public Guid GrupoVeiculosId { get; set; }
 
         public PlanoCobranca PlanoCobranca { get; set; }
 
@@ -82,15 +77,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 
         #endregion
 
-        public void ConfigurarGrupoVeiculos(GrupoVeiculos grupo)
-        {
-            if (grupo == null)
-                return;
 
-            GrupoVeiculos = grupo;
-            GrupoVeiculosId = grupo.Id;
-        }
-        
         public void ConfigurarVeiculo(Veiculo veiculo)
         {
             if (veiculo == null)
