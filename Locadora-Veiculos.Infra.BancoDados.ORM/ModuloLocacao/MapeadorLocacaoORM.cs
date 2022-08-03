@@ -24,20 +24,23 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
             builder.HasMany(x => x.TaxasSelecionadas);
 
             builder.HasOne(x => x.Condutor)
-                        .WithOne()
+                        .WithMany()
+                        .HasForeignKey(x => x.CondutorId)
                         .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(x => x.GrupoVeiculos)
-                        .WithOne()
-                        .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(x => x.GrupoVeiculos)
+            //            .WithM()
+            //            .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.Veiculo)
                     .WithOne()
                     .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.PlanoCobranca)
-                .WithOne()
+                .WithMany()
+                .HasForeignKey(x => x.PlanoCobrancaId)
                 .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

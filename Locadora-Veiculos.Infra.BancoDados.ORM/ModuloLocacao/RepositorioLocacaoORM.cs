@@ -35,7 +35,8 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
 
         public Locacao SelecionarPorId(Guid id)
         {
-            var locacao = locacoes.Include(x => x.GrupoVeiculos)
+            var locacao = locacoes.Include(x => x.Veiculo)
+                .Include(x => x.Veiculo.GrupoVeiculos)
                 .Include(x => x.PlanoCobranca)
                 .Include(x => x.TaxasSelecionadas)
                 .SingleOrDefault(x => x.Id == id);
@@ -45,12 +46,13 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
 
         public List<Locacao> SelecionarTodos()
         {
-            var retorno = locacoes.Include(x => x.GrupoVeiculos)
+            var retorno = locacoes
                 .Include(x => x.Condutor)
                 .Include(x => x.Condutor.Cliente)
                 .Include(x => x.PlanoCobranca)
                 .Include(x => x.TaxasSelecionadas)
                 .Include(x => x.Veiculo)
+                .Include(x => x.Veiculo.GrupoVeiculos)
                 .ToList();
 
             return retorno;

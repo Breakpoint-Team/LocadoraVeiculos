@@ -19,6 +19,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca
             builder.HasOne(x => x.GrupoVeiculos)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Restrict);
+         
+            builder.HasMany(x => x.Locacoes)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
