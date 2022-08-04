@@ -160,8 +160,8 @@
             this.toolbox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnInserir,
             this.btnEditar,
-            this.btnExcluir,
             this.btnDevolucaoLocacao,
+            this.btnExcluir,
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 24);
             this.toolbox.Name = "toolbox";
@@ -215,7 +215,7 @@
             // 
             this.btnDevolucaoLocacao.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnDevolucaoLocacao.DoubleClickEnabled = true;
-            this.btnDevolucaoLocacao.Image = global::Locadora_Veiculos.WinApp.Properties.Resources.devolver_locação;
+            this.btnDevolucaoLocacao.Image = global::Locadora_Veiculos.WinApp.Properties.Resources.done_outline_FILL0_wght200_GRAD0_opsz24;
             this.btnDevolucaoLocacao.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnDevolucaoLocacao.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDevolucaoLocacao.Name = "btnDevolucaoLocacao";
