@@ -1,4 +1,5 @@
-﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
+﻿using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
+using Locadora_Veiculos.Dominio.ModuloTaxa;
 using System;
 
 namespace Locadora_Veiculos.Dominio.ModuloLocacao
@@ -13,6 +14,47 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
         public CalculadoraValoresLocacao()
         {
         }
+
+        public decimal CalcularValorTotalPrevisto(Locacao locacao)
+        {
+            var qtdDiasPrevistosLocacao = Convert.ToDecimal((locacao.DataDevolucaoPrevista - locacao.DataLocacao).TotalDays);
+            decimal resultado = 0, totalPlanoDias = 0, totalTaxasDiarias = 0, totalTaxasFixas = 0;
+
+            if (locacao.PlanoCobranca != null)
+            {
+                switch (locacao.TipoPlanoSelecionado)
+                {
+                    case TipoPlano.Diario:
+                        totalPlanoDias = locacao.PlanoCobranca.DiarioValorDia * qtdDiasPrevistosLocacao;
+                        break;
+                    case TipoPlano.Controlado:
+                        totalPlanoDias = locacao.PlanoCobranca.KmControladoValorDia * qtdDiasPrevistosLocacao;
+                        break;
+                    case TipoPlano.Livre:
+                        totalPlanoDias = locacao.PlanoCobranca.KmLivreValorDia * qtdDiasPrevistosLocacao;
+                        break;
+                    default:
+                        totalPlanoDias = 0;
+                        break;
+                }
+            }
+
+            foreach (var taxa in locacao.TaxasSelecionadas)
+            {
+                if (taxa.TipoCalculo == TipoCalculo.Fixo)
+                    totalTaxasFixas += taxa.Valor;
+                else if (taxa.TipoCalculo == TipoCalculo.Diario)
+                {
+                    totalTaxasDiarias += qtdDiasPrevistosLocacao * taxa.Valor;
+                }
+
+            }
+
+            resultado = totalTaxasFixas + totalTaxasDiarias + totalPlanoDias;
+         
+            return resultado;
+        }
+
         public decimal CalcularValorTotalEfetivo(Locacao locacao)
         {
             decimal valorEfetivoAtual = 0;
@@ -20,40 +62,17 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             valorEfetivoAtual += GetValorPlanoCobranca(locacao);
             valorEfetivoAtual += GetValorTaxas(locacao);
             valorEfetivoAtual += GetTaxaCombustivel(locacao);
-            valorEfetivoAtual += GetTaxaValorDataDevolucao(locacao, valorEfetivoAtual);
+            
             if (locacao.DataDevolucaoEfetiva < locacao.DataDevolucaoPrevista)
-                return valorEfetivoAtual;
-            else
-                valorEfetivoAtual += locacao.ValorTotalPrevisto;
+            {
+                int qtdDiasPrevistaLocacao = Convert.ToInt32((locacao.DataDevolucaoPrevista - locacao.DataLocacao).TotalDays);
+                var retorno = (locacao.ValorTotalPrevisto /qtdDiasPrevistaLocacao) * GetQuantidadeDiasRealLocacao(locacao);
+                return retorno;
+            }
+            else if (locacao.DataDevolucaoEfetiva > locacao.DataDevolucaoPrevista)
+                valorEfetivoAtual += valorEfetivoAtual * 0.1m;
             
             return valorEfetivoAtual;
-        }
-
-        private decimal GetTaxaValorDataDevolucao(Locacao locacao, decimal valorEfetivoAtual)
-        {
-            decimal resultado = 0;
-
-            if (locacao.DataDevolucaoPrevista == locacao.DataDevolucaoEfetiva)
-                return 0;
-
-            //if (locacao.DataDevolucaoEfetiva < locacao.DataDevolucaoPrevista)
-            //{
-            //    int quantidadeDiasPrevistosLocacao = locacao.DataDevolucaoPrevista.DayOfYear - locacao.DataLocacao.DayOfYear;
-            //    int quantidadeDiasRealLocacao = locacao.DataDevolucaoEfetiva.Value.DayOfYear - locacao.DataLocacao.DayOfYear;
-
-            //    var valorPrevistoEmDias = locacao.ValorTotalPrevisto / quantidadeDiasPrevistosLocacao;
-
-            //    resultado = valorPrevistoEmDias * quantidadeDiasRealLocacao;
-            //}
-
-            //else
-            if (locacao.DataDevolucaoEfetiva > locacao.DataDevolucaoPrevista)
-            {
-                decimal dezPorCento = valorEfetivoAtual * 0.1m;
-                resultado = resultado + dezPorCento;
-            }
-            
-            return resultado;
         }
 
         private decimal GetTaxaCombustivel(Locacao locacao)
@@ -115,20 +134,19 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
         private decimal GetValorPlanoCobranca(Locacao locacao)
         {
             var total = 0m;
-         
-            TimeSpan timeSpanDias = Convert.ToDateTime(locacao.DataDevolucaoEfetiva.Value) - Convert.ToDateTime(locacao.DataLocacao);
-            var qtdDiasLocacao = timeSpanDias.Days;
+
+            int qtdDiasLocacao = GetQuantidadeDiasRealLocacao(locacao);
 
             var km = locacao.QuilometragemFinalVeiculo.Value - locacao.QuilometragemInicialVeiculo;
-            if(locacao.TipoPlanoSelecionado == ModuloPlanoCobranca.TipoPlano.Diario)
+            if (locacao.TipoPlanoSelecionado == ModuloPlanoCobranca.TipoPlano.Diario)
             {
                 total += locacao.PlanoCobranca.DiarioValorDia * qtdDiasLocacao;
-                total += locacao.PlanoCobranca.DiarioValorKm * km; 
+                total += locacao.PlanoCobranca.DiarioValorKm * km;
             }
             else if (locacao.TipoPlanoSelecionado == ModuloPlanoCobranca.TipoPlano.Controlado)
             {
                 total += locacao.PlanoCobranca.DiarioValorDia * qtdDiasLocacao;
-                if(locacao.QuilometragemFinalVeiculo > locacao.PlanoCobranca.KmControladoLimiteKm)
+                if (locacao.QuilometragemFinalVeiculo > locacao.PlanoCobranca.KmControladoLimiteKm)
                 {
                     total += locacao.PlanoCobranca.KmControladoValorKm * km;
                 }
@@ -139,6 +157,13 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             }
 
             return total;
+        }
+
+        private static int GetQuantidadeDiasRealLocacao(Locacao locacao)
+        {
+            TimeSpan timeSpanDias = Convert.ToDateTime(locacao.DataDevolucaoEfetiva.Value) - Convert.ToDateTime(locacao.DataLocacao);
+            var qtdDiasLocacao = timeSpanDias.Days;
+            return qtdDiasLocacao;
         }
     }
 }

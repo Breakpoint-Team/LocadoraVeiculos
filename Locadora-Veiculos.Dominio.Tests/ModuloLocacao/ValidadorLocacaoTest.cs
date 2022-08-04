@@ -50,20 +50,6 @@ namespace Locadora_Veiculos.Dominio.Tests.ModuloLocacao
         }
 
         [TestMethod]
-        public void Locacao_Deve_ter_um_grupo_de_veiculos()
-        {
-            Locacao locacao1 = new(GetCondutor(), GetVeiculo(),
-            null, GetPlanoCobranca(), TipoPlano.Diario, new List<Taxa>(), DateTime.Today, 2000,
-            new DateTime(2025, 8, 13), GetVeiculo().QuilometragemPercorrida);
-
-            var validador = new Dominio.ModuloLocacao.ValidadorLocacao();
-
-            var resultado1 = validador.Validate(locacao1);
-
-            Assert.AreEqual("O campo 'Grupo de Veículos' é obrigatório!", resultado1.Errors[0].ErrorMessage);
-        }
-
-        [TestMethod]
         public void Locacao_Deve_ter_um_plano_de_cobranca()
         {
             Locacao locacao1 = new(GetCondutor(), GetVeiculo(),
