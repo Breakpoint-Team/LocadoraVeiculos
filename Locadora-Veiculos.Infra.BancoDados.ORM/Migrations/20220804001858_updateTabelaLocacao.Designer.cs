@@ -4,14 +4,16 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.Migrations
 {
     [DbContext(typeof(LocadoraVeiculosDbContext))]
-    partial class LocadoraVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220804001858_updateTabelaLocacao")]
+    partial class updateTabelaLocacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

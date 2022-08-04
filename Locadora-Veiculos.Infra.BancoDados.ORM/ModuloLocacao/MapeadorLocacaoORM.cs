@@ -33,7 +33,8 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao
             //            .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.Veiculo)
-                    .WithOne()
+                    .WithMany()
+                    .HasForeignKey(x => x.VeiculoId)
                     .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.PlanoCobranca)
