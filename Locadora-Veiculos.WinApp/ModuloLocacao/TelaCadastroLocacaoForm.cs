@@ -26,6 +26,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         private List<PlanoCobranca> planosDeCobranca;
         private PlanoCobranca planoTela;
         private GrupoVeiculos grupoTela;
+        private CalculadoraValoresLocacao calculadora;
 
         public TelaCadastroLocacaoForm(List<Cliente> clientes, List<Condutor> condutores,
             List<GrupoVeiculos> gruposDeVeiculo, List<Veiculo> veiculos,
@@ -44,6 +45,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             CarregarClientes();
             CarregarGrupos();
             CarregarTaxas();
+            calculadora = new CalculadoraValoresLocacao();
         }
 
         public Locacao Locacao
@@ -81,46 +83,14 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             locacao.TipoPlanoSelecionado = ObterTipoPlanoSelecionado();
             locacao.TaxasSelecionadas = ObterTaxasSelecionadas();
             locacao.DataLocacao = DateTime.Today;
-            locacao.ValorTotalPrevisto = CalcularValorTotalPrevisto();
             locacao.DataDevolucaoPrevista = dateTimePickerDataDevolucaoPrevista.Value.Date;
         }
 
         private decimal CalcularValorTotalPrevisto()
         {
-            var qtdDiasLocacao = dateTimePickerDataDevolucaoPrevista.Value.Date.DayOfYear - DateTime.Today.Date.DayOfYear;
-            decimal resultado = 0, totalPlanoDias = 0, totalTaxasDiarias = 0, totalTaxasFixas = 0;
+            ObterDadosTela();
 
-            if (planoTela != null)
-            {
-                switch (ObterTipoPlanoSelecionado())
-                {
-                    case TipoPlano.Diario:
-                        totalPlanoDias = planoTela.DiarioValorDia * qtdDiasLocacao;
-                        break;
-                    case TipoPlano.Controlado:
-                        totalPlanoDias = planoTela.KmControladoValorDia * qtdDiasLocacao;
-                        break;
-                    case TipoPlano.Livre:
-                        totalPlanoDias = planoTela.KmLivreValorDia * qtdDiasLocacao;
-                        break;
-                    default:
-                        totalPlanoDias = 0;
-                        break;
-                }
-            }
-
-            for (int i = 0; i < checkedListBoxTaxas.CheckedItems.Count; i++)
-            {
-                var taxa = (Taxa)checkedListBoxTaxas.CheckedItems[i];
-                if (taxa.TipoCalculo == TipoCalculo.Fixo)
-                    totalTaxasFixas += taxa.Valor;
-                else if (taxa.TipoCalculo == TipoCalculo.Diario)
-                {
-                    totalTaxasDiarias += qtdDiasLocacao * taxa.Valor;
-                }
-            }
-
-            resultado = totalTaxasFixas + totalTaxasDiarias + totalPlanoDias;
+            var resultado = calculadora.CalcularValorTotalPrevisto(locacao);
             return resultado;
         }
 
@@ -195,7 +165,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             else
             {
                 MessageBox.Show("O grupo de veículos selecionado ainda não possui um plano de cobrança relacionado!",
-                    "Alerta",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -356,6 +326,8 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         private void btnGravar_Click(object sender, EventArgs e)
         {
             ObterDadosTela();
+
+            locacao.ValorTotalPrevisto = CalcularValorTotalPrevisto();
 
             var resultadoValidacao = GravarRegistro(locacao);
 

@@ -50,7 +50,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
                     dataDevolucaoEfetiva = locacao.DataDevolucaoEfetiva.Value.ToShortDateString();
 
                 grid.Rows.Add(
-                    locacao.Id, locacao.DataLocacao,
+                    locacao.Id, locacao.DataLocacao.ToShortDateString(),
                     locacao.Condutor.Cliente.Nome, locacao.Condutor.Cnh,
                     locacao.Veiculo.Modelo, locacao.Veiculo.Placa,
                     locacao.TipoPlanoSelecionado.GetDescription(),
