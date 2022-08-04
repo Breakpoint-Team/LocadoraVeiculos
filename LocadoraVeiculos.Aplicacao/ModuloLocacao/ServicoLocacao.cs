@@ -14,12 +14,14 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
     {
         private IRepositorioLocacao repositorioLocacao;
         private IContextoPersistencia contextoPersistencia;
+        private IGeradorRelatorio geradorRelatorio;
 
         public ServicoLocacao(IRepositorioLocacao repositorioLocacao,
-            IContextoPersistencia contextoPersistencia)
+            IContextoPersistencia contextoPersistencia, IGeradorRelatorio geradorRelatorio)
         {
             this.repositorioLocacao = repositorioLocacao;
             this.contextoPersistencia = contextoPersistencia;
+            this.geradorRelatorio = geradorRelatorio;
         }
 
         public Result<Locacao> Inserir(Locacao locacao)
@@ -48,6 +50,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Locação {LocacaoId} inserida com sucesso", locacao.Id);
+
+                geradorRelatorio.GerarRelatorioLocacaoPDF(locacao);
 
                 return Result.Ok(locacao);
             }
@@ -134,6 +138,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Locação {LocacaoId} devolvida com sucesso", locacao.Id);
+
+                geradorRelatorio.GerarRelatorioDevolucaoPDF(locacao);
 
                 return Result.Ok(locacao);
             }

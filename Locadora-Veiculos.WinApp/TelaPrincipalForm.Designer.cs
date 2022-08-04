@@ -43,7 +43,6 @@
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
-            this.btnGerarPDF = new System.Windows.Forms.ToolStripButton();
             this.btnDevolucaoLocacao = new System.Windows.Forms.ToolStripButton();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.statusStripRodape = new System.Windows.Forms.StatusStrip();
@@ -162,12 +161,11 @@
             this.btnInserir,
             this.btnEditar,
             this.btnExcluir,
-            this.btnGerarPDF,
             this.btnDevolucaoLocacao,
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 24);
             this.toolbox.Name = "toolbox";
-            this.toolbox.Size = new System.Drawing.Size(800, 25);
+            this.toolbox.Size = new System.Drawing.Size(800, 41);
             this.toolbox.TabIndex = 1;
             this.toolbox.Text = "toolStrip1";
             // 
@@ -213,20 +211,6 @@
             this.btnExcluir.Visible = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
-            // btnGerarPDF
-            // 
-            this.btnGerarPDF.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGerarPDF.DoubleClickEnabled = true;
-            this.btnGerarPDF.Image = global::Locadora_Veiculos.WinApp.Properties.Resources.picture_as_pdf_FILL0_wght200_GRAD0_opsz24;
-            this.btnGerarPDF.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnGerarPDF.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGerarPDF.Name = "btnGerarPDF";
-            this.btnGerarPDF.Padding = new System.Windows.Forms.Padding(5);
-            this.btnGerarPDF.Size = new System.Drawing.Size(38, 38);
-            this.btnGerarPDF.Text = "Gerar PDF";
-            this.btnGerarPDF.Visible = false;
-            this.btnGerarPDF.Click += new System.EventHandler(this.btnGerarPDF_Click);
-            // 
             // btnDevolucaoLocacao
             // 
             this.btnDevolucaoLocacao.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -249,7 +233,7 @@
             this.labelTipoCadastro.ForeColor = System.Drawing.Color.LightSeaGreen;
             this.labelTipoCadastro.LinkColor = System.Drawing.Color.LightSeaGreen;
             this.labelTipoCadastro.Name = "labelTipoCadastro";
-            this.labelTipoCadastro.Size = new System.Drawing.Size(94, 22);
+            this.labelTipoCadastro.Size = new System.Drawing.Size(94, 38);
             this.labelTipoCadastro.Text = "toolStripLabel1";
             // 
             // statusStripRodape
@@ -271,9 +255,9 @@
             // panelRegistros
             // 
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRegistros.Location = new System.Drawing.Point(0, 49);
+            this.panelRegistros.Location = new System.Drawing.Point(0, 65);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(800, 379);
+            this.panelRegistros.Size = new System.Drawing.Size(800, 363);
             this.panelRegistros.TabIndex = 3;
             // 
             // TelaPrincipalForm
@@ -325,7 +309,6 @@
         private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preçoCombustToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem locaçõesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton btnGerarPDF;
         private System.Windows.Forms.ToolStripButton btnDevolucaoLocacao;
     }
 }

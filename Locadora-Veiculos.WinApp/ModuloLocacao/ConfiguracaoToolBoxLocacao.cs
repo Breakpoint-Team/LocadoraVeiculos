@@ -14,8 +14,6 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
 
         public override bool EditarHabilitado { get { return false; } }
 
-        public override bool GerarPDFHabilidado { get { return true; } }
-
         public override bool DevolucaoLocacaoHabilidado { get { return true; } }
 
     }

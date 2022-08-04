@@ -13,6 +13,7 @@
     <ProjectReference Include="..\Locadora-Veiculos.Infra.BancoDados\Locadora-Veiculos.Infra.BancoDados.csproj" />
     <ProjectReference Include="..\Locadora-Veiculos.Infra.Configs\Locadora-Veiculos.Infra.Configs.csproj" />
     <ProjectReference Include="..\Locadora-Veiculos.Infra.Logging\Locadora-Veiculos.Infra.Logging.csproj" />
+    <ProjectReference Include="..\Locadora-Veiculos.Infra.PDF\Locadora-Veiculos.Infra.PDF.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
   </ItemGroup>
 

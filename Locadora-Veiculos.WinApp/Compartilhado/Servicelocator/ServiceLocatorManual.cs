@@ -8,6 +8,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
 using Locadora_Veiculos.Infra.Configs;
+using Locadora_Veiculos.Infra.PDF;
 using Locadora_Veiculos.WinApp.ModuloCliente;
 using Locadora_Veiculos.WinApp.ModuloCondutor;
 using Locadora_Veiculos.WinApp.ModuloConfiguracao;
@@ -90,9 +91,10 @@ namespace Locadora_Veiculos.WinApp.Compartilhado.Servicelocator
             var repositorioPlanoCobranca = new RepositorioPlanoCobrancaORM(contextoDadosOrm);
             var servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
             controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(servicoPlanoCobranca,servicoGrupoVeiculo));
-            
+
+            var geradorRelatorio = new GeradorRelatorioITextSharp();
             var repositorioLocacao = new RepositorioLocacaoORM(contextoDadosOrm);
-            var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm);
+            var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm, geradorRelatorio);
             controladores.Add("ControladorLocacao", new ControladorLocacao(servicoCondutor, servicoCliente,
                 servicoGrupoVeiculo, servicoVeiculo, servicoTaxa, servicoPlanoCobranca, servicoLocacao));
 
