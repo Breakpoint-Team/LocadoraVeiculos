@@ -1,6 +1,4 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Locadora_Veiculos.Infra.ORM.Tests.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
@@ -15,12 +13,10 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloTaxa
     {
         private RepositorioTaxaORM repositorioTaxa;
         private ServicoTaxa servicoTaxa;
-        private LocadoraVeiculosDbContext dbContext;
 
         public RepositorioTaxaORMTest()
         {
             LimparTabelas();
-            dbContext = new LocadoraVeiculosDbContext(Db.enderecoBanco);
             repositorioTaxa = new RepositorioTaxaORM(dbContext);
             servicoTaxa = new ServicoTaxa(repositorioTaxa, dbContext);
         }

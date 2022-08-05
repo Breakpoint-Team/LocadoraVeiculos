@@ -6,8 +6,6 @@ using Locadora_Veiculos.Dominio.ModuloLocacao;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos;
@@ -34,7 +32,6 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
     [TestClass]
     public class RepositorioLocacaoORMTest : RepositorioORMTestBase
     {
-        private LocadoraVeiculosDbContext dbContext;
         private RepositorioClienteORM repositorioCliente;
         private RepositorioCondutorORM repositorioCondutor;
         private RepositorioVeiculoORM repositorioVeiculo;
@@ -54,8 +51,6 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
         public RepositorioLocacaoORMTest()
         {
             LimparTabelas();
-
-            dbContext = new LocadoraVeiculosDbContext(Db.enderecoBanco);
 
             repositorioCliente = new RepositorioClienteORM(dbContext);
             repositorioCondutor = new RepositorioCondutorORM(dbContext);

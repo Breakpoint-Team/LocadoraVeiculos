@@ -1,10 +1,21 @@
-﻿
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+﻿using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
+using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
+using Locadora_Veiculos.Infra.Configs;
 
 namespace Locadora_Veiculos.Infra.ORM.Tests.Compartilhado
 {
     public abstract class RepositorioORMTestBase
     {
+        protected ConfiguracaoAplicacao config;
+        protected readonly string connectionString;
+        protected LocadoraVeiculosDbContext dbContext;
+
+        public RepositorioORMTestBase()
+        {
+            config = new ConfiguracaoAplicacao();
+            dbContext = new LocadoraVeiculosDbContext(config.ConnectionStrings);
+        }
+
         public void LimparTabelas()
         {
             Db.ExecutarSql("DELETE FROM LOCACAOTAXA;");

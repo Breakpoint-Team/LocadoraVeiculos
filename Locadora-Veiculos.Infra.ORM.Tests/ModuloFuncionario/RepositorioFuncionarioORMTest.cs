@@ -1,6 +1,4 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario;
 using Locadora_Veiculos.Infra.ORM.Tests.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
@@ -11,17 +9,15 @@ using System.Collections.Generic;
 namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloFuncionario
 {
     [TestClass]
-            
+
     public class RepositorioFuncionarioORMTest : RepositorioORMTestBase
     {
         private RepositorioFuncionarioORM repositorioFuncionario;
         private ServicoFuncionario servicoFuncionario;
-        private LocadoraVeiculosDbContext dbContext;
 
         public RepositorioFuncionarioORMTest()
         {
             LimparTabelas();
-            dbContext = new LocadoraVeiculosDbContext(Db.enderecoBanco);
             repositorioFuncionario = new RepositorioFuncionarioORM(dbContext);
             servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, dbContext);
         }

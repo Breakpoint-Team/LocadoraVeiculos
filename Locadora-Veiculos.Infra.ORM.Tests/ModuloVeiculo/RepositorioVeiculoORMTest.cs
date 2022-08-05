@@ -1,7 +1,5 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
 using Locadora_Veiculos.Infra.ORM.Tests.Compartilhado;
@@ -20,12 +18,10 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloVeiculo
 
         private RepositorioGrupoVeiculosORM repositorioGrupoVeiculos;
         private ServicoGrupoVeiculos servicoGrupoVeiculos;
-        private LocadoraVeiculosDbContext dbContext;
 
         public RepositorioVeiculoORMTest()
         {
             LimparTabelas();
-            dbContext = new LocadoraVeiculosDbContext(Db.enderecoBanco);
             repositorioVeiculo = new RepositorioVeiculoORM(dbContext);
             servicoVeiculo = new ServicoVeiculo(repositorioVeiculo, dbContext);
             repositorioGrupoVeiculos = new RepositorioGrupoVeiculosORM(dbContext);

@@ -5,5 +5,13 @@
 
   "ConnectionStrings": {
     "SqlServer": "Data Source=(LOCALDB)\\MSSQLLOCALDB;Initial Catalog=LocadoraVeiculosTestesORM;Integrated Security=True"
+  },
+
+  "ConfiguracaoPrecoCombustivel": {
+    "PrecoGNV": "7.75",
+    "PrecoGasolina": "5.78",
+    "PrecoDiesel": "1.20",
+    "PrecoAlcool": "2.36",
+    "DataAtualizacao": "27/07/2022"
   }
 }
