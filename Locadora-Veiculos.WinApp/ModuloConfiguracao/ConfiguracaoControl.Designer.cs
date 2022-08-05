@@ -60,10 +60,9 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnGravar.Location = new System.Drawing.Point(0, 367);
+            this.btnGravar.Location = new System.Drawing.Point(426, 264);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(574, 23);
+            this.btnGravar.Size = new System.Drawing.Size(144, 23);
             this.btnGravar.TabIndex = 1;
             this.btnGravar.Text = "Gravar Configurações";
             this.btnGravar.UseVisualStyleBackColor = true;
@@ -76,7 +75,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(566, 362);
+            this.tabPage2.Size = new System.Drawing.Size(566, 209);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Configurações de Logs";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -112,7 +111,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(566, 362);
+            this.tabPage1.Size = new System.Drawing.Size(566, 230);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Configurações de Combustíveis ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -208,11 +207,10 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(574, 390);
+            this.tabControl1.Size = new System.Drawing.Size(574, 258);
             this.tabControl1.TabIndex = 19;
             // 
             // tabPage3
@@ -222,7 +220,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(566, 362);
+            this.tabPage3.Size = new System.Drawing.Size(566, 209);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Configurações de Relatórios";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -250,7 +248,7 @@
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.tabControl1);
             this.Name = "ConfiguracaoControl";
-            this.Size = new System.Drawing.Size(574, 390);
+            this.Size = new System.Drawing.Size(574, 300);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
