@@ -21,6 +21,8 @@ namespace Locadora_Veiculos.Infra.Configs
             var diretorioSaida = configuracao.ConfiguracaoLogs.DiretorioSaida;
             ConfiguracaoLogs = new ConfiguracaoLogs { DiretorioSaida = diretorioSaida };
 
+            var diretorioSaidaRelatorio = configuracao.ConfiguracaoRelatorio.DiretorioSaida;
+            ConfiguracaoRelatorio = new ConfiguracaoRelatorio { DiretorioSaida = diretorioSaidaRelatorio };
 
             var precoGNV = configuracao.ConfiguracaoPrecoCombustivel.PrecoGNV;
             var precoAlcool = configuracao.ConfiguracaoPrecoCombustivel.PrecoAlcool;
@@ -44,6 +46,9 @@ namespace Locadora_Veiculos.Infra.Configs
         public ConnectionStrings ConnectionStrings { get; set; }
 
         public ConfiguracaoPrecoCombustivel ConfiguracaoPrecoCombustivel { get; set; }
+
+        public ConfiguracaoRelatorio ConfiguracaoRelatorio { get; set; }
+
         public void Atualizar(ConfiguracaoAplicacao novaConfig)
         {
             var c = new ConfigurationBuilder()
@@ -52,6 +57,7 @@ namespace Locadora_Veiculos.Infra.Configs
             .Build()
             .Get<Config>();
 
+            c.ConfiguracaoRelatorio.DiretorioSaida = novaConfig.ConfiguracaoRelatorio.DiretorioSaida;
             c.ConfiguracaoLogs.DiretorioSaida = novaConfig.ConfiguracaoLogs.DiretorioSaida;
             c.ConfiguracaoPrecoCombustivel.PrecoAlcool = novaConfig.ConfiguracaoPrecoCombustivel.PrecoAlcool;
             c.ConfiguracaoPrecoCombustivel.PrecoGNV = novaConfig.ConfiguracaoPrecoCombustivel.PrecoGNV;
@@ -79,6 +85,7 @@ namespace Locadora_Veiculos.Infra.Configs
         public ConnectionStrings ConnectionStrings { get; set; }
         public ConfiguracaoPrecoCombustivel ConfiguracaoPrecoCombustivel { get; set; }
 
+        public ConfiguracaoRelatorio ConfiguracaoRelatorio { get; set; }
     }
 
     public class ConfiguracaoLogs
@@ -97,6 +104,12 @@ namespace Locadora_Veiculos.Infra.Configs
         public decimal PrecoAlcool { get; set; }
         public decimal PrecoGNV { get; set; }
         public string DataAtualizacao { get; set; }
+    }
+
+    public class ConfiguracaoRelatorio
+    { 
+        public string DiretorioSaida { get; set; }
+
     }
 
 }

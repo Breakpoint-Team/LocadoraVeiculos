@@ -44,7 +44,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtDiretorioRelatorios = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoGNV)).BeginInit();
@@ -52,14 +54,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoAlcool)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoDiesel)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(401, 351);
+            this.btnGravar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnGravar.Location = new System.Drawing.Point(0, 367);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(152, 23);
+            this.btnGravar.Size = new System.Drawing.Size(574, 23);
             this.btnGravar.TabIndex = 1;
             this.btnGravar.Text = "Gravar Configurações";
             this.btnGravar.UseVisualStyleBackColor = true;
@@ -74,12 +78,12 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(566, 362);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Escrita de Logs";
+            this.tabPage2.Text = "Configurações de Logs";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // txtDiretorioLogs
             // 
-            this.txtDiretorioLogs.Location = new System.Drawing.Point(121, 31);
+            this.txtDiretorioLogs.Location = new System.Drawing.Point(132, 34);
             this.txtDiretorioLogs.Name = "txtDiretorioLogs";
             this.txtDiretorioLogs.Size = new System.Drawing.Size(227, 23);
             this.txtDiretorioLogs.TabIndex = 1;
@@ -87,7 +91,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 34);
+            this.label2.Location = new System.Drawing.Point(26, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 15);
             this.label2.TabIndex = 0;
@@ -95,7 +99,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.txtDataAtualizacao);
             this.tabPage1.Controls.Add(this.numPrecoGNV);
             this.tabPage1.Controls.Add(this.numPrecoGasolina);
@@ -109,15 +112,15 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(566, 308);
+            this.tabPage1.Size = new System.Drawing.Size(566, 362);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Preço dos Combustíveis ";
+            this.tabPage1.Text = "Configurações de Combustíveis ";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // txtDataAtualizacao
             // 
             this.txtDataAtualizacao.AutoSize = true;
-            this.txtDataAtualizacao.Location = new System.Drawing.Point(121, 41);
+            this.txtDataAtualizacao.Location = new System.Drawing.Point(121, 38);
             this.txtDataAtualizacao.Name = "txtDataAtualizacao";
             this.txtDataAtualizacao.Size = new System.Drawing.Size(106, 15);
             this.txtDataAtualizacao.TabIndex = 1;
@@ -185,7 +188,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 41);
+            this.label1.Location = new System.Drawing.Point(26, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 15);
             this.label1.TabIndex = 0;
@@ -203,28 +206,49 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(574, 336);
+            this.tabControl1.Size = new System.Drawing.Size(574, 390);
             this.tabControl1.TabIndex = 19;
             // 
-            // button1
+            // tabPage3
             // 
-            this.button1.Location = new System.Drawing.Point(361, 318);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Gravar Configuração";
-            this.button1.UseVisualStyleBackColor = true;
+            this.tabPage3.Controls.Add(this.txtDiretorioRelatorios);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(566, 362);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Configurações de Relatórios";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // txtDiretorioRelatorios
+            // 
+            this.txtDiretorioRelatorios.Location = new System.Drawing.Point(162, 34);
+            this.txtDiretorioRelatorios.Name = "txtDiretorioRelatorios";
+            this.txtDiretorioRelatorios.Size = new System.Drawing.Size(227, 23);
+            this.txtDiretorioRelatorios.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(26, 38);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(130, 15);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Diretório de Relatórios: ";
             // 
             // ConfiguracaoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnGravar);
+            this.Controls.Add(this.tabControl1);
             this.Name = "ConfiguracaoControl";
             this.Size = new System.Drawing.Size(574, 390);
             this.tabPage2.ResumeLayout(false);
@@ -236,6 +260,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoAlcool)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoDiesel)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -257,6 +283,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox txtDiretorioRelatorios;
+        private System.Windows.Forms.Label label7;
     }
 }

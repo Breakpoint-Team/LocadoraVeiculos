@@ -9,4 +9,8 @@
     <PackageReference Include="FluentValidation" Version="11.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Locadora-Veiculos.Infra.Configs\Locadora-Veiculos.Infra.Configs.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -92,7 +92,7 @@ namespace Locadora_Veiculos.WinApp.Compartilhado.Servicelocator
             var servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
             controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(servicoPlanoCobranca,servicoGrupoVeiculo));
 
-            var geradorRelatorio = new GeradorRelatorioITextSharp();
+            var geradorRelatorio = new GeradorRelatorioITextSharp(config);
             var repositorioLocacao = new RepositorioLocacaoORM(contextoDadosOrm);
             var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm, geradorRelatorio);
             controladores.Add("ControladorLocacao", new ControladorLocacao(servicoCondutor, servicoCliente,

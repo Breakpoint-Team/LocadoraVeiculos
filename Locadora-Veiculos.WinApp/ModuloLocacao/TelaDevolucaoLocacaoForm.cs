@@ -2,6 +2,7 @@
 using Locadora_Veiculos.Dominio.Compartilhado;
 using Locadora_Veiculos.Dominio.ModuloLocacao;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
+using Locadora_Veiculos.Infra.Configs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +16,13 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         private Locacao locacao;
         private CalculadoraValoresLocacao calculadoraDevolucao;
         private List<Taxa> taxasDevolucaoSelecionadas = new List<Taxa>();
-
+        private readonly ConfiguracaoAplicacao configuracao;
         public TelaDevolucaoLocacaoForm(List<Taxa> taxas)
         {
             InitializeComponent();
             CarregarTaxasDeDevolucao(taxas);
-            calculadoraDevolucao = new CalculadoraValoresLocacao();
+            this.configuracao = new ConfiguracaoAplicacao();
+            calculadoraDevolucao = new CalculadoraValoresLocacao(configuracao);
         }
 
         public Locacao Locacao

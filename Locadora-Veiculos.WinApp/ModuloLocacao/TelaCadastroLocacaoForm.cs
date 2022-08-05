@@ -6,6 +6,7 @@ using Locadora_Veiculos.Dominio.ModuloLocacao;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
+using Locadora_Veiculos.Infra.Configs;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -27,7 +28,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         private PlanoCobranca planoTela;
         private GrupoVeiculos grupoTela;
         private CalculadoraValoresLocacao calculadora;
-
+        private readonly ConfiguracaoAplicacao configuracao;
         public TelaCadastroLocacaoForm(List<Cliente> clientes, List<Condutor> condutores,
             List<GrupoVeiculos> gruposDeVeiculo, List<Veiculo> veiculos,
             List<Taxa> taxas, List<PlanoCobranca> planosDeCobranca)
@@ -40,12 +41,13 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             this.veiculos = veiculos;
             this.taxas = taxas;
             this.planosDeCobranca = planosDeCobranca;
+            this.configuracao = new ConfiguracaoAplicacao();
+            calculadora = new CalculadoraValoresLocacao(configuracao);
             dateTimePickerDataDevolucaoPrevista.MinDate = DateTime.Today;
             dateTimePickerDataDevolucaoPrevista.MaxDate = DateTime.Today.AddDays(30);
             CarregarClientes();
             CarregarGrupos();
             CarregarTaxas();
-            calculadora = new CalculadoraValoresLocacao();
         }
 
         public Locacao Locacao

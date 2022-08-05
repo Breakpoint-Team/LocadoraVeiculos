@@ -1,18 +1,16 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
+using Locadora_Veiculos.Infra.Configs;
 using System;
 
 namespace Locadora_Veiculos.Dominio.ModuloLocacao
 {
     public class CalculadoraValoresLocacao
     {
-        public decimal PrecoGasolina => 5m;
-        public decimal PrecoAlcool => 5m;
-        public decimal PrecoDiesel => 5m;
-        public decimal PrecoGNV => 5m;
-
-        public CalculadoraValoresLocacao()
+        private ConfiguracaoAplicacao configuracao;
+        public CalculadoraValoresLocacao(ConfiguracaoAplicacao configuracao)
         {
+            this.configuracao = configuracao;
         }
 
         public decimal CalcularValorTotalPrevisto(Locacao locacao)
@@ -63,17 +61,10 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             valorEfetivoAtual += GetValorTaxas(locacao);
             valorEfetivoAtual += GetTaxaCombustivel(locacao);
 
-            //if (locacao.DataDevolucaoEfetiva < locacao.DataDevolucaoPrevista)
-            //{
-            //    int qtdDiasPrevistaLocacao = Convert.ToInt32((locacao.DataDevolucaoPrevista - locacao.DataLocacao).TotalDays);
-            //    var retorno = (locacao.ValorTotalPrevisto /qtdDiasPrevistaLocacao) * GetQuantidadeDiasRealLocacao(locacao);
-            //    return retorno;
-            //}
-            //else
             if (locacao.DataDevolucaoEfetiva > locacao.DataDevolucaoPrevista)
                 valorEfetivoAtual += valorEfetivoAtual * 0.1m;
-            
-            return valorEfetivoAtual;
+
+            return Math.Round(valorEfetivoAtual,2);
         }
 
         private decimal GetTaxaCombustivel(Locacao locacao)
@@ -106,16 +97,16 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             {
                 case "Gasolina":
 
-                    resultado = diferencaPraCompletarTanque * PrecoGasolina;
+                    resultado = diferencaPraCompletarTanque * configuracao.ConfiguracaoPrecoCombustivel.PrecoGasolina;
                     break;
                 case "Álcool":
-                    resultado = diferencaPraCompletarTanque * PrecoAlcool;
+                    resultado = diferencaPraCompletarTanque * configuracao.ConfiguracaoPrecoCombustivel.PrecoAlcool;
                     break;
                 case "Diesel":
-                    resultado = diferencaPraCompletarTanque * PrecoDiesel;
+                    resultado = diferencaPraCompletarTanque * configuracao.ConfiguracaoPrecoCombustivel.PrecoDiesel;
                     break;
                 case "GNV":
-                    resultado = diferencaPraCompletarTanque * PrecoGNV;
+                    resultado = diferencaPraCompletarTanque * configuracao.ConfiguracaoPrecoCombustivel.PrecoGNV;
                     break;
             }
             return resultado;

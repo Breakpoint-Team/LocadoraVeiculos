@@ -4,6 +4,7 @@ using iTextSharp.text.pdf.draw;
 using Locadora_Veiculos.Dominio.ModuloLocacao;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using Locadora_Veiculos.Dominio.ModuloTaxa;
+using Locadora_Veiculos.Infra.Configs;
 using System;
 using System.IO;
 
@@ -11,12 +12,15 @@ namespace Locadora_Veiculos.Infra.PDF
 {
     public class GeradorRelatorioITextSharp : IGeradorRelatorio
     {
-        private CalculadoraValoresLocacao calculadoraValoresLocacao = new CalculadoraValoresLocacao();
-
+        private ConfiguracaoAplicacao configuracaoAplicacao;
+        public GeradorRelatorioITextSharp(ConfiguracaoAplicacao configuracaoAplicacao)
+        {
+            this.configuracaoAplicacao = configuracaoAplicacao;
+        }
         public void GerarRelatorioLocacaoPDF(Locacao locacao)
         {
 
-            string path = @"C:\Locadora\Relatorios\";
+            string path = @"" + configuracaoAplicacao.ConfiguracaoRelatorio.DiretorioSaida;
 
             if (Directory.Exists(path) == false)
                 Directory.CreateDirectory(path);
@@ -24,7 +28,7 @@ namespace Locadora_Veiculos.Infra.PDF
             var nomeArquivo = GerarNomeArquivo(locacao);
 
             var doc = new Document(PageSize.A4);
-            PdfWriter.GetInstance(doc, new FileStream($"{path}{nomeArquivo}.pdf", FileMode.Create));
+            PdfWriter.GetInstance(doc, new FileStream($"{path}\\{nomeArquivo}.pdf", FileMode.Create));
 
             doc.Open();
 
@@ -229,7 +233,7 @@ namespace Locadora_Veiculos.Infra.PDF
 
         public void GerarRelatorioDevolucaoPDF(Locacao locacao)
         {
-            string path = @"C:\Locadora\Relatorios\";
+            string path = @"" + configuracaoAplicacao.ConfiguracaoRelatorio.DiretorioSaida;
 
             if (Directory.Exists(path) == false)
                 Directory.CreateDirectory(path);
@@ -237,7 +241,7 @@ namespace Locadora_Veiculos.Infra.PDF
             var nomeArquivo = GerarNomeArquivo(locacao);
 
             var doc = new Document(PageSize.A4);
-            PdfWriter.GetInstance(doc, new FileStream($"{path}{nomeArquivo}.pdf", FileMode.Create));
+            PdfWriter.GetInstance(doc, new FileStream($"{path}\\{nomeArquivo}.pdf", FileMode.Create));
 
             doc.Open();
 
@@ -580,16 +584,16 @@ namespace Locadora_Veiculos.Infra.PDF
 
             if(locacao.NivelTanqueDevolucao != NivelTanque.Cheio)
             {
-                decimal preco = 0m;
+                decimal preco = 0;
                 string tipo = locacao.Veiculo.TipoCombustivel;
                 if (tipo == "Gasolina")
-                    preco = calculadoraValoresLocacao.PrecoGasolina;
+                    preco = configuracaoAplicacao.ConfiguracaoPrecoCombustivel.PrecoGasolina;
                 else if(tipo == "Álcool")
-                    preco = calculadoraValoresLocacao.PrecoAlcool;
+                    preco = configuracaoAplicacao.ConfiguracaoPrecoCombustivel.PrecoAlcool;
                 else if (tipo == "Diesel")
-                    preco = calculadoraValoresLocacao.PrecoDiesel;
+                    preco = configuracaoAplicacao.ConfiguracaoPrecoCombustivel.PrecoDiesel;
                 else if (tipo == "GNV")
-                    preco = calculadoraValoresLocacao.PrecoGNV;
+                    preco = configuracaoAplicacao.ConfiguracaoPrecoCombustivel.PrecoGNV;
 
                 decimal tanqueEmQuatro = locacao.Veiculo.CapacidadeTanque / 4;
 
@@ -599,7 +603,7 @@ namespace Locadora_Veiculos.Infra.PDF
 
                     tabelaValores.AddCell(new Phrase($" {preco} x {locacao.Veiculo.CapacidadeTanque}L", fontNormal));               
                   
-                    tabelaValores.AddCell(new Phrase($"{preco * locacao.Veiculo.CapacidadeTanque}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{Math.Round(preco * locacao.Veiculo.CapacidadeTanque, 2)}", fontNormal));
 
                 }
 
@@ -610,7 +614,7 @@ namespace Locadora_Veiculos.Infra.PDF
                     var dif = tanqueEmQuatro * 3;
                     tabelaValores.AddCell(new Phrase($" {preco} x {dif}L", fontNormal));
 
-                    tabelaValores.AddCell(new Phrase($"{preco * dif}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{Math.Round(preco * dif, 2)}", fontNormal));
                 }
                 else if (locacao.NivelTanqueDevolucao == NivelTanque.Meio)
                 {
@@ -619,7 +623,7 @@ namespace Locadora_Veiculos.Infra.PDF
                     var dif = tanqueEmQuatro * 2;
                     tabelaValores.AddCell(new Phrase($" {preco} x {dif}L", fontNormal));
 
-                    tabelaValores.AddCell(new Phrase($"{preco * dif}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{Math.Round(preco * dif, 2)}", fontNormal));
                 }
                 else if (locacao.NivelTanqueDevolucao == NivelTanque.TresQuartos)
                 {
@@ -629,7 +633,7 @@ namespace Locadora_Veiculos.Infra.PDF
 
                     tabelaValores.AddCell(new Phrase($" {preco} x {dif}L", fontNormal));
 
-                    tabelaValores.AddCell(new Phrase($"{preco * dif}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{Math.Round(preco * dif, 2)}", fontNormal));
                 }
             }
 
