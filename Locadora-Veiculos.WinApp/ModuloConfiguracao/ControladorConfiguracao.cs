@@ -7,7 +7,7 @@ namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
 {
     public class ControladorConfiguracao : ControladorBase
     {
-        private readonly ConfiguracaoAplicacao configuracao;
+        private ConfiguracaoAplicacao configuracao;
 
         public ControladorConfiguracao(ConfiguracaoAplicacao configuracao)
         {

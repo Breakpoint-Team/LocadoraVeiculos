@@ -1,4 +1,5 @@
-﻿using Locadora_Veiculos.WinApp.Compartilhado;
+﻿using Locadora_Veiculos.Infra.Configs;
+using Locadora_Veiculos.WinApp.Compartilhado;
 using Locadora_Veiculos.WinApp.Compartilhado.Servicelocator;
 using Locadora_Veiculos.WinApp.ModuloCliente;
 using Locadora_Veiculos.WinApp.ModuloCondutor;

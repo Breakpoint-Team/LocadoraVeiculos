@@ -11,7 +11,7 @@ namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
         public ConfiguracaoControl(ConfiguracaoAplicacao configuracao)
         {
             InitializeComponent();
-            this.configuracao = new ConfiguracaoAplicacao();
+            this.configuracao = configuracao;
             txtDiretorioRelatorios.Text = configuracao.ConfiguracaoRelatorio.DiretorioSaida;
             txtDiretorioLogs.Text = configuracao.ConfiguracaoLogs.DiretorioSaida;
             numPrecoGNV.Value = configuracao.ConfiguracaoPrecoCombustivel.PrecoGNV;
