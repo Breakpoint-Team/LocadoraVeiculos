@@ -15,6 +15,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
+using Locadora_Veiculos.Infra.ORM.Tests.Compartilhado;
 using Locadora_Veiculos.Infra.PDF;
 using LocadoraVeiculos.Aplicacao.ModuloCliente;
 using LocadoraVeiculos.Aplicacao.ModuloCondutor;
@@ -31,7 +32,7 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
 {
 
     [TestClass]
-    public class RepositorioLocacaoORMTest
+    public class RepositorioLocacaoORMTest : RepositorioORMTestBase
     {
         private LocadoraVeiculosDbContext dbContext;
         private RepositorioClienteORM repositorioCliente;
@@ -52,14 +53,8 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
 
         public RepositorioLocacaoORMTest()
         {
-            Db.ExecutarSql("DELETE FROM LOCACAOTAXA;");
-            Db.ExecutarSql("DELETE FROM TBLOCACAO;");
-            Db.ExecutarSql("DELETE FROM TBTAXA");
-            Db.ExecutarSql("DELETE FROM TBPLANOCOBRANCA;");
-            Db.ExecutarSql("DELETE FROM TBVEICULO;");
-            Db.ExecutarSql("DELETE FROM TBGRUPOVEICULOS;");
-            Db.ExecutarSql("DELETE FROM TBCONDUTOR;");
-            Db.ExecutarSql("DELETE FROM TBCLIENTE;");
+            LimparTabelas();
+
             dbContext = new LocadoraVeiculosDbContext(Db.enderecoBanco);
 
             repositorioCliente = new RepositorioClienteORM(dbContext);
@@ -143,7 +138,7 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
             CalculadoraValoresLocacao calculadora = new CalculadoraValoresLocacao();
             locacao.ValorTotalPrevisto = calculadora.CalcularValorTotalPrevisto(locacao);
             servicoLocacao.Inserir(locacao);
-            servicoLocacao.DevolverLocacao(locacao);
+            locacao.StatusLocacao = StatusLocacao.Fechada;
             servicoLocacao.Excluir(locacao);
 
             var resultadoSelecao = servicoLocacao.SelecionarPorId(locacao.Id);
