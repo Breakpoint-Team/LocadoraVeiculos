@@ -77,7 +77,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             }
             else
             {
-                MessageBox.Show($"Valor efetivo: R$ {CalcularValorTotalEfetivo()}","Devolução de locação",
+                MessageBox.Show($"Valor efetivo: R$ {locacao.ValorTotalEfetivo}","Devolução de locação",
                     MessageBoxButtons.OK);
             }
         }
@@ -96,7 +96,6 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             labelDataLocacao.Text = locacao.DataLocacao.ToShortDateString();
             labelDevolucaoPrevista.Text = locacao.DataDevolucaoPrevista.ToShortDateString();
             labelKmInicial.Text = locacao.QuilometragemInicialVeiculo + " Km";
-            labelValorTotalPrevisto.Text = "R$ " + locacao.ValorTotalPrevisto;
             dateTimePickerDevolucaoEfetiva.MinDate = DateTime.Today;
             numericUpDownKmFinal.Minimum = locacao.QuilometragemInicialVeiculo;
 

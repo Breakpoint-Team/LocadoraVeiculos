@@ -58,8 +58,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
-            this.labelValorTotalPrevisto = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownKmFinal)).BeginInit();
             this.tabControlTaxas.SuspendLayout();
             this.tabPageTaxasLocacao.SuspendLayout();
@@ -318,7 +316,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(348, 389);
+            this.btnCancelar.Location = new System.Drawing.Point(350, 377);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 6;
@@ -327,7 +325,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(266, 389);
+            this.btnLimpar.Location = new System.Drawing.Point(268, 377);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 5;
@@ -338,7 +336,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(186, 389);
+            this.btnGravar.Location = new System.Drawing.Point(188, 377);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
             this.btnGravar.TabIndex = 4;
@@ -346,31 +344,11 @@
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
-            // labelValorTotalPrevisto
-            // 
-            this.labelValorTotalPrevisto.AutoSize = true;
-            this.labelValorTotalPrevisto.Location = new System.Drawing.Point(137, 358);
-            this.labelValorTotalPrevisto.Name = "labelValorTotalPrevisto";
-            this.labelValorTotalPrevisto.Size = new System.Drawing.Size(38, 15);
-            this.labelValorTotalPrevisto.TabIndex = 29;
-            this.labelValorTotalPrevisto.Text = "label4";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 358);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(108, 15);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Valor total previsto:";
-            // 
             // TelaDevolucaoLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 423);
-            this.Controls.Add(this.labelValorTotalPrevisto);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(446, 413);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnGravar);
@@ -444,8 +422,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnGravar;
-        private System.Windows.Forms.Label labelValorTotalPrevisto;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckedListBox checkedListBoxTaxasLocacao;
         private System.Windows.Forms.CheckedListBox checkedListBoxTaxasDevolucao;
     }
