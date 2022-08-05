@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoGNV)).BeginInit();
@@ -56,7 +57,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(393, 342);
+            this.btnGravar.Location = new System.Drawing.Point(401, 351);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(152, 23);
             this.btnGravar.TabIndex = 1;
@@ -94,6 +95,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.txtDataAtualizacao);
             this.tabPage1.Controls.Add(this.numPrecoGNV);
             this.tabPage1.Controls.Add(this.numPrecoGasolina);
@@ -107,7 +109,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(566, 362);
+            this.tabPage1.Size = new System.Drawing.Size(566, 308);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Preço dos Combustíveis ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -202,12 +204,20 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(574, 390);
+            this.tabControl1.Size = new System.Drawing.Size(574, 336);
             this.tabControl1.TabIndex = 19;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(361, 318);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(147, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Gravar Configuração";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // ConfiguracaoControl
             // 
@@ -247,5 +257,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Button button1;
     }
 }

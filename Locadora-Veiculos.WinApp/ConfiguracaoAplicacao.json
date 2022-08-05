@@ -2,16 +2,14 @@
   "ConfiguracaoLogs": {
     "DiretorioSaida": "C:\\logs"
   },
-
   "ConnectionStrings": {
     "SqlServer": "Data Source=(LOCALDB)\\MSSQLLOCALDB;Initial Catalog=LocadoraVeiculosORM;Integrated Security=True"
   },
-
   "ConfiguracaoPrecoCombustivel": {
-    "PrecoGNV": "7.75",
-    "PrecoGasolina": "5.78",
-    "PrecoDiesel": "1.20",
-    "PrecoAlcool": "2.36",
-    "DataAtualizacao":  "27/07/2022"
+    "PrecoGasolina": 1,
+    "PrecoDiesel": 4.50,
+    "PrecoAlcool": 6.80,
+    "PrecoGNV": 7.60,
+    "DataAtualizacao": "05/08/2022 17:50:33"
   }
 }

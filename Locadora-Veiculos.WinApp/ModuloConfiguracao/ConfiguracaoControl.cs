@@ -1,13 +1,7 @@
-﻿using Locadora_Veiculos.Dominio.ModuloConfiguracao;
-using Locadora_Veiculos.Infra.Configs;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+﻿using Locadora_Veiculos.Infra.Configs;
 using System;
-using System.Dynamic;
-using System.IO;
-using System.Text.Json;
 using System.Windows.Forms;
+
 
 namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
 {
@@ -18,28 +12,33 @@ namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
         {
             InitializeComponent();
             this.configuracao = new ConfiguracaoAplicacao();
-
-            ExibirConfigPrecoCombustivel(configuracao);
-        }
-
-        private void ExibirConfigPrecoCombustivel(ConfiguracaoAplicacao configuracao)
-        {
             txtDiretorioLogs.Text = configuracao.ConfiguracaoLogs.DiretorioSaida;
             numPrecoGNV.Value = configuracao.ConfiguracaoPrecoCombustivel.PrecoGNV;
             numPrecoGasolina.Value = configuracao.ConfiguracaoPrecoCombustivel.PrecoGasolina;
             numPrecoDiesel.Value = configuracao.ConfiguracaoPrecoCombustivel.PrecoDiesel;
             numPrecoAlcool.Value = configuracao.ConfiguracaoPrecoCombustivel.PrecoAlcool;
-            txtDataAtualizacao.Text = configuracao.ConfiguracaoPrecoCombustivel.DataAtualizacao;
+            txtDataAtualizacao.Text = configuracao.ConfiguracaoPrecoCombustivel.DataAtualizacao.ToString();
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-           
+            var newConfig = new ConfiguracaoAplicacao();
+            newConfig.ConfiguracaoLogs = new ConfiguracaoLogs() {
+                DiretorioSaida = txtDiretorioLogs.Text
+            };
+            newConfig.ConfiguracaoPrecoCombustivel = new ConfiguracaoPrecoCombustivel
+            {
+                PrecoAlcool = numPrecoAlcool.Value,
+                PrecoDiesel = numPrecoDiesel.Value,
+                PrecoGasolina = numPrecoGasolina.Value,
+                PrecoGNV = numPrecoGNV.Value,
+                DataAtualizacao = DateTime.Now.ToString()
+            };
 
-            MessageBox.Show("Configuração gravada com sucesso!", "Configuração",MessageBoxButtons.OK, MessageBoxIcon.Information) ;
+            configuracao.Atualizar(newConfig);
 
+            MessageBox.Show("Configuração gravada com sucesso!", "Configuração",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
 
     }
 }

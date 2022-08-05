@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -10,78 +9,75 @@ namespace Locadora_Veiculos.Infra.Configs
     {
         public ConfiguracaoAplicacao()
         {
-            IConfiguration configuracao = new ConfigurationBuilder()
+            var configuracao = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("ConfiguracaoAplicacao.json")
-                .Build();
+                .Build()
+                .Get<Config>();
 
-
-            var connectionString = configuracao.GetConnectionString("SqlServer");
+            var connectionString = configuracao.ConnectionStrings.SqlServer;
             ConnectionStrings = new ConnectionStrings { SqlServer = connectionString };
 
-            var diretorioSaida = configuracao
-                .GetSection("ConfiguracaoLogs")
-                .GetSection("DiretorioSaida")
-                .Value;
+            var diretorioSaida = configuracao.ConfiguracaoLogs.DiretorioSaida;
             ConfiguracaoLogs = new ConfiguracaoLogs { DiretorioSaida = diretorioSaida };
 
 
-            #region PrecoCombustivel
-            var precoGNV = configuracao
-             .GetSection("ConfiguracaoPrecoCombustivel")
-             .GetSection("PrecoGNV")
-             .Value;
-            var auxGNV = precoGNV.Replace('.',',');
-            decimal pGNV = Convert.ToDecimal(auxGNV);
-
-            var precoGasolina = configuracao
-             .GetSection("ConfiguracaoPrecoCombustivel")
-             .GetSection("PrecoGasolina")
-             .Value;
-
-            var auxGasolina = precoGasolina.Replace('.', ',');
-            decimal pGasolina = Convert.ToDecimal(auxGasolina);
-
-            var precoDiesel = configuracao
-             .GetSection("ConfiguracaoPrecoCombustivel")
-             .GetSection("PrecoDiesel")
-             .Value;
-
-            var auxDiesel = precoDiesel.Replace('.', ',');
-            decimal pDiesel = Convert.ToDecimal(auxDiesel);
-
-            var precoAlcool = configuracao
-             .GetSection("ConfiguracaoPrecoCombustivel")
-             .GetSection("PrecoAlcool")
-             .Value;
-
-            var auxAlcool = precoAlcool.Replace('.', ',');
-            decimal pAlcool = Convert.ToDecimal(auxAlcool);
-
-            var data = configuracao
-             .GetSection("ConfiguracaoPrecoCombustivel")
-             .GetSection("DataAtualizacao")
-             .Value;
-            #endregion
-
+            var precoGNV = configuracao.ConfiguracaoPrecoCombustivel.PrecoGNV;
+            var precoAlcool = configuracao.ConfiguracaoPrecoCombustivel.PrecoAlcool;
+            var precoGasolina = configuracao.ConfiguracaoPrecoCombustivel.PrecoGasolina;
+            var precoDiesel = configuracao.ConfiguracaoPrecoCombustivel.PrecoDiesel;
+            var dataAtualizacao = configuracao.ConfiguracaoPrecoCombustivel.DataAtualizacao;
             ConfiguracaoPrecoCombustivel = new ConfiguracaoPrecoCombustivel {
-                PrecoGNV = pGNV,
-                PrecoGasolina = pGasolina,
-                PrecoDiesel = pDiesel,
-                PrecoAlcool = pAlcool,
-                DataAtualizacao = data
+                PrecoGNV = precoGNV,
+                PrecoAlcool = precoAlcool,
+                PrecoGasolina = precoGasolina,
+                PrecoDiesel = precoDiesel,
+                DataAtualizacao = dataAtualizacao
             };
 
 
         }
+
 
         public ConfiguracaoLogs ConfiguracaoLogs { get; set; }
 
         public ConnectionStrings ConnectionStrings { get; set; }
 
         public ConfiguracaoPrecoCombustivel ConfiguracaoPrecoCombustivel { get; set; }
+        public void Atualizar(ConfiguracaoAplicacao novaConfig)
+        {
+            var c = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("ConfiguracaoAplicacao.json")
+            .Build()
+            .Get<Config>();
 
+            c.ConfiguracaoLogs.DiretorioSaida = novaConfig.ConfiguracaoLogs.DiretorioSaida;
+            c.ConfiguracaoPrecoCombustivel.PrecoAlcool = novaConfig.ConfiguracaoPrecoCombustivel.PrecoAlcool;
+            c.ConfiguracaoPrecoCombustivel.PrecoGNV = novaConfig.ConfiguracaoPrecoCombustivel.PrecoGNV;
+            c.ConfiguracaoPrecoCombustivel.PrecoGasolina = novaConfig.ConfiguracaoPrecoCombustivel.PrecoGasolina;
+            c.ConfiguracaoPrecoCombustivel.PrecoDiesel = novaConfig.ConfiguracaoPrecoCombustivel.PrecoDiesel;
+            c.ConfiguracaoPrecoCombustivel.DataAtualizacao = novaConfig.ConfiguracaoPrecoCombustivel.DataAtualizacao;
 
+            var jsonWriteOptions = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+
+            jsonWriteOptions.Converters.Add(new JsonStringEnumConverter());
+
+            var newJson = System.Text.Json.JsonSerializer.Serialize(c, jsonWriteOptions);
+            var appSettingsPath = Path.Combine("..\\..\\..\\.\\", "ConfiguracaoAplicacao.json");
+            File.WriteAllText(appSettingsPath, newJson);
+        }
+
+    }
+
+    public class Config
+    {
+        public ConfiguracaoLogs ConfiguracaoLogs { get; set; }
+        public ConnectionStrings ConnectionStrings { get; set; }
+        public ConfiguracaoPrecoCombustivel ConfiguracaoPrecoCombustivel { get; set; }
 
     }
 

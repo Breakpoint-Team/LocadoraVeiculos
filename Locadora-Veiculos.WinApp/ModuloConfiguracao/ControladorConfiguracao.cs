@@ -34,7 +34,6 @@ namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
         {
 
         }
-
         public override void Excluir()
         {
             throw new NotImplementedException();
