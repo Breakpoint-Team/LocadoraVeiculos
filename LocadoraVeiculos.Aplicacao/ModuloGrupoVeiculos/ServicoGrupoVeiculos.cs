@@ -123,7 +123,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
                 {
                     msgErro = "Falha no sistema ao tentar excluir o Grupo de Veículos";
                 }
-                
+
                 Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", grupoVeiculos.Id);
 
                 return Result.Fail(msgErro);

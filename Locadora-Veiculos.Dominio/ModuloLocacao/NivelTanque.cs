@@ -6,16 +6,16 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
     {
         [Description("Vazio")]
         Vazio,
-        
+
         [Description("Um quarto")]
         UmQuarto,
-        
+
         [Description("Meio")]
-        Meio, 
-        
+        Meio,
+
         [Description("Três quartos")]
         TresQuartos,
-        
+
         [Description("Cheio")]
         Cheio
     }

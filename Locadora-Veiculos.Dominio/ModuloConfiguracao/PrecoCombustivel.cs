@@ -13,7 +13,7 @@ namespace Locadora_Veiculos.Dominio.ModuloConfiguracao
 
         public PrecoCombustivel()
         {
-                
+
         }
 
     }

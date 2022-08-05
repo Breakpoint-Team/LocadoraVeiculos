@@ -1,15 +1,4 @@
-﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
-using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
-using Locadora_Veiculos.Dominio.ModuloVeiculo;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos;
-using Locadora_Veiculos.Infra.BancoDados.ModuloPlanoCobranca;
-using Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo;
-using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
-using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
-using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloGrupoVeiculos
 {

@@ -51,7 +51,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             }
 
             resultado = totalTaxasFixas + totalTaxasDiarias + totalPlanoDias;
-         
+
             return resultado;
         }
 
@@ -72,7 +72,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             //else
             if (locacao.DataDevolucaoEfetiva > locacao.DataDevolucaoPrevista)
                 valorEfetivoAtual += valorEfetivoAtual * 0.1m;
-            
+
             return valorEfetivoAtual;
         }
 
@@ -127,7 +127,7 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 
             foreach (var item in locacao.TaxasSelecionadas)
             {
-                    resultado += item.Valor;
+                resultado += item.Valor;
             }
             return resultado;
         }

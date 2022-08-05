@@ -1,8 +1,6 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Dominio.ModuloVeiculo;
-using Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,7 +16,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
         public TelaCadastroVeiculoForm(List<GrupoVeiculos> grupos)
         {
-            InitializeComponent();            
+            InitializeComponent();
             CarregarTipoCombustivel();
             CarregarGrupoVeiculos(grupos);
         }

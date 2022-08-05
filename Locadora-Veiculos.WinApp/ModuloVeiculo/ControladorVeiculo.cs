@@ -1,5 +1,4 @@
-﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
-using Locadora_Veiculos.Dominio.ModuloVeiculo;
+﻿using Locadora_Veiculos.Dominio.ModuloVeiculo;
 using Locadora_Veiculos.WinApp.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
@@ -31,7 +30,8 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
                 return;
             }
             var qtd = resultado.Value;
-            if(qtd < 1) { 
+            if (qtd < 1)
+            {
                 MessageBox.Show("Para cadastrar um Veículo, é necessário que haja um Grupo de Veículos cadastrado!",
                 "Inserção de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -42,7 +42,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             tela.Veiculo = new Veiculo();
             tela.GravarRegistro = servicoVeiculo.Inserir;
 
-            if(tela.ShowDialog() == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarVeiculos();
         }
 
@@ -72,7 +72,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
             tela.Veiculo = veiculoSelecionado;
             tela.GravarRegistro = servicoVeiculo.Editar;
 
-            if(tela.ShowDialog() == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarVeiculos();
         }
 
@@ -100,7 +100,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
 
 
 
-            if(MessageBox.Show("Deseja realmente excluir o veículo?",
+            if (MessageBox.Show("Deseja realmente excluir o veículo?",
             "Exclusão de Veículo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 var resultadoExclusao = servicoVeiculo.Excluir(veiculoSelecionado);

@@ -22,7 +22,7 @@ namespace Locadora_Veiculos.Dominio.ModuloGrupoVeiculos
         #region PROPS
 
         public string Nome { get; set; }
-        
+
         #endregion
 
         public override bool Equals(object obj)

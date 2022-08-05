@@ -1,12 +1,5 @@
-﻿using Locadora_Veiculos.Dominio.ModuloConfiguracao;
-using Locadora_Veiculos.Infra.Configs;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+﻿using Locadora_Veiculos.Infra.Configs;
 using System;
-using System.Dynamic;
-using System.IO;
-using System.Text.Json;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
@@ -34,9 +27,9 @@ namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-           
 
-            MessageBox.Show("Configuração gravada com sucesso!", "Configuração",MessageBoxButtons.OK, MessageBoxIcon.Information) ;
+
+            MessageBox.Show("Configuração gravada com sucesso!", "Configuração", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 

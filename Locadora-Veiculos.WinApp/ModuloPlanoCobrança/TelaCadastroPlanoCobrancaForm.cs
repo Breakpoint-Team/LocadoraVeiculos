@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Dominio.ModuloPlanoCobranca;
 using System;
@@ -46,7 +45,7 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
             {
                 string erro = resultadoValidacao.Errors[0].Message;
 
-                if(erro.StartsWith("Falha no sistema"))
+                if (erro.StartsWith("Falha no sistema"))
                 {
                     MessageBox.Show(erro, "Inserção de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -57,7 +56,7 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
                     DialogResult = DialogResult.None;
                 }
 
-                
+
 
             }
         }

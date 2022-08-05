@@ -26,9 +26,7 @@ using LocadoraVeiculos.Aplicacao.ModuloLocacao;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Locadora_Veiculos.WinApp.Compartilhado.Servicelocator
 {
@@ -54,18 +52,20 @@ namespace Locadora_Veiculos.WinApp.Compartilhado.Servicelocator
         {
             controladores = new Dictionary<string, ControladorBase>();
 
-            var configuracao = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("ConfiguracaoAplicacao.json")
-               .Build();
+            //var configuracao = new ConfigurationBuilder()
+            //   .SetBasePath(Directory.GetCurrentDirectory())
+            //   .AddJsonFile("ConfiguracaoAplicacao.json")
+            //   .Build();
+            //var config = new ConfiguracaoAplicacao();
+
+            //var connectionString = configuracao.GetConnectionString("SqlServer");
+
             var config = new ConfiguracaoAplicacao();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
-
-            var contextoDadosOrm = new LocadoraVeiculosDbContext(connectionString);
+            var contextoDadosOrm = new LocadoraVeiculosDbContext(config.ConnectionStrings);
 
             var repositorioFuncionario = new RepositorioFuncionarioORM(contextoDadosOrm);
-            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario,contextoDadosOrm);
+            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, contextoDadosOrm);
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(servicoFuncionario));
 
             var repositorioTaxa = new RepositorioTaxaORM(contextoDadosOrm);
@@ -78,7 +78,7 @@ namespace Locadora_Veiculos.WinApp.Compartilhado.Servicelocator
 
             var repositorioCondutor = new RepositorioCondutorORM(contextoDadosOrm);
             var servicoCondutor = new ServicoCondutor(repositorioCondutor, contextoDadosOrm);
-            controladores.Add("ControladorCondutor", new ControladorCondutor(servicoCliente,servicoCondutor));
+            controladores.Add("ControladorCondutor", new ControladorCondutor(servicoCliente, servicoCondutor));
 
             var repositorioGrupoVeiculos = new RepositorioGrupoVeiculosORM(contextoDadosOrm);
             var servicoGrupoVeiculo = new ServicoGrupoVeiculos(repositorioGrupoVeiculos, contextoDadosOrm);
@@ -90,7 +90,7 @@ namespace Locadora_Veiculos.WinApp.Compartilhado.Servicelocator
 
             var repositorioPlanoCobranca = new RepositorioPlanoCobrancaORM(contextoDadosOrm);
             var servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
-            controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(servicoPlanoCobranca,servicoGrupoVeiculo));
+            controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(servicoPlanoCobranca, servicoGrupoVeiculo));
 
             var geradorRelatorio = new GeradorRelatorioITextSharp();
             var repositorioLocacao = new RepositorioLocacaoORM(contextoDadosOrm);

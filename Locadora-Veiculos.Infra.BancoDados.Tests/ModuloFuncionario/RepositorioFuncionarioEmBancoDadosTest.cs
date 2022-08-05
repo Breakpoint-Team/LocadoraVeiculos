@@ -1,10 +1,4 @@
-﻿using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ModuloFuncionario;
-using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Locadora_Veiculos.Dominio.ModuloFuncionario;
-using System.Collections.Generic;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloFuncionario
 {
@@ -129,15 +123,15 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloFuncionario
         //}
 
         //#region MÉTODOS PRIVADOS
-        
+
         //private Funcionario NovoFuncionario()
         //{
-            
+
         //    Funcionario f = new Funcionario("Alexandre Rech", "rech", "12345678",
         //        new DateTime(2019,2,5) ,1200, true, true );
         //    return f;
         //}
-        
+
         //private List<Funcionario> NovosFuncionarios()
         //{
         //    Funcionario f1 = new Funcionario("Matheus Medeiros","math", "12345678",new DateTime(2020, 07, 14), 800,true,

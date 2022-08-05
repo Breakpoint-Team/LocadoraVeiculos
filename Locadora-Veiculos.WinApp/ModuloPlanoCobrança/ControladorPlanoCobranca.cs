@@ -11,14 +11,14 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 {
     public class ControladorPlanoCobranca : ControladorBase
     {
-        
+
         private readonly ServicoPlanoCobranca servicoPlanoCobranca;
         private readonly ServicoGrupoVeiculos servicoGrupoVeiculos;
         private ListagemPlanoCobrancaControl listagemPlanoCobranca;
 
         public ControladorPlanoCobranca(ServicoPlanoCobranca servicoPlanoCobranca, ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
-            
+
             this.servicoPlanoCobranca = servicoPlanoCobranca;
             this.servicoGrupoVeiculos = servicoGrupoVeiculos;
         }
@@ -78,7 +78,7 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
 
             tela.GravarRegistro = servicoPlanoCobranca.Editar;
 
-            if(tela.ShowDialog() == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 CarregarPlanos();
             }
@@ -103,9 +103,9 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
                 return;
             }
 
-            var planoCobrancaSelecionado = resultado.Value; 
+            var planoCobrancaSelecionado = resultado.Value;
 
-            if(MessageBox.Show("Deseja realmente excluir o plano de cobrança?",
+            if (MessageBox.Show("Deseja realmente excluir o plano de cobrança?",
             "Exclusão de Plano de Cobrança", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 var resultadoExclusao = servicoPlanoCobranca.Excluir(planoCobrancaSelecionado);
@@ -119,7 +119,7 @@ namespace Locadora_Veiculos.WinApp.ModuloPlanoCobrança
                 }
             }
 
-           
+
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

@@ -578,13 +578,13 @@ namespace Locadora_Veiculos.Infra.PDF
             }
             #endregion
 
-            if(locacao.NivelTanqueDevolucao != NivelTanque.Cheio)
+            if (locacao.NivelTanqueDevolucao != NivelTanque.Cheio)
             {
                 decimal preco = 0m;
                 string tipo = locacao.Veiculo.TipoCombustivel;
                 if (tipo == "Gasolina")
                     preco = calculadoraValoresLocacao.PrecoGasolina;
-                else if(tipo == "Álcool")
+                else if (tipo == "Álcool")
                     preco = calculadoraValoresLocacao.PrecoAlcool;
                 else if (tipo == "Diesel")
                     preco = calculadoraValoresLocacao.PrecoDiesel;
@@ -597,8 +597,8 @@ namespace Locadora_Veiculos.Infra.PDF
                 {
                     tabelaValores.AddCell(new Phrase($"Taxa nível do combustível", fontNormal));
 
-                    tabelaValores.AddCell(new Phrase($" {preco} x {locacao.Veiculo.CapacidadeTanque}L", fontNormal));               
-                  
+                    tabelaValores.AddCell(new Phrase($" {preco} x {locacao.Veiculo.CapacidadeTanque}L", fontNormal));
+
                     tabelaValores.AddCell(new Phrase($"{preco * locacao.Veiculo.CapacidadeTanque}", fontNormal));
 
                 }

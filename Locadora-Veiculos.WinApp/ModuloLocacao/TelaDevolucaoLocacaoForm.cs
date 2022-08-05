@@ -77,7 +77,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             }
             else
             {
-                MessageBox.Show($"Valor efetivo: R$ {locacao.ValorTotalEfetivo}","Devolução de locação",
+                MessageBox.Show($"Valor efetivo: R$ {locacao.ValorTotalEfetivo}", "Devolução de locação",
                     MessageBoxButtons.OK);
             }
         }
@@ -170,7 +170,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             }
 
             ObterTaxasDevolucaoSelecionadas();
-            foreach(var item in taxasDevolucaoSelecionadas)
+            foreach (var item in taxasDevolucaoSelecionadas)
             {
                 locacao.TaxasSelecionadas.Add(item);
             }

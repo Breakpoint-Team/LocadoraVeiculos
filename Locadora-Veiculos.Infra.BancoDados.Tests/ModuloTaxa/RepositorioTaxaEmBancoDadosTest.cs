@@ -1,9 +1,4 @@
-﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ModuloTaxa;
-using LocadoraVeiculos.Aplicacao.ModuloTaxa;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
 {
@@ -30,7 +25,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
         //    var resultadoInsercao = servicoTaxa.Inserir(taxa);
 
         //    var resultadoSelecao = servicoTaxa.SelecionarPorId(taxa.Id);
-           
+
         //    var registroEncontrado = resultadoSelecao.Value;
 
         //    //assert
@@ -54,7 +49,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloTaxa
         //    var resultadoEdicao = servicoTaxa.Editar(taxa);
 
         //    var resultadoSelecao = servicoTaxa.SelecionarPorId(taxa.Id);
-          
+
         //    var registroEncontrado = resultadoSelecao.Value;
 
         //    //assert
