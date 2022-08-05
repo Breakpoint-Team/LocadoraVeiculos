@@ -1,4 +1,3 @@
-using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Locadora_Veiculos.Infra.Logging;
 using Locadora_Veiculos.WinApp.Compartilhado.Servicelocator;
 using System;
@@ -20,8 +19,8 @@ namespace Locadora_Veiculos.WinApp
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
-            IServiceLocator servicelocator = new ServiceLocatorManual();
+
+            IServiceLocator servicelocator = new ServiceLocatorComAutoFac();
 
             Application.Run(new TelaPrincipalForm(servicelocator));
         }

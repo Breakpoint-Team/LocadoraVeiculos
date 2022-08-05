@@ -107,7 +107,8 @@ namespace Locadora_Veiculos.WinApp
 
         private void btnDevolucaoLocacao_Click(object sender, EventArgs e)
         {
-            serviceLocator.Get<ControladorLocacao>().DevolverLocacao();
+            var c = (ControladorLocacao)controlador;
+            c.DevolverLocacao();
         }
 
         #endregion

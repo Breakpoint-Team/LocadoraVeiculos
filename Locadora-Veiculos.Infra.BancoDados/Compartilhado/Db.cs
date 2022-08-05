@@ -1,21 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Locadora_Veiculos.Infra.Configs;
 using System.Data.SqlClient;
-using System.IO;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
 {
     public static class Db
     {
-        private static IConfigurationRoot configuracao = new ConfigurationBuilder()
-                  .SetBasePath(Directory.GetCurrentDirectory())
-                  .AddJsonFile("ConfiguracaoAplicacao.json")
-                  .Build();
+        private static ConfiguracaoAplicacao config = new ConfiguracaoAplicacao();
 
-        public static string enderecoBanco = configuracao.GetConnectionString("SqlServer");
+        private static string connectionString = config.ConnectionStrings.SqlServer;
 
         public static void ExecutarSql(string sql)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(connectionString);
 
             SqlCommand comando = new SqlCommand(sql, conexaoComBanco);
 
