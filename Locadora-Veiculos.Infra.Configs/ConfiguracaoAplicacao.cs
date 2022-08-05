@@ -49,7 +49,7 @@ namespace Locadora_Veiculos.Infra.Configs
 
         public ConfiguracaoRelatorio ConfiguracaoRelatorio { get; set; }
 
-        public void Atualizar(ConfiguracaoAplicacao novaConfig)
+        public static void Atualizar(ConfiguracaoAplicacao novaConfig)
         {
             var c = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
