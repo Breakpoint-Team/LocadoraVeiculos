@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.IO;
+﻿using Locadora_Veiculos.Infra.Configs;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
@@ -9,14 +8,9 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
     {
         public static void AtualizarBancoDados()
         {
-            var configuracao = new ConfigurationBuilder()
-              .SetBasePath(Directory.GetCurrentDirectory())
-              .AddJsonFile("ConfiguracaoAplicacao.json")
-              .Build();
+            var config = new ConfiguracaoAplicacao();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
-
-            var db = new LocadoraVeiculosDbContext(connectionString);
+            var db = new LocadoraVeiculosDbContext(config.ConnectionStrings);
 
             var migracoesPendentes = db.Database.GetPendingMigrations();
 
