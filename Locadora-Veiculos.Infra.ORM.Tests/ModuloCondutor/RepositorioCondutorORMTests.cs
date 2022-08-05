@@ -5,6 +5,7 @@ using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCliente;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor;
+using Locadora_Veiculos.Infra.ORM.Tests.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloCliente;
 using LocadoraVeiculos.Aplicacao.ModuloCondutor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,7 +15,7 @@ using System.Collections.Generic;
 namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloCondutor
 {
     [TestClass]
-    public class RepositorioCondutorORMTests
+    public class RepositorioCondutorORMTests : RepositorioORMTestBase
     {
 
         private LocadoraVeiculosDbContext dbContext;
@@ -25,8 +26,7 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloCondutor
 
         public RepositorioCondutorORMTests()
         {
-            Db.ExecutarSql("DELETE FROM TBCONDUTOR;");
-            Db.ExecutarSql("DELETE FROM TBCLIENTE;");
+            LimparTabelas();
             dbContext = new LocadoraVeiculosDbContext(Db.enderecoBanco);
             repositorioCliente = new RepositorioClienteORM(dbContext);
             repositorioCondutor = new RepositorioCondutorORM(dbContext);

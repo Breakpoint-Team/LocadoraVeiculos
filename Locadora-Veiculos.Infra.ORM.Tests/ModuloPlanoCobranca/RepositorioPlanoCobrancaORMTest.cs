@@ -4,6 +4,7 @@ using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
+using Locadora_Veiculos.Infra.ORM.Tests.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,7 +14,8 @@ using System.Collections.Generic;
 namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloPlanoCobranca
 {
     [TestClass]
-    public class RepositorioPlanoCobrancaORMTest
+
+    public class RepositorioPlanoCobrancaORMTest : RepositorioORMTestBase
     {
         private RepositorioPlanoCobrancaORM repositorioPlanoCobranca;
         private RepositorioGrupoVeiculosORM repositorioGrupoVeiculos;
@@ -23,9 +25,8 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloPlanoCobranca
 
         public RepositorioPlanoCobrancaORMTest()
         {
-            Db.ExecutarSql("DELETE FROM TBPLANOCOBRANCA;");
-            Db.ExecutarSql("DELETE FROM TBVEICULO;");
-            Db.ExecutarSql("DELETE FROM TBGRUPOVEICULOS;");
+            LimparTabelas();
+
             dbContext = new LocadoraVeiculosDbContext(Db.enderecoBanco);
 
             repositorioPlanoCobranca = new RepositorioPlanoCobrancaORM(dbContext);
