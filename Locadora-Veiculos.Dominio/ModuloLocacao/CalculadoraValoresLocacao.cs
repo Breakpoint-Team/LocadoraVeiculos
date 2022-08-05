@@ -6,10 +6,10 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
 {
     public class CalculadoraValoresLocacao
     {
-        private decimal precoGasolina = 5m;
-        private decimal precoAlcool = 5m;
-        private decimal precoDiesel = 5m;
-        private decimal precoGNV = 5m;
+        public decimal PrecoGasolina => 5m;
+        public decimal PrecoAlcool => 5m;
+        public decimal PrecoDiesel => 5m;
+        public decimal PrecoGNV => 5m;
 
         public CalculadoraValoresLocacao()
         {
@@ -62,14 +62,15 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             valorEfetivoAtual += GetValorPlanoCobranca(locacao);
             valorEfetivoAtual += GetValorTaxas(locacao);
             valorEfetivoAtual += GetTaxaCombustivel(locacao);
-            
-            if (locacao.DataDevolucaoEfetiva < locacao.DataDevolucaoPrevista)
-            {
-                int qtdDiasPrevistaLocacao = Convert.ToInt32((locacao.DataDevolucaoPrevista - locacao.DataLocacao).TotalDays);
-                var retorno = (locacao.ValorTotalPrevisto /qtdDiasPrevistaLocacao) * GetQuantidadeDiasRealLocacao(locacao);
-                return retorno;
-            }
-            else if (locacao.DataDevolucaoEfetiva > locacao.DataDevolucaoPrevista)
+
+            //if (locacao.DataDevolucaoEfetiva < locacao.DataDevolucaoPrevista)
+            //{
+            //    int qtdDiasPrevistaLocacao = Convert.ToInt32((locacao.DataDevolucaoPrevista - locacao.DataLocacao).TotalDays);
+            //    var retorno = (locacao.ValorTotalPrevisto /qtdDiasPrevistaLocacao) * GetQuantidadeDiasRealLocacao(locacao);
+            //    return retorno;
+            //}
+            //else
+            if (locacao.DataDevolucaoEfetiva > locacao.DataDevolucaoPrevista)
                 valorEfetivoAtual += valorEfetivoAtual * 0.1m;
             
             return valorEfetivoAtual;
@@ -105,16 +106,16 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             {
                 case "Gasolina":
 
-                    resultado = diferencaPraCompletarTanque * precoGasolina;
+                    resultado = diferencaPraCompletarTanque * PrecoGasolina;
                     break;
                 case "Álcool":
-                    resultado = diferencaPraCompletarTanque * precoAlcool;
+                    resultado = diferencaPraCompletarTanque * PrecoAlcool;
                     break;
                 case "Diesel":
-                    resultado = diferencaPraCompletarTanque * precoDiesel;
+                    resultado = diferencaPraCompletarTanque * PrecoDiesel;
                     break;
                 case "GNV":
-                    resultado = diferencaPraCompletarTanque * precoGNV;
+                    resultado = diferencaPraCompletarTanque * PrecoGNV;
                     break;
             }
             return resultado;
@@ -138,22 +139,23 @@ namespace Locadora_Veiculos.Dominio.ModuloLocacao
             int qtdDiasLocacao = GetQuantidadeDiasRealLocacao(locacao);
 
             var km = locacao.QuilometragemFinalVeiculo.Value - locacao.QuilometragemInicialVeiculo;
-            if (locacao.TipoPlanoSelecionado == ModuloPlanoCobranca.TipoPlano.Diario)
+
+            if (locacao.TipoPlanoSelecionado == TipoPlano.Diario)
             {
                 total += locacao.PlanoCobranca.DiarioValorDia * qtdDiasLocacao;
                 total += locacao.PlanoCobranca.DiarioValorKm * km;
             }
-            else if (locacao.TipoPlanoSelecionado == ModuloPlanoCobranca.TipoPlano.Controlado)
+            else if (locacao.TipoPlanoSelecionado == TipoPlano.Controlado)
             {
-                total += locacao.PlanoCobranca.DiarioValorDia * qtdDiasLocacao;
-                if (locacao.QuilometragemFinalVeiculo > locacao.PlanoCobranca.KmControladoLimiteKm)
+                total += locacao.PlanoCobranca.KmControladoValorDia * qtdDiasLocacao;
+                if (km > locacao.PlanoCobranca.KmControladoLimiteKm)
                 {
                     total += locacao.PlanoCobranca.KmControladoValorKm * km;
                 }
             }
-            else if (locacao.TipoPlanoSelecionado == ModuloPlanoCobranca.TipoPlano.Livre)
+            else if (locacao.TipoPlanoSelecionado == TipoPlano.Livre)
             {
-                total += locacao.PlanoCobranca.DiarioValorDia * qtdDiasLocacao;
+                total += locacao.PlanoCobranca.KmLivreValorDia * qtdDiasLocacao;
             }
 
             return total;

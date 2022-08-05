@@ -11,13 +11,15 @@ namespace Locadora_Veiculos.Infra.PDF
 {
     public class GeradorRelatorioITextSharp : IGeradorRelatorio
     {
+        private CalculadoraValoresLocacao calculadoraValoresLocacao = new CalculadoraValoresLocacao();
+
         public void GerarRelatorioLocacaoPDF(Locacao locacao)
         {
 
             string path = @"C:\Locadora\Relatorios\";
 
             if (Directory.Exists(path) == false)
-               Directory.CreateDirectory(path);
+                Directory.CreateDirectory(path);
 
             var nomeArquivo = GerarNomeArquivo(locacao);
 
@@ -186,29 +188,32 @@ namespace Locadora_Veiculos.Infra.PDF
             #endregion
 
             #region TAXAS
-
-            PdfPTable tabelaTaxas = new PdfPTable(3);
-
-            PdfPCell cell1 = new PdfPCell(new Phrase("Taxas Selecionadas", fontBold));
-            cell1.Colspan = 3;
-            cell1.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabelaTaxas.AddCell(cell1);
-
-            tabelaTaxas.AddCell(new Phrase("Descrição", fontBold));
-            tabelaTaxas.AddCell(new Phrase("Valor", fontBold));
-            tabelaTaxas.AddCell(new Phrase("Tipo de Cálculo", fontBold));
-
-            foreach (var t in locacao.TaxasSelecionadas)
+            if (locacao.TaxasSelecionadas.Count > 0)
             {
-                if (t.TipoTaxa == Dominio.ModuloTaxa.TipoTaxa.TaxaLocacao)
+
+                PdfPTable tabelaTaxas = new PdfPTable(3);
+
+                PdfPCell cell1 = new PdfPCell(new Phrase("Taxas Selecionadas", fontBold));
+                cell1.Colspan = 3;
+                cell1.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaTaxas.AddCell(cell1);
+
+                tabelaTaxas.AddCell(new Phrase("Descrição", fontBold));
+                tabelaTaxas.AddCell(new Phrase("Valor", fontBold));
+                tabelaTaxas.AddCell(new Phrase("Tipo de Cálculo", fontBold));
+
+                foreach (var t in locacao.TaxasSelecionadas)
                 {
-                    tabelaTaxas.AddCell(new Phrase($"{t.Descricao}", fontNormal));
-                    tabelaTaxas.AddCell(new Phrase($"{t.Valor}", fontNormal));
-                    tabelaTaxas.AddCell(new Phrase($"{t.TipoCalculo}", fontNormal));
+                    if (t.TipoTaxa == Dominio.ModuloTaxa.TipoTaxa.TaxaLocacao)
+                    {
+                        tabelaTaxas.AddCell(new Phrase($"{t.Descricao}", fontNormal));
+                        tabelaTaxas.AddCell(new Phrase($"{t.Valor}", fontNormal));
+                        tabelaTaxas.AddCell(new Phrase($"{t.TipoCalculo}", fontNormal));
+                    }
                 }
+                doc.Add(tabelaTaxas);
+                doc.Add(pulaLinha);
             }
-            doc.Add(tabelaTaxas);
-            doc.Add(pulaLinha);
             #endregion
 
             #region TOTALPREVISTO
@@ -439,26 +444,40 @@ namespace Locadora_Veiculos.Infra.PDF
 
             #region TAXAS
 
-            PdfPTable tabelaTaxas = new PdfPTable(3);
-
-            PdfPCell cell1 = new PdfPCell(new Phrase("Taxas selecionadas", fontBold));
-            cell1.Colspan = 3;
-            cell1.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabelaTaxas.AddCell(cell1);
-
-            tabelaTaxas.AddCell(new Phrase("Descrição", fontBold));
-            tabelaTaxas.AddCell(new Phrase("Valor", fontBold));
-            tabelaTaxas.AddCell(new Phrase("Tipo de Cálculo", fontBold));
-
+            bool temTaxaLocacao = false;
             foreach (var t in locacao.TaxasSelecionadas)
             {
                 if (t.TipoTaxa == TipoTaxa.TaxaLocacao)
                 {
-                    tabelaTaxas.AddCell(new Phrase($"{t.Descricao}", fontNormal));
-                    tabelaTaxas.AddCell(new Phrase($"{t.Valor}", fontNormal));
-                    tabelaTaxas.AddCell(new Phrase($"{t.TipoCalculo}", fontNormal));
+                    temTaxaLocacao = true;
+                    break;
                 }
             }
+            if (temTaxaLocacao)
+            {
+                PdfPTable tabelaTaxas = new PdfPTable(3);
+
+                PdfPCell cell1 = new PdfPCell(new Phrase("Taxas selecionadas", fontBold));
+                cell1.Colspan = 3;
+                cell1.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaTaxas.AddCell(cell1);
+
+                tabelaTaxas.AddCell(new Phrase("Descrição", fontBold));
+                tabelaTaxas.AddCell(new Phrase("Valor", fontBold));
+                tabelaTaxas.AddCell(new Phrase("Tipo de Cálculo", fontBold));
+                foreach (var t in locacao.TaxasSelecionadas)
+                {
+                    if (t.TipoTaxa == TipoTaxa.TaxaLocacao)
+                    {
+                        tabelaTaxas.AddCell(new Phrase($"{t.Descricao}", fontNormal));
+                        tabelaTaxas.AddCell(new Phrase($"{t.Valor}", fontNormal));
+                        tabelaTaxas.AddCell(new Phrase($"{t.TipoCalculo}", fontNormal));
+                    }
+                }
+                doc.Add(tabelaTaxas);
+
+            }
+
 
             bool temTaxaDevolucao = false;
             foreach (var t in locacao.TaxasSelecionadas)
@@ -470,7 +489,6 @@ namespace Locadora_Veiculos.Infra.PDF
                 }
             }
 
-            doc.Add(tabelaTaxas);
             if (temTaxaDevolucao)
             {
                 PdfPTable tabelaTaxasDevolucao = new PdfPTable(3);
@@ -495,6 +513,7 @@ namespace Locadora_Veiculos.Infra.PDF
                 }
                 doc.Add(tabelaTaxasDevolucao);
             }
+
             doc.Add(pulaLinha);
             #endregion
 
@@ -526,9 +545,12 @@ namespace Locadora_Veiculos.Infra.PDF
                 tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.KmControladoValorDia} x {diasL}", fontNormal));
                 tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.KmControladoValorDia * diasL}", fontNormal));
 
-                tabelaValores.AddCell(new Phrase($"Plano de Cobrança - Valor por Km Excedente", fontNormal));
-                tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.KmControladoValorKm} x {nKmpercorridos}", fontNormal));
-                tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.KmControladoValorKm * nKmpercorridos}", fontNormal));
+                if (nKmpercorridos > locacao.PlanoCobranca.KmControladoLimiteKm)
+                {
+                    tabelaValores.AddCell(new Phrase($"Plano de Cobrança - Valor por Km Excedente", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.KmControladoValorKm} x {nKmpercorridos}", fontNormal));
+                    tabelaValores.AddCell(new Phrase($"{locacao.PlanoCobranca.KmControladoValorKm * nKmpercorridos}", fontNormal));
+                }
             }
             else if (locacao.TipoPlanoSelecionado == TipoPlano.Livre)
             {
@@ -555,6 +577,61 @@ namespace Locadora_Veiculos.Infra.PDF
 
             }
             #endregion
+
+            if(locacao.NivelTanqueDevolucao != NivelTanque.Cheio)
+            {
+                decimal preco = 0m;
+                string tipo = locacao.Veiculo.TipoCombustivel;
+                if (tipo == "Gasolina")
+                    preco = calculadoraValoresLocacao.PrecoGasolina;
+                else if(tipo == "Álcool")
+                    preco = calculadoraValoresLocacao.PrecoAlcool;
+                else if (tipo == "Diesel")
+                    preco = calculadoraValoresLocacao.PrecoDiesel;
+                else if (tipo == "GNV")
+                    preco = calculadoraValoresLocacao.PrecoGNV;
+
+                decimal tanqueEmQuatro = locacao.Veiculo.CapacidadeTanque / 4;
+
+                if (locacao.NivelTanqueDevolucao == NivelTanque.Vazio)
+                {
+                    tabelaValores.AddCell(new Phrase($"Taxa nível do combustível", fontNormal));
+
+                    tabelaValores.AddCell(new Phrase($" {preco} x {locacao.Veiculo.CapacidadeTanque}L", fontNormal));               
+                  
+                    tabelaValores.AddCell(new Phrase($"{preco * locacao.Veiculo.CapacidadeTanque}", fontNormal));
+
+                }
+
+                else if (locacao.NivelTanqueDevolucao == NivelTanque.UmQuarto)
+                {
+                    tabelaValores.AddCell(new Phrase($"Taxa nível do combustível", fontNormal));
+
+                    var dif = tanqueEmQuatro * 3;
+                    tabelaValores.AddCell(new Phrase($" {preco} x {dif}L", fontNormal));
+
+                    tabelaValores.AddCell(new Phrase($"{preco * dif}", fontNormal));
+                }
+                else if (locacao.NivelTanqueDevolucao == NivelTanque.Meio)
+                {
+                    tabelaValores.AddCell(new Phrase($"Taxa nível do combustível", fontNormal));
+
+                    var dif = tanqueEmQuatro * 2;
+                    tabelaValores.AddCell(new Phrase($" {preco} x {dif}L", fontNormal));
+
+                    tabelaValores.AddCell(new Phrase($"{preco * dif}", fontNormal));
+                }
+                else if (locacao.NivelTanqueDevolucao == NivelTanque.TresQuartos)
+                {
+                    tabelaValores.AddCell(new Phrase($"Taxa nível do combustível", fontNormal));
+
+                    var dif = tanqueEmQuatro;
+
+                    tabelaValores.AddCell(new Phrase($" {preco} x {dif}L", fontNormal));
+
+                    tabelaValores.AddCell(new Phrase($"{preco * dif}", fontNormal));
+                }
+            }
 
             doc.NewPage();
             PdfPCell cellValorFinal = new PdfPCell(new Phrase("Valor total", fontBold));
