@@ -28,16 +28,15 @@ namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            var newConfig = new ConfiguracaoAplicacao();
-            newConfig.ConfiguracaoRelatorio = new ConfiguracaoRelatorio()
+            configuracao.ConfiguracaoRelatorio = new ConfiguracaoRelatorio()
             {
                 DiretorioSaida = txtDiretorioRelatorios.Text
             };
-            newConfig.ConfiguracaoLogs = new ConfiguracaoLogs()
+            configuracao.ConfiguracaoLogs = new ConfiguracaoLogs()
             {
                 DiretorioSaida = txtDiretorioLogs.Text
             };
-            newConfig.ConfiguracaoPrecoCombustivel = new ConfiguracaoPrecoCombustivel
+            configuracao.ConfiguracaoPrecoCombustivel = new ConfiguracaoPrecoCombustivel
             {
                 PrecoAlcool = numPrecoAlcool.Value,
                 PrecoDiesel = numPrecoDiesel.Value,
@@ -46,9 +45,9 @@ namespace Locadora_Veiculos.WinApp.ModuloConfiguracao
                 DataAtualizacao = DateTime.Now.ToString()
             };
 
-            ConfiguracaoAplicacao.Atualizar(newConfig);
+            ConfiguracaoAplicacao.Atualizar(configuracao);
 
-            CarregarConfigs(newConfig);
+            CarregarConfigs(configuracao);
             MessageBox.Show("Configurações gravadas com sucesso!", "Configurações", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
