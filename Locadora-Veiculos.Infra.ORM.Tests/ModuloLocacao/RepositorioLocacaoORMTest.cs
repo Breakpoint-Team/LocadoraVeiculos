@@ -13,6 +13,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
+using Locadora_Veiculos.Infra.Configs;
 using Locadora_Veiculos.Infra.ORM.Tests.Compartilhado;
 using Locadora_Veiculos.Infra.PDF;
 using LocadoraVeiculos.Aplicacao.ModuloCliente;
@@ -67,7 +68,8 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
             servicoPlano = new ServicoPlanoCobranca(repositorioPlano, dbContext);
             servicoGrupoVeiculo = new ServicoGrupoVeiculos(repositorioGrupo, dbContext);
             servicoVeiculo = new ServicoVeiculo(repositorioVeiculo, dbContext);
-            IGeradorRelatorio geradorRelatorio = new GeradorRelatorioITextSharp();
+
+            IGeradorRelatorio geradorRelatorio = new GeradorRelatorioITextSharp(config);
             servicoLocacao = new ServicoLocacao(repositorioLocacao, dbContext, geradorRelatorio);
             PopularDados();
         }
@@ -83,7 +85,7 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
             Locacao locacao = new(condutor, veiculo,
             grupo, plano, TipoPlano.Diario, GetTaxas(), DateTime.Today, 1,
             new DateTime(2025, 8, 13), veiculo.QuilometragemPercorrida);
-            CalculadoraValoresLocacao calculadora = new CalculadoraValoresLocacao();
+            CalculadoraValoresLocacao calculadora = new CalculadoraValoresLocacao(config);
             locacao.ValorTotalPrevisto = calculadora.CalcularValorTotalPrevisto(locacao);
 
             servicoLocacao.Inserir(locacao);
@@ -105,7 +107,7 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
             Locacao locacao = new(condutor, veiculo,
             grupo, plano, TipoPlano.Diario, GetTaxas(), DateTime.Today, 1,
             new DateTime(2025, 8, 13), veiculo.QuilometragemPercorrida);
-            CalculadoraValoresLocacao calculadora = new CalculadoraValoresLocacao();
+            CalculadoraValoresLocacao calculadora = new CalculadoraValoresLocacao(config);
             locacao.ValorTotalPrevisto = calculadora.CalcularValorTotalPrevisto(locacao);
             servicoLocacao.Inserir(locacao);
 
@@ -130,7 +132,7 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
             Locacao locacao = new(condutor, veiculo,
             grupo, plano, TipoPlano.Diario, GetTaxas(), DateTime.Today, 1,
             new DateTime(2025, 8, 13), veiculo.QuilometragemPercorrida);
-            CalculadoraValoresLocacao calculadora = new CalculadoraValoresLocacao();
+            CalculadoraValoresLocacao calculadora = new CalculadoraValoresLocacao(config);
             locacao.ValorTotalPrevisto = calculadora.CalcularValorTotalPrevisto(locacao);
             servicoLocacao.Inserir(locacao);
             locacao.StatusLocacao = StatusLocacao.Fechada;
@@ -153,7 +155,7 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloLocacao
             Locacao locacao = new(condutor, veiculo,
             grupo, plano, TipoPlano.Diario, GetTaxas(), DateTime.Today, 1,
             new DateTime(2025, 8, 13), veiculo.QuilometragemPercorrida);
-            CalculadoraValoresLocacao calculadora = new CalculadoraValoresLocacao();
+            CalculadoraValoresLocacao calculadora = new CalculadoraValoresLocacao(config);
             locacao.ValorTotalPrevisto = calculadora.CalcularValorTotalPrevisto(locacao);
 
             servicoLocacao.Inserir(locacao);
