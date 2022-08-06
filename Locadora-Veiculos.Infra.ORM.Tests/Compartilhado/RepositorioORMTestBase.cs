@@ -13,6 +13,7 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.Compartilhado
         public RepositorioORMTestBase()
         {
             config = new ConfiguracaoAplicacao();
+
             dbContext = new LocadoraVeiculosDbContext(config.ConnectionStrings);
         }
 
