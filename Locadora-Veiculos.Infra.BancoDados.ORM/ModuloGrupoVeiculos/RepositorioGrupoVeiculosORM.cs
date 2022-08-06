@@ -1,4 +1,5 @@
-﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
+﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
 using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,17 +14,17 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos
 
         private readonly LocadoraVeiculosDbContext dbContext;
 
-        public RepositorioGrupoVeiculosORM(LocadoraVeiculosDbContext dbContext)
+        public RepositorioGrupoVeiculosORM(IContextoPersistencia contextoPersitencia)
         {
+            this.dbContext = (LocadoraVeiculosDbContext)contextoPersitencia;
             grupos = dbContext.Set<GrupoVeiculos>();
-            this.dbContext = dbContext;
         }
 
         public void Inserir(GrupoVeiculos novoRegistro)
         {
             grupos.Add(novoRegistro);
         }
-        
+
         public void Editar(GrupoVeiculos registro)
         {
             grupos.Update(registro);
@@ -33,7 +34,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloGrupoVeiculos
         {
             grupos.Remove(registro);
         }
-        
+
         public int QuantidadeGrupoVeiculosCadastrados()
         {
             return grupos.Count();

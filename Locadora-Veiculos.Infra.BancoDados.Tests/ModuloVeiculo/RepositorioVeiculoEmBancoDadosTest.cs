@@ -1,12 +1,4 @@
-﻿using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
-using Locadora_Veiculos.Dominio.ModuloVeiculo;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ModuloGrupoVeiculos;
-using Locadora_Veiculos.Infra.BancoDados.ModuloVeiculo;
-using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
-using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
 {
@@ -65,7 +57,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
         //    var resultadoEdicao = servicoVeiculo.Editar(veiculo);
 
         //    var resultadoSelecao = servicoVeiculo.SelecionarPorId(veiculo.Id);
-         
+
         //    var registroEncontrado = resultadoSelecao.Value;
         //    //assert
 
@@ -142,7 +134,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.Tests.ModuloVeiculo
         //    var v1 = NovoVeiculo();
         //    var resultadoInsercaoV1 = servicoVeiculo.Inserir(v1);
         //    var v2 = NovoVeiculo();
-            
+
 
         //    //action
         //    var resultadoInsercaoV2 = servicoVeiculo.Inserir(v2);

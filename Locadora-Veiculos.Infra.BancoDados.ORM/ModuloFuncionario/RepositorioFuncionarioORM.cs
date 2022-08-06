@@ -1,4 +1,5 @@
-﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
+﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using Locadora_Veiculos.Dominio.ModuloFuncionario;
 using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,17 +13,17 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario
         private DbSet<Funcionario> funcionarios;
         private readonly LocadoraVeiculosDbContext dbContext;
 
-        public RepositorioFuncionarioORM(LocadoraVeiculosDbContext dbContext)
+        public RepositorioFuncionarioORM(IContextoPersistencia contextoPersitencia)
         {
+            this.dbContext = (LocadoraVeiculosDbContext)contextoPersitencia;
             funcionarios = dbContext.Set<Funcionario>();
-            this.dbContext = dbContext;
         }
 
         public void Inserir(Funcionario novoRegistro)
         {
             funcionarios.Add(novoRegistro);
         }
-        
+
         public void Editar(Funcionario registro)
         {
             funcionarios.Update(registro);
@@ -32,7 +33,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario
         {
             funcionarios.Remove(registro);
         }
-        
+
         public Funcionario SelecionarFuncionarioPorLogin(string login)
         {
             return funcionarios.FirstOrDefault(x => x.Login == login);

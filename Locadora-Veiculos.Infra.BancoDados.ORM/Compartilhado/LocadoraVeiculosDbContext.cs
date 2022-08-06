@@ -7,6 +7,7 @@ using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloLocacao;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloPlanoCobranca;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo;
+using Locadora_Veiculos.Infra.Configs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -18,9 +19,9 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado
     {
         private string connectionString;
 
-        public LocadoraVeiculosDbContext(string connectionString)
+        public LocadoraVeiculosDbContext(ConnectionStrings connectionStrings)
         {
-            this.connectionString = connectionString;
+            this.connectionString = connectionStrings.SqlServer;
         }
 
         public void GravarDados()

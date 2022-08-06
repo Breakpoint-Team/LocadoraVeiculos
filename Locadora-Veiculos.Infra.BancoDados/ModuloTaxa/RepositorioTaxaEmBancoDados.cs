@@ -67,7 +67,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ModuloTaxa
                 [TBTAXA]
             WHERE 
              [DESCRICAO] = @DESCRICAO";
-        
+
         private string sqlCountTaxas =>
            @"SELECT COUNT(*) 
                 FROM TBTAXA;";

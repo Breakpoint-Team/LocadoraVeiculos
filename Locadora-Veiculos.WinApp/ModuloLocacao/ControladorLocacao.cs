@@ -1,7 +1,4 @@
 ﻿using FluentResults;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.draw;
 using Locadora_Veiculos.Dominio.ModuloCliente;
 using Locadora_Veiculos.Dominio.ModuloCondutor;
 using Locadora_Veiculos.Dominio.ModuloGrupoVeiculos;
@@ -19,7 +16,6 @@ using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Locadora_Veiculos.WinApp.ModuloLocacao
@@ -168,7 +164,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
 
             var locacaoSelecionada = resultado.Value;
 
-            if(locacaoSelecionada.StatusLocacao == StatusLocacao.Fechada)
+            if (locacaoSelecionada.StatusLocacao == StatusLocacao.Fechada)
             {
                 MessageBox.Show("A locação selecionada já está fechada!",
                 "Devolução de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -176,7 +172,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
             }
 
             TelaDevolucaoLocacaoForm tela = new TelaDevolucaoLocacaoForm(ObterTaxas());
-            
+
             tela.Locacao = locacaoSelecionada;
 
             tela.GravarRegistro = servicoLocacao.DevolverLocacao;
@@ -189,7 +185,7 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
 
             }
         }
-        
+
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolBoxLocacao();
@@ -362,6 +358,4 @@ namespace Locadora_Veiculos.WinApp.ModuloLocacao
         #endregion
 
     }
-
-
 }

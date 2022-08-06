@@ -1,4 +1,5 @@
-﻿using Locadora_Veiculos.Dominio.ModuloCondutor;
+﻿using Locadora_Veiculos.Dominio.Compartilhado;
+using Locadora_Veiculos.Dominio.ModuloCondutor;
 using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,17 +14,17 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor
         private DbSet<Condutor> condutores;
         private readonly LocadoraVeiculosDbContext dbContext;
 
-        public RepositorioCondutorORM(LocadoraVeiculosDbContext dbContext)
+        public RepositorioCondutorORM(IContextoPersistencia contextoPersitencia)
         {
+            this.dbContext = (LocadoraVeiculosDbContext)contextoPersitencia;
             condutores = dbContext.Set<Condutor>();
-            this.dbContext = dbContext;
         }
 
         public void Inserir(Condutor novoRegistro)
         {
             condutores.Add(novoRegistro);
         }
-        
+
         public void Editar(Condutor registro)
         {
             condutores.Update(registro);
@@ -51,7 +52,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCondutor
 
         public List<Condutor> SelecionarTodos()
         {
-            return condutores.Include(x =>x.Cliente).ToList();
+            return condutores.Include(x => x.Cliente).ToList();
         }
 
         public int QuantidadeCondutoresCadastrados()

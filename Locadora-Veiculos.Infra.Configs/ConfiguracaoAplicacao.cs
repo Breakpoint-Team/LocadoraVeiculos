@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Locadora_Veiculos.Infra.Configs
 {
@@ -98,7 +96,8 @@ namespace Locadora_Veiculos.Infra.Configs
         public string SqlServer { get; set; }
     }
 
-    public class ConfiguracaoPrecoCombustivel {
+    public class ConfiguracaoPrecoCombustivel
+    {
         public decimal PrecoGasolina { get; set; }
         public decimal PrecoDiesel { get; set; }
         public decimal PrecoAlcool { get; set; }

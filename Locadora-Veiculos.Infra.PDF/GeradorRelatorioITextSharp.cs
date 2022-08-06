@@ -582,7 +582,7 @@ namespace Locadora_Veiculos.Infra.PDF
             }
             #endregion
 
-            if(locacao.NivelTanqueDevolucao != NivelTanque.Cheio)
+            if (locacao.NivelTanqueDevolucao != NivelTanque.Cheio)
             {
                 decimal preco = 0;
                 string tipo = locacao.Veiculo.TipoCombustivel;

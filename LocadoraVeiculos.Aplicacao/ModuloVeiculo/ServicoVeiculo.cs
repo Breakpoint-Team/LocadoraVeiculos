@@ -39,11 +39,11 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             try
             {
                 repositorioVeiculo.Inserir(veiculo);
-                
+
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Debug("Veículo {VeiculoId} inserido com sucesso", veiculo.Id);
-                
+
                 return Result.Ok(veiculo);
             }
             catch (Exception ex)
@@ -78,7 +78,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Veículo {VeiculoId} editado com sucesso", veiculo.Id);
-                
+
                 return Result.Ok(veiculo);
             }
             catch (Exception ex)
@@ -102,7 +102,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
                 contextoPersistencia.GravarDados();
 
                 Log.Logger.Debug("Veículo '{VeiculoId}' excluído com sucesso", veiculo.Id);
-                
+
                 return Result.Ok();
             }
             catch (Exception ex)

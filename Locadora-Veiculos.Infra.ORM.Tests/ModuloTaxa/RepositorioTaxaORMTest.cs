@@ -1,7 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloTaxa;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloTaxa;
+using Locadora_Veiculos.Infra.ORM.Tests.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -10,16 +9,14 @@ namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloTaxa
 {
 
     [TestClass]
-    public class RepositorioTaxaORMTest
+    public class RepositorioTaxaORMTest : RepositorioORMTestBase
     {
         private RepositorioTaxaORM repositorioTaxa;
         private ServicoTaxa servicoTaxa;
-        private LocadoraVeiculosDbContext dbContext;
 
         public RepositorioTaxaORMTest()
         {
-            Db.ExecutarSql("DELETE FROM TBTAXA");
-            dbContext = new LocadoraVeiculosDbContext(Db.enderecoBanco);
+            LimparTabelas();
             repositorioTaxa = new RepositorioTaxaORM(dbContext);
             servicoTaxa = new ServicoTaxa(repositorioTaxa, dbContext);
         }

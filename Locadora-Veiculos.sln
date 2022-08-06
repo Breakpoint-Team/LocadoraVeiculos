@@ -34,9 +34,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Aplicacao", "LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj", "{1F9BF070-E9E6-4A8F-8B1F-76084ECADF4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{F9EA0411-59F6-43D9-B5FE-2EF1BB316C8B}"
-	ProjectSection(SolutionItems) = preProject
-		Locadora-Veiculos.Infra.Configs\ConfiguracaoAplicacao.cs = Locadora-Veiculos.Infra.Configs\ConfiguracaoAplicacao.cs
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locadora-Veiculos.Infra.Logging", "Locadora-Veiculos.Infra.Logging\Locadora-Veiculos.Infra.Logging.csproj", "{176D6479-179E-4FCC-9ABB-2181A6B7D1B2}"
 EndProject
@@ -54,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locadora-Veiculos.Infra.ORM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PDF", "PDF", "{B1AE13C7-2F14-4694-8ED4-3443010C0D85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locadora-Veiculos.Infra.PDF", "Locadora-Veiculos.Infra.PDF\Locadora-Veiculos.Infra.PDF.csproj", "{64294914-CF16-4D96-96E2-15670C069CB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locadora-Veiculos.Infra.PDF", "Locadora-Veiculos.Infra.PDF\Locadora-Veiculos.Infra.PDF.csproj", "{64294914-CF16-4D96-96E2-15670C069CB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

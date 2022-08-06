@@ -13,10 +13,10 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloCliente
         private DbSet<Cliente> clientes;
         private readonly LocadoraVeiculosDbContext dbContext;
 
-        public RepositorioClienteORM(LocadoraVeiculosDbContext dbContext)
+        public RepositorioClienteORM(IContextoPersistencia contextoPersitencia)
         {
+            this.dbContext = (LocadoraVeiculosDbContext)contextoPersitencia;
             clientes = dbContext.Set<Cliente>();
-            this.dbContext = dbContext;
         }
 
         public void Inserir(Cliente novoRegistro)

@@ -9,7 +9,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo
         public void Configure(EntityTypeBuilder<Veiculo> builder)
         {
             builder.ToTable("TBVeiculo");
-            builder.Property(x => x.Id).ValueGeneratedNever();          
+            builder.Property(x => x.Id).ValueGeneratedNever();
             builder.Property(x => x.Modelo).HasColumnType("varchar(300)").IsRequired();
             builder.Property(x => x.Marca).HasColumnType("varchar(300)").IsRequired();
             builder.Property(x => x.Ano).HasColumnType("int").IsRequired();
@@ -20,7 +20,7 @@ namespace Locadora_Veiculos.Infra.BancoDados.ORM.ModuloVeiculo
             builder.Property(x => x.CapacidadeTanque).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(x => x.StatusVeiculo).HasConversion<int>().IsRequired();
             builder.Property(x => x.Imagem).HasColumnType("varbinary(max)").IsRequired();
-         
+
             builder.HasOne(x => x.GrupoVeiculos)
                  .WithMany()
                  .OnDelete(DeleteBehavior.NoAction);

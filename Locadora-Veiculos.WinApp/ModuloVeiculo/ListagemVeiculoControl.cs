@@ -40,7 +40,7 @@ namespace Locadora_Veiculos.WinApp.ModuloVeiculo
                 new DataGridViewTextBoxColumn { DataPropertyName = "CapacidadeTanque", HeaderText = "Capacidade do Tanque"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "GrupoVeiculos", HeaderText = "Grupo de Veículos"},
-                
+
                 new DataGridViewTextBoxColumn { DataPropertyName = "StatusVeiculo", HeaderText = "Status"}
             };
 

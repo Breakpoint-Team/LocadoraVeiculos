@@ -147,9 +147,9 @@ namespace Locadora_Veiculos.Infra.BancoDados.Compartilhado
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorParametro, conexaoComBanco);
 
             comandoSelecao.Parameters.Add(parametro);
-            
+
             T registro = null;
-            
+
             try
             {
                 conexaoComBanco.Open();

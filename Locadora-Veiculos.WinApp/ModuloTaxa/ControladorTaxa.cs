@@ -119,7 +119,8 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
                 List<Taxa> taxas = resultado.Value;
                 listagemTaxa.AtualizarRegistros(taxas);
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {taxas.Count} taxa(s)");
-            } else
+            }
+            else
             {
                 MessageBox.Show(resultado.Errors[0].Message, "Visualização de Taxa",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -1,7 +1,6 @@
 ﻿using Locadora_Veiculos.Dominio.ModuloFuncionario;
-using Locadora_Veiculos.Infra.BancoDados.Compartilhado;
-using Locadora_Veiculos.Infra.BancoDados.ORM.Compartilhado;
 using Locadora_Veiculos.Infra.BancoDados.ORM.ModuloFuncionario;
+using Locadora_Veiculos.Infra.ORM.Tests.Compartilhado;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -10,16 +9,15 @@ using System.Collections.Generic;
 namespace Locadora_Veiculos.Infra.ORM.Tests.ModuloFuncionario
 {
     [TestClass]
-    public class RepositorioFuncionarioORMTest
+
+    public class RepositorioFuncionarioORMTest : RepositorioORMTestBase
     {
         private RepositorioFuncionarioORM repositorioFuncionario;
         private ServicoFuncionario servicoFuncionario;
-        private LocadoraVeiculosDbContext dbContext;
 
         public RepositorioFuncionarioORMTest()
         {
-            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO;");
-            dbContext = new LocadoraVeiculosDbContext(Db.enderecoBanco);
+            LimparTabelas();
             repositorioFuncionario = new RepositorioFuncionarioORM(dbContext);
             servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, dbContext);
         }

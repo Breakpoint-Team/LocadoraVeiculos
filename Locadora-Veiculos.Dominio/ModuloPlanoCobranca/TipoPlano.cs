@@ -7,10 +7,10 @@ namespace Locadora_Veiculos.Dominio.ModuloPlanoCobranca
     {
         [Description("Plano diário")]
         Diario,
-        
+
         [Description("Km controlado")]
         Controlado,
- 
+
         [Description("Km livre")]
         Livre
     }
