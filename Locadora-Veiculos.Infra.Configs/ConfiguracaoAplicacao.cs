@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Locadora_Veiculos.Infra.Configs
 {
