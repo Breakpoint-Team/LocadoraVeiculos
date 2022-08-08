@@ -23,6 +23,7 @@ namespace Locadora_Veiculos.WinApp
             IServiceLocator servicelocator = new ServiceLocatorComAutoFac();
 
             Application.Run(new TelaPrincipalForm(servicelocator));
+
         }
     }
 }
