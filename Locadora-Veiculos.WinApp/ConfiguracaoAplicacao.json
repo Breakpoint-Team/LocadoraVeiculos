@@ -6,11 +6,11 @@
     "SqlServer": "Data Source=(LOCALDB)\\MSSQLLOCALDB;Initial Catalog=LocadoraVeiculosORM;Integrated Security=True"
   },
   "ConfiguracaoPrecoCombustivel": {
-    "PrecoGasolina": 6,
-    "PrecoDiesel": 7,
-    "PrecoAlcool": 5,
-    "PrecoGNV": 5,
-    "DataAtualizacao": "06/08/2022 16:38:21"
+    "PrecoGasolina": 14,
+    "PrecoDiesel": 13,
+    "PrecoAlcool": 10,
+    "PrecoGNV": 12,
+    "DataAtualizacao": "06/08/2022 17:18:15"
   },
   "ConfiguracaoRelatorio": {
     "DiretorioSaida": "C:\\Locadora\\Relatorios"

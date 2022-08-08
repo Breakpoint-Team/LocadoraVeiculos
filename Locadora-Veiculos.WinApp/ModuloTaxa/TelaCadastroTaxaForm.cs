@@ -78,6 +78,23 @@ namespace Locadora_Veiculos.WinApp.ModuloTaxas
             TelaPrincipalForm.Instancia.AtualizarRodape("");
         }
 
+
+        private void checkBoxTaxaDevolucao_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxTaxaDevolucao.Checked == true)
+            {
+                radioButtonFixo.Checked = true;
+                radioButtonDiario.Checked = false;
+                radioButtonDiario.Enabled = false;
+            }
+            else
+            {
+                radioButtonFixo.Checked = false;
+                radioButtonDiario.Checked = true;
+                radioButtonDiario.Enabled = true;
+            }
+        }
+
         #endregion
     }
 }
