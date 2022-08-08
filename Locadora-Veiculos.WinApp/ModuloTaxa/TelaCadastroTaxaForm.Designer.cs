@@ -101,11 +101,6 @@
             // numericValor
             // 
             this.numericValor.DecimalPlaces = 2;
-            this.numericValor.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.numericValor.Location = new System.Drawing.Point(113, 50);
             this.numericValor.Maximum = new decimal(new int[] {
             10000,
@@ -156,6 +151,7 @@
             this.checkBoxTaxaDevolucao.TabIndex = 4;
             this.checkBoxTaxaDevolucao.Text = "A taxa é de devolução";
             this.checkBoxTaxaDevolucao.UseVisualStyleBackColor = true;
+            this.checkBoxTaxaDevolucao.CheckedChanged += new System.EventHandler(this.checkBoxTaxaDevolucao_CheckedChanged);
             // 
             // TelaCadastroTaxaForm
             // 

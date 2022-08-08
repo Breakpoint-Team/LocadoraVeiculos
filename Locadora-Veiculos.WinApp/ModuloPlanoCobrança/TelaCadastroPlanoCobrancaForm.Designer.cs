@@ -109,11 +109,6 @@
             // numericUpDownDiarioValorKm
             // 
             this.numericUpDownDiarioValorKm.DecimalPlaces = 2;
-            this.numericUpDownDiarioValorKm.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.numericUpDownDiarioValorKm.Location = new System.Drawing.Point(118, 58);
             this.numericUpDownDiarioValorKm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numericUpDownDiarioValorKm.Maximum = new decimal(new int[] {
@@ -124,16 +119,10 @@
             this.numericUpDownDiarioValorKm.Name = "numericUpDownDiarioValorKm";
             this.numericUpDownDiarioValorKm.Size = new System.Drawing.Size(80, 23);
             this.numericUpDownDiarioValorKm.TabIndex = 3;
-            this.numericUpDownDiarioValorKm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numericUpDownDiarioValorDiario
             // 
             this.numericUpDownDiarioValorDiario.DecimalPlaces = 2;
-            this.numericUpDownDiarioValorDiario.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.numericUpDownDiarioValorDiario.Location = new System.Drawing.Point(118, 31);
             this.numericUpDownDiarioValorDiario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numericUpDownDiarioValorDiario.Maximum = new decimal(new int[] {
@@ -144,7 +133,6 @@
             this.numericUpDownDiarioValorDiario.Name = "numericUpDownDiarioValorDiario";
             this.numericUpDownDiarioValorDiario.Size = new System.Drawing.Size(80, 23);
             this.numericUpDownDiarioValorDiario.TabIndex = 2;
-            this.numericUpDownDiarioValorDiario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tabPageKmControlado
             // 
@@ -193,11 +181,6 @@
             // numericUpDownKmControladoLimiteKm
             // 
             this.numericUpDownKmControladoLimiteKm.DecimalPlaces = 2;
-            this.numericUpDownKmControladoLimiteKm.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.numericUpDownKmControladoLimiteKm.Location = new System.Drawing.Point(116, 73);
             this.numericUpDownKmControladoLimiteKm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numericUpDownKmControladoLimiteKm.Maximum = new decimal(new int[] {
@@ -208,16 +191,10 @@
             this.numericUpDownKmControladoLimiteKm.Name = "numericUpDownKmControladoLimiteKm";
             this.numericUpDownKmControladoLimiteKm.Size = new System.Drawing.Size(80, 23);
             this.numericUpDownKmControladoLimiteKm.TabIndex = 5;
-            this.numericUpDownKmControladoLimiteKm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numericUpDownKmControladoValorKm
             // 
             this.numericUpDownKmControladoValorKm.DecimalPlaces = 2;
-            this.numericUpDownKmControladoValorKm.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.numericUpDownKmControladoValorKm.Location = new System.Drawing.Point(116, 46);
             this.numericUpDownKmControladoValorKm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numericUpDownKmControladoValorKm.Maximum = new decimal(new int[] {
@@ -228,16 +205,10 @@
             this.numericUpDownKmControladoValorKm.Name = "numericUpDownKmControladoValorKm";
             this.numericUpDownKmControladoValorKm.Size = new System.Drawing.Size(80, 23);
             this.numericUpDownKmControladoValorKm.TabIndex = 4;
-            this.numericUpDownKmControladoValorKm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numericUpDownKmControladoValorDiario
             // 
             this.numericUpDownKmControladoValorDiario.DecimalPlaces = 2;
-            this.numericUpDownKmControladoValorDiario.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.numericUpDownKmControladoValorDiario.Location = new System.Drawing.Point(116, 19);
             this.numericUpDownKmControladoValorDiario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numericUpDownKmControladoValorDiario.Maximum = new decimal(new int[] {
@@ -248,7 +219,6 @@
             this.numericUpDownKmControladoValorDiario.Name = "numericUpDownKmControladoValorDiario";
             this.numericUpDownKmControladoValorDiario.Size = new System.Drawing.Size(80, 23);
             this.numericUpDownKmControladoValorDiario.TabIndex = 3;
-            this.numericUpDownKmControladoValorDiario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tabPageKmLivre
             // 
@@ -275,11 +245,6 @@
             // numericUpDownKmLivreValorDiario
             // 
             this.numericUpDownKmLivreValorDiario.DecimalPlaces = 2;
-            this.numericUpDownKmLivreValorDiario.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.numericUpDownKmLivreValorDiario.Location = new System.Drawing.Point(118, 41);
             this.numericUpDownKmLivreValorDiario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numericUpDownKmLivreValorDiario.Maximum = new decimal(new int[] {
@@ -290,7 +255,6 @@
             this.numericUpDownKmLivreValorDiario.Name = "numericUpDownKmLivreValorDiario";
             this.numericUpDownKmLivreValorDiario.Size = new System.Drawing.Size(80, 23);
             this.numericUpDownKmLivreValorDiario.TabIndex = 4;
-            this.numericUpDownKmLivreValorDiario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 

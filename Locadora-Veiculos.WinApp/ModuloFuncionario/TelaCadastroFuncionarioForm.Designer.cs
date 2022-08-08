@@ -174,11 +174,6 @@
             // numericSalario
             // 
             this.numericSalario.DecimalPlaces = 2;
-            this.numericSalario.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.numericSalario.Location = new System.Drawing.Point(120, 102);
             this.numericSalario.Maximum = new decimal(new int[] {
             50000,

@@ -224,11 +224,6 @@
             // numericCapacidadeTanque
             // 
             this.numericCapacidadeTanque.DecimalPlaces = 2;
-            this.numericCapacidadeTanque.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.numericCapacidadeTanque.Location = new System.Drawing.Point(172, 226);
             this.numericCapacidadeTanque.Maximum = new decimal(new int[] {
             1000,
